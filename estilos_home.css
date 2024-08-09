@@ -1,0 +1,264 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Helvetica, sans-serif;
+}
+
+/* Encabezado */
+header {
+  width: 100%;
+  height: auto;
+  background-color: black;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+}
+
+#tituloPrincipal {
+  color: white;
+  font-weight: bold;
+  font-size: 70px;
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+/* The navigation menu */
+.navbar {
+  overflow: hidden;
+  background-color: #ffffff;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+}
+
+.menu a {
+  color:  black;
+  text-decoration: none;
+  padding: 30px;
+  font-size: 25px;
+}
+
+.menu a:hover {
+  background-color: black;
+  color: white;
+}
+
+.navbar label {
+  color: black;
+  font-size: 25px;
+  padding: 30px 20px 30px 30px;
+}
+.navbar img {
+  width: 40px;
+  height: auto;
+  margin: 15px;
+}
+
+.navbar input {
+  width: 300px;
+  height: 50px;
+  border-radius: 8px;
+  border: 1px solid black;
+}
+
+/* Main */
+main {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.cajaMain {
+  width: 50%;
+  height: auto;
+  padding-right: 130px;
+  padding-left: 130px;
+  padding-bottom: 60px;
+  border: 1px solid black;  
+  background-color: #ffffff;
+}
+
+.cajaMain2 {
+  background-color: rgb(199, 199, 199);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+.cajaMain2 img {
+  width: 60px;
+  height: auto;
+}
+
+#tituloMain {
+  font-size: 70px;
+}
+
+.cajaMain p {
+  font-size: 21px;
+}
+
+/* Libros Home */
+#novedadesHome {
+  display: block;
+  font-size: 50px;
+  margin-left: 150px;
+  margin-top: 80px;
+
+}
+
+#productosHome{
+  margin-left: 200px;
+  margin-right: 200px;
+  margin-bottom: 80px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-content: center;
+}
+
+.cajaProductosHome {
+  width: 200px;
+  margin: 20px;
+}
+
+.fotoLibroHome {
+  border: 1px solid black;
+  width: 200px;
+  height: 230px;
+  background-color: rgb(199, 199, 199);
+  display: flex; /* centrar icono de imagen */
+  justify-content: center; /* centrar icono de imagen */
+  align-content: center; /* centrar icono de imagen */
+  flex-flow: row wrap; /* centrar icono de imagen */
+}
+
+.fotoLibroHome img {
+  width: 60px;
+  height: auto;
+}
+
+.textoLibroHome {
+  width: 200px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: black;
+  text-align: left; 
+  display: flex;
+  flex-direction: column;
+}
+
+.textoLibroHome p:nth-of-type(1) {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.textoLibroHome p:nth-of-type(2) {
+  font-size: 18px;
+  margin-top: 0px;
+}
+
+.textoLibroHome button {
+  width: 200px;
+  border: solid black 1px;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  align-self: center;
+}
+
+.textoLibroHome button:hover {
+  background-color: black;
+  color: white;
+}
+
+/* Footer */
+#Footer {
+  border: 1px solid black;
+  padding: 50px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  background-color: black;
+  width: 100%;
+  height: auto;
+}
+
+.cajaFooter {
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap;
+  background-color: black;
+  width: 25%;
+  height: 100%;
+}
+
+.nombresFooter {
+  font-weight: bold;
+  font-size: 21px;
+  color: white;
+  margin-bottom: 0px;
+}
+
+.cajaFooter ul {
+  list-style-type: none;
+  color: white;
+  padding: 0px; 
+
+}
+
+.cajaFooter li {
+  margin: 10px 0;
+}
+
+.cajaFooter a {
+  text-decoration: none;
+  color: white;
+  padding-top: 40px;
+}
+
+.imagenesRRSS, .imagenesPago {
+  display: flex;
+  flex-flow: row wrap;
+  margin-top: 30px;
+}
+
+.imagenesPago img, .imagenesRRSS img {
+  width: 80px;
+  height: auto;
+  margin: 10px;
+}
+
+.copyright {
+  border: 1px solid black;
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+}
+
+.copyright p {
+  color: white;
+  text-align: center;
+  margin: 0px;
+}
+
