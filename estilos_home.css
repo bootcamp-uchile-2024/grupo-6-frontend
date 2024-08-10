@@ -22,7 +22,7 @@ header {
   align-items: center;
 }
 
-#tituloPrincipal {
+#tituloHeader {
   color: white;
   font-weight: bold;
   font-size: 70px;
@@ -115,7 +115,7 @@ main {
 }
 
 /* Libros Home */
-#novedadesHome {
+#tituloNovedades {
   display: block;
   font-size: 50px;
   margin-left: 150px;
@@ -243,10 +243,11 @@ main {
   margin-top: 30px;
 }
 
-.imagenesPago img, .imagenesRRSS img {
-  width: 80px;
-  height: auto;
+.imagenesPago img, .imagenesRRSS img, .imagenesRRSS a {
+  width: auto;
+  height: 50px;
   margin: 10px;
+  padding: 0px;
 }
 
 .copyright {
@@ -261,4 +262,3 @@ main {
   text-align: center;
   margin: 0px;
 }
-
