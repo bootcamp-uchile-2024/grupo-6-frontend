@@ -120,7 +120,7 @@ main {
   font-size: 50px;
   margin-left: 150px;
   margin-top: 80px;
-
+  text-align: center;
 }
 
 #productosHome{
@@ -159,7 +159,7 @@ main {
   margin-bottom: 20px;
   font-size: 14px;
   color: black;
-  text-align: left; 
+  text-align: center; 
   display: flex;
   flex-direction: column;
 }
