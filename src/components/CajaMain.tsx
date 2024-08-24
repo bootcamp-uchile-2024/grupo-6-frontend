@@ -1,5 +1,5 @@
-import icono_imagen from './assets/images/icono_imagen.png'
-import './styles/estilos_home.css'
+import icono_imagen from '../assets/images/icono_imagen.png'
+import '../styles/estilos_home.css'
 
 function CajaMain() {
 

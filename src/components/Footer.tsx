@@ -1,7 +1,7 @@
-import icono_mercadopago from './assets/images/logo-mercadopago29.png'
-import icono_paypal from './assets/images/Paypal_2014_logo.png'
-import icono_webpay from './assets/images/logo-webpay-plus-3-2.png'
-import './styles/estilos_home.css'
+import icono_mercadopago from '../assets/images/logo-mercadopago29.png'
+import icono_paypal from '../assets/images/Paypal_2014_logo.png'
+import icono_webpay from '../assets/images/logo-webpay-plus-3-2.png'
+import '../styles/estilos_home.css'
 
 function Footer() {
 

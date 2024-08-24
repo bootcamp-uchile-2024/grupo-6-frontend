@@ -1,4 +1,4 @@
-import './styles/estilos_home.css'
+import '../styles/estilos_home.css'
 import CajaProducto from './CajaProducto.tsx'
 function LibrosHome() {
 

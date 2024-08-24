@@ -1,5 +1,5 @@
-import icono_lupa from './assets/images/icono_lupa.png'
-import './styles/estilos_home.css'
+import icono_lupa from '../assets/images/icono_lupa.png'
+import '../styles/estilos_home.css'
 
 function Nav() {
 
