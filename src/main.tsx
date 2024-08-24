@@ -4,8 +4,7 @@ import Header from './Header.tsx'
 import Nav from './Nav.tsx'
 import CajaMain from './CajaMain.tsx'
 import LibrosHome from './LibrosHome.tsx'
-
-//import './index.css'
+import Footer from './Footer.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -13,5 +12,6 @@ createRoot(document.getElementById('root')!).render(
     <Nav/>
     <CajaMain/>
     <LibrosHome/>
+    <Footer/>
   </StrictMode>,
 )
