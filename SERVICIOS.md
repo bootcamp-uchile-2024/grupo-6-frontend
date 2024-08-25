@@ -1,10 +1,9 @@
 # Servicios
 
-## Listar productos
+## Nombre del servicio
 
-__Descripción__: Obtiene una lista de productos. <br>
+__Propósito__: Obtiene una lista de productos. <br>
 __Ruta__: `src/interfaces/IListProductsRequestDTO.ts` <br>
-__Ruta__: `src/interfaces/IListProductsResponseDTO.ts` <br>
 __Url__: https://github.com/Joaoamestica/ayudantia/blob/main/script.js <br>
 
 ### RequestDTO
@@ -32,35 +31,68 @@ interface ProductDTO{
 ```
 
 
+## Nombre del servicio
 
-
-
-
-
-
-
-## Crear producto
-
-__Descripción__: crea un producto. <br>
-__Ruta__: `src/interfaces/ICreateProductRequestDTO.ts` <br>
-__Ruta__: `src/interfaces/ICreateProductResponseDTO.ts` <br>
-__Url__: https://github.com/Joaoamestica/ayudantia/blob/main/script.js <br>
+__Propósito__: ... <br>
+__Ruta__: ... <br>
+__Url__: ... <br>
 
 ### RequestDTO
 
 ```typescript
-interface ICreateProductRequestDTO {
-    name: string;
-    price: number;
+interface NombreRequestDTO {
+    atributo: string;
 }
 ```
 
 ### ResponseDTO
 
 ```typescript
-interface ICreateProductResponseDTO {
-    id: number;
-    name: string;
-    price: number;
+interface NombreResponseDTO {
+    atributo: string;
+}
+```
+
+## Nombre del servicio
+
+__Propósito__: ... <br>
+__Ruta__: ... <br>
+__Url__: ... <br>
+
+### RequestDTO
+
+```typescript
+interface NombreRequestDTO {
+    atributo: string;
+}
+```
+
+### ResponseDTO
+
+```typescript
+interface NombreResponseDTO {
+    atributo: string;
+}
+```
+
+## Nombre del servicio
+
+__Propósito__: ... <br>
+__Ruta__: ... <br>
+__Url__: ... <br>
+
+### RequestDTO
+
+```typescript
+interface NombreRequestDTO {
+    atributo: string;
+}
+```
+
+### ResponseDTO
+
+```typescript
+interface NombreResponseDTO {
+    atributo: string;
 }
 ```
