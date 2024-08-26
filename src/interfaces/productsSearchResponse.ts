@@ -1,16 +1,17 @@
 interface productSearchResponse {
-    nombre?: string;
-    autor?: string;
-    isbn?: number;
-    precioMinimo?: number;
-    precioMaximo?: string;
-    rating?: number;
-    encuadernacion?: string;
-    anioPublicacionMinimo?: number;
-    anioPublicacionMaximo?: number;
-    idioma?: string;
-    editorial?: string;
-    genero?: string;
+    isbn: number,
+    nombre: string,
+    autor: string,
+    stockLibro: number,
+    precio: number,
+    genero: string[],
+    editorial: string,
+    idioma: string,
+    encuadernacion: string,
+    agnoPublicacion: string,
+    numeroPaginas: number,
+    descuento: number,
+    caratula: string
 }
 
 export type { productSearchResponse };
