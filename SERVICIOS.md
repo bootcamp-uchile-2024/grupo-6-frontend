@@ -100,6 +100,44 @@ interface ProductosFiltradosSalida {
 
 
 
+## Buscar productos
+
+__Propósito__: Permite buscar productos según un término de búsqueda y filtros opcionales.<br>
+__Ruta Request__: `src/interfaces/BuscarProductosEntrada.ts`<br>
+__Ruta Response__: `src/interfaces/BuscarProductosSalida.ts`<br>
+__Url__: ...<br>
+
+### RequestDTO
+```typescript
+interface BuscarProductosEntrada {
+    query: string;                // Término de búsqueda (Ej: nombre, autor o ISBN)
+    priceMin?: number;            // Precio mínimo
+    priceMax?: number;            // Precio máximo
+    sortBy?: string;              // Propiedad para ordenar (Ej:"precio")
+    autor?: string;               // Nombre del autor
+    rating?: number;              // Rating del libro (0-5)
+    encuadernacion?: 'Tapa dura' | 'Tapa blanda' | 'Encuadernación en espiral';  // Encuadernación
+    agnoPublicacionMin?: number;  // Año mínimo de publicación
+    agnoPublicacionMax?: number;  // Año máximo de publicación
+    idioma?: 'Español' | 'Inglés' | 'Francés' | 'Alemán' | 'Portugués' | 'Italiano';  // Idioma
+    editorial?: string;             // Editorial del libro
+    genero?: 'Thriller' | 'Novela histórica' | 'Romance' | 'Ciencia ficción' | 'Distópia' | 'Aventura' | 'Fantasía' | 'Contemporáneo' | 'Terror' | 'Paranormal' | 'Poesía' | 'Juvenil' | 'Infantil' | 'Novela' | 'Clásico' | 'Autoayuda' | 'Salud y deporte' | 'Técnicos y especializados' | 'Biografías y autobiografías' | 'Cocina' | 'Viajes' | 'Arte' | 'Ciencia y matemáticas' | 'Computación' | 'Derecho y política' | 'Economía y finanzas' | 'Historia' | 'Filosofía y religión' | 'Educación';  // Género del libro
+    offset?: number;              // Posición de inicio para la paginación
+    limit?: number;               // Número máximo de productos a devolver
+}
+```
+
+### ResponseDTO
+```typescript
+interface BuscarProductosSalida {
+    success: boolean;                  // Indica si la búsqueda fue exitosa
+    products: CrearProductoEntrada[];  // Lista de productos que coinciden con la búsqueda
+    message?: string;                  // Mensaje opcional (Ej: No se encontraron productos)
+}
+```
+
+
+
 ## Eliminar Producto del Carrito de Compras
 
 __Propósito__: Permite eliminar un producto del carrito de compras.<br>
