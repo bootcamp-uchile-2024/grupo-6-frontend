@@ -138,6 +138,39 @@ interface BuscarProductosSalida {
 
 
 
+## Agregar productos al Carrito de Compras
+
+__Propósito__: Permite agregar un producto al carrito de compras.<br>
+__Ruta Request__: `src/interfaces/ShoppingCartEntrada.ts`<br>
+__Ruta Response__: `src/interfaces/ShoppingCartSalida.ts`<br>
+__Url__: ...<br>
+
+### RequestDTO
+```typescript
+interface ShoppingCartEntrada {
+precio: number;                 // Precio del producto 
+genero: string[];               // Género del producto
+editorial: string;              // Editorial del producto 
+encuadernacion: string;         // Tipo de encuadernación del producto
+descuento: number;              // Descuento aplicable al producto
+caratula: string;               // Ruta de la imagen del producto
+}
+```
+### ResponseDTO
+```typescript
+interface ShoppingCartSalida {
+    items: ShoppingCartItem[];      // Lista de ítems en el carrito
+}
+
+interface ShoppingCartItem {
+    id: number;                     // Identificador único del ítem en el carrito, en este caso puede ser el número de compra
+    cantidad: number;               // Cantidad del ítem en el carrito
+    datos: ShoppingCartEntrada;     // Datos del producto en el carrito
+}
+```
+
+
+
 ## Eliminar Producto del Carrito de Compras
 
 __Propósito__: Permite eliminar un producto del carrito de compras.<br>
