@@ -1,4 +1,5 @@
 # Servicios
+En esta sección, se detallan las diferentes interfaces que se crearon para los componentes asociados a productos y el carrito de compras.
 
 ## Crear un Producto
 
