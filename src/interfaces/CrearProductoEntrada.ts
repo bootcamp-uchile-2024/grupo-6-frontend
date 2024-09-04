@@ -1,17 +1,21 @@
 interface CrearProductoEntrada {
-    isbn: string;                // ISBN del libro
-    nombre: string;              // Nombre del libro
-    autor: string[];             // Autor del libro (array de strings)
-    stockLibro: number;          // Cantidad en stock
-    precio: number;              // Precio del libro
-    genero: string[];            // Géneros del libro (array de strings)
-    editorial: string;           // Editorial del libro
-    idioma: string;              // Idioma del libro
-    encuadernacion: string;      // Tipo de encuadernación (Ej: Tapa dura, Tapa blanda)
-    agnoPublicacion: string;     // Año de publicación
-    numeroPaginas: number;       // Número de páginas
-    descuento: number;           // Descuento aplicado al libro
-    caratula: string;            // URL de la carátula del libro
+    isbn: string;                // Si - ISBN del libro  
+    nombre: string;              // Si - Nombre del libro
+    autor: string[];             // Si - Autor del libro (array de strings)
+    stockLibro: number;          // Si - Cantidad en stock
+    precio: number;              // Si -  Precio del libro
+    genero: string[];            // Si - Géneros del libro (array de strings)
+    editorial: string;           // Si - Editorial del libro
+    idioma: string;              // Si - Idioma del libro
+    encuadernacion: string;      // Si - Tipo de encuadernación (Ej: Tapa dura, Tapa blanda)
+    agnoPublicacion: string;     // Si - Año de publicación
+    numeroPaginas: number;       //Si -  Número de páginas
+    descuento: number;           // Si - Descuento aplicado al libro
+    caratula: string;            // Si - URL de la carátula del libro
+    dimensiones: string;    // Agregar para vista de productos
+    ean: string;    // Agregar para vista de productos - Corresponde al codigo de barra
+    resumen: string //Agregar para vista de productos
+    calificacion: number // Agregar para vista de productos
 }
 
 export type {CrearProductoEntrada}

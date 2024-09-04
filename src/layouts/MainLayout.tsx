@@ -1,17 +1,22 @@
 import Header from '../components/Header.tsx'
 import Nav from '../components/Nav.tsx'
 import Footer from '../components/Footer.tsx'
-import CajaMain from '../components/CajaMain.tsx'
-import LibrosHome from '../components/LibrosHome.tsx'
 
-export default function MainLayout() {
+interface MainLayoutProps {
+    children: React.ReactNode;
+}
+
+export const MainLayout = (props: MainLayoutProps) => {
+
+
     return (
-      <>
-        <Header/>
-        <Nav/>
-        <CajaMain/>
-        <LibrosHome/>
-        <Footer/>
-      </>
+        <div className="main-container">
+            <Header/>
+            <Nav/>
+            <main>
+                {props.children}
+            </main>
+            <Footer/>
+        </div>      
     )
-} 
+}
