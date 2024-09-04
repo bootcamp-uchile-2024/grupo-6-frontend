@@ -6,7 +6,7 @@ function Filtros() {
     <>
         <section id="seccionFiltros">
             <div className="filtros-categoria">
-                <h2 id="tituloFiltro">Categoria</h2>
+                <h2 id="tituloFiltro">Categoría</h2>
                 <div className="checkbox-container">
                   <input id="artes" type="checkbox"/>
                   <label htmlFor="artes">Artes</label>
@@ -44,9 +44,9 @@ function Filtros() {
             <div className="filtros-precio">
                   <h2 id="tituloFiltro">Precio</h2>
                   <div className="precio-row">
-                    <input id="minimo" name="minimo" type="string" pattern="^[0-9]+([,.][0-9]+)?$" placeholder="Mínimo"  value=""></input>
-                    <p  id="precioSeparador">  -  </p>
-                    <input id="maximo" name="maximo" type="string" pattern="^[0-9]+([,.][0-9]+)?$" placeholder="Maximo"  value=""></input>
+                    <input id="minimo" name="minimo" type='number' pattern="^[0-9]+([,.][0-9]+)?$" placeholder="Mínimo"  value=""></input>
+                    <p id="precioSeparador">  -  </p>
+                    <input id="maximo" name="maximo" type="number" pattern="^[0-9]+([,.][0-9]+)?$" placeholder="Máximo"  value=""></input>
                   </div>
 
             </div>
