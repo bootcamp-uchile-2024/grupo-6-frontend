@@ -63,7 +63,6 @@ img[src*="icono_carrito"] {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
 }
 
 .menu {
@@ -82,7 +81,8 @@ img[src*="icono_carrito"] {
   transition: background-color 0.3s, color 0.3s; /* Transición para color de fondo y color del texto */
 }
 
-.menu a:hover {
+.menu a:hover,
+.menu .categorias:hover > a {
   background-color: black;
   color: white;
 }
@@ -116,6 +116,7 @@ img[src*="icono_carrito"] {
 /* Despleglable Categorias */
 
 .caja-categoria-desplegable {
+  background-color: white;
   margin: 20px 20px 20px 0px;
   border: 1px solid black;
   display: flex;
@@ -134,19 +135,27 @@ img[src*="icono_carrito"] {
   list-style: none;
 }
 
-.columna-categoria-1 li, 
-.columna-categoria-2 li,
-.columna-categoria-3 li, 
-.columna-categoria-4 li {
+ul[class^="columna-categoria-"] li {
+  padding: 8px;
   font-size: 16px;
-  color: rgb(0, 0, 0);
-  padding: 5px;
 }
 
-.menu li:hover .caja-categoria-desplegable{
+ul[class^="columna-categoria-"] a {
+  padding: 8px;
+  font-size: 16px;
+  color: black;
+}
+
+ul[class^="columna-categoria-"] a:hover {
+  font-size: 16px;
+  color: black;
+  background-color: white;
+  text-decoration: underline;
+}
+
+.menu .categorias:hover .caja-categoria-desplegable{
   visibility: visible;
 }
-
 
 /* Main */
 main {
@@ -170,6 +179,7 @@ main {
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
+  z-index: -1;
 }
 
 .cajaMain2 img {
