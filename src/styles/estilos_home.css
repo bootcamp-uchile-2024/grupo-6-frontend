@@ -79,6 +79,7 @@ img[src*="icono_carrito"] {
   text-decoration: none;
   padding: 21px;
   font-size: 18px;
+  transition: background-color 0.3s, color 0.3s; /* Transición para color de fondo y color del texto */
 }
 
 .menu a:hover {
@@ -219,6 +220,8 @@ main {
 
 /* Libros Home */
 #seccionNovedades {
+  padding-left: 100px;
+  padding-right: 100px;
   display: flex;
   justify-content: center;
   flex-flow: row wrap;
@@ -232,8 +235,6 @@ main {
 }
 
 #productosHome{
-  margin-left: 200px;
-  margin-right: 200px;
   margin-bottom: 50px;
   display: flex;
   flex-flow: row wrap;
@@ -244,69 +245,104 @@ main {
 .cajaProductosHome {
   display: flex;
   width: 240px;
-  margin: 10px;
+  margin: 15px;
   background-color: rgba(253, 251, 251, 0.973);
   border: 1px solid rgba(165, 164, 164, 0.678);
-  border-radius: 10px;
+  border-radius: 0px;
   flex-direction: column;
   align-items: center;
-
+  border-radius: 15px;
 }
 
 .fotoLibroHome {
-  width: 200px;
-  height: 230px;
-  margin: 10px;
-  background-color: rgb(199, 199, 199);
+  width: 240px;
+  height: 240px;
+  margin: 0px;
   display: flex; /* centrar icono de imagen */
   justify-content: center; /* centrar icono de imagen */
   align-content: center; /* centrar icono de imagen */
   flex-flow: row wrap; /* centrar icono de imagen */
-}
-
-.fotoLibroHome:hover {
-  background-color: rgb(152, 152, 152);
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
 }
 
 .fotoLibroHome img {
-  width: 60px;
-  height: auto;
+  width: 240px;
+  height: 240px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  transition: filter 0.3s; /* Transición suave para el filtro de la imagen */
+}
+
+.fotoLibroHome:hover img {
+  filter: brightness(110%); /* Aclara la imagen al pasar el mouse */
 }
 
 .textoLibroHome {
-  width: 200px;
+  width: 240px;
+  height: 140px;
   margin-bottom: 20px;
   font-size: 14px;
   color: black;
   display: flex;
   flex-direction: column;
-  text-align: center;
 }
 
 .textoLibroHome p:nth-of-type(1) {
   font-size: 18px;
+  margin-bottom: 10px;
+  margin-left: 15px;
   font-weight: bold;
 }
 
 .textoLibroHome p:nth-of-type(2) {
-  font-size: 18px;
+  font-size: 16px;
   margin-top: 0px;
+  margin-left: 15px;
+  color: rgb(79, 79, 79);
+}
+.textoLibroHome p:nth-of-type(3) {
+  font-size: 16px;
+  margin-top: 0px;
+  margin-left: 15px;
+  color: rgb(0, 0, 0);
 }
 
-.textoLibroHome button {
-  width: 200px;
+.caja-estrellas{
+  display: flex;
+  flex-direction: row;
+  margin-left: 14px;
+}
+
+.caja-estrellas img {
+  width: 15px;
+  height: auto;
+  display: inline;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.caja-precio-boton{
+  display: flex;
+  justify-content: space-between;
+}
+
+.caja-precio-boton button{
+  width: 100px;
   border: solid black 1px;
-  border-radius: 10px;
+  border-radius: 15px;
   padding: 10px;
   background-color: white;
   color: black;
   font-weight: bold;
   align-self: center;
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer;
+  margin-right: 15px;
+  transition: background-color 0.3s, color 0.3s; /* Transición para color de fondo y color del texto */
 }
 
-.textoLibroHome button:hover {
+.caja-precio-boton button:hover {
   background-color: black;
   color: white;
 }

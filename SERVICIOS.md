@@ -193,6 +193,3 @@ interface EliminarProductoCarroSalida {
     message?: string;  // Mensaje opcional (Ej: Producto eliminado del carrito)
 }
 ```
-
-
-

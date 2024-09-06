@@ -11,7 +11,7 @@ function Nav() {
             <li><Link to="/">Home</Link></li>
             <li><Link to="/about">Nosotros</Link></li>
             <li>
-              <Link to="/categorias">Categorias</Link>              
+              <Link to="/categorias">Categorías</Link>              
               <div className='caja-categoria-desplegable'>
                 <ul className='columna-categoria-1'>
                   <li>Aventura</li>
