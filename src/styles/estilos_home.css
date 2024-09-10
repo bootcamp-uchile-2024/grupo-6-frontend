@@ -78,8 +78,7 @@ img[src*="icono_carrito"] {
   text-decoration: none;
   padding: 21px;
   font-size: 18px;
-  transition: background-color 0.3s, color 0.3s;
-  /* Transición para color de fondo y color del texto */
+  transition: background-color 0.3s, color 0.3s; /* Transición para color de fondo y color del texto */
 }
 
 .menu a:hover,
@@ -127,6 +126,8 @@ img[src*="icono_carrito"] {
   visibility: hidden;
   z-index: 1000;
   position: absolute;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease; /* Transición suave para opacidad y visibilidad */
 }
 
 .caja-categoria-desplegable ul {
@@ -156,9 +157,10 @@ ul[class^="columna-categoria-"] a:hover {
 
 .menu .categorias:hover .caja-categoria-desplegable {
   visibility: visible;
+  opacity: 1;
 }
 
-/* Main */
+/* Main Content */
 main {
   display: flex;
   flex-direction: row;
@@ -232,7 +234,7 @@ main {
   width: 100px;
 }
 
-/* Libros Home */
+/* Novedades Home */
 #seccionNovedades {
   padding-left: 100px;
   padding-right: 100px;

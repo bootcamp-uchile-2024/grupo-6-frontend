@@ -1,11 +1,11 @@
 import '../styles/estilos_home.css'
-import CajaLibroCategoria from './CajaLibroCategoria.tsx'
+import { CajaCategoria } from './CajaCategoria.tsx'
 import Filtros from './Filtros.tsx'
 import { ILibro } from '../interfaces/CrearProductoEntrada.ts'
 import { useState } from 'react'
 import { useEffect } from 'react'
 
-function LibrosCategorias() {
+export function Categorias() {
 
   const [libros, setPosts] = useState<ILibro[]>([]);
 
@@ -29,7 +29,7 @@ function LibrosCategorias() {
           <div id="productosHome">
 
             {libros.map(libro => (
-              <CajaLibroCategoria
+              <CajaCategoria
                 key={libro.isbn}
                 isbn={libro.isbn}
                 nombre={libro.nombre}
@@ -44,5 +44,3 @@ function LibrosCategorias() {
     </>
   )
 }
-
-export default LibrosCategorias

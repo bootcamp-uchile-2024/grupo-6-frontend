@@ -1,9 +1,9 @@
-import LibrosCategorias from '../components/LibrosCategorias.tsx'
+import { Categorias } from "../components/Categorias"
 
 export default function BusquedaLayout() {
     return (
       <>
-        <LibrosCategorias/>
+        <Categorias/>
       </>
     )
 }

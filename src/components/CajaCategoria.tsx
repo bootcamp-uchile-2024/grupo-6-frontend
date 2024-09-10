@@ -2,7 +2,7 @@ import '../styles/estilos_home.css'
 import estrella_llena from '../assets/images/estrella_llena.png'
 import estrella_vacia from '../assets/images/estrella_vacia.png'
 
-interface CajaLibroCategoriaProps {
+interface CajaCategoriaProps {
   isbn: string,
   nombre: string,
   autor: string[],
@@ -10,7 +10,7 @@ interface CajaLibroCategoriaProps {
   rating: number
 }
 
-function CajaLibroCategoria(props: CajaLibroCategoriaProps) {
+export function CajaCategoria(props: CajaCategoriaProps) {
 
   return (
     <>
@@ -39,5 +39,3 @@ function CajaLibroCategoria(props: CajaLibroCategoriaProps) {
     </>
   )
 }
-
-export default CajaLibroCategoria

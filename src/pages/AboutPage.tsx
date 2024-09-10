@@ -1,4 +1,4 @@
-import Main from "../components/Main";
+import MainContent from "../components/MainContent";
 import { MainLayout } from "../layouts/MainLayout";
 
 interface AboutProps {
@@ -11,7 +11,7 @@ export const AboutPage = (props: AboutProps) => {
 
     return (
         <MainLayout>
-            <Main/>
+            <MainContent/>
         </MainLayout>      
     )
 }

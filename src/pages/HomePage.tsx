@@ -1,4 +1,4 @@
-import Main from "../components/Main";
+import MainContent from "../components/MainContent";
 import NovedadesHome from "../components/NovedadesHome";
 import { MainLayout } from "../layouts/MainLayout";
 
@@ -10,7 +10,7 @@ export default function HomePage(props: HomePageProps) {
   document.title = props.title
   return (
     <MainLayout>
-        <Main/>
+        <MainContent/>
         <NovedadesHome/>
     </MainLayout>  
   )

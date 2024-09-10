@@ -1,7 +1,7 @@
 import icono_imagen from '../assets/images/icono_imagen.png'
 import '../styles/estilos_home.css'
 
-function Main() {
+function MainContent() {
 
   return (
     <>
@@ -19,4 +19,4 @@ function Main() {
   )
 }
 
-export default Main
+export default MainContent
