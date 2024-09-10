@@ -1,4 +1,4 @@
-interface CrearProductoEntrada {
+interface ILibro {
     isbn: string;                // Si - ISBN del libro  
     nombre: string;              // Si - Nombre del libro
     autor: string[];             // Si - Autor del libro (array de strings)
@@ -18,4 +18,4 @@ interface CrearProductoEntrada {
     calificacion: number // Agregar para vista de productos
 }
 
-export type {CrearProductoEntrada}
+export type {ILibro}
