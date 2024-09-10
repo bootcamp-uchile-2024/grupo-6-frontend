@@ -1,43 +1,57 @@
 import '../styles/estilos_home.css'
 import { CajaCategoria } from './CajaCategoria.tsx'
 import Filtros from './Filtros.tsx'
-import { ILibro } from '../interfaces/CrearProductoEntrada.ts'
-import { useState } from 'react'
-import { useEffect } from 'react'
+import { ILibro } from '../interfaces/ILibro.ts'
+import { useState, useEffect } from 'react'
 
 export function Categorias() {
 
-  const [libros, setPosts] = useState<ILibro[]>([]);
+  const [libros, setLibros] = useState<ILibro[]>([]);
+
+  const [librosExist, setLibrosExist] = useState<boolean>(false);
 
   useEffect(() => {
-    fetch("src/data/catalog.json")
-      .then(respuesta => respuesta.json())
-      .then((data: ILibro[]) => {
-        console.log(data)
-        setPosts(data);
-      })
+
+    async function getLibros(){
+      try {
+        const response = await fetch('/products-back', {
+          method: 'GET'
+        });
+        console.log(response.status);
+        if(!response.statusText){
+          console.log('No pudimos obtener los productos');
+          setLibrosExist(false);
+
+        }
+        const librosJson = await response.json();
+        console.log(librosJson);
+        setLibros(librosJson);
+        setLibrosExist(true);
+
+      } catch (error) {
+        console.log('Error al obtener los productos');
+        setLibrosExist(false);
+      }
+    }
+
+    getLibros();
   }, []);
 
   return (
     <>
       <main className='contenido-central'>
         <Filtros />
-        <hr />
+        <hr/>
         <section id="seccionNovedades">
           <h3 id="tituloNovedades">Categorías</h3>
 
           <div id="productosHome">
-
-            {libros.map(libro => (
-              <CajaCategoria
-                key={libro.isbn}
-                isbn={libro.isbn}
-                nombre={libro.nombre}
-                autor={libro.autor}
-                precio={libro.precio}
-                rating={libro.rating} />
-            ))}
-
+          { librosExist ?  libros.map( libro => (
+                      <CajaCategoria key={libro.isbn} nombre={libro.nombre} autor={libro.autor} precio={libro.precio} isbn={libro.isbn}  ></CajaCategoria>
+                  )) 
+                  :
+                  <h3>Ups, no encontramos libros disponibles!!</h3>
+                  }
           </div>
         </section>
       </main>

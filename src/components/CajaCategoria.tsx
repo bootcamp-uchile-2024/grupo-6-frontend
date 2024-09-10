@@ -7,7 +7,6 @@ interface CajaCategoriaProps {
   nombre: string,
   autor: string[],
   precio: number,
-  rating: number
 }
 
 export function CajaCategoria(props: CajaCategoriaProps) {
