@@ -16,6 +16,7 @@ interface ILibro {
     ean: string;    // Agregar para vista de productos - Corresponde al codigo de barra
     resumen: string //Agregar para vista de productos
     calificacion: number // Agregar para vista de productos
+    rating: number
 }
 
 export type {ILibro}

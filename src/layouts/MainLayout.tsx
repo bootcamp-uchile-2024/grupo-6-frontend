@@ -8,7 +8,6 @@ interface MainLayoutProps {
 
 export const MainLayout = (props: MainLayoutProps) => {
 
-
     return (
         <div className="main-container">
             <Header/>

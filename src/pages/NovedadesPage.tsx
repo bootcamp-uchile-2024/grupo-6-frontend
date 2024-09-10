@@ -1,17 +1,16 @@
-import Main from "../components/Main";
+import NovedadesHome from "../components/NovedadesHome";
 import { MainLayout } from "../layouts/MainLayout";
 
-interface AboutProps {
+interface NovedadesProps {
     title: string;
-    body: string;
 }
 
-export const AboutPage = (props: AboutProps) => {
+export const NovedadesPage = (props: NovedadesProps) => {
     document.title = props.title;
 
     return (
         <MainLayout>
-            <Main/>
+            <NovedadesHome/>
         </MainLayout>      
     )
 }
