@@ -14,7 +14,7 @@ export function Categorias() {
 
     async function getLibros(){
       try {
-        const response = await fetch('/products-back', {
+        const response = await fetch('/products-back', { //    src/data/catalog.json
           method: 'GET'
         });
         console.log(response.status);
