@@ -105,10 +105,6 @@ const ProductDetail: React.FC = () => {
                                     <td>Código de barra:</td>
                                     <td>{libro.ean}</td>
                                 </tr>
-                                <tr>
-                                    <td>Calificación:</td>
-                                    <td>{libro.calificacion}</td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>
