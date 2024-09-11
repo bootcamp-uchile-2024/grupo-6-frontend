@@ -7,6 +7,7 @@ interface Category {
   nombreGenero: string;
   subGeneros: string[];
 }
+
 function Filtros() {
   const [category, setCategory] = useState<Category[]>([]);
 
@@ -44,7 +45,7 @@ function Filtros() {
 
     async function getCategories() {
       try {
-        const response = await fetch('/categories-back', {
+        /* const response = await fetch('/categories-back', {
           mode: 'no-cors',
           method: 'GET'
         });
@@ -54,10 +55,15 @@ function Filtros() {
           setCategoryExist(false);
 
         }
-        const productsJson = await response.json();
-
-        console.log(productsJson);
-        setCategory(productsJson);
+        const productsJson = await response.json(); */
+        const productJson = [{
+          "idGenero" : "1",
+          "nombreGenero" : "Aventura",
+          "subGeneros" : []
+        }]
+        
+        console.log(productJson);
+        setCategory(productJson);
         setCategoryExist(true);
 
       } catch (error) {
