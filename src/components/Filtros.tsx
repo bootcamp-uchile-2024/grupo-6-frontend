@@ -24,19 +24,20 @@ function Filtros() {
           method: 'GET'
         });
         console.log(response.status);
-        if (!response.statusText) {
-          console.log('No pudimos obtener los productos');
+        if (!response.ok) {
+          console.log('No pudimos obtener las categorias');
           setCategoryExist(false);
 
+        } else {
+          const productsJson = await response.json();
+          console.log(productsJson);
+          setCategory(productsJson);
+          setCategoryExist(true);
         }
-        const productsJson = await response.json();
 
-        console.log(productsJson);
-        setCategory(productsJson);
-        setCategoryExist(true);
 
       } catch (error) {
-        console.log('Error al obtener los productos');
+        console.log('Error al obtener las categorias');
         setCategoryExist(false);
       }
     }
