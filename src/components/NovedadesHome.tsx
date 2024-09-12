@@ -16,15 +16,18 @@ function NovedadesHome() {
           method: 'GET'
         });
         console.log(response.status);
-        if(!response.statusText){
+
+        if (!response.ok) {
           console.log('No pudimos obtener los productos');
           setLibrosExist(false);
 
+        } else {
+          const librosJson = await response.json();
+          console.log(librosJson);
+          setLibros(librosJson);
+          setLibrosExist(true);
         }
-        const librosJson = await response.json();
-        console.log(librosJson);
-        setLibros(librosJson);
-        setLibrosExist(true);
+
 
       } catch (error) {
         console.log('Error al obtener los productos');
