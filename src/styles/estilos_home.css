@@ -481,3 +481,7 @@ main {
   width: 90px;
   height: auto;
 }
+
+link, a {
+  text-decoration: none;
+}
