@@ -4,13 +4,13 @@ En esta sección, se detallan las diferentes interfaces que se crearon para los 
 ## Crear un Producto
 
 __Propósito__: Permite crear un nuevo producto.<br>
-__Ruta Request__: `src/interfaces/CrearProductoEntrada.ts`<br>
+__Ruta Request__: `src/interfaces/ILibro.ts`<br>
 __Ruta Response__: `src/interfaces/CrearProductoSalida.ts`<br>
 __Url__: ...<br>
 
 ### RequestDTO
 ```typescript
-interface CrearProductoEntrada {
+interface ILibro {
     isbn: string;                // ISBN del libro
     nombre: string;              // Nombre del libro
     autor: string[];             // Autor del libro (array de strings)
@@ -40,7 +40,7 @@ interface CrearProductoSalida {
 ## Obtener un Producto por ISBN
 
 __Propósito__: Permite obtener la información de un producto específico usando el ISBN.<br>
-__Ruta Request__: `src/interfaces/CrearProductoEntrada.ts`<br>
+__Ruta Request__: `src/interfaces/ILibro.ts`<br>
 __Ruta Response__: `src/interfaces/CrearProductoSalida.ts`<br>
 __Url__: ...<br>
 
@@ -55,7 +55,7 @@ interface ProductoISBNEntrada {
 ```typescript
 interface ProductoISBNSalida {    
     success: boolean;                // Indica si la obtención del producto fue exitosa
-    producto: CrearProductoEntrada;  // Información del producto, si fue encontrado
+    producto: ILibro;  // Información del producto, si fue encontrado
     mensaje?: string;                // Mensaje opcional, (Ej: Producto no encontrado)
 }
 ```
@@ -94,7 +94,7 @@ interface ProductosFiltradosEntrada {
 ```typescript
 interface ProductosFiltradosSalida {
     success: boolean;                  // Indica si la búsqueda fue exitosa
-    products: CrearProductoEntrada[];  // Lista de productos que coincidan con filtros aplicados
+    products: ILibro[];  // Lista de productos que coincidan con filtros aplicados
     message?: string;                  // Mensaje opcional (Ej: No se encontraron productos)
 }
 ```
@@ -132,7 +132,7 @@ interface BuscarProductosEntrada {
 ```typescript
 interface BuscarProductosSalida {
     success: boolean;                  // Indica si la búsqueda fue exitosa
-    products: CrearProductoEntrada[];  // Lista de productos que coinciden con la búsqueda
+    products: ILibro[];  // Lista de productos que coinciden con la búsqueda
     message?: string;                  // Mensaje opcional (Ej: No se encontraron productos)
 }
 ```

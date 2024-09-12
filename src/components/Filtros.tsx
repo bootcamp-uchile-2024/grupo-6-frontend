@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 import '../styles/estilos_home.css'
 import CategoryElement from './CategoryElement.tsx';
 
+
+// Las llamadas al back de este servicio, se realizaran en la proxima entrega
+// Por ahora, se deja el cuerpo
 interface Category {
   idGenero: string;
   nombreGenero: string;
@@ -11,34 +14,6 @@ function Filtros() {
   const [category, setCategory] = useState<Category[]>([]);
 
   const [categoryExist, setCategoryExist] = useState<boolean>(false);
-
-  const headers = new Headers();
-
-  headers.append('Content-Type', '*/*');
-  headers.append('Accept', '*/*');
-  headers.append('Access-Control-Allow-Origin', 'http://127.0.0.1:3000/');
-  headers.append('Access-Control-Allow-Credentials', 'true');
-  //headers.append('GET', 'POST');
-
-  /*const makeAPICall = async () => {
-    {
-      const response = await fetch('127.0.0.1:3000/categories', {mode:'no-cors', headers: headers});
-      debugger;
-      const data = await response.json();
-      debugger;
-      console.log({ data });
-  }};*/
-
-  /* useEffect(() => {
-     fetch('/categories-back')
-         .then(response => response.json())
-         .then((data: Category[]) => {
-           setCategory(data);
-           setCategoryExist(true);
-         });
-         //makeAPICall();
- }, []);*/
-
 
   useEffect(() => {
 
@@ -73,7 +48,7 @@ function Filtros() {
     <>
       <section id="seccionFiltros">
         <div className="filtros-categoria">
-          <h2 id="tituloFiltro">Categoría</h2>
+          <h2 id="tituloFiltro">Sub-categoría</h2>
           <div className="checkbox-container">
             <input id="artes" type="checkbox" />
             <label htmlFor="artes">Artes</label>
@@ -93,7 +68,7 @@ function Filtros() {
             <CategoryElement key={category.nombreGenero} nombreGenero={category.nombreGenero} idGenero={category.idGenero} subGeneros={category.subGeneros} ></CategoryElement>
           ))
             :
-            <p>No hay nada</p>
+            <p>No exiten sub-categorias desde el back.</p>
           }
 
         </div>
