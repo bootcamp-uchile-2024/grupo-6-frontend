@@ -1,4 +1,4 @@
-import { CrearProductoEntrada } from "./CrearProductoEntrada";
+import { CrearProductoEntrada } from "./ILibro";
 
 interface BuscarProductosSalida {
     success: boolean;                  // Indica si la búsqueda fue exitosa
