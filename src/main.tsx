@@ -7,17 +7,19 @@ import { AboutPage } from './pages/AboutPage.tsx'
 import { NotFoundPage } from './pages/NotFoundPage.tsx'
 import { NovedadesPage } from './pages/NovedadesPage.tsx'
 import { ProductDetailPage } from './pages/ProductDetailPage.tsx'
+import { LoginPage } from './pages/LoginPage.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage title={"Páginas selectas"}/>}/>
-        <Route path="/categorias" element={<CategoriasPage/>}/>
+        <Route path="/" element={<HomePage title={'Páginas Selectas'}/>}/>
+        <Route path="/categorias" element={<CategoriasPage title='Categorías'/>}/>
         <Route path="/about" element={<AboutPage title={'Nosotros'} body={'This is the about page'}/>}/>
         <Route path='/novedades' element={<NovedadesPage title={'Novedades'}/>}/>
         <Route path='/product-detail/:isbn' element={<ProductDetailPage/>}/>
-        <Route path="*" element={<NotFoundPage/>}/>
+        <Route path='/login' element={<LoginPage title='Iniciar Sesión'/>}/>
+        <Route path="*" element={<NotFoundPage title='Página No Encontrada'/>}/>
       </Routes>
     </BrowserRouter>
   </StrictMode>,
