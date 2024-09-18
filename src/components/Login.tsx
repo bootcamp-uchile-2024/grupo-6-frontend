@@ -6,11 +6,12 @@ const Login = () => {
             <p>¡Bienvenido de nuevo!</p>
             <h3>Inicia sesión</h3>
             <form className="form-login">
-                <label htmlFor=""></label>
-                <input type="text" placeholder=" Correo electrónico"/>
-                <label htmlFor=""></label>
-                <input type="password" placeholder=" Contraseña"/>
-                <label htmlFor=""></label>
+                <label htmlFor="correo">Correo electrónico</label>
+                <input type="email" id='correo' placeholder="Ej: tuemail@gmail.com" required/>
+
+                <label htmlFor="contrasena">Contraseña</label>
+                <input type="password" id='contrasena' placeholder="Ingresa tu contraseña" required/>
+
                 <button type="submit">Enviar</button>
             </form>
 

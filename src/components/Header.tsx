@@ -8,7 +8,9 @@ function Header() {
   return (
     <>
       <header id="encabezadoHome">
-        <h1 id="tituloHeader">Páginas Selectas</h1>
+        <Link to="/">
+          <h1 id="tituloHeader">Páginas Selectas</h1>
+        </Link>
         <div className="botonesHome">
           <Link to="/login">
             <img src={icono_usuario} className="icono usuario" alt="Icono Usuario" />

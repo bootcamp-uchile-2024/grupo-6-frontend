@@ -57,7 +57,7 @@ function Nav() {
           <li><Link to="/contacto">Contacto</Link></li>
         </ul>
         <label htmlFor="buscar"></label>
-        <input type="search" name="input_buscar" id="buscar" placeholder=" Busca por título o autor" />
+        <input type="search" name="input_buscar" id="buscar" placeholder="Busca por título o autor" />
         <button className="botonBuscar">
           <img src={icono_lupa} alt="lupa buscar" />
         </button>

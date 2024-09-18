@@ -8,6 +8,7 @@ import { NotFoundPage } from './pages/NotFoundPage.tsx'
 import { NovedadesPage } from './pages/NovedadesPage.tsx'
 import { ProductDetailPage } from './pages/ProductDetailPage.tsx'
 import { LoginPage } from './pages/LoginPage.tsx'
+import { CrearCuentaPage } from './pages/CrearCuentaPage.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -19,6 +20,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path='/novedades' element={<NovedadesPage title={'Novedades'}/>}/>
         <Route path='/product-detail/:isbn' element={<ProductDetailPage/>}/>
         <Route path='/login' element={<LoginPage title='Iniciar Sesión'/>}/>
+        <Route path='/register' element={<CrearCuentaPage title='Crear Cuenta'/>}/>
         <Route path="*" element={<NotFoundPage title='Página No Encontrada'/>}/>
       </Routes>
     </BrowserRouter>
