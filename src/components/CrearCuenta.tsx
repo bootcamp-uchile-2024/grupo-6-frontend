@@ -10,14 +10,14 @@ const CrearCuenta = () => {
                         <label htmlFor="nombres">Nombres</label>
                         <input type="text" id='nombres' placeholder="Ej: Roberto Andrés" required/>
 
-                        <label htmlFor="apellido-paterno">Apellido Paterno</label>
-                        <input type="text" id='apellido-paterno' placeholder="Ej: Gonzáles" required/>
+                        <label htmlFor="apellidoPaterno">Apellido Paterno</label>
+                        <input type="text" id='apellidoPaterno' placeholder="Ej: Gonzáles" required/>
 
-                        <label htmlFor="apellido-materno">Apellido Materno</label>
-                        <input type="text" id='apellido-materno' placeholder="Ej: Ramírez" required/> 
+                        <label htmlFor="apellidoMaterno">Apellido Materno</label>
+                        <input type="text" id='apellidoMaterno' placeholder="Ej: Ramírez" required/> 
 
-                        <label htmlFor="correo">Correo electrónico</label>
-                        <input type="email" id='correo' placeholder="Ej: tuemail@gmail.com" required/>
+                        <label htmlFor="correoElectronico">Correo electrónico</label>
+                        <input type="email" id='correoElectronico' placeholder="Ej: tuemail@gmail.com" required/>
 
                         <label htmlFor="constrasena">Contraseña</label>
                         <input type="password" id='constrasena' placeholder="Crea una contraseña segura" required/> 
@@ -27,11 +27,11 @@ const CrearCuenta = () => {
                     </div>
 
                     <div className='crear-cuenta-column-2'>
-                        <label htmlFor="numero-calle">Número de calle</label>
-                        <input type="text" id='numero-calle' placeholder="Ej: 183" required/>
+                        <label htmlFor="numeroCalle">Número de calle</label>
+                        <input type="text" id='numeroCalle' placeholder="Ej: 183" required/>
 
-                        <label htmlFor="numero-depto">Número departamento</label>
-                        <input type="text" id='numero-depto' placeholder="Ej: 101"/>
+                        <label htmlFor="numeroDepartamento">Número departamento</label>
+                        <input type="text" id='numeroDepartamento' placeholder="Ej: 101"/>
 
                         <label htmlFor="comuna">Comuna</label>
                         <input type="text" id='comuna' placeholder="Ej: Santiago" required/>
@@ -42,8 +42,8 @@ const CrearCuenta = () => {
                         <label htmlFor="region">Región</label>
                         <input type="text" id='region' placeholder="Ej: Región Metropolitana" required/>
 
-                        <label htmlFor="info-adicional">Información adicional</label>
-                        <input type="text" id='info-adicional' placeholder="Agregue información adicional"/>
+                        <label htmlFor="informacionAdicional">Información adicional</label>
+                        <input type="text" id='informacionAdicional' placeholder="Agregue información adicional"/>
                     </div>
                 </div>
 
