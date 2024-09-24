@@ -1,30 +1,35 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { ILoginUser } from '../interfaces/ILoginUser';
 import '../styles/login.css';
 
 const Login = () => {
     const navigate = useNavigate();
 
-    const [correoElectronico, setCorreoElectronico] = useState('');
-    const [contrasena, setContrasena] = useState('');
-
     const [correoError, setCorreoError] = useState<boolean>(false);
     const [contrasenaError, setContrasenaError] = useState<boolean>(false);
+
+    const [user, setUser] = useState<ILoginUser>({
+        correoElectronico: '',
+        contrasena: ''
+    });
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         // Simular autenticación
-        if (correoElectronico === 'admin@gmail.com' && contrasena === 'admin') {
-            console.log("Envío exitoso del formulario")
+        if (user.correoElectronico === 'admin@gmail.com' && user.contrasena === 'admin') {
+            alert("Inicio de sesión de admin exitoso.")
+            console.log("Inicio de sesión de admin exitoso.")
             navigate('/ruta-admin'); // Cambiar ruta
         }
         else {
             setCorreoError(true);
         }
 
-        if (correoElectronico === 'usuario@gmail.com' && contrasena === 'usuario') {
+        if (user.correoElectronico === 'usuario@gmail.com' && user.contrasena === 'usuario') {
+            alert("Inicio de sesión de usuario exitoso.")
+            console.log("Inicio de sesión de usuario exitoso.")
             navigate('/ruta-usuario'); // Cambiar ruta
-            console.log("Envío exitoso del formulario")
         }
         else {
             setContrasenaError(true);
@@ -32,13 +37,19 @@ const Login = () => {
     };
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { id, value } = event.target;
+        const { name, value } = event.target;
 
-        if (id === 'correoElectronico') {
-            setCorreoElectronico(value);
+        setCorreoError(false);
+        setContrasenaError(false);
+
+        setUser({
+            ...user,
+            [name]: value
+        })
+        
+        if (name === 'correoElectronico') {
             setCorreoError(false);
-        } else if (id === 'contrasena') {
-            setContrasena(value);
+        } else if (name === 'contrasena') {
             setContrasenaError(false);
         }
     }
@@ -52,7 +63,8 @@ const Login = () => {
                 <input
                     type="email"
                     id='correoElectronico'
-                    value={correoElectronico}
+                    name='correoElectronico'
+                    value={user.correoElectronico}
                     onChange={handleChange}
                     placeholder="Ej: tuemail@gmail.com"
                     required
@@ -63,7 +75,8 @@ const Login = () => {
                 <input
                     type="password"
                     id='contrasena'
-                    value={contrasena}
+                    name='contrasena'
+                    value={user.contrasena}
                     onChange={handleChange}
                     placeholder="Ingresa tu contraseña"
                     required
