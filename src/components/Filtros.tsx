@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import '../styles/estilos_home.css'
+import '../styles/estilos_home.css';
 import CategoryElement from './CategoryElement.tsx';
 
+// Interface para la categoría
 interface Category {
   idGenero: string;
   nombreGenero: string;
@@ -10,64 +11,40 @@ interface Category {
 
 function Filtros() {
   const [category, setCategory] = useState<Category[]>([]);
-
   const [categoryExist, setCategoryExist] = useState<boolean>(false);
 
-  const headers = new Headers();
-
-  headers.append('Content-Type', '*/*');
-  headers.append('Accept', '*/*');
-  headers.append('Access-Control-Allow-Origin', 'http://127.0.0.1:3000/');
-  headers.append('Access-Control-Allow-Credentials', 'true');
-  //headers.append('GET', 'POST');
-
-  /*const makeAPICall = async () => {
-    {
-      const response = await fetch('127.0.0.1:3000/categories', {mode:'no-cors', headers: headers});
-      debugger;
-      const data = await response.json();
-      debugger;
-      console.log({ data });
-  }};*/
-
-  /* useEffect(() => {
-     fetch('/categories-back')
-         .then(response => response.json())
-         .then((data: Category[]) => {
-           setCategory(data);
-           setCategoryExist(true);
-         });
-         //makeAPICall();
- }, []);*/
-
-
   useEffect(() => {
-
     async function getCategories() {
       try {
+        // Realizar la llamada al backend para obtener las categorías
         /* const response = await fetch('/categories-back', {
           mode: 'no-cors',
           method: 'GET'
         });
-        console.log(response.status);
-        if (!response.statusText) {
-          console.log('No pudimos obtener los productos');
+        
+        if (!response.ok) {
+          console.log('No pudimos obtener las categorias');
           setCategoryExist(false);
+        } else {
+          const productsJson = await response.json();
+          console.log(productsJson);
+          setCategory(productsJson);
+          setCategoryExist(true);
+        } */
 
-        }
-        const productsJson = await response.json(); */
+        // Ejemplo de datos para simular la respuesta del backend
         const productJson = [{
-          "idGenero" : "1",
-          "nombreGenero" : "Aventura",
-          "subGeneros" : []
-        }]
+          "idGenero": "1",
+          "nombreGenero": "Aventura",
+          "subGeneros": []
+        }];
         
         console.log(productJson);
         setCategory(productJson);
         setCategoryExist(true);
 
       } catch (error) {
-        console.log('Error al obtener los productos');
+        console.log('Error al obtener las categorias');
         setCategoryExist(false);
       }
     }
@@ -79,7 +56,7 @@ function Filtros() {
     <>
       <section id="seccionFiltros">
         <div className="filtros-categoria">
-          <h2 id="tituloFiltro">Categoría</h2>
+          <h2 id="tituloFiltro">Sub-categoría</h2>
           <div className="checkbox-container">
             <input id="artes" type="checkbox" />
             <label htmlFor="artes">Artes</label>
@@ -96,19 +73,22 @@ function Filtros() {
           </div>
 
           {categoryExist ? category.map(category => (
-            <CategoryElement key={category.nombreGenero} nombreGenero={category.nombreGenero} idGenero={category.idGenero} subGeneros={category.subGeneros} ></CategoryElement>
+            <CategoryElement 
+              key={category.nombreGenero} 
+              nombreGenero={category.nombreGenero} 
+              idGenero={category.idGenero} 
+              subGeneros={category.subGeneros} 
+            />
           ))
-            :
-            <p>No hay nada</p>
-          }
-
+          : <p>No existen sub-categorías desde el back.</p>}
         </div>
+
         <div className="filtros-editorial">
           <h2 id="tituloFiltro">Editorial</h2>
 
           <div className="checkbox-container">
             <input id="antartica" type="checkbox" />
-            <label htmlFor="antartica">Antartica</label>
+            <label htmlFor="antartica">Antártica</label>
           </div>
 
           <div className="checkbox-container">
@@ -118,25 +98,23 @@ function Filtros() {
 
           <div className="checkbox-container">
             <input id="deBolsillo" type="checkbox" />
-            <label htmlFor="deBolsillo">DeBolsillo</label>
+            <label htmlFor="deBolsillo">De Bolsillo</label>
           </div>
-
         </div>
+
         <div className="filtros-precio">
           <h2 id="tituloFiltro">Precio</h2>
           <div className="precio-row">
-            <input id="minimo" name="minimo" type='number' pattern="^[0-9]+([,.][0-9]+)?$" placeholder="Mínimo" value=""></input>
-            <p id="precioSeparador">  -  </p>
-            <input id="maximo" name="maximo" type="number" pattern="^[0-9]+([,.][0-9]+)?$" placeholder="Máximo" value=""></input>
+            <input id="minimo" name="minimo" type='number' pattern="^[0-9]+([,.][0-9]+)?$" placeholder="Mínimo" />
+            <p id="precioSeparador"> - </p>
+            <input id="maximo" name="maximo" type="number" pattern="^[0-9]+([,.][0-9]+)?$" placeholder="Máximo" />
           </div>
-
         </div>
-
 
         <button>Filtrar</button>
       </section>
     </>
-  )
+  );
 }
 
-export default Filtros
+export default Filtros;
