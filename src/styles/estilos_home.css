@@ -103,6 +103,7 @@ img[src*="icono_carrito"] {
   height: 38px;
   border-radius: 8px;
   border: 1px solid black;
+  padding-left: 10px;
 }
 
 .botonBuscar {

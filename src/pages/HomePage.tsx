@@ -7,7 +7,7 @@ interface HomePageProps {
 }
 
 export default function HomePage(props: HomePageProps) {
-  document.title = props.title
+  document.title = props.title;
   return (
     <MainLayout>
         <MainContent/>
