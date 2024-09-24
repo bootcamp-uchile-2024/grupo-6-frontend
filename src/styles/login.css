@@ -1,4 +1,5 @@
-.caja-login, .caja-crear-cuenta {
+.caja-login,
+.caja-crear-cuenta {
     margin: 40px;
     width: 100%;
     display: flex;
@@ -7,28 +8,32 @@
     align-items: center;
 }
 
-.caja-login p, .caja-crear-cuenta p {
+.caja-login p,
+.caja-crear-cuenta p {
     font-size: 35px;
     font-weight: bold;
     margin-top: 0px;
     margin-bottom: 10px;
 }
 
-.form-login, .form-crear-cuenta {
+.form-login,
+.form-crear-cuenta {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-content: center;
 }
 
-.form-login label, .form-crear-cuenta label {
+.form-login label,
+.form-crear-cuenta label {
     margin-bottom: 10px;
     margin-left: 10px;
     color: black;
     font-size: 20px;
 }
 
-.form-login input, .form-crear-cuenta input {
+.form-login input,
+.form-crear-cuenta input {
     width: 550px;
     height: 55px;
     margin-bottom: 30px;
@@ -37,7 +42,8 @@
     padding-left: 20px;
 }
 
-.form-login button, .form-crear-cuenta button {
+.form-login button,
+.form-crear-cuenta button {
     width: 550px;
     height: 55px;
     margin-bottom: 20px;
@@ -67,7 +73,7 @@
     color: rgb(93, 93, 93);
 }
 
-/* CREAR CUENTA DISTRIBUCIÓN CAJAS*/
+/* CREAR CUENTA DISTRIBUCIÓN CAJAS */
 
 .form-crear-cuenta-row {
     display: flex;
@@ -76,10 +82,20 @@
     align-content: center;
 }
 
-.crear-cuenta-column-1, .crear-cuenta-column-2 {
+.crear-cuenta-column-1,
+.crear-cuenta-column-2 {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-content: center;
     margin: 20px 30px 0px 30px;
+}
+
+/* ERRORES */
+.caja-login .error {
+    font-size: 18px;
+    color: red;
+    font-weight: normal;
+    margin-left: 10px;
+    margin-bottom: 30px;
 }
