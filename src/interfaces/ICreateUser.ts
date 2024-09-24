@@ -6,7 +6,7 @@ interface ICreateUser {
     apellidoPaterno: string,
     correoElectronico: string,
     contrasena: string,
-    direccion: IDireccion[],
+    direccion: IDireccion,
     tipoCliente: 'Premium' | 'Estandar';
     estado: 'Activo' | 'Baneado';
 }
