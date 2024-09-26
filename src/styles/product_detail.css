@@ -1,0 +1,127 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.product-detail {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+}
+
+.img-libro {
+    width: 40%;
+}
+
+.img-libro img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: filter 0.3s;
+}
+
+.info-libro {
+    width: 55%;
+}
+
+.info-libro h1 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.info-libro .autor,
+.info-libro .resumen,
+.info-libro .precio {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #666;
+}
+
+.caja-estrellas {
+    display: flex;
+    flex-direction: row;
+    margin-left: 2px; 
+}
+
+.caja-estrellas img {
+    width: 15px;
+    height: auto;
+    display: inline;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.add-to-cart {
+    display: flex;
+    justify-content: space-between;
+    width: auto;
+    border: solid black 1px;
+    border-radius: 15px;
+    padding: 10px;
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    align-self: center;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 15px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.add-to-cart:hover {
+    background-color: black;
+    color: white;
+}
+
+.libro-descripcion {
+    margin-top: 30px;
+}
+
+.libro-descripcion h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #1e1e1e;
+}
+
+.libro-descripcion table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.libro-descripcion table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+    color: #666;
+}
+
+.libro-descripcion table td:first-child {
+    font-weight: bold;
+    width: 15%;
+    color: #333;
+}
+
+.libro-descripcion table td:last-child {
+    width: 70%;
+}
+
+@media (max-width: 768px) {
+    .product-detail {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .img-libro,
+    .info-libro {
+        width: 100%;
+        text-align: center;
+    }
+} 
