@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom'
+import { useAuth } from '../auth/AuthContext'
 import icono_lupa from '../assets/images/icono_lupa.png'
 import '../styles/estilos_home.css'
 
 function Nav() {
+  const { user } = useAuth(); // Esto nos permite tener la información del usuario
 
   return (
     <>
@@ -55,9 +57,12 @@ function Nav() {
           <li><Link to={`/novedades`}>Novedades</Link></li>
           <li><Link to="/mistery-boxes">Mystery Boxes</Link></li>
           <li><Link to="/contacto">Contacto</Link></li>
-          <li><Link to="/create/product">Crear Producto</Link></li>
 
+          {/* Mostrar esta página solo si el usuario es admin */}
+          {user?.correoElectronico === 'admin@gmail.com' && (
+            <li><Link to="/create/product">Crear Producto</Link></li>)}
         </ul>
+        
         <label htmlFor="buscar"></label>
         <input type="search" name="input_buscar" id="buscar" placeholder="Busca por título o autor" />
         <button className="botonBuscar">

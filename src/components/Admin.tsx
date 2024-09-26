@@ -1,10 +1,18 @@
 import { useAuth } from '../auth/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import '../styles/User.css';
 
 const AdminPage = () => {
-    const { logout } = useAuth();
+    const { logout, user, isAuthenticated } = useAuth();
     const navigate = useNavigate();
+
+    //Redirigir si el usuario no es admin
+    useEffect(() => {
+        if (!isAuthenticated || !user.isAdmin) {
+            navigate('/') // Envia a página principal si no es admin
+        }
+    }, [isAuthenticated,user, navigate]);
 
     const handleLogout = () => {
         // Para realizar el login y el logout

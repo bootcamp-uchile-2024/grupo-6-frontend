@@ -22,14 +22,14 @@ const Login = () => {
         if (user.correoElectronico === 'admin@gmail.com' && user.contrasena === 'admin') {
             alert("Inicio de sesión de admin exitoso.")
             console.log("Inicio de sesión de admin exitoso.")
-            login({correoElectronico: user.correoElectronico, contrasena: user.contrasena}); // Para llamar a la función de login
+            login({correoElectronico: user.correoElectronico, contrasena: user.contrasena, isAdmin: true}); // Para llamar a la función de login
             navigate('/admin'); // Ruta perfil de admin
         } 
 
         else if (user.correoElectronico === 'usuario@gmail.com' && user.contrasena === 'usuario') {
             alert("Inicio de sesión de usuario exitoso.")
             console.log("Inicio de sesión de usuario exitoso.")
-            login({correoElectronico: user.correoElectronico, contrasena: user.contrasena}); // Para llamar a la función de login
+            login({correoElectronico: user.correoElectronico, contrasena: user.contrasena, isAdmin: false}); // Para llamar a la función de login
             navigate('/user'); // Cambiar ruta /ruta-usuario
         }
 

@@ -56,7 +56,7 @@ const CrearProducto = () => {
     };
 
     // Manejar cambios en los arrays como autor y género
-    const handleArrayChange = (e: React.ChangeEvent<HTMLInputElement>, field: keyof Libro, index: number) => {
+    const handleArrayChange = (e: React.ChangeEvent<HTMLInputElement>, field: keyof ILibro, index: number) => {
         const newArray = [...(libro[field] as string[])];
         newArray[index] = e.target.value;
         setLibro({
@@ -66,7 +66,7 @@ const CrearProducto = () => {
     };
 
     // Agregar un nuevo campo para el autor o género
-    const addField = (field: keyof Libro) => {
+    const addField = (field: keyof ILibro) => {
         setLibro({
         ...libro,
         [field]: [...(libro[field] as string[]), '']
@@ -74,7 +74,7 @@ const CrearProducto = () => {
     };
 
     // Eliminar un campo para el autor o género
-    const removeField = (field: keyof Libro, index: number) => {
+    const removeField = (field: keyof ILibro, index: number) => {
         const newArray = [...(libro[field] as string[])];
         newArray.splice(index, 1);
         setLibro({

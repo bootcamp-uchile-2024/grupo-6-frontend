@@ -2,15 +2,25 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 
-const ProtectedRoute: React.FC<{children : React.ReactNode}> = ({children}) => {
-    const {isAuthenticated} = useAuth();
+interface ProtectedRouteProps {
+    children: React.ReactNode;
+    isAdmin?: boolean; // Esto para verificar si se necesita el perfil de admin
+}
 
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, isAdmin }) => {
+    const { isAuthenticated, user } = useAuth();
+
+    //Si no está autenticado, redirige al login
     if (!isAuthenticated){
-        // Va a redirigir al login si no está autenticado
-        return <Navigate to="/login" />;
+        return <Navigate to={"/login"} />;
     }
 
-    return <>{children}</>; // Va a mostrar si esta autenticado
+    // Si tienes que ser 'admin' y el usuario no lo es, redirige a la página principal
+    if (isAdmin && user?.isAdmin !== true){
+        return <Navigate to={"/"} />;
+    }
+
+    return <>{children}</>;
 };
 
 export default ProtectedRoute;

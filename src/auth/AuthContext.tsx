@@ -8,7 +8,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({children}) 
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
     const [user, setUser] = useState<any>(null); // Esto nos permite agregar el estado para el usuario
 
-    const login = (userData: any) => {
+    const login = (userData: { correoElectronico: string; contrasena: string; isAdmin?: boolean}) => {
         setIsAuthenticated(true);
         setUser(userData);
     } 

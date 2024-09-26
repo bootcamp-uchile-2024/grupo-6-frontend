@@ -27,7 +27,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path='/product-detail/:isbn' element={<ProductDetailPage />} />
           <Route path='/login' element={<LoginPage title='Iniciar Sesión' />} />
           <Route path='/register' element={<CrearCuentaPage title='Crear Cuenta' />} />
-          <Route path='/create/product' element={<CrearProductoPage title='Crear Producto' />} />
+          <Route path='/create/product' element={<ProtectedRoute><CrearProductoPage title='Crear Producto' /></ProtectedRoute>} />
           <Route path='/admin' element={<ProtectedRoute><AdminPage title='Panel de administración' /></ProtectedRoute>} />
           <Route path='/user' element={<ProtectedRoute><UserPage title='Cuenta' /></ProtectedRoute>} />
           <Route path="*" element={<NotFoundPage title='Página No Encontrada' />} />
