@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../auth/AuthContext';
 import { ILoginUser } from '../interfaces/ILoginUser';
 import '../styles/login.css';
 
 const Login = () => {
     const navigate = useNavigate();
+    const { login } = useAuth(); // Esto permite tener la función del login del contexto
 
     const [correoError, setCorreoError] = useState<boolean>(false);
     const [contrasenaError, setContrasenaError] = useState<boolean>(false);
@@ -16,22 +18,23 @@ const Login = () => {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        // Simular autenticación
+
         if (user.correoElectronico === 'admin@gmail.com' && user.contrasena === 'admin') {
             alert("Inicio de sesión de admin exitoso.")
             console.log("Inicio de sesión de admin exitoso.")
-            navigate('/ruta-admin'); // Cambiar ruta
-        }
-        else {
-            setCorreoError(true);
-        }
+            login({correoElectronico: user.correoElectronico, contrasena: user.contrasena}); // Para llamar a la función de login
+            navigate('/admin'); // Ruta perfil de admin
+        } 
 
-        if (user.correoElectronico === 'usuario@gmail.com' && user.contrasena === 'usuario') {
+        else if (user.correoElectronico === 'usuario@gmail.com' && user.contrasena === 'usuario') {
             alert("Inicio de sesión de usuario exitoso.")
             console.log("Inicio de sesión de usuario exitoso.")
-            navigate('/ruta-usuario'); // Cambiar ruta
+            login({correoElectronico: user.correoElectronico, contrasena: user.contrasena}); // Para llamar a la función de login
+            navigate('/user'); // Cambiar ruta /ruta-usuario
         }
+
         else {
+            setCorreoError(true);
             setContrasenaError(true);
         }
     };
@@ -52,7 +55,7 @@ const Login = () => {
         } else if (name === 'contrasena') {
             setContrasenaError(false);
         }
-    }
+    };
 
     return (
         <div className="caja-login">
