@@ -1,40 +1,47 @@
 import { useEffect, useState } from 'react';
-import '../styles/estilos_home.css'
+import '../styles/estilos_home.css';
 import CategoryElement from './CategoryElement.tsx';
 
-
-// Las llamadas al back de este servicio, se realizaran en la proxima entrega
-// Por ahora, se deja el cuerpo
+// Interface para la categoría
 interface Category {
   idGenero: string;
   nombreGenero: string;
   subGeneros: string[];
 }
+
 function Filtros() {
   const [category, setCategory] = useState<Category[]>([]);
-
   const [categoryExist, setCategoryExist] = useState<boolean>(false);
 
   useEffect(() => {
-
     async function getCategories() {
       try {
-        const response = await fetch('/categories-back', {
+        // Realizar la llamada al backend para obtener las categorías
+        /* const response = await fetch('/categories-back', {
           mode: 'no-cors',
           method: 'GET'
         });
-        console.log(response.status);
+        
         if (!response.ok) {
           console.log('No pudimos obtener las categorias');
           setCategoryExist(false);
-
         } else {
           const productsJson = await response.json();
           console.log(productsJson);
           setCategory(productsJson);
           setCategoryExist(true);
-        }
+        } */
 
+        // Ejemplo de datos para simular la respuesta del backend
+        const productJson = [{
+          "idGenero": "1",
+          "nombreGenero": "Aventura",
+          "subGeneros": []
+        }];
+        
+        console.log(productJson);
+        setCategory(productJson);
+        setCategoryExist(true);
 
       } catch (error) {
         console.log('Error al obtener las categorias');
@@ -66,19 +73,22 @@ function Filtros() {
           </div>
 
           {categoryExist ? category.map(category => (
-            <CategoryElement key={category.nombreGenero} nombreGenero={category.nombreGenero} idGenero={category.idGenero} subGeneros={category.subGeneros} ></CategoryElement>
+            <CategoryElement 
+              key={category.nombreGenero} 
+              nombreGenero={category.nombreGenero} 
+              idGenero={category.idGenero} 
+              subGeneros={category.subGeneros} 
+            />
           ))
-            :
-            <p>No exiten sub-categorias desde el back.</p>
-          }
-
+          : <p>No existen sub-categorías desde el back.</p>}
         </div>
+
         <div className="filtros-editorial">
           <h2 id="tituloFiltro">Editorial</h2>
 
           <div className="checkbox-container">
             <input id="antartica" type="checkbox" />
-            <label htmlFor="antartica">Antartica</label>
+            <label htmlFor="antartica">Antártica</label>
           </div>
 
           <div className="checkbox-container">
@@ -88,25 +98,23 @@ function Filtros() {
 
           <div className="checkbox-container">
             <input id="deBolsillo" type="checkbox" />
-            <label htmlFor="deBolsillo">DeBolsillo</label>
+            <label htmlFor="deBolsillo">De Bolsillo</label>
           </div>
-
         </div>
+
         <div className="filtros-precio">
           <h2 id="tituloFiltro">Precio</h2>
           <div className="precio-row">
-            <input id="minimo" name="minimo" type='number' pattern="^[0-9]+([,.][0-9]+)?$" placeholder="Mínimo" value=""></input>
-            <p id="precioSeparador">  -  </p>
-            <input id="maximo" name="maximo" type="number" pattern="^[0-9]+([,.][0-9]+)?$" placeholder="Máximo" value=""></input>
+            <input id="minimo" name="minimo" type='number' pattern="^[0-9]+([,.][0-9]+)?$" placeholder="Mínimo" />
+            <p id="precioSeparador"> - </p>
+            <input id="maximo" name="maximo" type="number" pattern="^[0-9]+([,.][0-9]+)?$" placeholder="Máximo" />
           </div>
-
         </div>
-
 
         <button>Filtrar</button>
       </section>
     </>
-  )
+  );
 }
 
-export default Filtros
+export default Filtros;

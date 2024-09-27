@@ -1,0 +1,112 @@
+.caja-login,
+.caja-crear-cuenta {
+    margin: 40px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.caja-login p,
+.caja-crear-cuenta p {
+    font-size: 35px;
+    font-weight: bold;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+.form-login,
+.form-crear-cuenta {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+.form-login label,
+.form-crear-cuenta label {
+    margin-bottom: 10px;
+    margin-left: 10px;
+    color: black;
+    font-size: 20px;
+}
+
+.form-login input,
+.form-crear-cuenta input {
+    width: 550px;
+    height: 55px;
+    margin-bottom: 30px;
+    border-radius: 100px;
+    border: 1px solid black;
+    padding-left: 20px;
+}
+
+.form-login button,
+.form-crear-cuenta button {
+    width: 550px;
+    height: 55px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 100px;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    align-self: center;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.crear-cuenta a {
+    text-decoration: none;
+    color: black;
+    margin: 20px;
+    display: block
+}
+
+.crear-cuenta a:hover {
+    text-decoration: underline;
+}
+
+.crear-cuenta a:visited {
+    color: rgb(93, 93, 93);
+}
+
+.form-crear-cuenta select {
+    width: 550px; /* Igual que los inputs */
+    height: 55px; /* Igual que los inputs */
+    margin-bottom: 30px; /* Igual que los inputs */
+    border-radius: 100px; /* Igual que los inputs */
+    border: 1px solid black; /* Igual que los inputs */
+    padding-left: 20px; /* Similar al padding de inputs */
+    font-size: 16px; /* Ajusta el tamaño de la fuente si es necesario */
+    background-color: white; /* Asegura que el fondo sea blanco */
+    appearance: none; /* Elimina elestilo por defecto del navegador */
+}
+
+/* CREAR CUENTA DISTRIBUCIÓN CAJAS */
+
+.form-crear-cuenta-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+}
+
+.crear-cuenta-column-1,
+.crear-cuenta-column-2 {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    margin: 20px 30px 0px 30px;
+}
+
+/* ERRORES */
+.caja-login .error, .crear-cuenta-column-1 .error, .crear-cuenta-column-2 .error {
+    font-size: 18px;
+    color: red;
+    font-weight: normal;
+    margin-left: 10px;
+    margin-bottom: 30px;
+}
