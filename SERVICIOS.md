@@ -7,23 +7,28 @@ __Propósito__: Permite crear un nuevo producto.<br>
 __Ruta Request__: `src/interfaces/ILibro.ts`<br>
 __Ruta Response__: `src/interfaces/CrearProductoSalida.ts`<br>
 __Url__: ...<br>
+__Metodo HTTP__: POST <br>
 
 ### RequestDTO
 ```typescript
 interface ILibro {
-    isbn: string;                // ISBN del libro
-    nombre: string;              // Nombre del libro
-    autor: string[];             // Autor del libro (array de strings)
-    stockLibro: number;          // Cantidad en stock
-    precio: number;              // Precio del libro
-    genero: string[];            // Géneros del libro (array de strings)
-    editorial: string;           // Editorial del libro
-    idioma: string;              // Idioma del libro
-    encuadernacion: string;      // Tipo de encuadernación (Ej: Tapa dura, Tapa blanda)
-    agnoPublicacion: string;     // Año de publicación
-    numeroPaginas: number;       // Número de páginas
-    descuento: number;           // Descuento aplicado al libro
-    caratula: string;            // URL de la carátula del libro
+    isbn: string;                // Si - ISBN del libro  
+    nombre: string;              // Si - Nombre del libro
+    autor: string[];             // Si - Autor del libro (array de strings)
+    precio: number;              // Si -  Precio del libro
+    stockLibro: number;          // Si - Cantidad en stock
+    genero: string[];            // Si - Géneros del libro (array de strings)
+    editorial: string;           // Si - Editorial del libro
+    idioma: string;              // Si - Idioma del libro
+    encuadernacion: string;      // Si - Tipo de encuadernación (Ej: Tapa dura, Tapa blanda)
+    agnoPublicacion: string;     // Si - Año de publicación
+    numeroPaginas: number;       //Si -  Número de páginas
+    descuento: number;           // Si - Descuento aplicado al libro
+    caratula: string;            // Si - URL de la carátula del libro
+    dimensiones: string;    // Agregar para vista de productos
+    ean: string;    // Agregar para vista de productos - Corresponde al codigo de barra
+    resumen: string //Agregar para vista de productos
+    calificacion: number // Agregar para vista de productos
 }
 ```
 
@@ -35,7 +40,88 @@ interface CrearProductoSalida {
 }
 ```
 
+### ResponseDTO Error
 
+__Propósito__: Esta interface permite obtener los errores de cada uno de los campos en caso de que exista.<br>
+__Ruta Response__: `src/interfaces/IErrorsLibro.ts`<br>
+
+```typescript
+interface IErrorsLibro {
+    isbn: string,
+    nombre: string,
+    autor: string,
+    precio: string,
+    stockLibro: string,
+    genero: string,
+    editorial: string,
+    idioma: string,
+    encuadernacion: string,
+    agnoPublicacion: string,
+    numeroPaginas: string,
+    descuento: string,
+    caratula: string,
+    dimensiones: string,
+    ean: string,
+    resumen: string
+}
+```
+
+## Crear cuenta
+
+### RequestDTO
+__Propósito__: Permite a un usuario crear una cuenta.<br>
+__Ruta Request__: `src/interfaces/ICreateUser.ts`<br>
+__Url__: ...<br>
+__Metodo HTTP__: POST <br>
+
+```typescript
+interface ICreateUser {
+    nombres: string,
+    apellidoMaterno: string,
+    apellidoPaterno: string,
+    correoElectronico: string,
+    contrasena: string,
+    direccion: IDireccion,
+    tipoCliente: 'Premium' | 'Estandar';
+    estado: 'Activo' | 'Baneado';
+}
+```
+
+## Dirección
+
+### RequestDTO
+__Propósito__: Permite a un usuario ingresar su dirección, se usa como parte del proceso de creación de una cuenta.<br>
+__Ruta Request__: `src/interfaces/IDireccion.ts`<br>
+__Url__: ...<br>
+__Metodo HTTP__: POST <br>
+
+```typescript
+interface IDireccion {
+    calle: string,
+    numeroCalle: string,
+    comuna: string,
+    ciudad: string,
+    region: string,
+    numeroDepartamento?: string,
+    informacionAdicional?: string
+    tipoDireccion: 'Envio' | 'Facturacion';
+}
+```
+
+## Iniciar sesión
+
+### RequestDTO
+__Propósito__: Permite a un usuario iniciar sesión.<br>
+__Ruta Request__: `src/interfaces/ILoginUser.ts`<br>
+__Url__: ...<br>
+__Metodo HTTP__: POST <br>
+
+```typescript
+interface ILoginUser {
+    correoElectronico: string;
+    contrasena: string;
+}
+```
 
 ## Obtener un Producto por ISBN
 
