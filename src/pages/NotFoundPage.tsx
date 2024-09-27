@@ -3,7 +3,13 @@ import { useState, useEffect } from 'react';
 import { MainLayout } from "../layouts/MainLayout";
 import { NotFound } from "../components/NotFound";
 
-export const NotFoundPage = () => {
+interface NotFoundPageProps {
+    title: string
+}
+
+export const NotFoundPage = (props: NotFoundPageProps) => {
+    document.title = props.title;
+
     const [redirect, setRedirect] = useState(false);
 
     useEffect(() => {
@@ -23,7 +29,7 @@ export const NotFoundPage = () => {
 
     return (
         <MainLayout>
-            <NotFound/>
+            <NotFound />
         </MainLayout>
     );
 };

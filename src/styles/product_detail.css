@@ -23,6 +23,7 @@
     width: 100%;
     height: auto;
     object-fit: cover;
+    transition: filter 0.3s;
 }
 
 .info-libro {
@@ -61,7 +62,7 @@
 .add-to-cart {
     display: flex;
     justify-content: space-between;
-    width: 100px;
+    width: auto;
     border: solid black 1px;
     border-radius: 15px;
     padding: 10px;
