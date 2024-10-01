@@ -1,7 +1,7 @@
 import { useAuth } from '../auth/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import '../styles/User.css';
+import '../styles/user.css';
 
 const AdminPage = () => {
     const { logout, user, isAuthenticated } = useAuth();

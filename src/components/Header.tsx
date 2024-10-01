@@ -1,6 +1,6 @@
 import icono_usuario from '../assets/images/icono_usuario.png'
 import icono_carrito from '../assets/images/icono_carrito.png'
-import '../styles/estilos_home.css'
+import '../styles/header.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../auth/AuthContext'
 

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useAuth } from '../auth/AuthContext'
 import icono_lupa from '../assets/images/icono_lupa.png'
-import '../styles/estilos_home.css'
+import '../styles/nav.css'
 
 function Nav() {
   const { user } = useAuth(); // Esto nos permite tener la información del usuario

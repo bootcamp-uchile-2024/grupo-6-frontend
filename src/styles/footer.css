@@ -1,0 +1,82 @@
+#Footer {
+    border: 1px solid black;
+    padding: 30px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    background-color: black;
+    width: 100%;
+    height: auto;
+}
+
+.cajaFooter {
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+    background-color: black;
+    width: 25%;
+    height: 100%;
+}
+
+.nombresFooter {
+    font-weight: bold;
+    font-size: 18px;
+    color: white;
+    margin-bottom: 0px;
+}
+
+.cajaFooter ul {
+    list-style-type: none;
+    color: white;
+    padding: 0px;
+
+}
+
+.cajaFooter li {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.cajaFooter a {
+    text-decoration: none;
+    color: white;
+    padding-top: 40px;
+}
+
+.imagenesRRSS,
+.imagenesPago {
+    display: flex;
+    flex-flow: row wrap;
+    margin-top: 30px;
+}
+
+.imagenesRRSS img,
+.imagenesRRSS a {
+    width: auto;
+    height: 30px;
+    margin: 10px;
+    padding: 0px;
+}
+
+.imagenesPago img {
+    width: auto;
+    height: 40px;
+    margin: 10px;
+    padding: 0px;
+}
+
+.copyright {
+    border: 1px solid black;
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+}
+
+.copyright p {
+    color: white;
+    text-align: center;
+    margin: 0px;
+    font-size: 18px;
+}

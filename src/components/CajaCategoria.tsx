@@ -1,4 +1,4 @@
-import '../styles/estilos_home.css'
+import '../styles/categorias.css'
 import estrella_llena from '../assets/images/estrella_llena.png'
 import estrella_vacia from '../assets/images/estrella_vacia.png'
 import { Link } from 'react-router-dom'

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { ILibro, validateValues } from '../interfaces/ILibro';
-import '../styles/create-product.css'
+import '../styles/create_product.css'
 import { IErrorsLibro } from '../interfaces/IErrorsLibro';
 const CrearProducto = () => {
     const navigate = useNavigate();

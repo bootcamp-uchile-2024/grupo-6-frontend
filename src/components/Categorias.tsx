@@ -1,4 +1,4 @@
-import '../styles/estilos_home.css'
+import '../styles/categorias.css'
 import { CajaCategoria } from './CajaCategoria.tsx'
 import Filtros from './Filtros.tsx'
 import { ILibro } from '../interfaces/ILibro.ts'

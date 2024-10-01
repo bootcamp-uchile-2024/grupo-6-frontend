@@ -14,6 +14,7 @@ import { AdminPage } from './pages/AdminPage.tsx'
 import { UserPage } from './pages/UserPage.tsx'
 import { AuthProvider } from './auth/AuthContext.tsx'
 import ProtectedRoute from './auth/ProtectedRoute.tsx'
+import './styles/global.css'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

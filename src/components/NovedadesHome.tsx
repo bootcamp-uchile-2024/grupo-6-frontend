@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ILibro } from '../interfaces/ILibro.ts';
-import '../styles/estilos_home.css'
+import '../styles/novedades_home.css'
 import CajaNovedades from './CajaNovedades.tsx'
 function NovedadesHome() {
 

@@ -4,8 +4,7 @@ import icono_webpay from '../assets/images/logo-webpay-plus-3-2.png'
 import icono_x from '../assets/images/icono_x.png'
 import icono_facebook from '../assets/images/icono_facebook.png'
 import icono_instagram from '../assets/images/icono_instagram.png'
-
-import '../styles/estilos_home.css'
+import '../styles/footer.css'
 
 function Footer() {
 

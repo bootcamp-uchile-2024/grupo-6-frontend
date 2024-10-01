@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import '../styles/estilos_home.css';
+import '../styles/filtros.css';
 import CategoryElement from './CategoryElement.tsx';
 
 // Interface para la categoría

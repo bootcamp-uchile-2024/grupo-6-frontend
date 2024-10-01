@@ -1,4 +1,5 @@
 import imagen_404_Not_Found from "../assets/images/imagen_404_Not_Found.png"
+import '../styles/not_found.css'
 
 export const NotFound = () => {
     return (
