@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import '../styles/categorias.css'
 import { CajaCategoria } from './CajaCategoria.tsx'
 import Filtros from './Filtros.tsx'

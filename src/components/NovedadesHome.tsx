@@ -28,7 +28,7 @@ function NovedadesHome() {
           setLibrosExist(true);
         }
 
-
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (error) {
         console.log('Error al obtener los productos');
         setLibrosExist(false);

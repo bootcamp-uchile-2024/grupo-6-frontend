@@ -1,8 +1,8 @@
-import { CrearProductoEntrada } from "./ILibro";
+import { ILibro } from "./ILibro";
 
 interface BuscarProductosSalida {
     success: boolean;                  // Indica si la búsqueda fue exitosa
-    products: CrearProductoEntrada[];  // Lista de productos que coinciden con la búsqueda
+    products: ILibro[];  // Lista de productos que coinciden con la búsqueda
     message?: string;                  // Mensaje opcional (Ej: No se encontraron productos)
 }
 

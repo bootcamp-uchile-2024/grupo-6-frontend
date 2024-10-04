@@ -24,115 +24,115 @@ interface ILibro {
 export function validateValues(formValues: ILibro , errors: IErrorsLibro) {
 
     if (formValues.isbn.length > 14 || formValues.isbn.length < 10 || formValues.isbn.trim() === "" || !formValues.isbn) {
-        errors.isbn = "ISBN no debe estar vacio y debe tener entre 10 y 13 caracteres.";
+        errors.isbn = true;
 
     } else {
-        errors.isbn = null;
+        errors.isbn = false;
     }
 
     if (formValues.nombre.trim() === "" || !formValues.nombre) {
-        errors.nombre = "El nombre del libro no debe ser vacio.";
+        errors.nombre = true;
 
     } else {
-        errors.nombre = null;
+        errors.nombre = false;
     }
 
-    if (formValues.autor.lenght <= 0 || formValues.autor[0].trim() === "" || !formValues.autor) {
-        errors.autor = "El autor del libro no debe ser vacio.";
+    if (formValues.autor.length <= 0 || formValues.autor[0].trim() === "" || !formValues.autor) {
+        errors.autor  = true;
 
     } else {
-        errors.autor = null;
+        errors.autor = false;
     }
 
     if (!formValues.precio || formValues.precio < 1000) {
-        errors.precio = "La precio minimo son 1000.";
+        errors.precio = true;
 
     } else {
-        errors.precio = null;
+        errors.precio = false;
     }
 
     if (!formValues.stockLibro || formValues.stockLibro < 1) {
-        errors.stockLibro = "El stock minimo es 1 libro.";
+        errors.stockLibro = true;
 
     } else {
-        errors.stockLibro = null;
+        errors.stockLibro = false;
     }
 
     if (!formValues.caratula || formValues.caratula.trim() === "") {
-        errors.caratula = "La url debe tener un formato valido.";
+        errors.caratula = true;
 
     } else {
-        errors.caratula = null;
+        errors.caratula = false;
     }
 
     if (formValues.ean.length < 13 || formValues.ean.length > 13 || formValues.ean.trim() === "" || !formValues.ean) {
-        errors.ean = "El EAN no debe estar vacio y debe tener un largo de 13 caracteres.";
+        errors.ean = true;
 
     } else {
-        errors.ean = null;
+        errors.ean = false;
     }
 
-    if (formValues.genero.lenght <= 0 || formValues.genero[0].trim() === "" || !formValues.genero) {
-        errors.genero = "El genero del libro no debe ser vacio.";
+    if (formValues.genero.length <= 0 || formValues.genero[0].trim() === "" || !formValues.genero) {
+        errors.genero = true;
 
     } else {
-        errors.genero = null;
+        errors.genero = false;
     }
 
     if (!formValues.descuento || formValues.descuento <= -1) {
-        errors.descuento = "El descuento no puede ser menor a 0.";
+        errors.descuento = true;
 
     } else {
-        errors.descuento = null;
+        errors.descuento = false;
     }
 
     if (!formValues.dimensiones || formValues.dimensiones.trim() === "") {
-        errors.dimensiones = "Las dimensiones no pueden estar vacias.";
+        errors.dimensiones = true;
 
     } else {
-        errors.dimensiones = null;
+        errors.dimensiones = false;
     }
 
     if (!formValues.editorial || formValues.editorial.trim() === "") {
-        errors.editorial = "La editorial no puede estar vacias.";
+        errors.editorial = true;
 
     } else {
-        errors.editorial = null;
+        errors.editorial = false;
     }
 
     if (!formValues.encuadernacion || formValues.encuadernacion.trim() === "") {
-        errors.encuadernacion = "La encuadernacion no puede estar vacias.";
+        errors.encuadernacion = true;
 
     } else {
-        errors.encuadernacion = null;
+        errors.encuadernacion = false;
     }
 
     if (!formValues.idioma || formValues.idioma.trim() === "") {
-        errors.idioma = "El idioma no puede estar vacias.";
+        errors.idioma = true;
 
     } else {
-        errors.idioma = null;
+        errors.idioma = false;
     }
 
     if (!formValues.agnoPublicacion || formValues.agnoPublicacion.trim() === "") {
-        errors.agnoPublicacion = "El año de publicacion no puede estar vacio.";
+        errors.agnoPublicacion = true;
 
     } else {
-        errors.agnoPublicacion = null;
+        errors.agnoPublicacion = false;
     }
 
     if (!formValues.resumen || formValues.resumen.trim() === "") {
-        errors.resumen = "El resumen no puede estar vacio.";
+        errors.resumen = true;
 
     } else {
-        errors.resumen = null;
+        errors.resumen = false;
     }
 
     if (!formValues.numeroPaginas || formValues.numeroPaginas < 1) {
-        errors.numeroPaginas = "El numero de paginas no puede estar vacio o ser menor a 1.";
+        errors.numeroPaginas = true;
 
     } else {
-        errors.numeroPaginas = null;
+        errors.numeroPaginas = false;
     }
 
     return errors;

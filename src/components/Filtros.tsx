@@ -43,6 +43,7 @@ function Filtros() {
         setCategory(productJson);
         setCategoryExist(true);
 
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (error) {
         console.log('Error al obtener las categorias');
         setCategoryExist(false);
