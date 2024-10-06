@@ -12,7 +12,7 @@ function NovedadesHome() {
 
     async function getLibros(){
       try {
-        const response = await fetch('/products-back', { //    src/data/catalog.json
+        const response = await fetch('/products-back', {
           method: 'GET'
         });
         console.log(response.status);

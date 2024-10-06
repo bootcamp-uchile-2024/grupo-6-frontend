@@ -1,0 +1,1 @@
+// Fichero de configuración para centralizar parámetros de aplicación.
