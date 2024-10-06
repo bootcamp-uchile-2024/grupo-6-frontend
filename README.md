@@ -1,4 +1,71 @@
-# grupo-6-frontend
+# Páginas Selectas / Frontend
+
+## Descripción
+Páginas Selectas es un eCommerce B2C diseñado para ofrecer una experiencia de compra única de libros. Nuestro objetivo es facilitar la exploración y adquisición de una amplia variedad de títulos a través de un sistema de recomendaciones personalizadas basado en los gustos de los usuarios. En el futuro, planeamos introducir funciones adicionales, como el intercambio de libros y la venta de mystery boxes que incluirán selecciones curadas de libros y artículos literarios.
+
+Este proyecto de frontend, desarrollado con React, TypeScript y Vite, se centra en crear una interfaz atractiva y fácil de usar que fomente una comunidad de lectores y mejore su experiencia de compra.
+
+ ## Contenidos
+ 1. [Tecnologías utilizadas](#Tecnologías-utilizadas)
+ 2. [Requisitos previos](#Requisitos-previos)
+ 3. [Instalación](#Instalación)
+ 4. [Configuración](#Configuración)
+ 5. [Levantar el Proyecto](#Levantar-el-Proyecto)
+ 6. [Flujo de trabajo](#Flujo-de-trabajo)
+ 7. [Contacto](#Contacto)
+
+## Tecnologías usadas
+- **React**
+- **React Router**
+- **Redux**
+- **TypeScript**
+- **Vite**
+
+## Requisitos previos
+
+## Instalación
+
+## Configuración
+
+Información sobre archivos de configuración (por ejemplo, .env si se necesita).
+Variables de entorno necesarias (si aplica).
+
+## Levantar el Proyecto
+
+## Flujo de trabajo
+En este proyecto, seguimos la metodología Git Flow para gestionar el desarrollo. A continuación se detallan los principales componentes de nuestro flujo de trabajo:
+
+### Rama Principal (main):
+
+Contiene la versión estable del proyecto que está en producción.
+
+### Rama de Desarrollo (develop):
+
+Se utiliza para integrar nuevas características y mejoras antes de ser fusionadas a la rama principal.
+
+### Ramas de Características (feature/):
+
+Cada nueva funcionalidad se desarrolla en su propia rama, que se crea a partir de develop. Una vez completada, se fusiona de nuevo en develop.
+
+### Ramas de Corrección de Errores (hotfix/):
+
+Se utilizan para realizar correcciones urgentes en la rama principal. Después de resolver el problema, se fusiona tanto en main como en develop.
+
+### Ramas de Lanzamiento (release/):
+
+Se crean para preparar una nueva versión de producción. Permiten realizar pruebas y ajustes antes de fusionar los cambios en main.
+
+## Contacto
+Si tienes alguna pregunta, puedes contactarnos a través
+ de:
+- Alexandra Pavez
+    - GitHub: [alealecami](https://github.com/alealecami)
+- Antonia Horta
+    - GitHub: [antohorta](https://github.com/antohorta)
+- Daniela Gajardo
+    - GitHub: [dgajardoiglesias](https://github.com/dgajardoiglesias)
+
+
 
 
 # React + TypeScript + Vite
