@@ -14,23 +14,60 @@ Este proyecto de frontend, desarrollado con React, TypeScript y Vite, se centra 
  6. [Flujo de trabajo](#Flujo-de-trabajo)
  7. [Contacto](#Contacto)
 
-## Tecnologías usadas
+## Tecnologías utilizadas
 - **React**
 - **React Router**
 - **Redux**
 - **TypeScript**
 - **Vite**
+- **ESLint**
 
 ## Requisitos previos
+Antes de ejecutar el proyecto, asegúrate de tener instalados los siguientes componentes:
+- **Node.js**: >= v20.13.1
+
+```bash
+    nvm install node
+```
+
+- **Typescript:**
+
+```bash
+    npm install -g typescript
+```
 
 ## Instalación
+1. Clona el repositorio:
+ ```bash
+ git clone https://github.com/bootcamp-uchile-2024/grupo-6-frontend.git
+ ```
+ 2. Entra en el directorio del proyecto:
+ ```bash
+ cd nombre-del-proyecto
+ ```
+ 3. Instala las dependencias:
+ ```bash
+ npm install
+ ```
 
 ## Configuración
 
-Información sobre archivos de configuración (por ejemplo, .env si se necesita).
-Variables de entorno necesarias (si aplica).
+Primero debes levantar el repositorio de backend, puedes leer como hacerlo en el siguiente [link](https://github.com/bootcamp-uchile-2024/grupo-6-backend/blob/main/README.md). 
+
+
 
 ## Levantar el Proyecto
+1. Para compilar el proyecto:
+
+ ```bash
+ npm build
+ ```
+
+ 2. Para ejecutar el proyecto:
+
+ ```bash
+ npm run dev
+ ```
 
 ## Flujo de trabajo
 En este proyecto, seguimos la metodología Git Flow para gestionar el desarrollo. A continuación se detallan los principales componentes de nuestro flujo de trabajo:
@@ -47,14 +84,6 @@ Se utiliza para integrar nuevas características y mejoras antes de ser fusionad
 
 Cada nueva funcionalidad se desarrolla en su propia rama, que se crea a partir de develop. Una vez completada, se fusiona de nuevo en develop.
 
-### Ramas de Corrección de Errores (hotfix/):
-
-Se utilizan para realizar correcciones urgentes en la rama principal. Después de resolver el problema, se fusiona tanto en main como en develop.
-
-### Ramas de Lanzamiento (release/):
-
-Se crean para preparar una nueva versión de producción. Permiten realizar pruebas y ajustes antes de fusionar los cambios en main.
-
 ## Contacto
 Si tienes alguna pregunta, puedes contactarnos a través
  de:
@@ -64,57 +93,3 @@ Si tienes alguna pregunta, puedes contactarnos a través
     - GitHub: [antohorta](https://github.com/antohorta)
 - Daniela Gajardo
     - GitHub: [dgajardoiglesias](https://github.com/dgajardoiglesias)
-
-
-
-
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
