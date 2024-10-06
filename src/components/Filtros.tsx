@@ -55,9 +55,9 @@ function Filtros() {
 
   return (
     <>
-      <section id="seccionFiltros">
+      <section id="seccion-filtros">
         <div className="filtros-categoria">
-          <h2 id="tituloFiltro">Sub-categoría</h2>
+          <h2 className="titulo-filtro">Sub-categoría</h2>
           <div className="checkbox-container">
             <input id="artes" type="checkbox" />
             <label htmlFor="artes">Artes</label>
@@ -85,7 +85,7 @@ function Filtros() {
         </div>
 
         <div className="filtros-editorial">
-          <h2 id="tituloFiltro">Editorial</h2>
+          <h2 className="titulo-filtro">Editorial</h2>
 
           <div className="checkbox-container">
             <input id="antartica" type="checkbox" />
@@ -104,7 +104,7 @@ function Filtros() {
         </div>
 
         <div className="filtros-precio">
-          <h2 id="tituloFiltro">Precio</h2>
+          <h2 className="titulo-filtro">Precio</h2>
           <div className="precio-row">
             <input id="minimo" name="minimo" type='number' pattern="^[0-9]+([,.][0-9]+)?$" placeholder="Mínimo" />
             <p id="precioSeparador"> - </p>

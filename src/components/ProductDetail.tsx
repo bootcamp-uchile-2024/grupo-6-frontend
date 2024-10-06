@@ -42,30 +42,30 @@ const ProductDetail: React.FC = () => {
     if (error) return <div>{error}</div>;
 
     return (
-        <div className='container'>
+        <div className='container-detail'>
             {libro ? ( // Si el libro existe
                 <>
                     <div className='product-detail'>
-                        <div className='img-libro'>
+                        <div className='img-libro-detail'>
                             <img src='https://placehold.co/800@3x.png' alt={libro.nombre} />
                         </div>
-                        <div className='info-libro'>
+                        <div className='info-libro-detail'>
                             <h1>{libro.nombre}</h1>
-                            <h3 className='autor'>{libro.autor.join(', ')}</h3>
-                            <p className='resumen'>{libro.resumen}</p>
-                            <div className='caja-estrellas'>
+                            <h3 className='autor-detail'>{libro.autor.join(', ')}</h3>
+                            <p className='resumen-detail'>{libro.resumen}</p>
+                            <div className='caja-estrellas-detail'>
                                 <img src={estrella_llena} alt="" />
                                 <img src={estrella_llena} alt="" />
                                 <img src={estrella_llena} alt="" />
                                 <img src={estrella_vacia} alt="" />
                                 <img src={estrella_vacia} alt="" />
                             </div>
-                            <p className='precio'>Precio: ${libro.precio}</p>
-                            <button className='add-to-cart'>Agregar al carro</button>
+                            <p className='precio-detail'>Precio: ${libro.precio}</p>
+                            <button className='add-to-cart-detail'>Agregar al carro</button>
                         </div>
                     </div>
 
-                    <div className='libro-descripcion'>
+                    <div className='libro-descripcion-detail'>
                         <h2>Ficha técnica</h2>
                         <table>
                             <tbody>
@@ -119,7 +119,7 @@ const ProductDetail: React.FC = () => {
 export default ProductDetail;
 
 /* return (
-    <div className='container'>
+    <div className='container-detail'>
         {libro ? ( //si el libro existe:
             <div className='product-detail'>
                 <img src='https://placehold.co/600x400/000000/FFFFFF/png' alt={libro.nombre} />

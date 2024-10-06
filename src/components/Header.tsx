@@ -34,15 +34,15 @@ function Header() {
 
   return (
     <>
-      <header id="encabezadoHome">
+      <header id="encabezado-home">
         <Link to="/">
-          <h1 id="tituloHeader">Páginas Selectas</h1>
+          <h1 className="titulo-header">Páginas Selectas</h1>
         </Link>
-        <div className="botonesHome">
-          <img src={icono_usuario} className="icono usuario" alt="Icono Usuario" onClick={handleUserClick} />
-          <a href="" target="_blank">
-            <img src={icono_carrito} className="icono carrito" alt="Icono Carrito" />
-          </a>
+        <div className="caja-botones-accion">
+          <img src={icono_usuario} className="icono usuario" alt="Icono de iniciar sesión" onClick={handleUserClick} />
+          <Link to="/carrito">
+            <img src={icono_carrito} className="icono carrito" alt="Icono de carro de compras" />
+          </Link>
         </div>
       </header>
     </>

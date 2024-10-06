@@ -44,11 +44,11 @@ export function Categorias() {
       <main className='contenido-central'>
         <Filtros />
         <hr/>
-        <section id="seccionNovedades">
-          <h3 id="tituloNovedades">Categorías</h3>
+        <section id="seccion-categorias">
+          <h3 className="titulo-categorias">Categorías</h3>
 
           <Link to={`/product-detail/9789585581616`}> {/* Cambiar con back */}
-          <div id="productosHome">
+          <div id="productos-categorias">
           { librosExist ?  libros.map( libro => (
                       <CajaCategoria key={libro.isbn} nombre={libro.nombre} autor={libro.autor} precio={libro.precio} isbn={libro.isbn}  ></CajaCategoria>
                   )) 

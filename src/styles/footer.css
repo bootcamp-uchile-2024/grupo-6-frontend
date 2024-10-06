@@ -1,4 +1,4 @@
-#Footer {
+#footer {
     border: 1px solid black;
     padding: 30px;
     display: flex;
@@ -9,7 +9,7 @@
     height: auto;
 }
 
-.cajaFooter {
+.caja-footer {
     border: 1px solid black;
     display: flex;
     justify-content: center;
@@ -20,47 +20,47 @@
     height: 100%;
 }
 
-.nombresFooter {
+.nombres-footer {
     font-weight: bold;
     font-size: 18px;
     color: white;
     margin-bottom: 0px;
 }
 
-.cajaFooter ul {
+.caja-footer ul {
     list-style-type: none;
     color: white;
     padding: 0px;
 
 }
 
-.cajaFooter li {
+.caja-footer li {
     margin: 10px 0;
     font-size: 18px;
 }
 
-.cajaFooter a {
+.caja-footer a {
     text-decoration: none;
     color: white;
     padding-top: 40px;
 }
 
-.imagenesRRSS,
-.imagenesPago {
+.imagenes-rrss,
+.imagenes-pago {
     display: flex;
     flex-flow: row wrap;
     margin-top: 30px;
 }
 
-.imagenesRRSS img,
-.imagenesRRSS a {
+.imagenes-rrss img,
+.imagenes-rrss a {
     width: auto;
     height: 30px;
     margin: 10px;
     padding: 0px;
 }
 
-.imagenesPago img {
+.imagenes-pago img {
     width: auto;
     height: 40px;
     margin: 10px;

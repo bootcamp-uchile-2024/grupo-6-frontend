@@ -4,7 +4,7 @@ main {
     flex-wrap: wrap;
 }
 
-.cajaMain {
+.caja-main {
     width: 50%;
     height: auto;
     padding-right: 130px;
@@ -14,7 +14,7 @@ main {
     background-color: #ffffff;
 }
 
-.cajaMain2 {
+.caja-main-2 {
     background-color: rgb(199, 199, 199);
     display: flex;
     flex-wrap: wrap;
@@ -23,16 +23,16 @@ main {
     z-index: -1;
 }
 
-.cajaMain2 img {
+.caja-main-2 img {
     width: 60px;
     height: auto;
 }
 
-#tituloMain {
+.titulo-main {
     font-size: 40px;
 }
 
-.cajaMain p {
+.caja-main p {
     font-size: 18px;
 }
 

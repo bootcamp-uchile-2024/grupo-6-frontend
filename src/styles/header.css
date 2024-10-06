@@ -1,4 +1,4 @@
-#encabezadoHome {
+#encabezado-home {
     width: 100%;
     height: auto;
     background-color: black;
@@ -7,7 +7,7 @@
     align-items: center;
 }
 
-#tituloHeader {
+.titulo-header {
     color: white;
     font-weight: bold;
     font-size: 55px;
@@ -15,7 +15,7 @@
     margin-bottom: 0px;
 }
 
-.botonesHome {
+.caja-botones-accion {
     display: flex;
     justify-content: flex-end;
     width: 100%;
@@ -26,6 +26,7 @@ img[src*="icono_usuario"] {
     width: 35px;
     height: auto;
     align-self: flex-end;
+    cursor: pointer;
 }
 
 img[src*="icono_carrito"] {
@@ -33,4 +34,5 @@ img[src*="icono_carrito"] {
     width: 45px;
     height: auto;
     align-self: flex-end;
+    cursor: pointer;
 }

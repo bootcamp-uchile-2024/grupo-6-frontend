@@ -65,7 +65,7 @@ function Nav() {
         
         <label htmlFor="buscar"></label>
         <input type="search" name="input_buscar" id="buscar" placeholder="Busca por título o autor" />
-        <button className="botonBuscar">
+        <button className="boton-buscar-nav">
           <img src={icono_lupa} alt="lupa buscar" />
         </button>
       </nav>

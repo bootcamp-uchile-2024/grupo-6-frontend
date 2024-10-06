@@ -1,11 +1,11 @@
-#seccionFiltros {
+#seccion-filtros {
     display: flex;
     flex-direction: column;
     width: 20%;
     background-color: rgb(253, 253, 253)
 }
 
-#tituloFiltro {
+.titulo-filtro {
     width: 100%;
     background-color: black;
     color: white;
