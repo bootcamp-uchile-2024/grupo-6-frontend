@@ -11,4 +11,4 @@ interface ICreateUser {
     estado: 'Activo' | 'Baneado';
 }
 
-export type {ICreateUser}
+export type {ICreateUser};

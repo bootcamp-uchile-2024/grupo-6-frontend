@@ -12,5 +12,5 @@ export const LoginPage = (props: LoginPageProps) => {
         <MainLayout>
             <Login/>
         </MainLayout>
-    )
-}
+    );
+};

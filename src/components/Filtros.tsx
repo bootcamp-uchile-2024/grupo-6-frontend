@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import '../styles/estilos_home.css';
+import '../styles/filtros.css';
 import CategoryElement from './CategoryElement.tsx';
 
 // Interface para la categoría
@@ -16,23 +16,8 @@ function Filtros() {
   useEffect(() => {
     async function getCategories() {
       try {
-        // Realizar la llamada al backend para obtener las categorías
-        /* const response = await fetch('/categories-back', {
-          mode: 'no-cors',
-          method: 'GET'
-        });
-        
-        if (!response.ok) {
-          console.log('No pudimos obtener las categorias');
-          setCategoryExist(false);
-        } else {
-          const productsJson = await response.json();
-          console.log(productsJson);
-          setCategory(productsJson);
-          setCategoryExist(true);
-        } */
 
-        // Ejemplo de datos para simular la respuesta del backend
+        // Simulando la respuesta del backend
         const productJson = [{
           "idGenero": "1",
           "nombreGenero": "Aventura",
@@ -43,6 +28,7 @@ function Filtros() {
         setCategory(productJson);
         setCategoryExist(true);
 
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (error) {
         console.log('Error al obtener las categorias');
         setCategoryExist(false);
@@ -54,9 +40,9 @@ function Filtros() {
 
   return (
     <>
-      <section id="seccionFiltros">
+      <section id="seccion-filtros">
         <div className="filtros-categoria">
-          <h2 id="tituloFiltro">Sub-categoría</h2>
+          <h2 className="titulo-filtro">Sub-categoría</h2>
           <div className="checkbox-container">
             <input id="artes" type="checkbox" />
             <label htmlFor="artes">Artes</label>
@@ -84,7 +70,7 @@ function Filtros() {
         </div>
 
         <div className="filtros-editorial">
-          <h2 id="tituloFiltro">Editorial</h2>
+          <h2 className="titulo-filtro">Editorial</h2>
 
           <div className="checkbox-container">
             <input id="antartica" type="checkbox" />
@@ -103,7 +89,7 @@ function Filtros() {
         </div>
 
         <div className="filtros-precio">
-          <h2 id="tituloFiltro">Precio</h2>
+          <h2 className="titulo-filtro">Precio</h2>
           <div className="precio-row">
             <input id="minimo" name="minimo" type='number' pattern="^[0-9]+([,.][0-9]+)?$" placeholder="Mínimo" />
             <p id="precioSeparador"> - </p>
@@ -115,6 +101,6 @@ function Filtros() {
       </section>
     </>
   );
-}
+};
 
 export default Filtros;

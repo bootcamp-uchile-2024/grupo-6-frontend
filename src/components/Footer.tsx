@@ -1,19 +1,18 @@
-import icono_mercadopago from '../assets/images/logo-mercadopago29.png'
-import icono_paypal from '../assets/images/Paypal_2014_logo.png'
-import icono_webpay from '../assets/images/logo-webpay-plus-3-2.png'
-import icono_x from '../assets/images/icono_x.png'
-import icono_facebook from '../assets/images/icono_facebook.png'
-import icono_instagram from '../assets/images/icono_instagram.png'
-
-import '../styles/estilos_home.css'
+import iconoMercadoPago from '../assets/images/logo-mercadopago29.png'
+import iconoPayPal from '../assets/images/Paypal_2014_logo.png'
+import iconoWebpay from '../assets/images/logo-webpay-plus-3-2.png'
+import iconoX from '../assets/images/icono_x.png'
+import iconoFacebook from '../assets/images/icono_facebook.png'
+import iconoInstagram from '../assets/images/icono_instagram.png'
+import '../styles/footer.css'
 
 function Footer() {
 
     return (
-        <footer id="Footer">
+        <footer id="footer">
 
-            <div className="cajaFooter paginasSelectas">
-                <p className="nombresFooter">Nosotros</p>
+            <div className="caja-footer">
+                <p className="nombres-footer">Nosotros</p>
                 <ul>
                     <li><a href="">Link 1</a></li>
                     <li><a href="">Link 2</a></li>
@@ -22,8 +21,8 @@ function Footer() {
                 </ul>
             </div>
 
-            <div className="cajaFooter ayuda">
-                <p className="nombresFooter">Ayuda</p>
+            <div className="caja-footer">
+                <p className="nombres-footer">Ayuda</p>
                 <ul>
                     <li><a href="">Link 1</a></li>
                     <li><a href="">Link 2</a></li>
@@ -32,21 +31,21 @@ function Footer() {
                 </ul>
             </div>
 
-            <div className="cajaFooter formasPago">
-                <p className="nombresFooter">Formas de pago</p>
-                <div className="imagenesPago">
-                    <img src={icono_mercadopago} alt="mercadoPago"/>
-                    <img src={icono_paypal} alt="payPal"/>
-                    <img src={icono_webpay} alt="webPay"/>
+            <div className="caja-footer">
+                <p className="nombres-footer">Formas de pago</p>
+                <div className="imagenes-pago">
+                    <img src={iconoMercadoPago} alt="mercado pago"/>
+                    <img src={iconoPayPal} alt="payPal"/>
+                    <img src={iconoWebpay} alt="webPay"/>
                 </div>
             </div>
 
-            <div className="cajaFooter redesSociales">
-                <p className="nombresFooter">Síguenos en redes sociales</p>
-                <div className="imagenesRRSS">
-                    <a href="https://x.com/i/flow/login"><img src={icono_x} alt="X"/></a>
-                    <a href="https://www.instagram.com/"><img src={icono_instagram} alt="Instagram"/></a>
-                    <a href="https://www.facebook.com/login/?locale=es_LA"><img src={icono_facebook} alt="Facebook"/></a>
+            <div className="caja-footer">
+                <p className="nombres-footer">Síguenos en redes sociales</p>
+                <div className="imagenes-rrss">
+                    <a href="https://x.com/i/flow/login"><img src={iconoX} alt="X"/></a>
+                    <a href="https://www.instagram.com/"><img src={iconoInstagram} alt="Instagram"/></a>
+                    <a href="https://www.facebook.com/login/?locale=es_LA"><img src={iconoFacebook} alt="Facebook"/></a>
                 </div>
             </div>
 
@@ -54,7 +53,7 @@ function Footer() {
                 <p>Copyright © 2024 HexaStudio.</p>
             </div>
         </footer>
-    )
-}
+    );
+};
 
-export default Footer
+export default Footer;

@@ -1,0 +1,28 @@
+#seccion-filtros {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    background-color: rgb(253, 253, 253)
+}
+
+.titulo-filtro {
+    width: 100%;
+    background-color: black;
+    color: white;
+    font-size: large;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px;
+}
+
+.precio-row {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+}
+
+.precio-row #minimo,
+.precio-row #maximo,
+.precio-row #precioSeparador {
+    margin: 10px;
+    width: 100px;
+}

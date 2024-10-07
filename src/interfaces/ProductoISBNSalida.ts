@@ -6,4 +6,4 @@ interface ProductoISBNSalida {
     mensaje?: string;              // Mensaje opcional, (Ej: Producto no encontrado)
 }
 
-export type {ProductoISBNSalida}
+export type {ProductoISBNSalida};

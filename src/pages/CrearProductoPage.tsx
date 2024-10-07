@@ -12,5 +12,5 @@ export const CrearProductoPage = (props: CrearProductoPageProps) => {
         <MainLayout>
             <CrearProducto/>
         </MainLayout>
-    )
-}
+    );
+};

@@ -16,4 +16,4 @@ interface ProductosFiltradosEntrada {
     limit?: number;               // Número máximo de productos a devolver
 }
 
-export type {ProductosFiltradosEntrada}
+export type {ProductosFiltradosEntrada};

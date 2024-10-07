@@ -12,5 +12,5 @@ export const NovedadesPage = (props: NovedadesProps) => {
         <MainLayout>
             <NovedadesHome/>
         </MainLayout>      
-    )
-}
+    );
+};

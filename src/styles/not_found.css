@@ -1,0 +1,23 @@
+.caja-not-found {
+    margin: 60px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.caja-not-found p:first-of-type {
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+.caja-not-found p:nth-of-type(2) {
+    font-size: 18px;
+}
+
+.caja-not-found img {
+    width: 90px;
+    height: auto;
+}

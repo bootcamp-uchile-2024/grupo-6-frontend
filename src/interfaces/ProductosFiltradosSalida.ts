@@ -6,4 +6,4 @@ interface ProductosFiltradosSalida {
     message?: string;                  // Mensaje opcional (Ej: No se encontraron productos)
 }
 
-export type {ProductosFiltradosSalida}
+export type {ProductosFiltradosSalida};

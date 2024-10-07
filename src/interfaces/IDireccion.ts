@@ -9,4 +9,4 @@ interface IDireccion {
     tipoDireccion: 'Envio' | 'Facturacion';
 }
 
-export type {IDireccion}
+export type {IDireccion};

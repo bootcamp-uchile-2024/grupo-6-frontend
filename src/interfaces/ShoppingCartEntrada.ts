@@ -7,4 +7,4 @@ descuento: number;
 caratula: string;
 }
 
-export type {ShoppingCartEntrada}
+export type {ShoppingCartEntrada};

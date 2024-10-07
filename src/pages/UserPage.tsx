@@ -1,5 +1,5 @@
 import { MainLayout } from "../layouts/MainLayout";
-import User from "../components/User"
+import User from "../components/user"
 
 interface UserPageProps {
     title: string;

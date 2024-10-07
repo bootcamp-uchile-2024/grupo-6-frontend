@@ -1,4 +1,3 @@
-/* Para agregar al carrito */
 import React, { useState } from 'react';
 import { ShoppingCartEntrada } from '../interfaces/ShoppingCartEntrada';
 
@@ -12,26 +11,22 @@ const AddToCart: React.FC = () => {
         caratula: "src/products/images/9788445009598.webp"
     });
 
-    const addToCart = () => {
-        fetch('/shoppingcart', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(book),
-        })
-            .then((response) => {
-                if (response.ok) {
-                    if (response.status === 201) {
-                        alert('Producto agregado al carrito de compras');
-                    }
-                } else {
-                    console.error('Error al agregar al carrito', response.statusText);
-                }
-            })
-            .catch((error) => {
-                console.error('Error al agregar al carrito', error);
+    const addToCart = async () => {
+        try {
+            const response = await fetch('/shoppingcart', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(book),
             });
+
+            if (response.ok && response.status === 201) {
+                alert('Producto agregado al carrito de compras');
+            } else {
+                console.error('Error al agregar al carrito:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error al agregar al carrito:', error);
+        }
     };
 
     return (

@@ -7,10 +7,10 @@ interface CategoriasPageProps {
 
 export default function CategoriasPage(props: CategoriasPageProps) {
   document.title = props.title;
-  
+
   return (
     <MainLayout>
-        <BusquedaLayout/>
-    </MainLayout>  
-)
-}
+      <BusquedaLayout />
+    </MainLayout>
+  );
+};

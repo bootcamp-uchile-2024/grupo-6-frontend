@@ -4,7 +4,6 @@ import { ICreateUser } from '../interfaces/ICreateUser';
 import '../styles/login.css'
 
 const CrearCuenta = () => {
-
     const navigate = useNavigate();
 
     const [errorNombres, setErrorNombres] = useState<boolean>(false);
@@ -237,7 +236,7 @@ const CrearCuenta = () => {
 
             </form>
         </div>
-    )
-}
+    );
+};
 
-export default CrearCuenta
+export default CrearCuenta;
