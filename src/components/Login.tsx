@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../auth/AuthContext';
+import useAuth from "../auth/useAuth";
 import { ILoginUser } from '../interfaces/ILoginUser';
 import '../styles/login.css';
 
@@ -19,18 +19,19 @@ const Login = () => {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
+        // Validación de usuario
         if (user.correoElectronico === 'admin@gmail.com' && user.contrasena === 'admin') {
             alert("Inicio de sesión de admin exitoso.")
             console.log("Inicio de sesión de admin exitoso.")
             login({correoElectronico: user.correoElectronico, contrasena: user.contrasena, isAdmin: true}); // Para llamar a la función de login
-            navigate('/admin'); // Ruta perfil de admin
+            navigate('/admin');
         } 
 
         else if (user.correoElectronico === 'usuario@gmail.com' && user.contrasena === 'usuario') {
             alert("Inicio de sesión de usuario exitoso.")
             console.log("Inicio de sesión de usuario exitoso.")
             login({correoElectronico: user.correoElectronico, contrasena: user.contrasena, isAdmin: false}); // Para llamar a la función de login
-            navigate('/user'); // Cambiar ruta /ruta-usuario
+            navigate('/user');
         }
 
         else {
@@ -42,14 +43,12 @@ const Login = () => {
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
 
-        setCorreoError(false);
-        setContrasenaError(false);
-
         setUser({
             ...user,
             [name]: value
         })
         
+        // Limpiar errores en los campos
         if (name === 'correoElectronico') {
             setCorreoError(false);
         } else if (name === 'contrasena') {

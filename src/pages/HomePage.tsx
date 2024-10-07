@@ -13,5 +13,5 @@ export default function HomePage(props: HomePageProps) {
         <MainContent/>
         <NovedadesHome/>
     </MainLayout>  
-  )
-}
+  );
+};

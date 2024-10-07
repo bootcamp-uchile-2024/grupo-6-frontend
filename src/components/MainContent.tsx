@@ -1,10 +1,9 @@
-import icono_imagen from '../assets/images/icono_imagen.png'
+import iconoImagen from '../assets/images/icono_imagen.png'
 import '../styles/main_content.css'
 
 function MainContent() {
 
-  return (
-    <>
+    return (
         <main>
             <div className="caja-main">
                 <h2 className="titulo-main">Quienes somos</h2>
@@ -12,11 +11,10 @@ function MainContent() {
                     deserunt mollit anim id est laborum."</p>
             </div>
             <div className="caja-main caja-main-2">
-                <img src={icono_imagen} alt="imagen"/>
+                <img src={iconoImagen} alt="imagen" />
             </div>
         </main>
-    </>
-  )
-}
+    );
+};
 
-export default MainContent
+export default MainContent;

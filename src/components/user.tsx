@@ -1,4 +1,4 @@
-import { useAuth } from '../auth/AuthContext';
+import useAuth from "../auth/useAuth";
 import { useNavigate } from 'react-router-dom';
 import '../styles/user.css';
 
@@ -7,7 +7,6 @@ const UserPage = () => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        /* Para poder realizar el login y el logout */
         logout();
         navigate('/');
     }

@@ -138,5 +138,5 @@ export function validateValues(formValues: ILibro , errors: IErrorsLibro) {
     return errors;
 };
 
-export type { ILibro }
+export type { ILibro };
 

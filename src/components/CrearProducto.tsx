@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { ILibro, validateValues } from '../interfaces/ILibro';
 import '../styles/create_product.css'
 import { IErrorsLibro } from '../interfaces/IErrorsLibro';
+
 const CrearProducto = () => {
     const navigate = useNavigate();
 
-    // Estados para cada campo del formulario
     const [libro, setLibro] = useState<ILibro>({
         isbn: '',
         nombre: '',
@@ -248,7 +248,7 @@ const CrearProducto = () => {
                 <button type="submit" className='boton-producto'>Crear Libro</button>
             </form>
         </div>
-    )
-}
+    );
+};
 
-export default CrearProducto
+export default CrearProducto;

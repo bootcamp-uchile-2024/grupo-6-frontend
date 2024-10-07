@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import '../styles/categorias.css'
 import { CajaCategoria } from './CajaCategoria.tsx'
 import Filtros from './Filtros.tsx'
@@ -9,29 +8,26 @@ import { Link } from 'react-router-dom';
 export function Categorias() {
 
   const [libros, setLibros] = useState<ILibro[]>([]);
-
   const [librosExist, setLibrosExist] = useState<boolean>(false);
 
   useEffect(() => {
-
-    async function getLibros(){
+    async function getLibros() {
       try {
         const response = await fetch('/products-back', {
-          method: 'GET'
+          method: 'GET',
         });
-        console.log(response.status);
-        if(!response.statusText){
+        
+        if (!response.ok) {
           console.log('No pudimos obtener los productos');
           setLibrosExist(false);
-
+          return; // Salir si no hay respuesta OK
         }
+        
         const librosJson = await response.json();
-        console.log(librosJson);
         setLibros(librosJson);
         setLibrosExist(true);
-
       } catch (error) {
-        console.log('Error al obtener los productos');
+        console.error('Error al obtener los productos', error); // Usando 'error'
         setLibrosExist(false);
       }
     }
@@ -40,7 +36,6 @@ export function Categorias() {
   }, []);
 
   return (
-    <>
       <main className='contenido-central'>
         <Filtros />
         <hr/>
@@ -59,6 +54,5 @@ export function Categorias() {
           </Link>
         </section>
       </main>
-    </>
-  )
-}
+  );
+};

@@ -13,5 +13,5 @@ export const AboutPage = (props: AboutProps) => {
         <MainLayout>
             <MainContent/>
         </MainLayout>      
-    )
-}
+    );
+};

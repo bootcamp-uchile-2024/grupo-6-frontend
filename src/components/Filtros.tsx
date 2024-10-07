@@ -16,23 +16,8 @@ function Filtros() {
   useEffect(() => {
     async function getCategories() {
       try {
-        // Realizar la llamada al backend para obtener las categorías
-        /* const response = await fetch('/categories-back', {
-          mode: 'no-cors',
-          method: 'GET'
-        });
-        
-        if (!response.ok) {
-          console.log('No pudimos obtener las categorias');
-          setCategoryExist(false);
-        } else {
-          const productsJson = await response.json();
-          console.log(productsJson);
-          setCategory(productsJson);
-          setCategoryExist(true);
-        } */
 
-        // Ejemplo de datos para simular la respuesta del backend
+        // Simulando la respuesta del backend
         const productJson = [{
           "idGenero": "1",
           "nombreGenero": "Aventura",
@@ -116,6 +101,6 @@ function Filtros() {
       </section>
     </>
   );
-}
+};
 
 export default Filtros;

@@ -15,4 +15,4 @@ interface BuscarProductosEntrada {
     limit?: number;               // Número máximo de productos a devolver
 }
 
-export type {BuscarProductosEntrada}
+export type {BuscarProductosEntrada};

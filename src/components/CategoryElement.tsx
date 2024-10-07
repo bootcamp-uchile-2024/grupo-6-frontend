@@ -6,7 +6,6 @@ interface CategoryProps {
     subGeneros: string[];
 }
 
-//Revisar porque si se llama a la API de back, pero no esta mostrando los datos
 export const CategoryElement = (props: CategoryProps) => {
     const [state, setState] = useState('');
     useEffect(() => {
@@ -19,7 +18,7 @@ export const CategoryElement = (props: CategoryProps) => {
             <label htmlFor={props.nombreGenero}>{props.nombreGenero}</label>
         </div>
 
-    )
-}
+    );
+};
 
 export default CategoryElement;

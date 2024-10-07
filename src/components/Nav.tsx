@@ -1,13 +1,12 @@
-import { Link } from 'react-router-dom'
-import { useAuth } from '../auth/AuthContext'
-import icono_lupa from '../assets/images/icono_lupa.png'
-import '../styles/nav.css'
+import { Link } from 'react-router-dom';
+import useAuth from "../auth/useAuth";
+import iconoLupa from '../assets/images/icono_lupa.png';
+import '../styles/nav.css';
 
 function Nav() {
-  const { user } = useAuth(); // Esto nos permite tener la información del usuario
+  const { user } = useAuth(); // Información del usuario
 
   return (
-    <>
       <nav className="navbar">
         <ul className="menu">
           <li><Link to="/">Home</Link></li>
@@ -66,11 +65,10 @@ function Nav() {
         <label htmlFor="buscar"></label>
         <input type="search" name="input_buscar" id="buscar" placeholder="Busca por título o autor" />
         <button className="boton-buscar-nav">
-          <img src={icono_lupa} alt="lupa buscar" />
+          <img src={iconoLupa} alt="lupa buscar" />
         </button>
       </nav>
-    </>
-  )
-}
+  );
+};
 
-export default Nav
+export default Nav;

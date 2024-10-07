@@ -5,5 +5,5 @@ export default function BusquedaLayout() {
       <>
         <Categorias/>
       </>
-    )
-}
+    );
+};

@@ -3,4 +3,4 @@ interface EliminarProductoCarroSalida {
     message?: string;  // Mensaje opcional (Ej: Producto eliminado del carrito)
 }
 
-export type {EliminarProductoCarroSalida}
+export type {EliminarProductoCarroSalida};

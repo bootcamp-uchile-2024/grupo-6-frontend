@@ -5,7 +5,7 @@ function App() {
     <>
       <HomePage title={'homepage'}/>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

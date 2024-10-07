@@ -17,4 +17,4 @@ interface IErrorsLibro {
     resumen: boolean
 }
 
-export type { IErrorsLibro }
+export type { IErrorsLibro };

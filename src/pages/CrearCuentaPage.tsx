@@ -12,5 +12,5 @@ export const CrearCuentaPage = (props: CrearCuentaPageProps) => {
         <MainLayout>
             <CrearCuenta/>
         </MainLayout>
-    )
-}
+    );
+};
