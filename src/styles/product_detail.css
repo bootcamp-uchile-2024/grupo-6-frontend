@@ -1,4 +1,4 @@
-.container {
+.container-detail {
     display: flex;
     flex-direction: column;
     max-width: 1200px;
@@ -15,43 +15,43 @@
     padding-bottom: 20px;
 }
 
-.img-libro {
+.img-libro-detail {
     width: 40%;
 }
 
-.img-libro img {
+.img-libro-detail img {
     width: 100%;
     height: auto;
     object-fit: cover;
     transition: filter 0.3s;
 }
 
-.info-libro {
+.info-libro-detail {
     width: 55%;
 }
 
-.info-libro h1 {
+.info-libro-detail h1 {
     font-size: 28px;
     font-weight: bold;
     margin-bottom: 10px;
     color: #333;
 }
 
-.info-libro .autor,
-.info-libro .resumen,
-.info-libro .precio {
+.info-libro-detail .autor-detail,
+.info-libro-detail .resumen-detail,
+.info-libro-detail .precio-detail {
     font-size: 16px;
     margin-bottom: 8px;
     color: #666;
 }
 
-.caja-estrellas {
+.caja-estrellas-detail {
     display: flex;
     flex-direction: row;
     margin-left: 2px; 
 }
 
-.caja-estrellas img {
+.caja-estrellas-detail img {
     width: 15px;
     height: auto;
     display: inline;
@@ -59,7 +59,7 @@
     margin-right: 2px;
 }
 
-.add-to-cart {
+.add-to-cart-detail {
     display: flex;
     justify-content: space-between;
     width: auto;
@@ -76,40 +76,40 @@
     transition: background-color 0.3s, color 0.3s;
 }
 
-.add-to-cart:hover {
+.add-to-cart-detail:hover {
     background-color: black;
     color: white;
 }
 
-.libro-descripcion {
+.libro-descripcion-detail {
     margin-top: 30px;
 }
 
-.libro-descripcion h2 {
+.libro-descripcion-detail h2 {
     font-size: 24px;
     margin-bottom: 15px;
     color: #1e1e1e;
 }
 
-.libro-descripcion table {
+.libro-descripcion-detail table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.libro-descripcion table td {
+.libro-descripcion-detail table td {
     padding: 10px;
     border-bottom: 1px solid #ddd;
     font-size: 16px;
     color: #666;
 }
 
-.libro-descripcion table td:first-child {
+.libro-descripcion-detail table td:first-child {
     font-weight: bold;
     width: 15%;
     color: #333;
 }
 
-.libro-descripcion table td:last-child {
+.libro-descripcion-detail table td:last-child {
     width: 70%;
 }
 
@@ -119,8 +119,8 @@
         align-items: center;
     }
 
-    .img-libro,
-    .info-libro {
+    .img-libro-detail,
+    .info-libro-detail {
         width: 100%;
         text-align: center;
     }

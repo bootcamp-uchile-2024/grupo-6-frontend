@@ -1,4 +1,4 @@
-import '../styles/estilos_home.css'
+import '../styles/categorias.css'
 import { CajaCategoria } from './CajaCategoria.tsx'
 import Filtros from './Filtros.tsx'
 import { ILibro } from '../interfaces/ILibro.ts'
@@ -8,29 +8,26 @@ import { Link } from 'react-router-dom';
 export function Categorias() {
 
   const [libros, setLibros] = useState<ILibro[]>([]);
-
   const [librosExist, setLibrosExist] = useState<boolean>(false);
 
   useEffect(() => {
-
-    async function getLibros(){
+    async function getLibros() {
       try {
-        const response = await fetch('/products-back', { //    src/data/catalog.json
-          method: 'GET'
+        const response = await fetch('/products-back', {
+          method: 'GET',
         });
-        console.log(response.status);
-        if(!response.statusText){
+        
+        if (!response.ok) {
           console.log('No pudimos obtener los productos');
           setLibrosExist(false);
-
+          return; // Salir si no hay respuesta OK
         }
+        
         const librosJson = await response.json();
-        console.log(librosJson);
         setLibros(librosJson);
         setLibrosExist(true);
-
       } catch (error) {
-        console.log('Error al obtener los productos');
+        console.error('Error al obtener los productos', error); // Usando 'error'
         setLibrosExist(false);
       }
     }
@@ -39,15 +36,14 @@ export function Categorias() {
   }, []);
 
   return (
-    <>
       <main className='contenido-central'>
         <Filtros />
         <hr/>
-        <section id="seccionNovedades">
-          <h3 id="tituloNovedades">Categorías</h3>
+        <section id="seccion-categorias">
+          <h3 className="titulo-categorias">Categorías</h3>
 
           <Link to={`/product-detail/9789585581616`}> {/* Cambiar con back */}
-          <div id="productosHome">
+          <div id="productos-categorias">
           { librosExist ?  libros.map( libro => (
                       <CajaCategoria key={libro.isbn} nombre={libro.nombre} autor={libro.autor} precio={libro.precio} isbn={libro.isbn}  ></CajaCategoria>
                   )) 
@@ -58,6 +54,5 @@ export function Categorias() {
           </Link>
         </section>
       </main>
-    </>
-  )
-}
+  );
+};

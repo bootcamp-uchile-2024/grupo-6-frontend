@@ -8,4 +8,4 @@ export interface ShoppingCartItem {
 
 export interface ShoppingCartSalida {
     items: ShoppingCartItem[];
-}
+};

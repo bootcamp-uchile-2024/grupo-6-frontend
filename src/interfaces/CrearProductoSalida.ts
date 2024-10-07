@@ -6,4 +6,4 @@ interface BuscarProductosSalida {
     message?: string;                  // Mensaje opcional (Ej: No se encontraron productos)
 }
 
-export type{BuscarProductosSalida}
+export type{BuscarProductosSalida};

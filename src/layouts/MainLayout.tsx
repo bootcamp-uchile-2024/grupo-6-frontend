@@ -17,5 +17,5 @@ export const MainLayout = (props: MainLayoutProps) => {
             </main>
             <Footer/>
         </div>      
-    )
-}
+    );
+};

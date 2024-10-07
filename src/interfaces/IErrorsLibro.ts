@@ -1,20 +1,20 @@
 interface IErrorsLibro {
-    isbn: string,
-    nombre: string,
-    autor: string,
-    precio: string,
-    stockLibro: string,
-    genero: string,
-    editorial: string,
-    idioma: string,
-    encuadernacion: string,
-    agnoPublicacion: string,
-    numeroPaginas: string,
-    descuento: string,
-    caratula: string,
-    dimensiones: string,
-    ean: string,
-    resumen: string
+    isbn: boolean,
+    nombre: boolean,
+    autor: boolean,
+    precio: boolean,
+    stockLibro: boolean,
+    genero: boolean,
+    editorial: boolean,
+    idioma: boolean,
+    encuadernacion: boolean,
+    agnoPublicacion: boolean,
+    numeroPaginas: boolean,
+    descuento: boolean,
+    caratula: boolean,
+    dimensiones: boolean,
+    ean: boolean,
+    resumen: boolean
 }
 
-export type { IErrorsLibro }
+export type { IErrorsLibro };

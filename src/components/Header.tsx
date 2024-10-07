@@ -1,11 +1,11 @@
-import icono_usuario from '../assets/images/icono_usuario.png'
-import icono_carrito from '../assets/images/icono_carrito.png'
-import '../styles/estilos_home.css'
+import iconoUsuario from '../assets/images/icono_usuario.png'
+import iconoCarrito from '../assets/images/icono_carrito.png'
+import '../styles/header.css'
 import { Link, useNavigate } from 'react-router-dom'
-import { useAuth } from '../auth/AuthContext'
+import useAuth from "../auth/useAuth";
 
 function Header() {
-  const { isAuthenticated, user } = useAuth(); // Para obtener la info del usuario autenticado
+  const { isAuthenticated, user } = useAuth(); // Aquí se usa el hook correctamente
 
   console.log('Is Authenticated:', isAuthenticated);
   console.log('User Info:', user);
@@ -14,39 +14,35 @@ function Header() {
 
   const handleUserClick = () => {
     if (!isAuthenticated) {
-      navigate('/login'); // Te lleva al login si no está autenticado
+      navigate('/login'); // Redirige a la página de inicio de sesión
       return;
     }
 
-    //condiciones respecto al usuario
+    // Redirige según el rol del usuario
     if (user?.correoElectronico === 'admin@gmail.com' && user?.contrasena === 'admin') {
-      navigate('/admin'); // Para ir al perfil del admin
-    }
-
-    else if (user?.correoElectronico === 'usuario@gmail.com' && user?.contrasena === 'usuario') {
-      navigate('/user'); // Para ir al perfil del usuario
-    }
-
-    else {
-      navigate('/login'); // Redirige a crear una cuenta nueva
+      navigate('/admin'); // Redirige al perfil del administrador
+    } else if (user?.correoElectronico === 'usuario@gmail.com' && user?.contrasena === 'usuario') {
+      navigate('/user'); // Redirige al perfil del usuario
+    } else {
+      navigate('/login'); // Redirige a la página de inicio de sesión si las credenciales no coinciden
     }
   }
 
   return (
     <>
-      <header id="encabezadoHome">
+      <header id="encabezado-home">
         <Link to="/">
-          <h1 id="tituloHeader">Páginas Selectas</h1>
+          <h1 className="titulo-header">Páginas Selectas</h1>
         </Link>
-        <div className="botonesHome">
-          <img src={icono_usuario} className="icono usuario" alt="Icono Usuario" onClick={handleUserClick} />
-          <a href="" target="_blank">
-            <img src={icono_carrito} className="icono carrito" alt="Icono Carrito" />
-          </a>
+        <div className="caja-botones-accion">
+          <img src={iconoUsuario} className="icono usuario" alt="Icono de iniciar sesión" onClick={handleUserClick} />
+          <Link to="/carrito">
+            <img src={iconoCarrito} className="icono carrito" alt="Icono de carro de compras" />
+          </Link>
         </div>
       </header>
     </>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

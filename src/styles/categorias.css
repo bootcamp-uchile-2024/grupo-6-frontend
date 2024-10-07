@@ -1,0 +1,136 @@
+#seccion-categorias {
+    padding-left: 100px;
+    padding-right: 100px;
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+
+}
+
+.titulo-categorias {
+    display: block;
+    font-size: 35px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#productos-categorias {
+    margin-bottom: 50px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-content: center;
+}
+
+.caja-categorias {
+    display: flex;
+    width: 240px;
+    margin: 15px;
+    background-color: rgba(253, 251, 251, 0.973);
+    border: 1px solid rgba(165, 164, 164, 0.678);
+    border-radius: 0px;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 15px;
+}
+
+.foto-categoria {
+    width: 240px;
+    height: 240px;
+    margin: 0px;
+    display: flex;
+    /* centrar icono de imagen */
+    justify-content: center;
+    /* centrar icono de imagen */
+    align-content: center;
+    /* centrar icono de imagen */
+    flex-flow: row wrap;
+    /* centrar icono de imagen */
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.foto-categoria img {
+    width: 240px;
+    height: 240px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    transition: filter 0.3s;
+    /* Transición suave para el filtro de la imagen */
+}
+
+.foto-categoria:hover img {
+    filter: brightness(110%);
+    /* Aclara la imagen al pasar el mouse */
+}
+
+.texto-categoria {
+    width: 240px;
+    height: 140px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+}
+
+.texto-categoria p:nth-of-type(1) {
+    font-size: 18px;
+    margin-bottom: 10px;
+    margin-left: 15px;
+    font-weight: bold;
+}
+
+.texto-categoria p:nth-of-type(2) {
+    font-size: 16px;
+    margin-top: 0px;
+    margin-left: 15px;
+    color: rgb(79, 79, 79);
+}
+
+.texto-categoria p:nth-of-type(3) {
+    font-size: 16px;
+    margin-top: 0px;
+    margin-left: 15px;
+    color: rgb(0, 0, 0);
+}
+
+.caja-estrellas-categoria {
+    display: flex;
+    flex-direction: row;
+    margin-left: 14px;
+}
+
+.caja-estrellas-categoria img {
+    width: 15px;
+    height: auto;
+    display: inline;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.caja-categoria-precio-boton {
+    display: flex;
+    justify-content: space-between;
+}
+
+.caja-categoria-precio-boton button {
+    width: 100px;
+    border: solid black 1px;
+    border-radius: 15px;
+    padding: 10px;
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    align-self: center;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 15px;
+    transition: background-color 0.3s, color 0.3s;
+    /* Transición para color de fondo y color del texto */
+}
+
+.caja-categoria-precio-boton button:hover {
+    background-color: black;
+    color: white;
+}
