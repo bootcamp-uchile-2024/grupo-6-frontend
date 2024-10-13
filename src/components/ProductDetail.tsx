@@ -4,12 +4,16 @@ import { ILibro } from '../interfaces/ILibro';
 import '../styles/product_detail.css'
 import estrellaLlena from '../assets/images/estrella_llena.png'
 import estrellaVacia from '../assets/images/estrella_vacia.png'
+import ButtonAddToCart from './ButtonAddToCart';
+import { ShoppingCartEntrada } from '../interfaces/ShoppingCartEntrada';
+
 
 const ProductDetail: React.FC = () => {
     const { isbn } = useParams<{ isbn: string }>();
     const [libro, setLibro] = useState<ILibro | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
+    const [producto, setProduct] = useState<ShoppingCartEntrada | null>(null);
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -22,6 +26,15 @@ const ProductDetail: React.FC = () => {
 
                 const productData: ILibro = await response.json();
                 setLibro(productData);
+                setProduct({
+                    nombre: libro?.nombre,
+                    autor: libro?.autor,
+                    precio: libro?.precio,
+                    isbn: libro?.isbn,
+                    cantidad: 0,
+                    correoElectronico: "",
+                })
+
             } catch (error) {
                 setError(error instanceof Error ? error.message : 'Ha ocurrido un error desconocido');
             } finally {
@@ -55,7 +68,7 @@ const ProductDetail: React.FC = () => {
                                 <img src={estrellaVacia} alt="Estrella vacía" />
                             </div>
                             <p className='precio-detail'>Precio: ${libro.precio}</p>
-                            <button className='add-to-cart-detail'>Agregar al carro</button>
+                            <ButtonAddToCart product={producto}></ButtonAddToCart>
                         </div>
                     </div>
 
