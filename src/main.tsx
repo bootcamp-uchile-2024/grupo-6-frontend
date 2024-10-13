@@ -15,10 +15,13 @@ import { UserPage } from './pages/UserPage.tsx'
 import { AuthProvider } from './auth/AuthContext.tsx'
 import ProtectedRoute from './auth/ProtectedRoute.tsx'
 import './styles/global.css'
+import { Provider } from 'react-redux'
+import { store } from './states/store.ts'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <AuthProvider>
+    <Provider store={store}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage title={'Páginas Selectas'} />} />
@@ -34,6 +37,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path="*" element={<NotFoundPage title='Página No Encontrada' />} />
         </Routes>
       </BrowserRouter>
+    </Provider>
     </AuthProvider>
   </StrictMode>,
 );
