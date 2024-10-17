@@ -3,7 +3,6 @@ import { CajaCategoria } from './CajaCategoria.tsx'
 import Filtros from './Filtros.tsx'
 import { ILibro } from '../interfaces/ILibro.ts'
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom';
 
 export function Categorias() {
 
@@ -16,13 +15,13 @@ export function Categorias() {
         const response = await fetch('/products-back', {
           method: 'GET',
         });
-        
+
         if (!response.ok) {
           console.log('No pudimos obtener los productos');
           setLibrosExist(false);
           return; // Salir si no hay respuesta OK
         }
-        
+
         const librosJson = await response.json();
         setLibros(librosJson);
         setLibrosExist(true);
@@ -36,23 +35,21 @@ export function Categorias() {
   }, []);
 
   return (
-      <main className='contenido-central'>
-        <Filtros />
-        <hr/>
-        <section id="seccion-categorias">
-          <h3 className="titulo-categorias">Categorías</h3>
+    <main className='contenido-central'>
+      <Filtros />
+      <hr />
+      <section id="seccion-categorias">
+        <h3 className="titulo-categorias">Categorías</h3>
 
-          <Link to={`/product-detail/9789585581616`}> {/* Cambiar con back */}
-          <div id="productos-categorias">
-          { librosExist ?  libros.map( libro => (
-                      <CajaCategoria key={libro.isbn} nombre={libro.nombre} autor={libro.autor} precio={libro.precio} isbn={libro.isbn}  ></CajaCategoria>
-                  )) 
-                  :
-                  <h3>Ups, no encontramos libros disponibles!!</h3>
-                  }
-          </div>
-          </Link>
-        </section>
-      </main>
+        <div id="productos-categorias">
+          {librosExist ? libros.map(libro => (
+            <CajaCategoria key={libro.isbn} nombre={libro.nombre} autor={libro.autor} precio={libro.precio} isbn={libro.isbn}  ></CajaCategoria>
+          ))
+            :
+            <h3>Ups, no encontramos libros disponibles!!</h3>
+          }
+        </div>
+      </section>
+    </main>
   );
 };

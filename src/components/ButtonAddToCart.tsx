@@ -9,13 +9,14 @@ const ButtonAddToCart = ({ product } : { product: ShoppingCartEntrada | null }) 
     const handleAddToCart = () => {
         if (product) { // Verificar si product no es null
             dispatch(addProductToCart(product));
+            console.log("Producto agregado al carrito:", product);
         } else {
             console.error("Producto no disponible para agregar al carrito.");
         }
     }
 
     return(
-        <button className="button-add-to-cart" onClick={handleAddToCart}>
+        <button className="boton-comprar" onClick={handleAddToCart}>
             Añadir al carro
         </button>
     )
