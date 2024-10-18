@@ -13,19 +13,28 @@ const initialState: CartState = {
     },
 };
 
-export const cartStore = createSlice({
-    name: 'cartStore',
+export const productCartReducer = createSlice({
+    name: 'productCartReducer',
     initialState,
     reducers: {
-        addProductToCart: (state, action: PayloadAction<ShoppingCartEntrada>) => {
+        addProductToCart: (state: CartState, action: PayloadAction<ShoppingCartEntrada>) => {
             const { payload } = action;
-            const itemInCart = state.cart.items.find((item) => item.isbn === payload.isbn); // Cambiar id por isbn
+            console.log("payload addProductToCart" + payload);
 
-            if (itemInCart) {
-                itemInCart.cantidad++; // Cambiar quantity por cantidad
+            if ( state.cart.items.length == 0) {
+                console.log("nuevo item");
+                state.cart.items = [...state.cart.items, { ...payload }]; // Asignar cantidad inicial a 1
             } else {
-                state.cart.items = [...state.cart.items, { ...payload, cantidad: 1 }]; // Asignar cantidad inicial a 1
+                const indexItem = state.cart.items.findIndex( item => item.isbn === payload.isbn); // Cambiar id por isbn
+                if (indexItem > 0) {
+                    console.log("item existe" + indexItem);
+                    state.cart.items[indexItem].cantidad += 1 ; // Cambiar quantity por cantidad
+                } else {
+                    console.log("nuevo item");
+                    state.cart.items = [...state.cart.items, { ...payload }]; // Asignar cantidad inicial a 1
+                }
             }
+            return state
         },
         incrementProductQuantity: (state, action: PayloadAction<string>) => {
             const item = state.cart.items.find((item) => item.isbn === action.payload); // Usar isbn en lugar de id
@@ -40,14 +49,23 @@ export const cartStore = createSlice({
                 item.cantidad = cantidad; // Cambiar quantity por cantidad
             }
         },
-        decrementProductQuantity: (state, action: PayloadAction<string>) => {
-            const item = state.cart.items.find((item) => item.isbn === action.payload); // Usar isbn en lugar de id
-            if (item && item.cantidad > 1) { // Cambiar quantity por cantidad
-                item.cantidad--;
-            }
+        decrementProductQuantity: (state: CartState, action: PayloadAction<ShoppingCartEntrada>) => {
+                const { payload } = action;
+                console.log("payload decrementProductQuantity" + payload);
+    
+
+                    const item = state.cart.items.find( item => item.isbn === payload.isbn); // Cambiar id por isbn
+                    if (item && item.cantidad > 1) {
+                        console.log("item a borrar" + item);
+                        item.cantidad -= 1 ; // Cambiar quantity por cantidad
+                    } 
+                
+                return state
         },
-        removeProduct: (state, action: PayloadAction<string>) => {
-            state.cart.items = state.cart.items.filter((item) => item.isbn !== action.payload); // Usar isbn en lugar de id
+        removeProduct: (state: CartState, action: PayloadAction<ShoppingCartEntrada>) => {
+            const { payload } = action;
+            state.cart.items = state.cart.items.filter((item) => item.isbn !== payload.isbn); // Usar isbn en lugar de id
+            return state
         },
     },
 });
@@ -58,6 +76,6 @@ export const {
     incrementProductQuantity,
     decrementProductQuantity,
     removeProduct,
-} = cartStore.actions;
+} = productCartReducer.actions;
 
-export default cartStore.reducer;
+export default productCartReducer.reducer;

@@ -17,6 +17,7 @@ import ProtectedRoute from './auth/ProtectedRoute.tsx'
 import './styles/global.css'
 import { Provider } from 'react-redux'
 import { store } from './states/store.ts'
+import { ShoppingCartPage } from './pages/ShoppingCartPage.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -34,6 +35,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path='/create/product' element={<ProtectedRoute><CrearProductoPage title='Crear Producto' /></ProtectedRoute>} />
           <Route path='/admin' element={<ProtectedRoute><AdminPage title='Panel de administración' /></ProtectedRoute>} />
           <Route path='/user' element={<ProtectedRoute><UserPage title='Cuenta' /></ProtectedRoute>} />
+          <Route path="/carrito" element={<ShoppingCartPage title='CarritoCompras' />} />
           <Route path="*" element={<NotFoundPage title='Página No Encontrada' />} />
         </Routes>
       </BrowserRouter>

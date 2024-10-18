@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ShoppingCartEntrada } from '../interfaces/ShoppingCartEntrada';
+import { ShoppingCartEntrada } from '../../interfaces/ShoppingCartEntrada';
 
 const AddToCart: React.FC = () => {
     const [book] = useState<ShoppingCartEntrada>({
