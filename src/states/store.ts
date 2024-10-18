@@ -24,7 +24,6 @@ export const store = configureStore({
     reducer: {
         counter: counterReducer,
         productReducer: productSlice,
-
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(persistedState),
 

@@ -4,7 +4,7 @@ import { addProductToCart } from "../states/productSlice";
 import { ILibro } from "../interfaces/ILibro";
 import { useState } from "react";
 
-const ButtonAddToCart = ({ libro }: { libro: ILibro | null }) => {
+const ButtonAddToCart = ({ libro }: { libro: ShoppingCartEntrada | null }) => {
     const [producto] = useState<ShoppingCartEntrada>({
         nombre: '',
         autor: [""],
@@ -18,15 +18,15 @@ const ButtonAddToCart = ({ libro }: { libro: ILibro | null }) => {
 
     const handleAddToCart = () => {
         if (libro) { // Verificar si product no es null
-            console.log(libro);
-            console.log(mapBookToCart(libro));
             dispatch(addProductToCart(mapBookToCart(libro)));
+
+            console.log("Producto agregado al carrito:", producto);
         } else {
             console.error("Producto no disponible para agregar al carrito.");
         }
     }
 
-    function mapBookToCart(libro: ILibro) {
+    function mapBookToCart(libro: ShoppingCartEntrada) {
 
         producto.nombre = libro.nombre;
         producto.autor = libro.autor;
@@ -38,8 +38,8 @@ const ButtonAddToCart = ({ libro }: { libro: ILibro | null }) => {
         return producto;
     }
 
-    return (
-        <button className="button-add-to-cart" onClick={handleAddToCart}>
+    return(
+        <button className="boton-comprar" onClick={handleAddToCart}>
             Añadir al carro
         </button>
     )
