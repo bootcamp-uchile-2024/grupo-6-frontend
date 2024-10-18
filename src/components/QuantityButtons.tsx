@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { incrementProductQuantity, decrementProductQuantity } from "../states/productSlice";
+import { RootType } from "../states/store";
 
 const QuantityButtons = ({ isbn }: { isbn: string }) => {
     const dispatch = useDispatch();
-    const item = useSelector((state) =>
+    const item = useSelector((state: RootType) =>
         state.productReducer.cart.items.find((item) => item.isbn === isbn)
     );
 
