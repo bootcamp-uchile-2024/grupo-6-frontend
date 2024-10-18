@@ -50,7 +50,7 @@ export function CajaCategoria(props: CajaCategoriaProps) {
             <p className='texto-precio'>${props.precio}</p>
           </div>
           <div className="caja-categoria-botones-carrito">
-            <ButtonAddToCart product={product} />
+            <ButtonAddToCart libro={product} />
             <QuantityButtons isbn={props.isbn} />
           </div>
         </div>

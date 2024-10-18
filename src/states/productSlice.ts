@@ -49,12 +49,12 @@ export const productCartReducer = createSlice({
                 item.cantidad = cantidad; // Cambiar quantity por cantidad
             }
         },
-        decrementProductQuantity: (state: CartState, action: PayloadAction<ShoppingCartEntrada>) => {
+        decrementProductQuantity: (state: CartState, action: PayloadAction<string>) => {
                 const { payload } = action;
                 console.log("payload decrementProductQuantity" + payload);
     
 
-                    const item = state.cart.items.find( item => item.isbn === payload.isbn); // Cambiar id por isbn
+                    const item = state.cart.items.find( item => item.isbn === payload); // Cambiar id por isbn
                     if (item && item.cantidad > 1) {
                         console.log("item a borrar" + item);
                         item.cantidad -= 1 ; // Cambiar quantity por cantidad

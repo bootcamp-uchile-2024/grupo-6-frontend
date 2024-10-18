@@ -1,7 +1,6 @@
 import { useDispatch } from "react-redux";
 import { ShoppingCartEntrada } from "../interfaces/ShoppingCartEntrada";
 import { addProductToCart } from "../states/productSlice";
-import { ILibro } from "../interfaces/ILibro";
 import { useState } from "react";
 
 const ButtonAddToCart = ({ libro }: { libro: ShoppingCartEntrada | null }) => {

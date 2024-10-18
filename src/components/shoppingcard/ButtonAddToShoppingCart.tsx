@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { addProductToCart } from "../../states/productSlice";
 import { ShoppingCartEntrada } from "../../interfaces/ShoppingCartEntrada";
