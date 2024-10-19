@@ -3,7 +3,7 @@ import estrellaLlena from '../assets/images/estrella_llena.png';
 import estrellaVacia from '../assets/images/estrella_vacia.png';
 import { Link } from 'react-router-dom';
 import ButtonAddToCart from './ButtonAddToCart';
-import QuantityButtons from './QuantityButtons';
+import QuantityButtons from './shoppingcart/QuantityButtons';
 import { ShoppingCartEntrada } from '../interfaces/ShoppingCartEntrada';
 
 interface CajaCategoriaProps {

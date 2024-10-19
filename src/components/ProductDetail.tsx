@@ -5,8 +5,8 @@ import '../styles/product_detail.css'
 import estrellaLlena from '../assets/images/estrella_llena.png'
 import estrellaVacia from '../assets/images/estrella_vacia.png'
 import ButtonAddToCart from './ButtonAddToCart';
-import QuantityButtons from './QuantityButtons'
 import { ShoppingCartEntrada } from '../interfaces/ShoppingCartEntrada';
+import QuantityButtons from './shoppingcart/QuantityButtons';
 
 const ProductDetail: React.FC = () => {
     const { isbn } = useParams<{ isbn: string }>();
