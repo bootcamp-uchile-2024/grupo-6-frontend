@@ -70,6 +70,11 @@ export const productCartReducer = createSlice({
     },
 });
 
+// Para obtener la cantidad total de productos en el carrito
+export const selectCartItemCount = (state: { productReducer: CartState }): number => {
+    return state.productReducer.cart.items.reduce((total, item) => total + item.cantidad, 0);
+};
+
 export const {
     addProductToCart,
     setProductQuantity,

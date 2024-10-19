@@ -3,9 +3,14 @@ import iconoCarrito from '../assets/images/icono_carrito.png'
 import '../styles/header.css'
 import { Link, useNavigate } from 'react-router-dom'
 import useAuth from "../auth/useAuth";
+import { useSelector } from 'react-redux';
+import { selectCartItemCount } from '../states/productSlice';
 
 function Header() {
-  const { isAuthenticated, user } = useAuth(); // Aquí se usa el hook correctamente
+  const { isAuthenticated, user } = useAuth();
+
+  // Para obtener la cantidad de productos del carrito
+  const itemCount = useSelector(selectCartItemCount);
 
   console.log('Is Authenticated:', isAuthenticated);
   console.log('User Info:', user);
@@ -37,7 +42,10 @@ function Header() {
         <div className="caja-botones-accion">
           <img src={iconoUsuario} className="icono usuario" alt="Icono de iniciar sesión" onClick={handleUserClick} />
           <Link to="/carrito">
-            <img src={iconoCarrito} className="icono carrito" alt="Icono de carro de compras" />
+            <div className='icono-carrito'>
+              <img src={iconoCarrito} className="icono carrito" alt="Icono de carro de compras" />
+              {itemCount > 0 && <span className="cantidad-articulos">{itemCount}</span>}
+            </div>
           </Link>
         </div>
       </header>

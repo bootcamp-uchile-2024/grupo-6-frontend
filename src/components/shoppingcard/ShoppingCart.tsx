@@ -63,10 +63,8 @@ function ShoppingCart() {
                                                 <ButtonRemoveToCart libro={item}></ButtonRemoveToCart>
                                                 <p className='shoppingcart-item-quantity'>{item.cantidad}</p>
                                                 <ButtonAddToShoppingCart libro={item}></ButtonAddToShoppingCart>
-                                            </div>
-                                            <div className="shoppingcart-item-detail-td-quantity-2">
                                                 <ButtonDeleteToCart libro={item}></ButtonDeleteToCart>
-                                            </div>
+                                            </div>                                                
                                         </td>
 
                                         <td className="shoppingcart-item-detail-td-total">
