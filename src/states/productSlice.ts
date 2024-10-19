@@ -26,7 +26,7 @@ export const productCartReducer = createSlice({
                 state.cart.items = [...state.cart.items, { ...payload }]; // Asignar cantidad inicial a 1
             } else {
                 const indexItem = state.cart.items.findIndex( item => item.isbn === payload.isbn); // Cambiar id por isbn
-                if (indexItem > 0) {
+                if (indexItem >= 0) {
                     console.log("item existe" + indexItem);
                     state.cart.items[indexItem].cantidad += 1 ; // Cambiar quantity por cantidad
                 } else {
