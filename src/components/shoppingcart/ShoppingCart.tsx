@@ -5,6 +5,7 @@ import ButtonRemoveToCart from "./ButtonRemoveToCart";
 import '../../styles/shopping_cart.css'
 import ButtonDeleteToCart from "./ButtonDeleteToCart";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 function ShoppingCart() {
     const shoppingCartProduct = useSelector((state: RootType) => state.productReducer.cart.items);
@@ -21,8 +22,14 @@ function ShoppingCart() {
         return item.precio * item.cantidad;
     }
     return (
+
         <div className='shoppingcart'>
-            <h2>Carro de Compras</h2>
+            <div className="shoppingcart-item-top-footer">
+                <h2>Carro de Compras</h2>
+                <Link to={`/categorias`}> 
+                    <p className='shoppingcart-to-product'>Seguir comprando</p>
+                </Link>
+            </div>
             {shoppingCartProduct.length ? (
                 <div className='shoppingcart-items'>
                     <table className="shoppingcart-items-table">
@@ -80,7 +87,14 @@ function ShoppingCart() {
             ) : (
                 <div>No existen productos en el carrito de compras.</div>
             )}
-            <h2>Total: ${calculateTotal(shoppingCartProduct)}</h2>
+
+            <div className="shoppingcart-item-top-footer">
+                <h2>Total: ${calculateTotal(shoppingCartProduct)}</h2>
+                <Link to={`/shoppingcart-resume/`}> 
+                    <button className="shoppingcart-resume">Pagar pedido</button>
+                </Link>
+            </div>
+
         </div>
     );
 };

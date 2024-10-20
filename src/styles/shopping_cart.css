@@ -94,3 +94,20 @@
 .shoppingcart-button-delete:hover {
     transform: scale(1.1);
 }
+
+.shoppingcart-item-top-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.shoppingcart-resume {
+    display: flex;
+    padding: 10px;
+    border: none;
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
