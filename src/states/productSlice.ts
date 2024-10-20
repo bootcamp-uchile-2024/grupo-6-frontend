@@ -7,11 +7,19 @@ interface CartState {
     };
 }
 
-const initialState: CartState = {
-    cart: {
-        items: [],
-    },
+const getInitialState = (): CartState => {
+    const savedCart = localStorage.getItem('__redux__product__');
+    if (savedCart) {
+        return JSON.parse(savedCart);
+    }
+    return {
+        cart: {
+            items: [],
+        },
+    };
 };
+
+const initialState: CartState = getInitialState();
 
 export const productCartReducer = createSlice({
     name: 'productCartReducer',
