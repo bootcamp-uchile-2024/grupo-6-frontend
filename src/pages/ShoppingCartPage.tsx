@@ -1,4 +1,4 @@
-import ShoppingCart from "../components/shoppingcard/ShoppingCart";
+import ShoppingCart from "../components/shoppingcart/ShoppingCart";
 import { MainLayout } from "../layouts/MainLayout";
 
 interface ShoppingCartPageProps {
