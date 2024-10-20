@@ -18,7 +18,6 @@ const persistedState: Middleware = store => next => action => {
 
 }
 
-
 /* Configuración inicial de nuestro Store */
 export const store = configureStore({
     reducer: {
@@ -26,7 +25,6 @@ export const store = configureStore({
         productReducer: productSlice,
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(persistedState),
-
 });
 
 export type RootType = ReturnType<typeof store.getState>

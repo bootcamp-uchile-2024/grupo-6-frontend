@@ -6,7 +6,7 @@ import estrellaLlena from '../assets/images/estrella_llena.png'
 import estrellaVacia from '../assets/images/estrella_vacia.png'
 import ButtonAddToCart from './ButtonAddToCart';
 import { ShoppingCartEntrada } from '../interfaces/ShoppingCartEntrada';
-
+import QuantityButtons from './shoppingcart/QuantityButtons';
 
 const ProductDetail: React.FC = () => {
     const { isbn } = useParams<{ isbn: string }>();
@@ -74,7 +74,9 @@ const ProductDetail: React.FC = () => {
                                 <img src={estrellaVacia} alt="Estrella vacía" />
                             </div>
                             <p className='precio-detail'>Precio: ${libro.precio}</p>
+                            
                             <ButtonAddToCart libro={producto}></ButtonAddToCart>
+                            {isbn && <QuantityButtons isbn={isbn} />}
                         </div>
                     </div>
 

@@ -30,32 +30,25 @@
 .shoppingcart-item-detail-td-quantity {
     display: flex;
     flex-direction: column;
-    margin-top: 10%;
+    align-items: center;
+    margin-top: 10px;
 }
 
 .shoppingcart-item-detail-td-quantity-1 {
     display: flex;
-    flex-direction: row;
+    align-items: center;
+    gap: 10px;
     justify-content: center;
 }
-
-.shoppingcart-item-detail-td-quantity-2 {
-    display: flex;
-    justify-content: center;
-}
-
-
 
 .shoppingcart-item-quantity {
     margin: 10px;
 }
 
-
 .shoppingcart-item-detail-tr img {
     width: 100px;
     height: 100px;
 }
-
 
 .shoppingcart-item-detail-td-nombre , .shoppingcart-item-detail-td-autor {
     display: flex;
@@ -67,33 +60,37 @@
 
 .shoppingcart-item-detail-td-data label {
     font-weight: bold;
-
 }
 
 .shoppingcart-button{
-    width: 30px;
-    height: 30px;
-    border-radius: 50px;
-    background-color: rgb(138, 148, 162);
-    margin: 2px;
-
+    border: none;
+    border-radius: 100px;
+    background-color: rgb(207, 207, 207);
+    color: black;
+    font-size: 20px;
+    cursor: pointer;
 }
 
-
 .shoppingcart-button:hover{
-    background-color: rgb(62, 149, 207);
-    border-color: rgb(0, 9, 128);
+    background-color: rgb(101, 24, 208);
+    color: white;
 }
 
 .shoppingcart-button-delete {
-    width: 60px;
-    height: 30px;
-    background-color: rgb(255, 255, 255);
-    border: #ddd;
-    margin: 2px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
 }
 
-.shoppingcart-button-delete:hover{
-    color: red;
-    font-weight: bold;
+.shoppingcart-button-delete img {
+    width: 24px;
+    height: 24px;
+}
+
+.shoppingcart-button-delete:hover {
+    transform: scale(1.1);
 }

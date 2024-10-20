@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { incrementProductQuantity, decrementProductQuantity } from "../states/productSlice";
-import { RootType } from "../states/store";
+import { incrementProductQuantity, decrementProductQuantity, removeProduct } from "../../states/productSlice";
+import { RootType } from "../../states/store";
 
 const QuantityButtons = ({ isbn }: { isbn: string }) => {
     const dispatch = useDispatch();
@@ -9,14 +9,24 @@ const QuantityButtons = ({ isbn }: { isbn: string }) => {
     );
 
     const handleIncrement = () => {
-        dispatch(incrementProductQuantity(isbn));
+        dispatch(incrementProductQuantity(isbn))
     };
 
     const handleDecrement = () => {
-        if (item && item.cantidad > 1) {
-            dispatch(decrementProductQuantity(isbn));
+        if (item) {
+            if (item && item.cantidad > 1) {
+                dispatch(decrementProductQuantity(isbn));
+            }
+            else {
+                dispatch(removeProduct(item))
+            }
         }
     };
+
+    // Muestra los botones solo si hay mínimo 1 producto
+    if (!item || item.cantidad === 0) {
+        return null;
+    }
 
     return (
         <div className="quantity-buttons">

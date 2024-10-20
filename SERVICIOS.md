@@ -235,12 +235,12 @@ __Url__: ...<br>
 ### RequestDTO
 ```typescript
 interface ShoppingCartEntrada {
-precio: number;                 // Precio del producto 
-genero: string[];               // Género del producto
-editorial: string;              // Editorial del producto 
-encuadernacion: string;         // Tipo de encuadernación del producto
-descuento: number;              // Descuento aplicable al producto
-caratula: string;               // Ruta de la imagen del producto
+    nombre: string;                 // Nombre del libro
+    autor: string[];                // Autor del libro (array de strings)
+    precio: number;                 // Precio del libro
+    isbn: string;                   // ISBN del libro
+    cantidad: number;               // Cantidad del ítem en el carrito
+    correoElectronico: string;      // Correo electrónico
 }
 ```
 ### ResponseDTO

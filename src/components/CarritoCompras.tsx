@@ -31,7 +31,7 @@ const ShoppingCart: React.FC = () => {
                 <ul>
                     {cart.items.map(item => (
                         <li key={item.id}>
-                            <h3>{item.datos.editorial}</h3>
+                            <h3>{item.datos.nombre}</h3>
                             <p>Precio: {item.datos.precio}</p>
                             <p>Cantidad: {item.cantidad}</p>
                         </li>
