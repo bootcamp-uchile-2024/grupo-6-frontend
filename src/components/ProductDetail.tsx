@@ -74,8 +74,9 @@ const ProductDetail: React.FC = () => {
                                 <img src={estrellaVacia} alt="Estrella vacía" />
                             </div>
                             <p className='precio-detail'>Precio: ${libro.precio}</p>
-                            {isbn && <QuantityButtons isbn={isbn} />}
+                            
                             <ButtonAddToCart libro={producto}></ButtonAddToCart>
+                            {isbn && <QuantityButtons isbn={isbn} />}
                         </div>
                     </div>
 
