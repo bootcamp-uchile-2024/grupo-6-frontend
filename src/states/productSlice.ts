@@ -60,7 +60,7 @@ export const productCartReducer = createSlice({
         decrementProductQuantity: (state: CartState, action: PayloadAction<string>) => {
                 const { payload } = action;
                 console.log("payload decrementProductQuantity" + payload);
-    
+
 
                     const item = state.cart.items.find( item => item.isbn === payload); // Cambiar id por isbn
                     if (item && item.cantidad > 1) {
@@ -74,6 +74,12 @@ export const productCartReducer = createSlice({
             const { payload } = action;
             state.cart.items = state.cart.items.filter((item) => item.isbn !== payload.isbn); // Usar isbn en lugar de id
             return state
+        },
+
+        //Para vaciar todos los productos del carrito
+        clearCart: (state: CartState) => {
+            state.cart.items = [];
+            return state;
         },
     },
 });
@@ -89,6 +95,7 @@ export const {
     incrementProductQuantity,
     decrementProductQuantity,
     removeProduct,
+    clearCart,
 } = productCartReducer.actions;
 
 export default productCartReducer.reducer;

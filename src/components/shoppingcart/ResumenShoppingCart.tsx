@@ -1,15 +1,15 @@
 import { RootType } from "../../states/store";
 import { ShoppingCartEntrada } from "../../interfaces/ShoppingCartEntrada";
-import '../../styles/shopping_cart.css'
-import ButtonDeleteToCart from "./ButtonDeleteToCart";
+import '../../styles/resumen_shopping_cart.css'
 import { useSelector } from "react-redux";
-import ButtonClearCart from "./ButtonClearCart";
-import { Link } from "react-router-dom";
-import QuantityButtons from "./QuantityButtons";
+import iconoMercadoPago from '../../assets/images/logo-mercadopago29.png'
+import iconoPayPal from '../../assets/images/Paypal_2014_logo.png'
+import iconoWebpay from '../../assets/images/logo-webpay-plus-3-2.png'
 
-function ShoppingCart() {
+function ResumenShoppingCart() {
     const shoppingCartProduct = useSelector((state: RootType) => state.productReducer.cart.items);
 
+    // Calcula el total del carrito de compras
     const calculateTotal = (items: ShoppingCartEntrada[]) => {
         let initialTotal = 0;
         items.forEach(item => {
@@ -18,23 +18,14 @@ function ShoppingCart() {
         return initialTotal;
     }
 
+    //Calcula el total de cada producto basado en la cantidad
     const calculateTotalProduct = (item: ShoppingCartEntrada) => {
         return item.precio * item.cantidad;
     }
 
     return (
         <div className='shoppingcart'>
-            <div className="shoppingcart-item-top-footer">
-                <h2>Carro de Compras</h2>
-                <div className="shoppingcart-button-options">
-                    <Link to={`/categorias`}>
-                        <p className='shoppingcart-to-product'>Seguir comprando</p>
-                    </Link>
-                    <div className="shoppingcart-clear">
-                        <ButtonClearCart></ButtonClearCart>
-                    </div>
-                </div>
-            </div>
+            <h2>Resumen de compra</h2>
             {shoppingCartProduct.length ? (
                 <div className='shoppingcart-items'>
                     <table className="shoppingcart-items-table">
@@ -64,7 +55,6 @@ function ShoppingCart() {
                                             <div className="shoppingcart-item-detail-td-nombre">
                                                 <label htmlFor="nombre-libro">Nombre: </label>
                                                 <p>{item.nombre}</p>
-                                                <p className='shoppingcart-item-detail'>{item.autor}</p>
                                             </div>
                                             <div className="shoppingcart-item-detail-td-autor">
                                                 <label htmlFor="autor-libro">Autor: </label>
@@ -73,8 +63,7 @@ function ShoppingCart() {
                                         </td>
                                         <td className="shoppingcart-item-detail-td-quantity">
                                             <div className="shoppingcart-item-detail-td-quantity-1">
-                                                <QuantityButtons isbn={item.isbn} />
-                                                <ButtonDeleteToCart libro={item}></ButtonDeleteToCart>
+                                                <p className='shoppingcart-item-quantity'>{item.cantidad}</p>
                                             </div>
                                         </td>
 
@@ -91,16 +80,29 @@ function ShoppingCart() {
             ) : (
                 <div>No existen productos en el carrito de compras.</div>
             )}
-
-            <div className="shoppingcart-item-top-footer">
-                <h2>Total: ${calculateTotal(shoppingCartProduct)}</h2>
-                <Link to={`/shoppingcart-resume/`}>
-                    <button className="shoppingcart-resume">Pagar pedido</button>
-                </Link>
+            <h3>Total: ${calculateTotal(shoppingCartProduct)}</h3>
+            <div className="metodos-de-pago">
+                <h3>Formas de pago</h3>
+                <p>Puedes pagar usando los siguientes métodos:</p>
+                <div className="formas-de-pago">
+                    <div className="imagenes-pago">
+                        <label>
+                            <input type="radio" name="metodo-pago" value="mercadopago" />
+                            <img src={iconoMercadoPago} alt="Mercado Pago" />
+                        </label>
+                        <label>
+                            <input type="radio" name="metodo-pago" value="paypal" />
+                            <img src={iconoPayPal} alt="PayPal" />
+                        </label>
+                        <label>
+                            <input type="radio" name="metodo-pago" value="webpay" />
+                            <img src={iconoWebpay} alt="WebPay" />
+                        </label>
+                    </div>
+                </div>
             </div>
-
         </div>
     );
 };
 
-export default ShoppingCart;
+export default ResumenShoppingCart;

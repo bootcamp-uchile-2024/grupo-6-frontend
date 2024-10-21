@@ -32,6 +32,7 @@
     flex-direction: column;
     align-items: flex-start;
     margin-top: 10px;
+    justify-content: flex-end;
 }
 
 .shoppingcart-item-detail-td-quantity-1 {
@@ -43,6 +44,7 @@
 
 .shoppingcart-item-quantity {
     margin: 10px;
+    justify-content: center;
 }
 
 .shoppingcart-item-detail-tr img {
@@ -76,46 +78,6 @@
     color: white;
 }
 
-.shoppingcart-button-delete {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 10px;
-}
-
-.shoppingcart-button-delete img {
-    width: 20px !important;
-    height: 20px !important;
-}
-
-.shoppingcart-button-delete:hover {
-    transform: scale(1.1);
-}
-
-.shoppingcart-button-options {
-    margin-top: 18px;
-}
-
-.shoppingcart-button-clear, .shoppingcart-to-product {
-    margin-top: 5px;
-    background-color: white;
-    color: black;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2px;
-    font-size: 14px;
-    border: 2px solid transparent;
-}
-
-.shoppingcart-button-clear:hover, .shoppingcart-to-product:hover {
-    border-bottom: solid 2px black;
-}
-
 .shoppingcart-item-top-footer {
     display: flex;
     flex-direction: row;
@@ -132,4 +94,17 @@
     color: white;
     font-size: 14px;
     cursor: pointer;
+}
+
+.formas-de-pago{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.imagenes-pago {
+    display: flex;       
+    flex-direction: column;
+    margin: 10px 0;               
 }

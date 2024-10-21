@@ -14,7 +14,7 @@ const ProductDetail: React.FC = () => {
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
     
-    const [producto] = useState<ShoppingCartEntrada>({
+    const [producto, setProducto] = useState<ShoppingCartEntrada>({
         nombre: '',
         autor: [""],
         precio: 0,
@@ -34,12 +34,15 @@ const ProductDetail: React.FC = () => {
 
                 const productData: ILibro = await response.json();
                 setLibro(productData);
-                producto.nombre = productData?.nombre;
-                producto.autor = productData?.autor;
-                producto.precio = productData?.precio;
-                producto.isbn = productData?.isbn;
-                producto.cantidad = 1;
-                producto.correoElectronico = "";
+
+                setProducto({
+                    nombre: productData?.nombre || '',
+                    autor: productData?.autor || [""],
+                    precio: productData?.precio || 0,
+                    isbn: productData?.isbn || "",
+                    cantidad: 1,
+                    correoElectronico: ""
+                });
 
             } catch (error) {
                 setError(error instanceof Error ? error.message : 'Ha ocurrido un error desconocido');
