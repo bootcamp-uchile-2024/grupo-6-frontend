@@ -19,6 +19,7 @@ import { Provider } from 'react-redux'
 import { store } from './states/store.ts'
 import { ShoppingCartPage } from './pages/ShoppingCartPage.tsx'
 import { ResumenShoppingCartPage } from './pages/ResumenShoppingCartPage.tsx'
+import { EmptyCartPage } from './pages/EmptyCartPage.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -37,6 +38,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path='/admin' element={<ProtectedRoute><AdminPage title='Panel de administración' /></ProtectedRoute>} />
           <Route path='/user' element={<ProtectedRoute><UserPage title='Cuenta' /></ProtectedRoute>} />
           <Route path="/carrito" element={<ShoppingCartPage title='Carrito Compras' />} />
+          <Route path="/empty-cart" element={<EmptyCartPage title='Carrito Vacío' />} />
           <Route path='/shoppingcart-resume/' element={<ResumenShoppingCartPage title='Resumen carrito de compras' />}></Route>
           <Route path="*" element={<NotFoundPage title='Página No Encontrada' />} />
         </Routes>

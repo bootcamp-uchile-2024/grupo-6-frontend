@@ -1,10 +1,35 @@
-.shoppingcart {
+.resumen-shopping-cart {
     display: flex;
     flex-direction: column;
     margin: 0 auto;
     padding: 10px;
     font-family: Arial, sans-serif;
     width: 80%;
+}
+
+.item-top-resumen{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.resumen-to-shoppingcart{
+    margin-top: 25px;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+    font-size: 14px;
+    border: 2px solid transparent;
+}
+
+.resumen-to-shoppingcart:hover {
+    border-bottom: solid 2px black;
 }
 
 .shoppingcart-items-table {
@@ -101,10 +126,18 @@
     flex-direction: column;
     margin-top: 10px;
     margin-bottom: 20px;
+    justify-content: center;
 }
 
-.imagenes-pago {
+.imagenes-metodos-pago {
     display: flex;       
     flex-direction: column;
-    margin: 10px 0;               
+    justify-content: center;         
+}
+
+.imagenes-metodos-pago img {
+    width: auto;
+    height: 40px;
+    margin: 10px;
+    padding: 0px;
 }

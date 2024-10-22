@@ -33,6 +33,14 @@ function Header() {
     }
   }
 
+  const handleCartClick = () => {
+    if (itemCount > 0) {
+      navigate('/carrito'); // Si el carrito tiene productos, redirige al detalle de la página de carrito 
+    } else {
+      navigate('/empty-cart') // Si el carrito esta vacío, redirige a esa página 'carrito vacío'
+    }
+  }
+
   return (
     <>
       <header id="encabezado-home">
@@ -41,12 +49,11 @@ function Header() {
         </Link>
         <div className="caja-botones-accion">
           <img src={iconoUsuario} className="icono usuario" alt="Icono de iniciar sesión" onClick={handleUserClick} />
-          <Link to="/carrito">
-            <div className='icono-carrito'>
+          
+            <div className='icono-carrito' onClick={handleCartClick}>
               <img src={iconoCarrito} className="icono carrito" alt="Icono de carro de compras" />
               {itemCount > 0 && <span className="cantidad-articulos">{itemCount}</span>}
             </div>
-          </Link>
         </div>
       </header>
     </>

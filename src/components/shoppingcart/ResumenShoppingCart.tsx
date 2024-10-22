@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import iconoMercadoPago from '../../assets/images/logo-mercadopago29.png'
 import iconoPayPal from '../../assets/images/Paypal_2014_logo.png'
 import iconoWebpay from '../../assets/images/logo-webpay-plus-3-2.png'
+import { Link } from "react-router-dom";
 
 function ResumenShoppingCart() {
     const shoppingCartProduct = useSelector((state: RootType) => state.productReducer.cart.items);
@@ -24,8 +25,15 @@ function ResumenShoppingCart() {
     }
 
     return (
-        <div className='shoppingcart'>
-            <h2>Resumen de compra</h2>
+        <div className='resumen-shopping-cart'>
+            <div className="item-top-resumen">
+                <h2>Resumen de compra</h2>
+                <div className="back-to-carrito">
+                    <Link to={`/carrito`}>
+                        <p className='resumen-to-shoppingcart'>Volver a carrito de compras</p>
+                    </Link>
+                </div>
+            </div>
             {shoppingCartProduct.length ? (
                 <div className='shoppingcart-items'>
                     <table className="shoppingcart-items-table">
@@ -85,7 +93,7 @@ function ResumenShoppingCart() {
                 <h3>Formas de pago</h3>
                 <p>Puedes pagar usando los siguientes métodos:</p>
                 <div className="formas-de-pago">
-                    <div className="imagenes-pago">
+                    <div className="imagenes-metodos-pago">
                         <label>
                             <input type="radio" name="metodo-pago" value="mercadopago" />
                             <img src={iconoMercadoPago} alt="Mercado Pago" />

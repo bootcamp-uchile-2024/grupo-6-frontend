@@ -4,11 +4,13 @@ import '../../styles/shopping_cart.css'
 import ButtonDeleteToCart from "./ButtonDeleteToCart";
 import { useSelector } from "react-redux";
 import ButtonClearCart from "./ButtonClearCart";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import QuantityButtons from "./QuantityButtons";
+import { useEffect } from "react";
 
 function ShoppingCart() {
     const shoppingCartProduct = useSelector((state: RootType) => state.productReducer.cart.items);
+    const navigate = useNavigate();
 
     const calculateTotal = (items: ShoppingCartEntrada[]) => {
         let initialTotal = 0;
@@ -21,6 +23,12 @@ function ShoppingCart() {
     const calculateTotalProduct = (item: ShoppingCartEntrada) => {
         return item.precio * item.cantidad;
     }
+
+    useEffect(() => {
+        if (shoppingCartProduct.length === 0) {
+            navigate('/empty-cart'); // Redirige a la página de carrito vacío
+        }
+    }, [shoppingCartProduct, navigate])
 
     return (
         <div className='shoppingcart'>
@@ -95,7 +103,7 @@ function ShoppingCart() {
             <div className="shoppingcart-item-top-footer">
                 <h2>Total: ${calculateTotal(shoppingCartProduct)}</h2>
                 <Link to={`/shoppingcart-resume/`}>
-                    <button className="shoppingcart-resume">Pagar pedido</button>
+                    <button className="button-shoppingcart-resume">Pagar pedido</button>
                 </Link>
             </div>
 
