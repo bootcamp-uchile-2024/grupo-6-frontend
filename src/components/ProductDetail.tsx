@@ -4,12 +4,24 @@ import { ILibro } from '../interfaces/ILibro';
 import '../styles/product_detail.css'
 import estrellaLlena from '../assets/images/estrella_llena.png'
 import estrellaVacia from '../assets/images/estrella_vacia.png'
+import ButtonAddToCart from './ButtonAddToCart';
+import { ShoppingCartEntrada } from '../interfaces/ShoppingCartEntrada';
+import QuantityButtons from './shoppingcart/QuantityButtons';
 
 const ProductDetail: React.FC = () => {
     const { isbn } = useParams<{ isbn: string }>();
     const [libro, setLibro] = useState<ILibro | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
+    
+    const [producto, setProducto] = useState<ShoppingCartEntrada>({
+        nombre: '',
+        autor: [""],
+        precio: 0,
+        isbn: "",
+        cantidad: 1,
+        correoElectronico: "",
+    });
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -22,6 +34,16 @@ const ProductDetail: React.FC = () => {
 
                 const productData: ILibro = await response.json();
                 setLibro(productData);
+
+                setProducto({
+                    nombre: productData?.nombre || '',
+                    autor: productData?.autor || [""],
+                    precio: productData?.precio || 0,
+                    isbn: productData?.isbn || "",
+                    cantidad: 1,
+                    correoElectronico: ""
+                });
+
             } catch (error) {
                 setError(error instanceof Error ? error.message : 'Ha ocurrido un error desconocido');
             } finally {
@@ -31,7 +53,7 @@ const ProductDetail: React.FC = () => {
 
         fetchProduct();
     }, [isbn]);
-
+    
     if (loading) return <div>Cargando...</div>;
     if (error) return <div>{error}</div>;
 
@@ -55,7 +77,9 @@ const ProductDetail: React.FC = () => {
                                 <img src={estrellaVacia} alt="Estrella vacía" />
                             </div>
                             <p className='precio-detail'>Precio: ${libro.precio}</p>
-                            <button className='add-to-cart-detail'>Agregar al carro</button>
+                            
+                            <ButtonAddToCart libro={producto}></ButtonAddToCart>
+                            {isbn && <QuantityButtons isbn={isbn} />}
                         </div>
                     </div>
 

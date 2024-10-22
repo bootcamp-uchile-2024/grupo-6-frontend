@@ -81,6 +81,16 @@
     color: white;
 }
 
+.quantity-buttons button{
+    border: none;
+    border-radius: 100px;
+    background-color: rgb(207, 207, 207);
+    color: black;
+    font-size: 20px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
 .libro-descripcion-detail {
     margin-top: 30px;
 }

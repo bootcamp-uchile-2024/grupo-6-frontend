@@ -30,9 +30,31 @@ img[src*="icono_usuario"] {
 }
 
 img[src*="icono_carrito"] {
-    margin: 0px 80px 30px 15px;
+    margin: 0px 80px 40px 15px;
     width: 45px;
     height: auto;
     align-self: flex-end;
     cursor: pointer;
+}
+
+.icono-carrito {
+    position: relative; /* Permite que etiqueta <span> se posicione correctamente */
+    display: inline-flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.cantidad-articulos {
+    position: absolute; /* Para añadir el número sobre el icono del carrito */
+    top: -10px;
+    right: 70px;
+    background-color: rgb(101, 24, 208);
+    color: white;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
 }
