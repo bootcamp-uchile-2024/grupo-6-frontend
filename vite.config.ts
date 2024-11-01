@@ -22,6 +22,12 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace('/productdetail-back', ""),
+      },
+      "/products-create-back": {
+        target: "http://localhost:3000/products",
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace('/products-create-back', ""),
       }
     },
   },

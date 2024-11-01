@@ -59,7 +59,8 @@ function Nav() {
 
           {/* Mostrar esta página solo si el usuario es admin */}
           {user?.correoElectronico === 'admin@gmail.com' && (
-            <li><Link to="/create/product">Crear Producto</Link></li>)}
+            <><li><Link to="/create/product">Crear Producto</Link></li><li><Link to="/admin/product">Modificar Productos</Link></li></>)
+            }
         </ul>
         
         <label htmlFor="buscar"></label>
