@@ -28,6 +28,12 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace('/products-create-back', ""),
+      },
+      "/create-user-back": {
+        target: "http://localhost:3000/users",
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace('/create-user-back', ""),
       }
     },
   },
