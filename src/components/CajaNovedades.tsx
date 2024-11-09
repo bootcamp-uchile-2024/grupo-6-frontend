@@ -35,7 +35,7 @@ function CajaNovedades(props: CajaNovedadesProps) {
                 <Link to={`/product-detail/${props.isbn}`}> {/* Cambiar con back */}
                     <p className='texto-nombre-libro'>{props.nombre}</p>
                 </Link>
-                <p className='texto-autor'>{props.autor}</p>
+                <p className='texto-autor'>{props.autor.join(', ')}</p>
                 <div className='caja-novedad-estrellas'>
                     <img src={estrellaLlena} alt="estrella llena" />
                     <img src={estrellaLlena} alt="estrella llena" />
