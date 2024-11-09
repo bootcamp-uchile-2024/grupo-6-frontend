@@ -50,8 +50,7 @@ function AdminBookList() {
                                         <td className="shoppingcart-item-detail-td-data">
                                             <div className="shoppingcart-item-detail-td-nombre">
                                                 <label htmlFor="nombre-libro">Nombre: </label>
-                                                <p>{item.nombre}</p>
-                                                <p className='shoppingcart-item-detail'>{item.autor}</p>
+                                                <p className='shoppingcart-item-detail'>{item.nombre}</p>
                                             </div>
                                             <div className="shoppingcart-item-detail-td-autor">
                                                 <label htmlFor="autor-libro">Autor: </label>
