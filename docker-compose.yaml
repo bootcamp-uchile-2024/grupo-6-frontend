@@ -1,7 +1,7 @@
 name: grupo-6-frontend
 services:
   frontend:
-    image: grupo-6-frontend:v0.0.3
+    image: dgajardoi/grupo-6-frontend:v0.0.1
     ports:
       - 5173:80
 
