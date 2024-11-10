@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useFetchGet } from "../../hooks/useFetch";
 import ButtonProductModify from './ButtonProductModify';
 import { ILibroPaginado } from '../../interfaces/ILibroPaginado';
+import ButtonProductDelete from './ButtonProductDelete';
 
 function AdminBookList() {
     
@@ -64,7 +65,7 @@ function AdminBookList() {
                                         </td>
 
                                         <td className="shoppingcart-item-detail-td-total">
-                                            <p> Eliminar item </p>
+                                            <ButtonProductDelete libro={item}/> 
                                         </td>
                                     </tr>
                                 </tbody>

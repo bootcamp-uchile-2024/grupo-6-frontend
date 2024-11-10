@@ -25,4 +25,4 @@ const ButtonProductDelete= ({ libro }: { libro: ILibro | null }) => {
     )
 }
 
-export default ButtonProductModify;
+export default ButtonProductDelete;

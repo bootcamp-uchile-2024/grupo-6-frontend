@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "publish": "docker build -t dgajardoi/grupo-6-frontend:v0.0.1 .",
+    "postpublish": "docker push dgajardoi/grupo-6-frontend:v0.0.1"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.3.0",

@@ -21,7 +21,6 @@ import { ShoppingCartPage } from './pages/ShoppingCartPage.tsx'
 import { ResumenShoppingCartPage } from './pages/ResumenShoppingCartPage.tsx'
 import { EmptyCartPage } from './pages/EmptyCartPage.tsx'
 import { AdminBookListPage } from './pages/AdminBookListPage.tsx'
-import BookProductModify from './components/adminbooks/BookProductModify.tsx'
 import { BookProductModifyPage } from './pages/BookProductModifyPage.tsx'
 
 createRoot(document.getElementById('root')!).render(
