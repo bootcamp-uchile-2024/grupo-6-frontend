@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom';
-import useAuth from "../auth/useAuth";
 import iconoLupa from '../assets/images/icono_lupa.png';
 import '../styles/nav.css';
+import { useSelector } from 'react-redux';
+import { RootType } from '../states/store';
 
 function Nav() {
-  const { user } = useAuth(); // Información del usuario
+  const user = useSelector((state: RootType) => state.authReducer.user)
+  const isAuthenticated = useSelector((state: RootType) => state.authReducer.isAuthenticated);
 
   return (
       <nav className="navbar">
@@ -58,7 +60,7 @@ function Nav() {
           <li><Link to="/contacto">Contacto</Link></li>
 
           {/* Mostrar esta página solo si el usuario es admin */}
-          {user?.correoElectronico === 'admin@gmail.com' && (
+          {user?.rol === 'admin' && (
             <><li><Link to="/create/product">Crear Producto</Link></li><li><Link to="/admin/product">Modificar Productos</Link></li></>)
             }
         </ul>

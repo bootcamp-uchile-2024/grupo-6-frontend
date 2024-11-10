@@ -1,18 +1,9 @@
-import useAuth from "../auth/useAuth";
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 import '../styles/user.css';
+import { logout } from '../services/loginService';
 
 const AdminPage = () => {
-    const { logout, user, isAuthenticated } = useAuth();
     const navigate = useNavigate();
-
-    useEffect(() => {
-        //Redirigir si el usuario no es admin
-        if (!isAuthenticated || !(user?.isAdmin)) {
-            navigate('/')
-        }
-    }, [isAuthenticated, user, navigate]);
 
     const handleLogout = () => {
         logout();
@@ -22,8 +13,8 @@ const AdminPage = () => {
     return (
         <div className='userPage-container'>
             <div className='account-header'>
-                    <h1>Panel de administración</h1>
-                    <button className='logout-button' onClick={handleLogout}>Cerrar sesión</button>
+                <h1>Panel de administración</h1>
+                <button className='logout-button' onClick={handleLogout}>Cerrar sesión</button>
             </div>
 
             <div className='account-content'>

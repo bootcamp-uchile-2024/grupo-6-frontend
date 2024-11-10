@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import useAuth from "../auth/useAuth";
 import { ILoginUser } from '../interfaces/ILoginUser';
+import { login } from '../services/loginService'; // Importamos el servicio de login
 import '../styles/login.css';
 
 const Login = () => {
     const navigate = useNavigate();
-    const { login } = useAuth(); // Esto permite tener la función del login del contexto
 
-    const [correoError, setCorreoError] = useState<boolean>(false);
-    const [contrasenaError, setContrasenaError] = useState<boolean>(false);
-
-    const [user, setUser] = useState<ILoginUser>({
+    const [error, setError] = useState<boolean>(false);
+    const [validCredential, setValidCredential] = useState<boolean>(true);
+    const [form, setForm] = useState<ILoginUser>({
         correoElectronico: '',
         contrasena: ''
     });
@@ -19,41 +17,39 @@ const Login = () => {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        // Validación de usuario
-        if (user.correoElectronico === 'admin@gmail.com' && user.contrasena === 'admin') {
-            alert("Inicio de sesión de admin exitoso.")
-            console.log("Inicio de sesión de admin exitoso.")
-            login({correoElectronico: user.correoElectronico, contrasena: user.contrasena, isAdmin: true}); // Para llamar a la función de login
-            navigate('/admin');
-        } 
-
-        else if (user.correoElectronico === 'usuario@gmail.com' && user.contrasena === 'usuario') {
-            alert("Inicio de sesión de usuario exitoso.")
-            console.log("Inicio de sesión de usuario exitoso.")
-            login({correoElectronico: user.correoElectronico, contrasena: user.contrasena, isAdmin: false}); // Para llamar a la función de login
-            navigate('/user');
+        // validación de campos vacíos
+        if (form.correoElectronico === '' || form.contrasena === '') {
+            setError(true);
+            return;
         }
 
-        else {
-            setCorreoError(true);
-            setContrasenaError(true);
+        // loginService para validar credenciales
+        if (login(form)) {
+            alert("Inicio de sesión exitoso.");
+            console.log("Inicio de sesión exitoso.");
+
+            const loggedInUser = JSON.parse(localStorage.getItem('user') || '{}');
+
+            // Redirigir dependiendo del tipo de usuario
+            if (loggedInUser?.rol === 'admin') {
+                navigate('/admin'); // Redirigir al panel de administración
+            } else if (loggedInUser?.rol === 'user') {
+                navigate('/user'); // Redirigir al panel de usuario
+            }
+
+        } else {
+            setValidCredential(false);
         }
     };
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
-
-        setUser({
-            ...user,
+        setError(false);
+        setValidCredential(true);
+        setForm({
+            ...form,
             [name]: value
-        })
-        
-        // Limpiar errores en los campos
-        if (name === 'correoElectronico') {
-            setCorreoError(false);
-        } else if (name === 'contrasena') {
-            setContrasenaError(false);
-        }
+        });
     };
 
     return (
@@ -66,25 +62,25 @@ const Login = () => {
                     type="email"
                     id='correoElectronico'
                     name='correoElectronico'
-                    value={user.correoElectronico}
+                    value={form.correoElectronico}
                     onChange={handleChange}
                     placeholder="Ej: tuemail@gmail.com"
                     required
                 />
-                {correoError && <p className="error">Correo inválido</p>}
 
                 <label htmlFor="contrasena">Contraseña</label>
                 <input
                     type="password"
                     id='contrasena'
                     name='contrasena'
-                    value={user.contrasena}
+                    value={form.contrasena}
                     onChange={handleChange}
                     placeholder="Ingresa tu contraseña"
                     required
                 />
 
-                {contrasenaError && <p className="error">Contraseña inválida</p>}
+                {error && <p className="error">Complete todos los campos.</p>}
+                {!validCredential && <div>Nombre de usuario o contraseña incorrecta.</div>}
 
                 <button type="submit">Enviar</button>
             </form>

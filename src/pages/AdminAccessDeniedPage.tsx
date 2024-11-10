@@ -1,15 +1,10 @@
 import { Navigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { MainLayout } from "../layouts/MainLayout";
-import imagen404NotFound from "../assets/images/imagen_404_Not_Found.png"
-import '../styles/not_found.css'
+import accessDenied from "../assets/images/icono_access_denied.png"
+import '../styles/admin_access_denied.css'
 
-interface NotFoundPageProps {
-    title: string
-}
-
-export const NotFoundPage = (props: NotFoundPageProps) => {
-    document.title = props.title;
+export const AdminAccessDeniedPage = () => {
 
     const [redirect, setRedirect] = useState(false);
 
@@ -30,11 +25,11 @@ export const NotFoundPage = (props: NotFoundPageProps) => {
 
     return (
         <MainLayout>
-            <div className="caja-not-found">
-                <img src={imagen404NotFound} alt="Página no encontrada" />
-                <p>Lo sentimos, esta página aún no está disponible</p>
+            <div className="caja-acces-denied">
+                <img src={accessDenied} alt="Página no encontrada" />
+                <p>Lo sentimos, no tienes permiso para acceder a esta página.</p>
                 <p>Redirigiendo a página principal...</p>
-            </div>
+            </div>        
         </MainLayout>
     );
 };
