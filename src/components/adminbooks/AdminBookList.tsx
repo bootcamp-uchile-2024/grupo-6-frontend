@@ -78,7 +78,7 @@ function AdminBookList() {
             )}
 
             <div className="shoppingcart-item-top-footer">
-                <h2>Total Libros: {bookList.length }</h2>
+                <h2>Total Libros: {bookList?.productos.length }</h2>
             </div>
 
         </div>
