@@ -3,12 +3,12 @@ import { CajaCategoria } from './CajaCategoria.tsx'
 import Filtros from './Filtros.tsx'
 import { ILibro } from '../interfaces/ILibro.ts'
 import { useState, useEffect } from 'react'
+import { ILibroPaginado } from '../interfaces/ILibroPaginado.tsx'
 
 export function Categorias() {
 
   const [libros, setLibros] = useState<ILibro[]>([]);
   const [librosExist, setLibrosExist] = useState<boolean>(false);
-
   useEffect(() => {
     async function getLibros() {
       try {
@@ -22,8 +22,10 @@ export function Categorias() {
           return; // Salir si no hay respuesta OK
         }
 
-        const librosJson = await response.json();
-        setLibros(librosJson);
+        const librosJson : ILibroPaginado = await response.json();
+        console.log(librosJson);
+        console.log("nroPagina: " + librosJson.nroPagina + ", totalPaginas: " + librosJson.totalPaginas + ", totalProductos: " + librosJson.totalProductos);
+        setLibros(librosJson?.productos); 
         setLibrosExist(true);
       } catch (error) {
         console.error('Error al obtener los productos', error); // Usando 'error'

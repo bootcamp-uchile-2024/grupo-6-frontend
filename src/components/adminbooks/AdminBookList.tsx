@@ -2,12 +2,12 @@
 import '../../styles/shopping_cart.css'
 import { Link } from "react-router-dom";
 import { useFetchGet } from "../../hooks/useFetch";
-import { ILibro } from "../../interfaces/ILibro";
 import ButtonProductModify from './ButtonProductModify';
+import { ILibroPaginado } from '../../interfaces/ILibroPaginado';
 
 function AdminBookList() {
     
-    const { data: bookList, loading, error } = useFetchGet<ILibro[]>('/products-back');
+    const { data: bookList, loading, error } = useFetchGet<ILibroPaginado>('/products-back');
 
     if (loading) return <p>Cargando datos...</p>
     if (error) return <p>Error en la consulta de datos {error}</p>
@@ -22,7 +22,7 @@ function AdminBookList() {
                     </Link>
                 </div>
             </div>
-            {bookList.length ? (
+            {bookList?.productos.length ? (
                 <div className='shoppingcart-items'>
                     <table className="shoppingcart-items-table">
                         <thead>
@@ -38,7 +38,7 @@ function AdminBookList() {
                                 </th>
                             </tr>
                         </thead>
-                        {bookList.map((item) => (
+                        {bookList.productos.map((item) => (
 
                             <>
 
