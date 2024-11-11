@@ -1,12 +1,16 @@
 import { useNavigate } from 'react-router-dom';
 import '../../styles/user.css';
 import { logout } from '../../services/loginService';
+import { useDispatch } from 'react-redux';
+import { logoutAction } from '../../states/authSlice';
 
 const AdminPage = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleLogout = () => {
         logout();
+        dispatch(logoutAction());
         navigate('/');
     }
 
