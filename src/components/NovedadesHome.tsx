@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { ILibro } from '../interfaces/ILibro.ts';
 import '../styles/novedades_home.css';
 import CajaNovedades from './CajaNovedades.tsx';
+import { ILibroPaginado } from '../interfaces/ILibroPaginado.tsx';
 
 function NovedadesHome() {
 
@@ -23,8 +24,10 @@ function NovedadesHome() {
                     return;
                 }
 
-                const librosJson = await response.json();
-                setLibros(librosJson);
+                const librosJson : ILibroPaginado = await response.json();
+                console.log(librosJson);
+                console.log("nroPagina: " + librosJson.nroPagina + ", totalPaginas: " + librosJson.totalPaginas + ", totalProductos: " + librosJson.totalProductos);
+                setLibros(librosJson?.productos); 
                 setLibrosExist(true);
             } catch (error) {
                 console.error('Error al obtener los productos', error);

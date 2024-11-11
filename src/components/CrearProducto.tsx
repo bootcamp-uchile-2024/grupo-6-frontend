@@ -7,7 +7,6 @@ import axios from 'axios';
 
 const CrearProducto = () => {
     const navigate = useNavigate();
-    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const [libro, setLibro] = useState<ILibro>({
         isbn: '',
@@ -132,7 +131,6 @@ const convertValue = (name: keyof ILibro, value: string): any => {
             //const { data: libroResponse, loading, error } = useFetchPost<ILibro[]>("http://localhost:3000/products", libro);
             //if (loading) return <p>Cargando datos...</p>
             //if (error) return <p>Error en la consulta de datos {error}</p>
-            setIsSubmitting(true);
             const response = await axios.post('/products-create-back', libro, {
                 headers: {
                     'Content-Type': 'application/json'
@@ -166,7 +164,6 @@ const convertValue = (name: keyof ILibro, value: string): any => {
                 resumen: '',
                 calificacion: 0
             });
-            setIsSubmitting(false);
             navigate("/create/product");
         }
         

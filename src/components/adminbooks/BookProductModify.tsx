@@ -9,7 +9,6 @@ import { useSelector } from 'react-redux';
 
 const BookProductModify = () => {
     const navigate = useNavigate();
-    const [isSubmitting, setIsSubmitting] = useState(false);
     const [libro, setLibro] = useState<ILibro>(
         useSelector((state: RootType) => state.productModifyReducer.book)
     );
@@ -121,7 +120,6 @@ const BookProductModify = () => {
 
 
             // Se deberia cambiar por un metodo PUT o revisar el POST para que actualice por isbn
-            setIsSubmitting(true);
             const response = await axios.post('/products-create-back', libro, {
                 headers: {
                     'Content-Type': 'application/json'
@@ -136,8 +134,25 @@ const BookProductModify = () => {
                 console.log("Error al crear el libro en el Backend");
                 alert('Error al crear el libro en el Backend');
             }
-            setLibro(actionObject(action, libroRequest));
-            setIsSubmitting(false);
+            setLibro({
+                isbn: '',
+                nombre: '',
+                autor: [''],
+                precio: 0,
+                stockLibro: 0,
+                genero: [''],
+                editorial: '',
+                idioma: '',
+                encuadernacion: '',
+                agnoPublicacion: '',
+                numeroPaginas: 0,
+                descuento: -1,
+                caratula: '',
+                dimensiones: '',
+                ean: '',
+                resumen: '',
+                calificacion: 0
+            });
             navigate("/create/product");
         }
 
