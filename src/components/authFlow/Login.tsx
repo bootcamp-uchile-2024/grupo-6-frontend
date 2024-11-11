@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ILoginUser } from '../interfaces/ILoginUser';
-import { login } from '../services/loginService'; // Importamos el servicio de login
-import '../styles/login.css';
+import { ILoginUser } from '../../interfaces/ILoginUser';
+import { login } from '../../services/loginService'; // Importamos el servicio de login
+import '../../styles/login.css';
+import { useDispatch } from 'react-redux';
+import { loginAction } from '../../states/authSlice';
 
 const Login = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [error, setError] = useState<boolean>(false);
     const [validCredential, setValidCredential] = useState<boolean>(true);
@@ -24,17 +27,21 @@ const Login = () => {
         }
 
         // loginService para validar credenciales
-        if (login(form)) {
+        const isValidLogin = login(form);        
+        if (isValidLogin) {
             alert("Inicio de sesión exitoso.");
             console.log("Inicio de sesión exitoso.");
 
             const loggedInUser = JSON.parse(localStorage.getItem('user') || '{}');
 
-            // Redirigir dependiendo del tipo de usuario
+            // actualizar el estado del store
+            dispatch(loginAction(loggedInUser));
+
+            // redirigir según rol 
             if (loggedInUser?.rol === 'admin') {
-                navigate('/admin'); // Redirigir al panel de administración
+                navigate('/admin'); // redirigir al panel de administración
             } else if (loggedInUser?.rol === 'user') {
-                navigate('/user'); // Redirigir al panel de usuario
+                navigate('/user'); // redirigir al panel de usuario
             }
 
         } else {
@@ -80,7 +87,7 @@ const Login = () => {
                 />
 
                 {error && <p className="error">Complete todos los campos.</p>}
-                {!validCredential && <div>Nombre de usuario o contraseña incorrecta.</div>}
+                {!validCredential && <p className="error">Nombre de usuario o contraseña incorrecta.</p>}
 
                 <button type="submit">Enviar</button>
             </form>

@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import '../styles/user.css';
-import { logout } from '../services/loginService';
+import '../../styles/user.css';
+import { logout } from '../../services/loginService';
 
-const AdminPage = () => {
+const UserPage = () => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -12,26 +12,28 @@ const AdminPage = () => {
 
     return (
         <div className='userPage-container'>
+
             <div className='account-header'>
-                <h1>Panel de administración</h1>
+                <h1>Cuenta</h1>
                 <button className='logout-button' onClick={handleLogout}>Cerrar sesión</button>
             </div>
 
             <div className='account-content'>
                 <div className='historial-compra'>
-                    <h2>Historial administrador</h2>
-                    <p>Aún no has realizado ningún cambio.</p>
+                    <h2>Historial de pedido</h2>
+                    <p>Aún no has realizado ningún pedido.</p>
                 </div>
 
                 <div className='account-details'>
-                    <h2>Detalles de la cuenta</h2>
-                    <p><b>Nombre:</b> Admin</p>
-                    <p><b>Correo electrónico:</b> admin@gmail.com</p>
+                    <h2>Detalles de  la cuenta</h2>
+                    <p><b>Nombre:</b> Usuario</p>
+                    <p><b>Correo electrónico:</b> usuario@gmail.com</p>
                     <p><b>Dirección:</b> Chile</p>
                 </div>
             </div>
+
         </div>
     );
 };
 
-export default AdminPage;
+export default UserPage;

@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { ICreateUser } from '../interfaces/ICreateUser';
-import '../styles/login.css'
+import { ICreateUser } from '../../interfaces/ICreateUser';
+import '../../styles/login.css'
 
 const CrearCuenta = () => {
     const navigate = useNavigate();

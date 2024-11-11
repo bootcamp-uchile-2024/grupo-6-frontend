@@ -5,6 +5,7 @@ interface AuthState {
     user: { correoElectronico: string; rol?: string } | null;  // Puede ser null si no está logueado
 }
 
+// false porque al inicio nadie está autenticado y null porque no hay datos de usuario
 const initialState: AuthState = {
     isAuthenticated: false,
     user: null,
@@ -15,16 +16,16 @@ const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        login: (state, action: PayloadAction<{ correoElectronico: string; rol: string }>) => {
+        loginAction: (state, action: PayloadAction<{ correoElectronico: string; rol: string }>) => {
             state.isAuthenticated = true;
             state.user = action.payload;
         },
-        logout: (state) => {
+        logoutAction: (state) => {
             state.isAuthenticated = false;
             state.user = null;
         },
     },
 });
 
-export const { login, logout } = authSlice.actions;
+export const { loginAction, logoutAction } = authSlice.actions;
 export default authSlice.reducer;
