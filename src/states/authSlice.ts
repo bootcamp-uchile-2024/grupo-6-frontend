@@ -5,11 +5,18 @@ interface AuthState {
     user: { correoElectronico: string; rol?: string } | null;  // Puede ser null si no está logueado
 }
 
-// false porque al inicio nadie está autenticado y null porque no hay datos de usuario
-const initialState: AuthState = {
-    isAuthenticated: false,
-    user: null,
-};
+const getInitialState = (): AuthState => {
+    const savedLoggedIn = localStorage.getItem('__redux__user__');
+    if (savedLoggedIn) {
+        return JSON.parse(savedLoggedIn) as AuthState;
+    }
+    return {
+        isAuthenticated: false,
+        user: null,
+    }
+}
+
+const initialState: AuthState = getInitialState();
 
 // slice para manejar la autenticación
 const authSlice = createSlice({

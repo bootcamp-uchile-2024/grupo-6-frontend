@@ -32,7 +32,7 @@ const Login = () => {
             alert("Inicio de sesión exitoso.");
             console.log("Inicio de sesión exitoso.");
 
-            const loggedInUser = JSON.parse(localStorage.getItem('user') || '{}');
+            const loggedInUser = JSON.parse(localStorage.getItem('__redux__user__') || '{}');
 
             // actualizar el estado del store
             dispatch(loginAction(loggedInUser));

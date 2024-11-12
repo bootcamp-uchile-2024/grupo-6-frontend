@@ -26,7 +26,7 @@ export const login = (user: IUser): boolean  => {
             rol: validAdmin.rol, 
             correoElectronico: validAdmin.correoElectronico}
         
-            localStorage.setItem('user', JSON.stringify(adminResponse));
+            localStorage.setItem('__redux__user__', JSON.stringify(adminResponse));
         return true;
     }
 
@@ -37,20 +37,20 @@ export const login = (user: IUser): boolean  => {
             correoElectronico: validUser.correoElectronico
         }
 
-        localStorage.setItem('user', JSON.stringify(userResponse));
+        localStorage.setItem('__redux__user__', JSON.stringify(userResponse));
         return true;
 
     } else {
-        localStorage.removeItem('user');
+        localStorage.removeItem('__redux__user__');
         return false;
     }    
 };
 
-export const logout = () => localStorage.removeItem('user');
-export const isAuth = () => localStorage.getItem('user') ? true : false;
+export const logout = () => localStorage.removeItem('__redux__user__');
+export const isAuth = () => localStorage.getItem('__redux__user__') ? true : false;
 
 export const userHasRole = (roles: string[]) => {
-    const user = localStorage.getItem('user');
+    const user = localStorage.getItem('__redux__user__');
     if (user) {
         const userResponse: ILoginUser = JSON.parse(user);
         return roles.some(role => userResponse.rol?.includes(role));
