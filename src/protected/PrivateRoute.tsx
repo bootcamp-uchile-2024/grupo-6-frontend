@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
-import { isAuth, userHasRole } from "../services/loginService"; // Importamos los servicios
+import { useSelector } from 'react-redux';
+import { RootType } from "../states/store";
 import { AdminAccessDeniedPage } from "../pages/AdminAccessDeniedPage";
 
 interface PrivateRouteProps {
@@ -7,17 +8,14 @@ interface PrivateRouteProps {
     roles: string[];
 }
 
-export const PrivateRoute = (props: PrivateRouteProps) => {
-    const auth = isAuth(); // Verificamos si el usuario está autenticado
-    const hasRole = userHasRole(props.roles); // Obtenemos el usuario almacenado
+export const PrivateRoute = ({ children, roles }: PrivateRouteProps) => {
+    const isAuthenticated = useSelector((state: RootType) => state.authReducer.isAuthenticated);
+    const userRole = useSelector((state: RootType) => state.authReducer.user?.rol);
+    const hasRole = roles.includes(userRole || "");
 
     return (
         <>
-            {auth && hasRole ? (
-                props.children
-            ) : (
-                <AdminAccessDeniedPage></AdminAccessDeniedPage>
-            )}
+            {isAuthenticated && hasRole ? children : <AdminAccessDeniedPage />}
         </>
     );
 };

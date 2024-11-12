@@ -17,8 +17,14 @@ const persistedLoggedInState: Middleware = store => next => action => {
 
     next(action);
     const estado = store.getState();
-    const estadoAsJson = JSON.stringify(estado.authReducer);
-    localStorage.setItem('__redux__user__', estadoAsJson);
+
+    // solo guardamos en localStorage si usuario está autenticado
+    if (estado.authReducer.isAuthenticated) {
+        const estadoAsJson = JSON.stringify(estado.authReducer);
+        localStorage.setItem('__redux__user__', estadoAsJson);
+    } else {
+        localStorage.removeItem('__redux__user__');
+    }    
 }
 
 /* Configuración inicial de nuestro Store */

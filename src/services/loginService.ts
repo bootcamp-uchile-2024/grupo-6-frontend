@@ -46,9 +46,6 @@ export const login = (user: IUser): boolean  => {
     }    
 };
 
-export const logout = () => localStorage.removeItem('__redux__user__');
-export const isAuth = () => localStorage.getItem('__redux__user__') ? true : false;
-
 export const userHasRole = (roles: string[]) => {
     const user = localStorage.getItem('__redux__user__');
     if (user) {

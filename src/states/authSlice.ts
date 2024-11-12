@@ -30,6 +30,7 @@ const authSlice = createSlice({
         logoutAction: (state) => {
             state.isAuthenticated = false;
             state.user = null;
+            localStorage.removeItem('__redux__user__');
         },
     },
 });
