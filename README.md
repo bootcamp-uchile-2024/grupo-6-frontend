@@ -11,8 +11,9 @@ Este proyecto de frontend, desarrollado con React, TypeScript y Vite, se centra 
  3. [Instalación](#Instalación)
  4. [Configuración](#Configuración)
  5. [Levantar el Proyecto](#Levantar-el-Proyecto)
- 6. [Flujo de trabajo](#Flujo-de-trabajo)
- 7. [Contacto](#Contacto)
+ 6. [Despliegue con Docker](#Despliegue-con-Docker)
+ 7. [Flujo de trabajo](#Flujo-de-trabajo)
+ 8. [Contacto](#Contacto)
 
 ## Tecnologías utilizadas
 - **React**
@@ -20,6 +21,7 @@ Este proyecto de frontend, desarrollado con React, TypeScript y Vite, se centra 
 - **Redux**
 - **TypeScript**
 - **Vite**
+- **Docker**
 - **ESLint**
 
 ## Requisitos previos
@@ -68,6 +70,39 @@ Primero debes levantar el repositorio de backend, puedes leer como hacerlo en el
  ```bash
  npm run dev
  ```
+
+## Despliegue con Docker
+
+Si prefieres usar Docker para ejecutar el proyecto en un contenedor, sigue estos pasos:
+
+### Requisitos Previos
+
+Asegúrate de tener Docker Desktop instalado en tu máquina. Puedes seguir los pasos de instalación en el siguiente [link](https://docs.docker.com/desktop/setup/install/windows-install/).
+
+### Construcción y Ejecución con Docker
+
+1. Construir la imagen de Docker:
+Para construir la imagen del frontend, ejecuta el siguiente comando en la raíz del proyecto donde se encuentra el archivo Dockerfile:
+
+```bash
+docker build -t grupo-6-frontend .
+```
+
+2. Levantar el contenedor:
+Para levantar el contenedor con Docker Compose, ejecuta el siguiente comando:
+
+```bash
+docker-compose up --build
+```
+
+Esto construirá la imagen y ejecutará el contenedor. El servicio estará disponible en el puerto 5173 en tu máquina local, y podrás acceder al frontend en tu navegador en la URL:
+http://localhost:5173
+
+3. Parar el contenedor: Para detener el contenedor, puedes ejecutar:
+
+```bash
+docker-compose down
+```
 
 ## Flujo de trabajo
 En este proyecto, seguimos la metodología Git Flow para gestionar el desarrollo. A continuación se detallan los principales componentes de nuestro flujo de trabajo:
