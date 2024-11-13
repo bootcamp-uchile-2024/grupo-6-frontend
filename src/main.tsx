@@ -12,8 +12,6 @@ import { CrearCuentaPage } from './pages/CrearCuentaPage.tsx'
 import { CrearProductoPage } from './pages/CrearProductoPage.tsx'
 import { AdminPage } from './pages/AdminPage.tsx'
 import { UserPage } from './pages/UserPage.tsx'
-import { AuthProvider } from './auth/AuthContext.tsx'
-import ProtectedRoute from './auth/ProtectedRoute.tsx'
 import './styles/global.css'
 import { Provider } from 'react-redux'
 import { store } from './states/store.ts'
@@ -22,10 +20,10 @@ import { ResumenShoppingCartPage } from './pages/ResumenShoppingCartPage.tsx'
 import { EmptyCartPage } from './pages/EmptyCartPage.tsx'
 import { AdminBookListPage } from './pages/AdminBookListPage.tsx'
 import { BookProductModifyPage } from './pages/BookProductModifyPage.tsx'
+import { PrivateRoute } from './protected/PrivateRoute.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <AuthProvider>
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
@@ -36,11 +34,11 @@ createRoot(document.getElementById('root')!).render(
           <Route path='/product-detail/:isbn' element={<ProductDetailPage />} />
           <Route path='/login' element={<LoginPage title='Iniciar Sesión' />} />
           <Route path='/register' element={<CrearCuentaPage title='Crear Cuenta' />} />
-          <Route path='/create/product' element={<ProtectedRoute><CrearProductoPage title='Crear Producto' /></ProtectedRoute>} />
-          <Route path='/admin/product' element={<ProtectedRoute><AdminBookListPage title='Lista admin Producto' /></ProtectedRoute>} />
-          <Route path='/admin/update/product' element={<ProtectedRoute><BookProductModifyPage title='Actualizar Producto'  /></ProtectedRoute>} />
-          <Route path='/admin' element={<ProtectedRoute><AdminPage title='Panel de administración' /></ProtectedRoute>} />
-          <Route path='/user' element={<ProtectedRoute><UserPage title='Cuenta' /></ProtectedRoute>} />
+          <Route path='/create/product' element={<PrivateRoute roles={['admin']}><CrearProductoPage title='Crear Producto' /></PrivateRoute>} />
+          <Route path='/admin/product' element={<PrivateRoute roles={['admin']}><AdminBookListPage title='Lista admin Producto' /></PrivateRoute>} />
+          <Route path='/admin/update/product' element={<PrivateRoute roles={['admin']}><BookProductModifyPage title='Actualizar Producto'  /></PrivateRoute>} />
+          <Route path='/admin' element={<PrivateRoute roles={['admin']}><AdminPage title='Panel de administración' /></PrivateRoute>} />
+          <Route path='/user' element={<PrivateRoute roles={['user']}><UserPage title='Cuenta' /></PrivateRoute>} />
           <Route path="/carrito" element={<ShoppingCartPage title='Carrito Compras' />} />
           <Route path="/empty-cart" element={<EmptyCartPage title='Carrito Vacío' />} />
           <Route path='/shoppingcart-resume/' element={<ResumenShoppingCartPage title='Resumen carrito de compras' />}></Route>
@@ -48,6 +46,5 @@ createRoot(document.getElementById('root')!).render(
         </Routes>
       </BrowserRouter>
     </Provider>
-    </AuthProvider>
   </StrictMode>,
 );

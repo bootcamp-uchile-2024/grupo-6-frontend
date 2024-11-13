@@ -12,7 +12,11 @@ function NovedadesHome() {
     useEffect(() => {
         const fetchLibros = async () => {
             try {
-                const response = await fetch('/products-back', { method: 'GET' });
+                const response = await fetch('/products-back', { method: 'GET', 
+                    headers: {
+                        "Content-Type": "application/json",
+                        },
+                });
 
                 if (!response.ok) {
                     console.error('No pudimos obtener los productos');
