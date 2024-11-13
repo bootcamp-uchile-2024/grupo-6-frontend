@@ -34,6 +34,12 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace('/create-user-back', ""),
+      },
+      "/shopping-cart-create": {
+        target: "http://localhost:3000/shoppingcart",
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace('/shopping-cart', ""),
       }
     },
   },

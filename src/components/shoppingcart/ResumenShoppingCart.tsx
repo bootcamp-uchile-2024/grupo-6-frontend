@@ -109,6 +109,11 @@ function ResumenShoppingCart() {
                     </div>
                 </div>
             </div>
+
+            <div>
+                <button>Finalizar compra</button>
+            </div>
+
         </div>
     );
 };
