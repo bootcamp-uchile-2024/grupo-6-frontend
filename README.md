@@ -92,7 +92,7 @@ docker build -t grupo-6-frontend .
 Para levantar el contenedor con Docker Compose, ejecuta el siguiente comando:
 
 ```bash
-docker-compose up --build
+docker-compose up
 ```
 
 Esto construirá la imagen y ejecutará el contenedor. El servicio estará disponible en el puerto 5173 en tu máquina local, y podrás acceder al frontend en tu navegador en la URL:
