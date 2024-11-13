@@ -9,10 +9,15 @@ export function Categorias() {
 
   const [libros, setLibros] = useState<ILibro[]>([]);
   const [librosExist, setLibrosExist] = useState<boolean>(false);
+  const [paginaActual, setPaginaActual] = useState<number>(1);
+  const [totalPaginas, setTotalPaginas] = useState<number>(1);
+  const cantidad = 6; // Número de productos por página, se puede cambiar
+
+
   useEffect(() => {
     async function getLibros() {
       try {
-        const response = await fetch('/products-back', {
+        const response = await fetch(`/products-back?pagina=${paginaActual}&cantidad=${cantidad}`, {
           method: 'GET',
         });
 
@@ -22,11 +27,12 @@ export function Categorias() {
           return; // Salir si no hay respuesta OK
         }
 
-        const librosJson : ILibroPaginado = await response.json();
+        const librosJson: ILibroPaginado = await response.json();
         console.log(librosJson);
         console.log("nroPagina: " + librosJson.nroPagina + ", totalPaginas: " + librosJson.totalPaginas + ", totalProductos: " + librosJson.totalProductos);
-        setLibros(librosJson?.productos); 
+        setLibros(librosJson?.productos);
         setLibrosExist(true);
+        setTotalPaginas(librosJson.totalPaginas);
       } catch (error) {
         console.error('Error al obtener los productos', error); // Usando 'error'
         setLibrosExist(false);
@@ -34,7 +40,16 @@ export function Categorias() {
     }
 
     getLibros();
-  }, []);
+  }, [paginaActual]);
+
+  /* Paginación */
+  const handlePaginaAnterior = () => {
+    if (paginaActual > 1) setPaginaActual(paginaActual - 1);
+  };
+
+  const handlePaginaSiguiente = () => {
+    if (paginaActual < totalPaginas) setPaginaActual(paginaActual + 1);
+  };
 
   return (
     <main className='contenido-central'>
@@ -51,6 +66,14 @@ export function Categorias() {
             <h3>Ups, no encontramos libros disponibles!!</h3>
           }
         </div>
+
+        {/* Controles de paginación */}
+        <div className="categorias-paginacion">
+          <button className='boton-paginacion' onClick={handlePaginaAnterior} disabled={paginaActual === 1}>&#8592;</button>
+          <span>Página {paginaActual} de {totalPaginas}</span>
+          <button className='boton-paginacion' onClick={handlePaginaSiguiente} disabled={paginaActual === totalPaginas}>&#8594;</button>
+        </div>
+
       </section>
     </main>
   );
