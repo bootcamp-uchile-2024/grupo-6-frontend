@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router-dom';
-import '../../styles/user.css';
 import { useDispatch } from 'react-redux';
 import { logoutAction } from '../../states/authSlice';
+import UserList from '../adminUsers/UserList';
+import '../../styles/user.css';
+import '../../styles/user_list.css'
 
 const AdminPage = () => {
     const navigate = useNavigate();
@@ -19,19 +21,17 @@ const AdminPage = () => {
                 <button className='logout-button' onClick={handleLogout}>Cerrar sesión</button>
             </div>
 
-            <div className='account-content'>
-                <div className='historial-compra'>
-                    <h2>Historial administrador</h2>
-                    <p>Aún no has realizado ningún cambio.</p>
-                </div>
-
                 <div className='account-details'>
                     <h2>Detalles de la cuenta</h2>
                     <p><b>Nombre:</b> Admin</p>
                     <p><b>Correo electrónico:</b> admin@gmail.com</p>
                     <p><b>Dirección:</b> Chile</p>
                 </div>
-            </div>
+
+                <div className='user-list-section'>
+                    <UserList />
+                </div>
+
         </div>
     );
 };

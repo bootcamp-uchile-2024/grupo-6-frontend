@@ -1,4 +1,4 @@
-interface ICreateUser {
+interface IUser {
     nombres: string,
     apellidoMaterno: string,
     apellidoPaterno: string,
@@ -7,4 +7,4 @@ interface ICreateUser {
     id: number,
 }
 
-export type {ICreateUser};
+export type { IUser };

@@ -1,0 +1,39 @@
+.admin-user-list-container {
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    width: 100%;
+    max-width: 1200px;
+    padding-bottom: 30px;
+    flex-grow: 1;
+    margin-bottom: 80px;
+}
+
+.admin-user-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.admin-userlist-item-detail-tr {
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+    flex-direction: column;
+    text-align: left;
+    padding: 10px;
+    vertical-align: middle;
+}
+
+.admin-userlist-item-detail-td {
+    padding: 10px;
+    text-align: center;
+}
+
+.admin-userlist-item-detail-th {
+    justify-content: space-between;
+    flex-direction: row;
+    text-align: center;
+    padding: 10px;
+    vertical-align: middle;
+}

@@ -2,17 +2,24 @@ import { configureStore, Middleware } from "@reduxjs/toolkit";
 import productSlice from "./productSlice";
 import productModifySlice from "./productModify"
 import authSlice from "./authSlice"
+import userReducer from "./userSlice";
+import { productCartReducer } from './cartSlice';
 
 const persistedCartState: Middleware = store => next => action => {
 
     next(action);
     const estado = store.getState();
-    const estadoAsJson = JSON.stringify(estado.productReducer);
+
+    // Guarda el estado del carrito en localStorage
+    const estadoAsJson = JSON.stringify(estado.productCartReducer);
     localStorage.setItem('__redux__product__', estadoAsJson);
+
+    //Guarda el esta de la modificación de productos
     const estadoAsJsonProductModify = JSON.stringify(estado.productModifyReducer);
     localStorage.setItem('__redux__product_modify__', estadoAsJsonProductModify);
 }
 
+// Middleware para persistir el estado de autenticación del usuario
 const persistedLoggedInState: Middleware = store => next => action => {
 
     next(action);
@@ -30,11 +37,15 @@ const persistedLoggedInState: Middleware = store => next => action => {
 /* Configuración inicial de nuestro Store */
 export const store = configureStore({
     reducer: {
+        productCartReducer: productCartReducer,
         productReducer: productSlice,
         productModifyReducer: productModifySlice,
-        authReducer: authSlice
+        authReducer: authSlice,
+        users: userReducer,
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(persistedCartState, persistedLoggedInState),
 });
 
-export type RootType = ReturnType<typeof store.getState>
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+export type RootType = ReturnType<typeof store.getState>;

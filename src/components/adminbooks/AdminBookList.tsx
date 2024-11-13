@@ -1,4 +1,3 @@
-
 import '../../styles/shopping_cart.css'
 import { Link } from "react-router-dom";
 import { useFetchGet } from "../../hooks/useFetch";
