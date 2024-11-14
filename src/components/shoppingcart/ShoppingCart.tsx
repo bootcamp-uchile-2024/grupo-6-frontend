@@ -2,15 +2,74 @@ import { RootType } from "../../states/store";
 import { ShoppingCartEntrada } from "../../interfaces/ShoppingCartEntrada";
 import '../../styles/shopping_cart.css'
 import ButtonDeleteToCart from "./ButtonDeleteToCart";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ButtonClearCart from "./ButtonClearCart";
 import { Link, useNavigate } from "react-router-dom";
 import QuantityButtons from "./QuantityButtons";
 import { useEffect } from "react";
 
+const fetchShoppingCart = async () => {
+    try {
+        const response = await fetch('http://localhost:3000/shoppingcart');
+        if (!response.ok) throw new Error('Error fetching cart');
+        return await response.json();
+    }
+
+    catch (error) {
+        console.error("Error fetching shopping cart:", error);
+    }
+}
+
+const addToCart = async (product: ShoppingCartEntrada) => {
+    try {
+        const response = await fetch('http://localhost:3000/shoppingcart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(product),
+        });
+
+        if (!response.ok)
+            throw new Error('Error al añadir producto al carrito');
+        return await response.json();
+    } catch (error) {
+        console.error("Error al añadir producto al carrito:", error);
+    }
+}
+
+const updateCart = async (isbn: string, quantity: number) => {
+    try {
+        const response = await fetch(`http://localhost:3000/shoppingcart`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ isbn, quantity }),
+        });
+        if (!response.ok) throw new Error('Error updating cart');
+        return await response.json();
+    } catch (error) {
+        console.error("Error updating cart:", error);
+    }
+}
+
+const deleteFromCart = async (isbn: string) => {
+    try {
+        const response = await fetch(`http://localhost:3000/shoppingcart/${isbn}`, {
+            method: 'DELETE',
+        });
+        if (!response.ok) throw new Error('Error deleting product from cart');
+        return await response.json();
+    } catch (error) {
+        console.error("Error deleting product from cart:", error);
+    }
+}
+
 function ShoppingCart() {
     const shoppingCartProduct = useSelector((state: RootType) => state.productReducer.cart.items);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const calculateTotal = (items: ShoppingCartEntrada[]) => {
         let initialTotal = 0;
@@ -22,6 +81,10 @@ function ShoppingCart() {
 
     const calculateTotalProduct = (item: ShoppingCartEntrada) => {
         return item.precio * item.cantidad;
+    }
+
+    const handleUpdateQuantity = async (isbn: string, quantity: number) => {
+        await updateCart(isbn, quantity);
     }
 
     useEffect(() => {

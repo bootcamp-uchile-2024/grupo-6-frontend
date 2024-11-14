@@ -179,7 +179,7 @@ const BookProductModify = () => {
                                                 <td>{errors.isbn ? (<p className="error-producto">{"ISBN no debe estar vacio y debe tener entre 10 y 13 caracteres."}</p>) : null}</td>
                                             </tr>
 
-                                           <tr className='editar-producto'>
+                                            <tr className='editar-producto'>
                                                 <td><label htmlFor="nombre">Nombre:</label></td>
                                                 <td>
                                                     <input
@@ -199,7 +199,7 @@ const BookProductModify = () => {
                                                 </td>
                                             </tr>
 
-                                           <tr className='editar-producto'>
+                                            <tr className='editar-producto'>
                                                 <td><label htmlFor="resumen">Resumen:</label></td>
                                                 <td>
                                                     <textarea
@@ -218,7 +218,7 @@ const BookProductModify = () => {
                                                 </td>
                                             </tr>
 
-                                           <tr className='editar-producto'>
+                                            <tr className='editar-producto'>
                                                 <td><label htmlFor="editorial">Editorial:</label></td>
                                                 <td>
                                                     <input
@@ -238,7 +238,7 @@ const BookProductModify = () => {
                                                 </td>
                                             </tr>
 
-                                           <tr className='editar-producto'>
+                                            <tr className='editar-producto'>
                                                 <td><label htmlFor="idioma">Idioma:</label></td>
                                                 <td>
                                                     <input
@@ -258,7 +258,7 @@ const BookProductModify = () => {
                                                 </td>
                                             </tr>
 
-                                           <tr className='editar-producto'>
+                                            <tr className='editar-producto'>
                                                 <td><label htmlFor="agnoPublicacion">Año de Publicación:</label></td>
                                                 <td>
                                                     <input
@@ -278,7 +278,7 @@ const BookProductModify = () => {
                                                 </td>
                                             </tr>
 
-                                           <tr className='editar-producto'>
+                                            <tr className='editar-producto'>
                                                 <td><label htmlFor="autores">Autores:</label></td>
                                                 <td >
                                                     {libro.autor.map((autor, index) => (
@@ -310,35 +310,35 @@ const BookProductModify = () => {
                                             </tr>
 
                                             <tr className='editar-producto'>
-                                            <td><label htmlFor="generos">Géneros:</label></td>
-                                            <td>
-                                                {libro.genero.map((genero, index) => (
-                                                    <div key={index} className='td-row'>
-                                                        <input
-                                                            type="text"
-                                                            value={genero}
-                                                            onChange={(e) => handleArrayChange(e, 'genero', index)}
-                                                            placeholder="Ej. Novela Juvenil"
-                                                            required
-                                                        />
-                                                        <button type="button" className="boton-add boton-producto" onClick={() => addField('genero')}>+</button>
-                                                        <button
-                                                            type="button"
-                                                            className="boton-remove boton-producto"
-                                                            onClick={() => removeField('genero', index)}
-                                                            disabled={libro.genero.length === 1}
-                                                        >
-                                                            -
-                                                        </button>
-                                                    </div>
-                                                ))}
-                                            </td>
-                                            <td>
-                                                {errors.genero ? (
-                                                    <p className="error-producto">{"El género del libro no debe estar vacío."}</p>
-                                                ) : null}
-                                            </td>
-                                        </tr>
+                                                <td><label htmlFor="generos">Géneros:</label></td>
+                                                <td>
+                                                    {libro.genero.map((genero, index) => (
+                                                        <div key={index} className='td-row'>
+                                                            <input
+                                                                type="text"
+                                                                value={genero}
+                                                                onChange={(e) => handleArrayChange(e, 'genero', index)}
+                                                                placeholder="Ej. Novela Juvenil"
+                                                                required
+                                                            />
+                                                            <button type="button" className="boton-add boton-producto" onClick={() => addField('genero')}>+</button>
+                                                            <button
+                                                                type="button"
+                                                                className="boton-remove boton-producto"
+                                                                onClick={() => removeField('genero', index)}
+                                                                disabled={libro.genero.length === 1}
+                                                            >
+                                                                -
+                                                            </button>
+                                                        </div>
+                                                    ))}
+                                                </td>
+                                                <td>
+                                                    {errors.genero ? (
+                                                        <p className="error-producto">{"El género del libro no debe estar vacío."}</p>
+                                                    ) : null}
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </table>
 
@@ -353,7 +353,7 @@ const BookProductModify = () => {
                                     <tbody>
 
 
-                                       <tr className='editar-producto'>
+                                        <tr className='editar-producto'>
                                             <td><label htmlFor="encuadernacion">Encuadernación:</label></td>
                                             <td>
                                                 <select name="encuadernacion" id="encuadernacion" value={libro.encuadernacion} onChange={handleChange} required>
@@ -369,7 +369,7 @@ const BookProductModify = () => {
                                             </td>
                                         </tr>
 
-                                       <tr className='editar-producto'>
+                                        <tr className='editar-producto'>
                                             <td><label htmlFor="numeroPaginas">Número de Páginas:</label></td>
                                             <td>
                                                 <input
@@ -389,7 +389,7 @@ const BookProductModify = () => {
                                             </td>
                                         </tr>
 
-                                       <tr className='editar-producto'>
+                                        <tr className='editar-producto'>
                                             <td><label htmlFor="caratula">Carátula (URL):</label></td>
                                             <td>
                                                 <input
@@ -409,7 +409,7 @@ const BookProductModify = () => {
                                             </td>
                                         </tr>
 
-                                       <tr className='editar-producto'>
+                                        <tr className='editar-producto'>
                                             <td><label htmlFor="dimensiones">Dimensiones:</label></td>
                                             <td>
                                                 <input
@@ -429,7 +429,7 @@ const BookProductModify = () => {
                                             </td>
                                         </tr>
 
-                                       <tr className='editar-producto'>
+                                        <tr className='editar-producto'>
                                             <td><label htmlFor="ean">EAN (Código de Barra):</label></td>
                                             <td>
                                                 <input
@@ -448,7 +448,7 @@ const BookProductModify = () => {
                                             </td>
                                         </tr>
 
-                                       <tr className='editar-producto'>
+                                        <tr className='editar-producto'>
                                             <td><label htmlFor="calificacion">Calificación (Por defecto es 0):</label></td>
                                             <td>
                                                 <input
@@ -466,7 +466,7 @@ const BookProductModify = () => {
                                             <td></td>
                                         </tr>
 
-                                       <tr className='editar-producto'>
+                                        <tr className='editar-producto'>
                                             <td><label htmlFor="precio">Precio:</label></td>
                                             <td>
                                                 <input
@@ -485,7 +485,7 @@ const BookProductModify = () => {
                                             </td>
                                         </tr>
 
-                                       <tr className='editar-producto'>
+                                        <tr className='editar-producto'>
                                             <td><label htmlFor="stockLibro">Stock:</label></td>
                                             <td>
                                                 <input
@@ -504,7 +504,7 @@ const BookProductModify = () => {
                                             </td>
                                         </tr>
 
-                                       <tr className='editar-producto'>
+                                        <tr className='editar-producto'>
                                             <td><label htmlFor="descuento">Descuento:</label></td>
                                             <td>
                                                 <input
@@ -523,7 +523,7 @@ const BookProductModify = () => {
                                             </td>
                                         </tr>
 
-                                        
+
                                     </tbody>
                                 </table>
                             </div>
