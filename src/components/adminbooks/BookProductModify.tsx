@@ -112,27 +112,22 @@ const BookProductModify = () => {
             console.log("Los errores son: ", errors);
             navigate("/create/product");
         } else {
-            console.log("Se envia el formulario");
-            console.log("La estructura del form es: ", libro);
-            //const { data: libroResponse, loading, error } = useFetchPost<ILibro[]>("http://localhost:3000/products", libro);
-            //if (loading) return <p>Cargando datos...</p>
-            //if (error) return <p>Error en la consulta de datos {error}</p>
+            console.log("Se envia el libro para su modificación");
+            console.log("El libro a modificar es: ", libro);
 
-
-            // Se deberia cambiar por un metodo PUT o revisar el POST para que actualice por isbn
-            const response = await axios.post('/products-create-back', libro, {
+            // Se deberia cambiar por un metodo PUT
+            const response = await fetch(`/products-put/${libro.isbn}`, {
+                method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'
                 }
             });
-
-            if (response.status == 201) {
-                console.log("Libro creado correctamente al Backend");
-
-                alert('Libro creado correctamente');
+    
+            if (response.status == 200) {
+                alert(`Se modifico el libro correctamente " ${libro.nombre} " en el Backend`);
             } else {
-                console.log("Error al crear el libro en el Backend");
-                alert('Error al crear el libro en el Backend');
+                console.log(`Error al modificar el libro en el Backend. Datos: ${libro} `);
+                alert(`Error al modificar el libro " ${libro.nombre} " en el Backend`);
             }
             setLibro({
                 isbn: '',
