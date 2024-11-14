@@ -34,7 +34,7 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace('/create-user-back', ""),
-      }
+      },
     },
   },
   plugins: [react()],

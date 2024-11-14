@@ -16,59 +16,46 @@ const initialState: UserState = {
 };
 
 // Para obtener los usuarios desde el backend
-export const fetchUsers= createAsyncThunk('users/fetchUsers', async () => {
-    try {
-        const response = await fetch('/create-user-back', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        }); //URL de la api
-        if (!response.ok) {
-            throw new Error('No se pudieron cargar los usuarios');
-        }
+export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
 
-        // Devuelve los usuarios como un array
-        return response.json();
-    } catch (error: any) {
-        throw new Error(error.message || 'Error al cargar usuarios');
-    }
+    const response = await fetch('http://localhost:3000/users/');
+    if (!response.ok) throw new Error('No se pudieron cargar los usuarios');
+    return response.json();
 });
+
+// Para actualizar usuario
+export const updateUser = createAsyncThunk(
+    'users/updateUser',
+    async (user: ICreateUser) => {
+        const response = await fetch(`http://localhost:3000/users/${user.id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(user),
+        });
+        if (!response.ok) throw new Error('Error al actualizar el usuario');
+        return response.json();
+    }
+);
+
+// Para eliminar usuario
+export const deleteUser = createAsyncThunk(
+    'users/deleteUser',
+    async (id: string) => {
+        const response = await fetch(`http://localhost:3000/users/${id}`, {
+            method: 'DELETE',
+        });
+        if (!response.ok) throw new Error('Error al eliminar el usuario');
+        return id;
+    }
+);
 
 const userSlice = createSlice({
     name: 'users',
     initialState,
 
-    reducers: {
-        setUsers: (state, action: PayloadAction<ICreateUser[]>) => {
-            state.users = action.payload;
-        },
+    reducers: {},
 
-        setLoading: (state, action: PayloadAction<boolean>) => {
-            state.loading = action.payload;
-        },
-
-        setError: (state, action: PayloadAction<string | null>) => {
-            state.error = action.payload;
-        },
-
-        deleteUser: (state, action: PayloadAction<string>) => {
-            state.users = state.users.filter(user => user.correoElectronico !== action.payload);
-        },
-
-        addUsers: (state, action: PayloadAction<ICreateUser>) => {
-            state.users.push(action.payload);
-        },
-        
-        updateUser: (state, action: PayloadAction<ICreateUser>) => {
-            const index = state.users.findIndex(user => user.correoElectronico === action.payload.correoElectronico);
-            if (index !== -1) {
-                state.users[index] = action.payload;
-            }
-        },
-    },
-
-    extraReducers: (builder) =>{
+    extraReducers: (builder) => {
         builder
             .addCase(fetchUsers.pending, (state) => {
                 state.loading = true;
@@ -81,10 +68,17 @@ const userSlice = createSlice({
             .addCase(fetchUsers.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message || 'Error al cargar usuarios';
+            })
+            .addCase(updateUser.fulfilled, (state, action: PayloadAction<ICreateUser>) => {
+                const index = state.users.findIndex((user) => user.id.toString() === action.payload.id.toString());
+                if (index !== -1) {
+                    state.users[index] = action.payload;
+                }
+            })
+            .addCase(deleteUser.fulfilled, (state, action: PayloadAction<string>) => {
+                state.users = state.users.filter((user) => user.id.toString() !== action.payload);
             });
-    }
+    },
 });
-
-export const { setUsers, addUsers, updateUser, deleteUser, setLoading, setError } = userSlice.actions;
 
 export default userSlice.reducer;

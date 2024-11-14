@@ -1,18 +1,42 @@
 import { useNavigate } from 'react-router-dom';
+import '../../styles/user.css';
 import { useDispatch } from 'react-redux';
 import { logoutAction } from '../../states/authSlice';
-import UserList from '../adminUsers/UserList';
-import '../../styles/user.css';
-import '../../styles/user_list.css'
+import { useEffect, useState } from 'react';
+import { ICreateUser } from '../../interfaces/ICreateUser';
 
 const AdminPage = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    const [users, setUsers] = useState<ICreateUser[]>([]);
+
+    useEffect(() => {
+        const fetchUsers = async () => {
+            const fetchedUsers: ICreateUser[] = [];
+            const range = 2; // Rango de IDs de usuario a consultar
+
+            for (let id = 1; id <= range; id++) {
+                try {
+                    const result = await fetch(`/create-user-back/${id}`);
+                    if (result.ok) {
+                        const user: ICreateUser = await result.json();
+                        fetchedUsers.push(user); // Añadimos cada usuario al array
+                    }
+                } catch (error) {
+                    console.error(`Error fetching user with ID ${id}:`, error);
+                }
+            }
+            setUsers(fetchedUsers); // Guardamos todos los usuarios en el estado
+        };
+
+        fetchUsers();
+    }, []);
+
     const handleLogout = () => {
         dispatch(logoutAction());
         navigate('/');
-    }
+    };
 
     return (
         <div className='userPage-container'>
@@ -21,17 +45,42 @@ const AdminPage = () => {
                 <button className='logout-button' onClick={handleLogout}>Cerrar sesión</button>
             </div>
 
+            <div className='account-content'>
+                <div className='historial-compra'>
+                    <h2>Historial administrador</h2>
+                    <p>Aún no has realizado ningún cambio.</p>
+                </div>
+
                 <div className='account-details'>
                     <h2>Detalles de la cuenta</h2>
                     <p><b>Nombre:</b> Admin</p>
                     <p><b>Correo electrónico:</b> admin@gmail.com</p>
                     <p><b>Dirección:</b> Chile</p>
                 </div>
+            </div>
 
-                <div className='user-list-section'>
-                    <UserList />
-                </div>
-
+            <div className="contenedor">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Control</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {users.map((user) => (
+                            <tr key={user.idUsuario}>
+                                <td>{user.idUsuario}</td>
+                                <td>{`${user.nombres} ${user.apellidoPaterno} ${user.apellidoMaterno}`}</td>
+                                <td>{user.correoElectronico}</td>
+                                <td><button id="boton-eliminar">Eliminar</button></td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };

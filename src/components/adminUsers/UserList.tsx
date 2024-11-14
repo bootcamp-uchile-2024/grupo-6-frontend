@@ -1,79 +1,82 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchUsers } from "../../states/userSlice";
+import React, { useEffect, useState } from "react";
 import { ICreateUser } from "../../interfaces/ICreateUser";
 import ButtonUserDelete from "./ButtonUserDelete";
 import ButtonUserEdit from "./ButtonUserEdit";
-import { AppDispatch } from "../../states/store";
 import '../../styles/user_list.css'
 
-const UserList: React.FC = () => {
 
-    const dispatch = useDispatch<AppDispatch>();
+const UserList = () => {
 
+    const [users, setUsers] = useState<ICreateUser[]>([]);
+
+    useEffect(() => {
+        const fetchUsers = async () => {
+            const fetchedUsers: ICreateUser[] = [];
+            const range = 2; // Rango de IDs de usuario a consultar
+
+            for (let id = 1; id <= range; id++) {
+                try {
+                    const result = await fetch(`/create-user-back/${id}`);
+                    if (result.ok) {
+                        const user: ICreateUser = await result.json();
+                        fetchedUsers.push(user); // Añadimos cada usuario al array
+                    }
+                } catch (error) {
+                    console.error(`Error fetching user with ID ${id}:`, error);
+                }
+            }
+            setUsers(fetchedUsers); // Guardamos todos los usuarios en el estado
+        };
+
+        fetchUsers();
+    }, []);
+
+
+    /* const dispatch = useDispatch<AppDispatch>();
+    
     // Para seleccionar el estado de los usuarios desde Redux
     const { users, loading, error } = useSelector((state: any) => state.users);
-
+    
+    console.log(users);
+    
     // Para llamar a la acción 'fetchUser' cuando el componente se monta
     useEffect(() => {
         dispatch(fetchUsers());
-    }, [dispatch]);
+    }, [dispatch]); */
+
+    /* const handleDeleteUser = (id: string) => {
+        dispatch(deleteUser(id));
+    }
+    
+    const handleEditUser = (user: ICreateUser) => {
+        dispatch(updateUser(user));
+    }; */
 
     return (
-        <div className="admin-user-list-container">
-            <h2>Listado de usuarios</h2>
-
-            {/* Mensaje de error */}
-            {error && <p className="error">{error}</p>}
-
-            {/* Mensaje de carga */}
-            {loading ? (
-                <p>Cargando usuarios...</p>
-            ) : (
-
-                <table className="admin-user-table">
-
-                    <thead>
-                        <tr className="admin-userlist-item-detail-tr">
-                            <th className="admin-userlist-item-detail-th">Nombres</th>
-                            <th className="admin-userlist-item-detail-th">Apellido materno</th>
-                            <th className="admin-userlist-item-detail-th">Apellido paterno</th>
-                            <th className="admin-userlist-item-detail-th">Correo electrónico</th>
-                            <th className="admin-userlist-item-detail-th">Editar</th>
-                            <th className="admin-userlist-item-detail-th">Eliminar</th>
-                        </tr>
-                    </thead>
-
-                    <tbody className='admin-userlist-item-detail'>
-                        {users.length > 0 ? (
-                            users.map((user : ICreateUser) => (
-                                <tr key={user.id} className="admin-userlist-item-detail-tr">
-
-                                    <td>{user.nombres}</td>
-                                    <td>{user.correoElectronico}</td>
-                                    <td>{user.apellidoMaterno}</td>
-                                    <td>{user.apellidoPaterno}</td>
-                                    <td>
-                                        <ButtonUserEdit user={user} />
-                                    </td>
-                                    <td>
-                                        <ButtonUserDelete user={user} />
-                                    </td>
-
-                                </tr>
-                            ))
-                        ) : (
-
-                            <tr>
-                                <td colSpan={6}>No hay usuarios disponibles</td>
-                            </tr>
-                        )}
-                    </tbody>
-
-                </table>
-            )}
-        </div>
-    );
+        <div className="contenedor">
+        <table>
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Control</th>
+                </tr>
+            </thead>
+            <tbody>
+                {users.map((user) => (
+                    <tr key={user.idUsuario}>
+                        <td>{user.idUsuario}</td>
+                        <td>{`${user.nombres} ${user.apellidoPaterno} ${user.apellidoMaterno}`}</td>
+                        <td>{user.correoElectronico}</td>
+                        <td><button id="boton-eliminar">Eliminar</button></td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+    </div>
+    )
 };
+
 
 export default UserList;
