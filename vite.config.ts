@@ -39,7 +39,7 @@ export default defineConfig({
         target: "http://localhost:3000/shoppingcart",
         changeOrigin: true,
         secure: false,
-        rewrite: (path) => path.replace('/shopping-cart', ""),
+        rewrite: (path) => path.replace('/shopping-cart-create', ""),
       }
     },
   },

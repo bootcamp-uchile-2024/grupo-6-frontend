@@ -1,7 +1,43 @@
 name: grupo-6-frontend
 services:
   frontend:
-    image: dgajardoi/grupo-6-frontend:v0.0.1
+    image: dgajardoi/grupo-6-frontend:v.0.0.4
     ports:
       - 5173:80
+  backend:
+    image: ncarvajalg/grupo-6-backend:v3.0.0
 
+    container_name: g6_backend
+
+    environment:
+      - ARCHIVO_ENV=production
+      - NODE_ENV=production
+
+    ports:
+      - "3000:5000"
+
+    depends_on:
+      - mysql
+
+    env_file:
+      - manual/.env.production
+    
+  mysql:
+    image: mysql:8.0.39-debian
+
+    container_name: g6_backend_bd
+
+    ports:
+      - "3307:${PORT_DB}"
+
+    volumes:
+      - ./sql:/var/lib/mysql
+
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      
+    env_file:
+      - manual/.env.production
