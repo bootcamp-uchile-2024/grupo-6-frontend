@@ -2,7 +2,6 @@ import { configureStore, Middleware } from "@reduxjs/toolkit";
 import productSlice from "./productSlice";
 import productModifySlice from "./productModify"
 import authSlice from "./authSlice"
-import userReducer from "./userSlice";
 import { productCartReducer } from './cartSlice';
 
 const persistedCartState: Middleware = store => next => action => {
@@ -41,7 +40,6 @@ export const store = configureStore({
         productReducer: productSlice,
         productModifyReducer: productModifySlice,
         authReducer: authSlice,
-        users: userReducer,
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(persistedCartState, persistedLoggedInState),
 });
