@@ -1,11 +1,10 @@
-import { IDireccion } from "./IDireccion";
-
-export interface ICreateUser {
-    idUsuario?: number,
+interface IUser {
     nombres: string,
     apellidoMaterno: string,
     apellidoPaterno: string,
     correoElectronico: string,
     contrasena: string,
-    direccion?: IDireccion;
+    id: number,
 }
+
+export type { IUser };
