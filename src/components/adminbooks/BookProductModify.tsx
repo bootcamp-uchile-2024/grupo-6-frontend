@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { ILibro, validateValues } from '../../interfaces/ILibro';
 import '../../styles/modify_product.css'
 import { IErrorsLibro } from '../../interfaces/IErrorsLibro';
-import axios from 'axios';
 import { RootType } from '../../states/store';
 import { useSelector } from 'react-redux';
 

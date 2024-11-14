@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { RootType } from "../../states/store";
 import { ShoppingCartEntrada } from "../../interfaces/ShoppingCartEntrada";
 import '../../styles/shopping_cart.css'
