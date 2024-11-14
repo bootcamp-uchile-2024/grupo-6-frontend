@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/categories-back": {
-        target: "http://localhost:3000/categories", //http://127.0.0.1:3000/categories
+        target: "http://localhost:3000/categories", //http://127.0.0.1:4000/categories
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace('/categories-back', ""),
@@ -40,7 +40,19 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace('/shopping-cart-create', ""),
-      }
+      },
+      "/products-put": {
+        target: "http://localhost:3000/products",
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace('/products-put', ""),
+      },
+      "/products-delete": {
+        target: "http://localhost:3000/products",
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace('/products-delete', ""),
+      },
     },
   },
   plugins: [react()],
