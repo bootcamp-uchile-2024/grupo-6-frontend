@@ -1,13 +1,14 @@
-import useAuth from "../auth/useAuth";
 import { useNavigate } from 'react-router-dom';
-import '../styles/user.css';
+import '../../styles/user.css';
+import { useDispatch } from 'react-redux';
+import { logoutAction } from '../../states/authSlice';
 
 const UserPage = () => {
-    const { logout } = useAuth();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleLogout = () => {
-        logout();
+        dispatch(logoutAction());
         navigate('/');
     }
 

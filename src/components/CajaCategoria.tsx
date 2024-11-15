@@ -36,7 +36,7 @@ export function CajaCategoria(props: CajaCategoriaProps) {
         <Link to={`/product-detail/${props.isbn}`}> {/* Cambiar con back */}
           <p className='texto-nombre-libro'>{props.nombre}</p>
         </Link>
-        <p className='texto-autor'>{props.autor}</p>
+        <p className='texto-autor'>{props.autor.join(', ')}</p>
         <div className='caja-estrellas-categoria'>
           <img src={estrellaLlena} alt="estrella llena" />
           <img src={estrellaLlena} alt="estrella llena" />

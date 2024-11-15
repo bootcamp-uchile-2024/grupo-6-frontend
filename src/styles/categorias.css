@@ -4,7 +4,6 @@
     display: flex;
     justify-content: center;
     flex-flow: row wrap;
-
 }
 
 .titulo-categorias {
@@ -12,10 +11,12 @@
     font-size: 35px;
     margin-top: 30px;
     margin-bottom: 30px;
+    width: 100%;
+    text-align: center;
 }
 
 #productos-categorias {
-    margin-bottom: 50px;
+    margin-bottom: 35px;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
@@ -69,24 +70,27 @@
 .texto-categoria {
     width: 240px;
     height: 200px;
-    margin-bottom: 20px;    
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    white-space: nowrap;
 }
 
-.texto-categoria .texto-nombre-libro { /* nombre libro */
+.texto-categoria .texto-nombre-libro {
+    /* nombre libro */
     font-size: 18px;
     margin-bottom: 10px;
     margin-left: 15px;
+    margin-right: 15px;
     font-weight: bold;
     overflow: hidden;
     white-space: nowrap;
     color: black;
+    text-overflow: ellipsis;
 }
 
-.texto-categoria .texto-autor { /* autor */
+.texto-categoria .texto-autor {
+    /* autor */
     font-size: 16px;
     margin-top: 0px;
     margin-left: 15px;
@@ -94,7 +98,8 @@
     color: rgb(79, 79, 79);
 }
 
-.caja-categoria-precio .texto-precio { /* precio */
+.caja-categoria-precio .texto-precio {
+    /* precio */
     font-size: 18px;
     font-weight: bold;
     margin-top: 10px;
@@ -152,7 +157,7 @@
     color: white;
 }
 
-.quantity-buttons button{
+.quantity-buttons button {
     border: none;
     border-radius: 100px;
     background-color: rgb(207, 207, 207);
@@ -164,4 +169,49 @@
 .quantity-buttons span {
     margin-left: 20px;
     margin-right: 20px;
+}
+
+/* Botones de paginación */
+
+.categorias-paginacion {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.categorias-paginacion span {
+    font-size: 18px;
+}
+
+.boton-paginacion {
+    margin-right: 10px;
+    margin-left: 10px;
+    padding: 8px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    color: black;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    /* Transición para color de fondo y color del texto */
+}
+
+.boton-paginacion:hover {
+    background-color: black;
+    border: 1px solid black;
+    color: white;
+}
+
+.boton-paginacion[disabled] {
+    margin-right: 10px;
+    margin-left: 10px;
+    padding: 8px;
+    background-color: white;
+    border: 1px solid rgb(180, 180, 180);
+    border-radius: 10px;
+    color: rgb(180, 180, 180);
+    cursor: not-allowed;
 }

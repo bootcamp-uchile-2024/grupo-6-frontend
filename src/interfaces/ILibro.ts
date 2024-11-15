@@ -114,7 +114,7 @@ export function validateValues(formValues: ILibro , errors: IErrorsLibro) {
         errors.idioma = false;
     }
 
-    if (!formValues.agnoPublicacion || formValues.agnoPublicacion.trim() === "") {
+    if (!formValues.agnoPublicacion ) {
         errors.agnoPublicacion = true;
 
     } else {

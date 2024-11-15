@@ -1,7 +1,8 @@
 import { Navigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { MainLayout } from "../layouts/MainLayout";
-import { NotFound } from "../components/NotFound";
+import imagen404NotFound from "../assets/images/imagen_404_Not_Found.png"
+import '../styles/not_found.css'
 
 interface NotFoundPageProps {
     title: string
@@ -29,7 +30,11 @@ export const NotFoundPage = (props: NotFoundPageProps) => {
 
     return (
         <MainLayout>
-            <NotFound />
+            <div className="caja-not-found">
+                <img src={imagen404NotFound} alt="Página no encontrada" />
+                <p>Lo sentimos, esta página aún no está disponible</p>
+                <p>Redirigiendo a página principal...</p>
+            </div>
         </MainLayout>
     );
 };

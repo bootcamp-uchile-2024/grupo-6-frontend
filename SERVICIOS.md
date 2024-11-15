@@ -66,6 +66,22 @@ interface IErrorsLibro {
 }
 ```
 
+## Paginación
+
+__Propósito__: Permite implementar lógica de paginación.<br>
+__Ruta Request__: `src/interfaces/ILibroPaginado.tsx`<br>
+__Url__: ...<br>
+__Metodo HTTP__: POST <br>
+
+```typescript
+interface ILibroPaginado {
+    nroPagina: number;            
+    totalPaginas: number;   
+    totalProductos: number;      
+    productos: ILibro[];
+}
+```
+
 ## Crear cuenta
 
 ### RequestDTO
@@ -81,30 +97,40 @@ interface ICreateUser {
     apellidoPaterno: string,
     correoElectronico: string,
     contrasena: string,
-    direccion: IDireccion,
-    tipoCliente: 'Premium' | 'Estandar';
-    estado: 'Activo' | 'Baneado';
+    direccion?: IDireccion;
 }
 ```
+
+### ResponseDTO
+__Propósito__: Permite al administrador modificar una cuenta.<br>
+__Ruta Request__: `src/interfaces/ICreateUser.ts`<br>
+__Url__: ...<br>
+__Metodo HTTP__: PUT <br>
+
+```typescript
+interface ICreateUserResponse extends ICreateUser {
+    idUsuario: number
+}
+```
+
 
 ## Dirección
 
 ### RequestDTO
-__Propósito__: Permite a un usuario ingresar su dirección, se usa como parte del proceso de creación de una cuenta.<br>
+__Propósito__: Permite a un usuario ingresar su dirección.<br>
 __Ruta Request__: `src/interfaces/IDireccion.ts`<br>
 __Url__: ...<br>
 __Metodo HTTP__: POST <br>
 
 ```typescript
 interface IDireccion {
+    idDireccion: number,
     calle: string,
     numeroCalle: string,
     comuna: string,
-    ciudad: string,
     region: string,
     numeroDepartamento?: string,
     informacionAdicional?: string
-    tipoDireccion: 'Envio' | 'Facturacion';
 }
 ```
 

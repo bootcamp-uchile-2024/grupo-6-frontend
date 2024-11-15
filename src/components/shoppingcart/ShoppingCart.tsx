@@ -1,12 +1,14 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { RootType } from "../../states/store";
 import { ShoppingCartEntrada } from "../../interfaces/ShoppingCartEntrada";
 import '../../styles/shopping_cart.css'
 import ButtonDeleteToCart from "./ButtonDeleteToCart";
-import { useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import ButtonClearCart from "./ButtonClearCart";
 import { Link, useNavigate } from "react-router-dom";
 import QuantityButtons from "./QuantityButtons";
 import { useEffect } from "react";
+
 
 function ShoppingCart() {
     const shoppingCartProduct = useSelector((state: RootType) => state.productReducer.cart.items);
@@ -23,6 +25,7 @@ function ShoppingCart() {
     const calculateTotalProduct = (item: ShoppingCartEntrada) => {
         return item.precio * item.cantidad;
     }
+
 
     useEffect(() => {
         if (shoppingCartProduct.length === 0) {
