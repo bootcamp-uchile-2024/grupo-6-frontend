@@ -1,5 +1,5 @@
 import { MainLayout } from "../layouts/MainLayout"
-import Admin from "../components/Admin"
+import Admin from "../components/authFlow/Admin"
 
 interface AdminPageProps {
     title: string;

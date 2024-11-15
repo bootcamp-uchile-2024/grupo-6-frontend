@@ -1,14 +1,14 @@
-import { IDireccion } from "./IDireccion"
+import { IDireccion } from "./IDireccion";
 
-interface ICreateUser {
+export interface ICreateUser {
     nombres: string,
     apellidoMaterno: string,
     apellidoPaterno: string,
     correoElectronico: string,
     contrasena: string,
-    direccion: IDireccion,
-    tipoCliente: 'Premium' | 'Estandar';
-    estado: 'Activo' | 'Baneado';
+    direccion?: IDireccion;
 }
 
-export type {ICreateUser};
+export interface ICreateUserResponse extends ICreateUser {
+    idUsuario: number
+}

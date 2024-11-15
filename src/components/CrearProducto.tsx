@@ -1,8 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { ILibro, validateValues } from '../interfaces/ILibro';
 import '../styles/create_product.css'
 import { IErrorsLibro } from '../interfaces/IErrorsLibro';
+import axios from 'axios';
+import { configuracion } from '../config/appConfiguration';
 
 const CrearProducto = () => {
     const navigate = useNavigate();
@@ -49,10 +52,39 @@ const CrearProducto = () => {
     // Manejar cambios en los campos de texto
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
+
         setLibro({
         ...libro,
-        [name]: value
-        });
+        [name]: convertValue(name as keyof ILibro, value)
+        })
+    };
+
+// Función para convertir el valor según el tipo de la clave
+const convertValue = (name: keyof ILibro, value: string): any => {
+    switch (name) {
+        case "nombre":
+        case "isbn":
+        case "editorial":
+        case "idioma":
+        case "encuadernacion":
+        case "agnoPublicacion":
+        case "caratula":
+        case "dimensiones":
+        case "ean":
+        case "resumen":
+            return value; // `string`
+        case "autor":
+        case "genero":
+            return value.split(","); // `string[]` -> Convertir valor separado por comas
+        case "precio":
+        case "stockLibro":
+        case "numeroPaginas":
+        case "descuento":
+        case "calificacion":
+            return Number(value); // `number`
+        default:
+            return value;
+    }
     };
 
     // Manejar cambios en los arrays como autor y género
@@ -84,7 +116,7 @@ const CrearProducto = () => {
     };
 
     // Enviar el formulario
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         
         setErrors(validateValues(libro, errors));
@@ -98,6 +130,20 @@ const CrearProducto = () => {
         } else {
             console.log("Se envia el formulario");
             console.log("La estructura del form es: ", libro);
+            const response = await axios.post(configuracion.urlJsonServerBackendProducts, libro, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+    
+            if (response.status == 201) {
+                console.log("Libro creado correctamente al Backend");
+
+                alert('Libro creado correctamente');
+            } else {
+                console.log("Error al crear el libro en el Backend");
+                alert('Error al crear el libro en el Backend');
+            }
             setLibro({
                 isbn: '',
                 nombre: '',
@@ -210,7 +256,7 @@ const CrearProducto = () => {
                     {errors.encuadernacion ? (<p className="error-producto">{"La encuadernacion no puede estar vacias."}</p>) : null}
 
                     <label htmlFor="numeroPaginas">Número de Páginas:</label>
-                    <input type="number"  id="numeroPaginas" name="numeroPaginas" value={libro.numeroPaginas} onChange={handleChange}  min="1" required />
+                    <input type="number"  id="numeroPaginas" name="numeroPaginas" value={libro.numeroPaginas} onChange={handleChange}  min={1} required />
                     {errors.numeroPaginas ? (<p className="error-producto">{"El numero de paginas no puede estar vacio o ser menor a 1."}</p>) : null}
 
                     <label htmlFor="caratula">Carátula (URL):</label>
@@ -232,15 +278,15 @@ const CrearProducto = () => {
                 <div className='crear-producto'>
                     <h2>Información del stock y venta del producto</h2>
                     <label htmlFor="precio">Precio:</label>
-                    <input type="number" id="precio"  name="precio" value={libro.precio} onChange={handleChange} min="1000" required />
+                    <input type="number" id="precio"  name="precio" value={libro.precio} onChange={handleChange} min="1000"  />
                     {errors.precio ? (<p className="error-producto">{"La precio minimo son 1000."}</p>) : null}
 
                     <label htmlFor="stockLibro">Stock:</label>
-                    <input type="number" id="stockLibro"  name="stockLibro" value={libro.stockLibro} onChange={handleChange} min="1" required />
+                    <input type="number" id="stockLibro"  name="stockLibro" value={libro.stockLibro} onChange={handleChange} min={1}  />
                     {errors.stockLibro ? (<p className="error-producto">{"El stock minimo es 1 libro."}</p>) : null}
 
                     <label htmlFor="descuento">Descuento:</label>
-                    <input type="number"  id="descuento"  name="descuento" value={libro.descuento} onChange={handleChange} min="0"  />
+                    <input type="number"  id="descuento"  name="descuento" value={libro.descuento} onChange={handleChange} min={0}  />
                     {errors.descuento ? (<p className="error-producto">{"El descuento no puede ser menor a 0."}</p>) : null}
 
                 </div>

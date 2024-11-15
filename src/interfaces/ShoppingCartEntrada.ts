@@ -1,10 +1,10 @@
 interface ShoppingCartEntrada {
-nombre: string;
-autor: string[];
-precio: number;
-isbn: string;
-cantidad: number;
-correoElectronico: string;
+    nombre: string;
+    autor: string[];
+    precio: number;
+    isbn: string;
+    cantidad: number;
+    correoElectronico: string;
 }
 
-export type {ShoppingCartEntrada};
+export type { ShoppingCartEntrada };

@@ -1,5 +1,5 @@
 import { MainLayout } from "../layouts/MainLayout";
-import User from "../components/user"
+import User from "../components/authFlow/User"
 
 interface UserPageProps {
     title: string;

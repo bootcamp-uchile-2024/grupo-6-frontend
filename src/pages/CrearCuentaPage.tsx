@@ -1,5 +1,5 @@
 import { MainLayout } from "../layouts/MainLayout"
-import CrearCuenta from "../components/CrearCuenta"
+import CrearCuenta from "../components/authFlow/CrearCuenta";
 
 interface CrearCuentaPageProps {
     title: string
