@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { logoutAction } from '../../states/authSlice';
 import { useEffect, useState } from 'react';
 import { ICreateUser } from '../../interfaces/ICreateUser';
+import { configuracion } from '../../config/appConfiguration';
 
 const AdminPage = () => {
     const navigate = useNavigate();
@@ -18,7 +19,7 @@ const AdminPage = () => {
 
             for (let id = 1; id <= range; id++) {
                 try {
-                    const result = await fetch(`/create-user-back/${id}`);
+                    const result = await fetch(`${configuracion.urlJsonServerBackendUsers}/${id}`);
                     if (result.ok) {
                         const user: ICreateUser = await result.json();
                         fetchedUsers.push(user); // Añadimos cada usuario al array

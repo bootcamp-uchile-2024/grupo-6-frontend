@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { addProductModify } from '../../states/productModify';
 import iconoBorrar from '../../assets/images/icono_basurero.png'
 import { ILibro } from "../../interfaces/ILibro";
+import { configuracion } from "../../config/appConfiguration";
 
 const ButtonProductDelete= ({ libro }: { libro: ILibro | null }) => {
     const dispatch = useDispatch();
@@ -9,7 +10,7 @@ const ButtonProductDelete= ({ libro }: { libro: ILibro | null }) => {
     const handleAddProductDelete = async () => {
         if (libro) { // Verificar si product no es null
             dispatch(addProductModify(libro));
-            const response = await fetch(`/products-delete/${libro.isbn}`, {
+            const response = await fetch(`${configuracion.urlJsonServerBackendProducts}/${libro.isbn}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'

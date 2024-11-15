@@ -5,6 +5,7 @@ import { ILibro, validateValues } from '../interfaces/ILibro';
 import '../styles/create_product.css'
 import { IErrorsLibro } from '../interfaces/IErrorsLibro';
 import axios from 'axios';
+import { configuracion } from '../config/appConfiguration';
 
 const CrearProducto = () => {
     const navigate = useNavigate();
@@ -129,10 +130,7 @@ const convertValue = (name: keyof ILibro, value: string): any => {
         } else {
             console.log("Se envia el formulario");
             console.log("La estructura del form es: ", libro);
-            //const { data: libroResponse, loading, error } = useFetchPost<ILibro[]>("http://localhost:3000/products", libro);
-            //if (loading) return <p>Cargando datos...</p>
-            //if (error) return <p>Error en la consulta de datos {error}</p>
-            const response = await axios.post('/products-create-back', libro, {
+            const response = await axios.post(configuracion.urlJsonServerBackendProducts, libro, {
                 headers: {
                     'Content-Type': 'application/json'
                 }

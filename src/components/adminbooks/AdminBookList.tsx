@@ -4,10 +4,11 @@ import { useFetchGet } from "../../hooks/useFetch";
 import ButtonProductModify from './ButtonProductModify';
 import { ILibroPaginado } from '../../interfaces/ILibroPaginado';
 import ButtonProductDelete from './ButtonProductDelete';
+import { configuracion } from '../../config/appConfiguration';
 
 function AdminBookList() {
     
-    const { data: bookList, loading, error } = useFetchGet<ILibroPaginado>('/products-back');
+    const { data: bookList, loading, error } = useFetchGet<ILibroPaginado>(configuracion.urlJsonServerBackendCatalog);
 
     if (loading) return <p>Cargando datos...</p>
     if (error) return <p>Error en la consulta de datos {error}</p>

@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { ICreateUser } from '../../interfaces/ICreateUser';
 import '../../styles/login.css'
+import { configuracion } from '../../config/appConfiguration';
 
 const CrearCuenta = () => {
     const navigate = useNavigate();
@@ -58,7 +59,7 @@ const CrearCuenta = () => {
 
         if (validaForm()) {
             try {
-                const response = await fetch('/create-user-back', {
+                const response = await fetch(configuracion.urlJsonServerBackendUsers, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

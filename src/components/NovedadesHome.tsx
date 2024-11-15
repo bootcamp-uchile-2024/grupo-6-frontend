@@ -3,6 +3,7 @@ import { ILibro } from '../interfaces/ILibro.ts';
 import '../styles/novedades_home.css';
 import CajaNovedades from './CajaNovedades.tsx';
 import { ILibroPaginado } from '../interfaces/ILibroPaginado.tsx';
+import { configuracion } from '../config/appConfiguration.ts';
 
 function NovedadesHome() {
 
@@ -15,19 +16,18 @@ function NovedadesHome() {
     useEffect(() => {
         const fetchLibros = async () => {
             try {
-                const response = await fetch(`/products-back?pagina=${paginaActual}&cantidad=${cantidad}`, {
-                    method: 'GET',
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
+                const url = configuracion.urlJsonServerBackendCatalog.toString().concat(`?pagina=${paginaActual}&cantidad=${cantidad}`);
+                console.log(url);
+                const response = await fetch(url, {
+                  method: 'GET',
                 });
-
+        
                 if (!response.ok) {
-                    console.error('No pudimos obtener los productos');
-                    setLibrosExist(false);
-                    return;
+                  console.log('No pudimos obtener los productos');
+                  setLibrosExist(false);
+                  return; // Salir si no hay respuesta OK
                 }
-
+        
                 const librosJson: ILibroPaginado = await response.json();
                 console.log(librosJson);
                 console.log("nroPagina: " + librosJson.nroPagina + ", totalPaginas: " + librosJson.totalPaginas + ", totalProductos: " + librosJson.totalProductos);

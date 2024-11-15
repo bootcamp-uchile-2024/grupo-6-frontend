@@ -7,6 +7,7 @@ import estrellaVacia from '../assets/images/estrella_vacia.png'
 import ButtonAddToCart from './ButtonAddToCart';
 import { ShoppingCartEntrada } from '../interfaces/ShoppingCartEntrada';
 import QuantityButtons from './shoppingcart/QuantityButtons';
+import { configuracion } from '../config/appConfiguration.ts';
 
 const ProductDetail: React.FC = () => {
     const { isbn } = useParams<{ isbn: string }>();
@@ -26,7 +27,7 @@ const ProductDetail: React.FC = () => {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const response = await fetch(`/productdetail-back/${isbn}`, { method: 'GET' });
+                const response = await fetch(`${configuracion.urlJsonServerBackendDetailsSearch}${isbn}`, { method: 'GET' });
 
                 if (!response.ok) {
                     throw new Error('No pudimos obtener los detalles del libro');

@@ -4,6 +4,7 @@ import Filtros from './Filtros.tsx'
 import { ILibro } from '../interfaces/ILibro.ts'
 import { useState, useEffect } from 'react'
 import { ILibroPaginado } from '../interfaces/ILibroPaginado.tsx'
+import { configuracion } from '../config/appConfiguration.ts'
 
 export function Categorias() {
 
@@ -17,7 +18,8 @@ export function Categorias() {
   useEffect(() => {
     async function getLibros() {
       try {
-        const response = await fetch(`/products-back?pagina=${paginaActual}&cantidad=${cantidad}`, {
+        const url = configuracion.urlJsonServerBackendCatalog.toString().concat(`?pagina=${paginaActual}&cantidad=${cantidad}`);
+        const response = await fetch(url, {
           method: 'GET',
         });
 

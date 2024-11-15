@@ -7,6 +7,7 @@ import iconoPayPal from '../../assets/images/Paypal_2014_logo.png'
 import iconoWebpay from '../../assets/images/logo-webpay-plus-3-2.png'
 import { Link, useNavigate } from "react-router-dom";
 import { clearCart } from "../../states/productSlice";
+import { configuracion } from "../../config/appConfiguration";
 
 function ResumenShoppingCart() {
 
@@ -33,7 +34,7 @@ function ResumenShoppingCart() {
         //event.preventDefault();
 
 
-        const response = await fetch('/shopping-cart-create', {
+        const response = await fetch(configuracion.urlJsonServerBackendShoppingCart, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',

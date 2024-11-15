@@ -7,6 +7,7 @@ import '../../styles/modify_product.css'
 import { IErrorsLibro } from '../../interfaces/IErrorsLibro';
 import { RootType } from '../../states/store';
 import { useSelector } from 'react-redux';
+import { configuracion } from '../../config/appConfiguration';
 
 const BookProductModify = () => {
     const navigate = useNavigate();
@@ -117,7 +118,7 @@ const BookProductModify = () => {
             console.log("El libro a modificar es: ", libro);
 
             // Se deberia cambiar por un metodo PUT
-            const response = await fetch(`/products-put/${libro.isbn}`, {
+            const response = await fetch(`${configuracion.urlJsonServerBackendProducts}/${libro.isbn}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'
