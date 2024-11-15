@@ -1,8 +1,8 @@
 interface IUser {
-    nombres: string,
-    apellidoMaterno: string,
-    apellidoPaterno: string,
-    correoElectronico: string,
+    nombre: string,
+    apellido_materno: string,
+    apellido_paterno: string,
+    correo_electronico: string,
     contrasena: string,
     id: number,
 }

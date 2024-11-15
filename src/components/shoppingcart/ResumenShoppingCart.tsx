@@ -139,7 +139,7 @@ function ResumenShoppingCart() {
             </div>
 
             <div>
-                <button type='button' onClick={handleSubmit}>Finalizar compra</button>
+                <button className="button-shoppingcart-resume" type='button' onClick={handleSubmit}>Finalizar compra</button>
             </div>
 
         </div>

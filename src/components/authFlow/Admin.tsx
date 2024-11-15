@@ -1,43 +1,63 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../../styles/user.css';
 import { useDispatch } from 'react-redux';
 import { logoutAction } from '../../states/authSlice';
 import { useEffect, useState } from 'react';
-import { ICreateUser } from '../../interfaces/ICreateUser';
+import iconoBorrar from '../../assets/images/icono_basurero.png'
+import '../../styles/modify_product.css'
+import iconoEditar from '../../assets/images/icono_editar.png'
 import { configuracion } from '../../config/appConfiguration';
+import { IUser } from '../../interfaces/IUser';
 
 const AdminPage = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const [users, setUsers] = useState<ICreateUser[]>([]);
+    const [users, setUsers] = useState<IUser[]>([]);
+    const [shouldFetch, setShouldFetch] = useState(true); // Controla cuándo obtener la lista de usuarios
 
     useEffect(() => {
         const fetchUsers = async () => {
-            const fetchedUsers: ICreateUser[] = [];
-            const range = 2; // Rango de IDs de usuario a consultar
 
-            for (let id = 1; id <= range; id++) {
                 try {
-                    const result = await fetch(`${configuracion.urlJsonServerBackendUsers}/${id}`);
+                    const result = await fetch(configuracion.urlJsonServerBackendUsers);
                     if (result.ok) {
-                        const user: ICreateUser = await result.json();
-                        fetchedUsers.push(user); // Añadimos cada usuario al array
+                        const usersResponse: IUser[] = await result.json();
+                        //fetchedUsers.push(user); // Añadimos cada usuario al array
+                        console.log(usersResponse);
+                        setUsers(usersResponse); // Guardamos todos los usuarios en el estado
                     }
                 } catch (error) {
-                    console.error(`Error fetching user with ID ${id}:`, error);
+                    console.error(`Error fetching users`, error);
                 }
-            }
-            setUsers(fetchedUsers); // Guardamos todos los usuarios en el estado
+
+            setShouldFetch(false); // Desactiva el fetch hasta la próxima actualización
         };
 
         fetchUsers();
-    }, []);
+    }, [shouldFetch]);
 
     const handleLogout = () => {
         dispatch(logoutAction());
         navigate('/');
     };
+
+    const handleDelete = async (idUsuario: number) => {
+        const url = configuracion.urlJsonServerBackendUsers.toString().concat(`/${idUsuario}`);
+        console.log(url);
+        const response = await fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'Content-type': 'application/json',
+            }
+        });
+    
+        if (response.ok) {
+            setShouldFetch(true); // Activa el fetch para actualizar la lista de usuarios
+        } else {
+            console.error('Error eliminando el usuario');
+        }
+    }
 
     return (
         <div className='userPage-container'>
@@ -60,23 +80,38 @@ const AdminPage = () => {
                 </div>
             </div>
 
-            <div className="contenedor">
-                <table>
+            <h2>Lista de usuarios</h2>
+            <div className="admin-user-list-container">
+                <table className="admin-user-table">
                     <thead>
-                        <tr>
-                            <th>id</th>
-                            <th>Nombre</th>
-                            <th>Email</th>
-                            <th>Control</th>
+                        <tr className="admin-userlist-item-detail-tr">
+                            <th className="admin-userlist-item-detail-th">id</th>
+                            <th className="admin-userlist-item-detail-th">Nombre</th>
+                            <th className="admin-userlist-item-detail-th">Email</th>
+                            <th className="admin-userlist-item-detail-th">Modificar</th>
+                            <th className="admin-userlist-item-detail-th">Eliminar</th>
                         </tr>
                     </thead>
                     <tbody>
                         {users.map((user) => (
-                            <tr key={user.idUsuario}>
-                                <td>{user.idUsuario}</td>
-                                <td>{`${user.nombres} ${user.apellidoPaterno} ${user.apellidoMaterno}`}</td>
-                                <td>{user.correoElectronico}</td>
-                                <td><button id="boton-eliminar">Eliminar</button></td>
+                            <tr className="admin-userlist-item-detail-tr"  key={user.id}>
+                                <td className="admin-userlist-item-detail-td" >{user.id}</td>
+                                <td className="admin-userlist-item-detail-td" >{`${user.nombre}  ${user.apellido_paterno}  ${user.apellido_materno}`}</td>
+                                <td className="admin-userlist-item-detail-td" >{user.correo_electronico}</td>
+
+
+                                <td className="admin-userlist-item-detail-td" >
+                                    <Link to={`/admin/edit-user/${user.id}`}>
+                                        <button className="shoppingcart-button-delete">
+                                            <img src={iconoEditar} alt="Editar libro" className="icono-editar" />
+                                        </button>
+                                    </Link>
+                                </td>
+
+
+                                <td className="admin-userlist-item-detail-td" ><button className="shoppingcart-button-delete" onClick={() => handleDelete(user.id)}>
+                                    <img src={iconoBorrar} alt="Borrar libro" className="icono-basurero" />
+                                </button></td>
                             </tr>
                         ))}
                     </tbody>

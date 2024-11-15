@@ -24,7 +24,7 @@
 img[src*="icono_usuario"] {
     margin: 0px 15px 40px 0px;
     width: 35px;
-    height: auto;
+    height: 40px;
     align-self: flex-end;
     cursor: pointer;
 }
@@ -32,7 +32,7 @@ img[src*="icono_usuario"] {
 img[src*="icono_carrito"] {
     margin: 0px 80px 40px 15px;
     width: 45px;
-    height: auto;
+    height: 40px;
     align-self: flex-end;
     cursor: pointer;
 }

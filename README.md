@@ -80,15 +80,19 @@ Si prefieres usar Docker para ejecutar el proyecto en un contenedor, sigue estos
 Asegúrate de tener Docker Desktop instalado en tu máquina. Puedes seguir los pasos de instalación en el siguiente [link](https://docs.docker.com/desktop/setup/install/windows-install/).
 
 ### Construcción y Ejecución con Docker
-
 1. Construir la imagen de Docker:
-Para construir la imagen del frontend, ejecuta el siguiente comando en la raíz del proyecto donde se encuentra el archivo Dockerfile:
+Para construir la imagen del frontend, se ejecuto el siguiente comando en la raíz del proyecto donde se encuentra el archivo Dockerfile:
 
 ```bash
-docker build -t grupo-6-frontend .
+docker build -t grupo-6-frontend:entrega-9 .
 ```
 
-2. Levantar el contenedor:
+2. Subir imagen al dockerHub:
+Para subir la imagen de frontend a un repositorio de DockerHub, se ejecuto el siguiente comando:
+```bash
+docker push dgajardoi/grupo-6-frontend:entrega-9
+```
+3. Levantar el contenedor:
 Para levantar el contenedor con Docker Compose, ejecuta el siguiente comando:
 
 ```bash

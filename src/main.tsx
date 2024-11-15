@@ -21,6 +21,7 @@ import { EmptyCartPage } from './pages/EmptyCartPage.tsx'
 import { AdminBookListPage } from './pages/AdminBookListPage.tsx'
 import { BookProductModifyPage } from './pages/BookProductModifyPage.tsx'
 import { PrivateRoute } from './protected/PrivateRoute.tsx'
+import AdminUserModifyPage from './pages/AdminUserModifyPage.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -37,6 +38,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path='/create/product' element={<PrivateRoute roles={['admin']}><CrearProductoPage title='Crear Producto' /></PrivateRoute>} />
           <Route path='/admin/product' element={<PrivateRoute roles={['admin']}><AdminBookListPage title='Lista admin Producto' /></PrivateRoute>} />
           <Route path='/admin/update/product' element={<PrivateRoute roles={['admin']}><BookProductModifyPage title='Actualizar Producto'  /></PrivateRoute>} />
+          <Route path='/admin/edit-user/:idUsuario' element={<PrivateRoute roles={['admin']}><AdminUserModifyPage title='Editor de usuarios' /></PrivateRoute>} />
           <Route path='/admin' element={<PrivateRoute roles={['admin']}><AdminPage title='Panel de administración' /></PrivateRoute>} />
           <Route path='/user' element={<PrivateRoute roles={['user']}><UserPage title='Cuenta' /></PrivateRoute>} />
           <Route path="/carrito" element={<ShoppingCartPage title='Carrito Compras' />} />

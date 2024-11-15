@@ -11,6 +11,7 @@ export function useFetchGet<T>(url: string): { data: T | null, loading: boolean,
         const fetchData = async () => {
 
             try {
+                
                 const response = await fetch(url);
                 if (response.ok) {
                     const json = await response.json();
