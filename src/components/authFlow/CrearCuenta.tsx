@@ -1,8 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { ICreateUser } from '../../interfaces/ICreateUser';
-import '../../styles/login.css'
 import { configuracion } from '../../config/appConfiguration';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import '../../styles/login.css'
 
 const CrearCuenta = () => {
     const navigate = useNavigate();
@@ -90,7 +95,7 @@ const CrearCuenta = () => {
         }
     };
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target as HTMLInputElement;
 
         setErrorNombres(false);
@@ -108,39 +113,80 @@ const CrearCuenta = () => {
     };
 
     return (
-        <div className="caja-crear-cuenta">
-            <p>¡Se parte de nuestra familia de lectores!</p>
-            <h3>Crea una cuenta</h3>
-            <form onSubmit={handleSubmit} className="form-crear-cuenta">
-                <div className='form-crear-cuenta-row'>
-                    <div className='crear-cuenta-column-1'>
-                        <label htmlFor="nombres">Nombres</label>
-                        <input type="text" onChange={handleChange} id='nombres' name='nombres' placeholder="Ej: Roberto Andrés" />
-                        {errorNombres && <p className="error">Ingrese nombres.</p>}
+        <Container className="registration-container">
 
-                        <label htmlFor="apellidoPaterno">Apellido Paterno</label>
-                        <input type="text" onChange={handleChange} id='apellidoPaterno' name='apellidoPaterno' placeholder="Ej: Gonzáles" />
-                        {errorApellidoPaterno && <p className="error">Ingrese apellido paterno.</p>}
+            <h3>Registro de Usuario</h3>
+            <Row className='d-flex justify-content-center align-items-center'>
+                <Col lg={10} className='registration-welcome text-center'>
+                    <p>Estás a un paso de ser parte de la gran comunidad
+                        de <b>Páginas Selectas</b>, el mejor lugar para encontrar
+                        tu próxima lectura. Completa tus datos, verifica tu cuenta
+                        y ya estarás registrado.</p>
+                </Col>
+            </Row>
 
-                        <label htmlFor="apellidoMaterno">Apellido Materno</label>
-                        <input type="text" onChange={handleChange} id='apellidoMaterno' name='apellidoMaterno' placeholder="Ej: Ramírez" />
-                        {errorApellidoMaterno && <p className="error">Ingrese apellido materno.</p>}
+            <Row className='d-flex justify-content-center align-content-center'>
+                <Col lg={10} className='registration-form'>
+                    <Form onSubmit={handleSubmit}>
+                        <Form.Group as={Row} className="mb-3">
+                            <Form.Label column sm={2} htmlFor='nombres'>
+                                Nombres
+                            </Form.Label>
+                            <Col lg={{span:8, offset:2}}>
+                                <Form.Control type="text" onChange={handleChange} id='nombres' name='nombres' />
+                                {errorNombres && <p className="error">Ingrese nombres.</p>}
+                            </Col>
+                        </Form.Group>
 
-                        <label htmlFor="correoElectronico">Correo electrónico</label>
-                        <input type="email" onChange={handleChange} id='correoElectronico' name='correoElectronico' placeholder="Ej: tuemail@gmail.com" />
-                        {errorCorreo && <p className="error">Ingrese correo electrónico válido.</p>}
+                        <Form.Group as={Row} className="mb-3">
+                            <Form.Label column sm={2} htmlFor='apellidoPaterno'>
+                                Apellido Paterno
+                            </Form.Label>
+                            <Col sm={10}>
+                                <Form.Control type="text" onChange={handleChange} id='apellidoPaterno' name='apellidoPaterno' />
+                                {errorApellidoPaterno && <p className="error">Ingrese apellido paterno.</p>}
+                            </Col>
+                        </Form.Group>
 
-                        <label htmlFor="contrasena">Contraseña</label>
-                        <input type="password" onChange={handleChange} id='contrasena' name='contrasena' placeholder="Crea una contraseña segura" />
-                        {errorContrasena && <p className="error">Cree una contraseña.</p>}
+                        <Form.Group as={Row} className="mb-3">
+                            <Form.Label column sm={2} htmlFor="apellidoMaterno">
+                                Apellido Materno
+                            </Form.Label>
+                            <Col sm={10}>
+                                <Form.Control type="text" onChange={handleChange} id='apellidoMaterno' name='apellidoMaterno' />
+                                {errorApellidoMaterno && <p className="error">Ingrese apellido materno.</p>}
+                            </Col>
+                        </Form.Group>
 
-                    </div>
-                </div>
+                        <Form.Group as={Row} className="mb-3">
+                            <Form.Label column sm={2} htmlFor="correoElectronico">
+                                Correo Electrónico
+                            </Form.Label>
+                            <Col sm={10}>
+                                <Form.Control type="email" onChange={handleChange} id='correoElectronico' name='correoElectronico'/>
+                                {errorCorreo && <p className="error">Ingrese correo electrónico válido.</p>}
+                            </Col>
+                        </Form.Group>
 
-                <button type="submit" className='boton-crear-cuenta'>Crear Cuenta</button>
+                        <Form.Group as={Row} className="mb-3">
+                            <Form.Label column sm={2} htmlFor="contrasena">
+                                Contraseña
+                            </Form.Label>
+                            <Col sm={10}>
+                                <Form.Control type="password" onChange={handleChange} id='contrasena' name='contrasena' />
+                                {errorContrasena && <p className="error">Cree una contraseña.</p>}
+                            </Col>
+                        </Form.Group>
 
-            </form>
-        </div>
+                        <Form.Group as={Row} className="mb-3">
+                            <Col sm={{ span: 10, offset: 2 }}>
+                                <Button variant='primary' size='lg' type="submit">Registrar</Button>
+                            </Col>
+                        </Form.Group>
+                    </Form>
+                </Col>
+            </Row>
+        </Container>
     );
 };
 

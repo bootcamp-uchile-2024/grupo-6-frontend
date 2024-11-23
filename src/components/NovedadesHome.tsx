@@ -19,15 +19,15 @@ function NovedadesHome() {
                 const url = configuracion.urlJsonServerBackendCatalog.toString().concat(`?pagina=${paginaActual}&cantidad=${cantidad}`);
                 console.log(url);
                 const response = await fetch(url, {
-                  method: 'GET',
+                    method: 'GET',
                 });
-        
+
                 if (!response.ok) {
-                  console.log('No pudimos obtener los productos');
-                  setLibrosExist(false);
-                  return; // Salir si no hay respuesta OK
+                    console.log('No pudimos obtener los productos');
+                    setLibrosExist(false);
+                    return; // Salir si no hay respuesta OK
                 }
-        
+
                 const librosJson: ILibroPaginado = await response.json();
                 console.log(librosJson);
                 console.log("nroPagina: " + librosJson.nroPagina + ", totalPaginas: " + librosJson.totalPaginas + ", totalProductos: " + librosJson.totalProductos);

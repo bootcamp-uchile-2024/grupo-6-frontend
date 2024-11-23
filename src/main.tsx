@@ -22,6 +22,7 @@ import { AdminBookListPage } from './pages/AdminBookListPage.tsx'
 import { BookProductModifyPage } from './pages/BookProductModifyPage.tsx'
 import { PrivateRoute } from './protected/PrivateRoute.tsx'
 import AdminUserModifyPage from './pages/AdminUserModifyPage.tsx'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
