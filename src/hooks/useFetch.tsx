@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export function useFetchGet<T>(url: string): { data: T | null, loading: boolean, error: string } {
+export function useFetchGet<T>(url: string, paginaActual: number, cantidad:number): { data: T | null, loading: boolean, error: string } {
 
     const [data, setData] = useState<T | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
@@ -11,8 +11,8 @@ export function useFetchGet<T>(url: string): { data: T | null, loading: boolean,
         const fetchData = async () => {
 
             try {
-                
-                const response = await fetch(url);
+                const urlRequest = url.toString().concat(`?pagina=${paginaActual}&cantidad=${cantidad}`);
+                const response = await fetch(urlRequest);
                 if (response.ok) {
                     const json = await response.json();
                     setData(json);
@@ -31,7 +31,7 @@ export function useFetchGet<T>(url: string): { data: T | null, loading: boolean,
 
         fetchData();
 
-    }, [url]);
+    }, [url,paginaActual,cantidad]);
 
     return { data, loading, error };
 }
