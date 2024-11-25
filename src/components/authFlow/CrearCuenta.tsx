@@ -115,72 +115,62 @@ const CrearCuenta = () => {
     return (
         <Container className="registration-container">
 
-            <h3>Registro de Usuario</h3>
-            <Row className='d-flex justify-content-center align-items-center'>
-                <Col lg={10} className='registration-welcome text-center'>
-                    <p>Estás a un paso de ser parte de la gran comunidad
-                        de <b>Páginas Selectas</b>, el mejor lugar para encontrar
-                        tu próxima lectura. Completa tus datos, verifica tu cuenta
-                        y ya estarás registrado.</p>
-                </Col>
-            </Row>
+            <h3>¡Se parte de nuestra comunidad!</h3>
 
             <Row className='d-flex justify-content-center align-content-center'>
-                <Col lg={10} className='registration-form'>
+                <Col lg={5} className='registration-form'>
                     <Form onSubmit={handleSubmit}>
-                        <Form.Group as={Row} className="mb-3">
-                            <Form.Label column sm={2} htmlFor='nombres'>
+                        <Form.Group className="mb-3">
+                            <Form.Label htmlFor='nombres'>
                                 Nombres
                             </Form.Label>
-                            <Col lg={{span:8, offset:2}}>
-                                <Form.Control type="text" onChange={handleChange} id='nombres' name='nombres' />
+                                <Form.Control type="text" onChange={handleChange} id='nombres' name='nombres' placeholder='Julian Idilio'/>
                                 {errorNombres && <p className="error">Ingrese nombres.</p>}
-                            </Col>
                         </Form.Group>
 
-                        <Form.Group as={Row} className="mb-3">
-                            <Form.Label column sm={2} htmlFor='apellidoPaterno'>
-                                Apellido Paterno
+                        <Form.Group className="mb-3">
+                            <Form.Label htmlFor='apellidoPaterno'>
+                                Apellido paterno
                             </Form.Label>
-                            <Col sm={10}>
-                                <Form.Control type="text" onChange={handleChange} id='apellidoPaterno' name='apellidoPaterno' />
+                            <Col>
+                                <Form.Control type="text" onChange={handleChange} id='apellidoPaterno' name='apellidoPaterno' placeholder='Pérez'/>
                                 {errorApellidoPaterno && <p className="error">Ingrese apellido paterno.</p>}
                             </Col>
                         </Form.Group>
 
-                        <Form.Group as={Row} className="mb-3">
-                            <Form.Label column sm={2} htmlFor="apellidoMaterno">
-                                Apellido Materno
+                        <Form.Group className="mb-3">
+                            <Form.Label htmlFor="apellidoMaterno">
+                                Apellido materno
                             </Form.Label>
-                            <Col sm={10}>
-                                <Form.Control type="text" onChange={handleChange} id='apellidoMaterno' name='apellidoMaterno' />
+                            <Col>
+                                <Form.Control type="text" onChange={handleChange} id='apellidoMaterno' name='apellidoMaterno' placeholder='Martínez'/>
                                 {errorApellidoMaterno && <p className="error">Ingrese apellido materno.</p>}
                             </Col>
                         </Form.Group>
 
-                        <Form.Group as={Row} className="mb-3">
-                            <Form.Label column sm={2} htmlFor="correoElectronico">
-                                Correo Electrónico
+                        <Form.Group className="mb-3">
+                            <Form.Label htmlFor="correoElectronico">
+                                Correo electrónico
                             </Form.Label>
-                            <Col sm={10}>
-                                <Form.Control type="email" onChange={handleChange} id='correoElectronico' name='correoElectronico'/>
+                            <Col>
+                                <Form.Control type="email" onChange={handleChange} id='correoElectronico' name='correoElectronico' placeholder='eljuancho@undominio.cl'/>
                                 {errorCorreo && <p className="error">Ingrese correo electrónico válido.</p>}
                             </Col>
                         </Form.Group>
 
-                        <Form.Group as={Row} className="mb-3">
-                            <Form.Label column sm={2} htmlFor="contrasena">
+                        <Form.Group className="mb-3">
+                            <Form.Label htmlFor="contrasena">
                                 Contraseña
                             </Form.Label>
-                            <Col sm={10}>
-                                <Form.Control type="password" onChange={handleChange} id='contrasena' name='contrasena' />
+                            <Col>
+                                <Form.Control type="password" onChange={handleChange} id='contrasena' name='contrasena' placeholder='Crea una contraseña segura'/>
                                 {errorContrasena && <p className="error">Cree una contraseña.</p>}
                             </Col>
                         </Form.Group>
-
-                        <Form.Group as={Row} className="mb-3">
-                            <Col sm={{ span: 10, offset: 2 }}>
-                                <Button variant='primary' size='lg' type="submit">Registrar</Button>
+                        
+                        <Form.Group>
+                            <Col className="d-flex justify-content-center">
+                                <Button variant='primary' size='lg' type="submit">Crear cuenta</Button>
                             </Col>
                         </Form.Group>
                     </Form>

@@ -1,10 +1,12 @@
 import '../styles/categorias.css'
 import { CajaCategoria } from './CajaCategoria.tsx'
-import Filtros from './Filtros.tsx'
+//import Filtros from './Filtros.tsx'
 import { ILibro } from '../interfaces/ILibro.ts'
 import { useState, useEffect } from 'react'
 import { ILibroPaginado } from '../interfaces/ILibroPaginado.tsx'
 import { configuracion } from '../config/appConfiguration.ts'
+import { Container } from 'react-bootstrap'
+import libreria from '../assets/images/libreria.png'
 
 export function Categorias() {
 
@@ -12,8 +14,7 @@ export function Categorias() {
   const [librosExist, setLibrosExist] = useState<boolean>(false);
   const [paginaActual, setPaginaActual] = useState<number>(1);
   const [totalPaginas, setTotalPaginas] = useState<number>(1);
-  const cantidad = 6; // Número de productos por página, se puede cambiar
-
+  const [cantidad, setCantidad] = useState<number>(6); // Definir el valor inicial, por ejemplo 6
 
   useEffect(() => {
     async function getLibros() {
@@ -30,8 +31,8 @@ export function Categorias() {
         }
 
         const librosJson: ILibroPaginado = await response.json();
-        console.log(librosJson);
-        console.log("nroPagina: " + librosJson.nroPagina + ", totalPaginas: " + librosJson.totalPaginas + ", totalProductos: " + librosJson.totalProductos);
+        /* console.log(librosJson);
+        console.log("nroPagina: " + librosJson.nroPagina + ", totalPaginas: " + librosJson.totalPaginas + ", totalProductos: " + librosJson.totalProductos); */
         setLibros(librosJson?.productos);
         setLibrosExist(true);
         setTotalPaginas(librosJson.totalPaginas);
@@ -42,7 +43,7 @@ export function Categorias() {
     }
 
     getLibros();
-  }, [paginaActual]);
+  }, [paginaActual, cantidad]);
 
   /* Paginación */
   const handlePaginaAnterior = () => {
@@ -53,12 +54,47 @@ export function Categorias() {
     if (paginaActual < totalPaginas) setPaginaActual(paginaActual + 1);
   };
 
+  const handleFirstPage = () => {
+    setPaginaActual(1);
+  }
+
+  const handleLastPage = () => {
+    setPaginaActual(totalPaginas);
+  }
+
+  const handleSeleccionPagina = (pagina: number) => {
+    setPaginaActual(pagina);
+  };
+
+  const generarRangoPaginas = (): number[] => {
+    const rango: number[] = [];
+    const maxVisible = 4; // Número máximo de páginas visibles en el rango
+    let inicio = Math.max(1, paginaActual - 1); // Comienza con 1 o una página antes de la actual
+    let fin = Math.min(totalPaginas, inicio + maxVisible - 1); // Calcula el final del rango
+
+    // Ajustar si el rango inicial no llena el maxVisible
+    if (fin - inicio + 1 < maxVisible) {
+      inicio = Math.max(1, fin - maxVisible + 1);
+    }
+
+    for (let i = inicio; i <= fin; i++) {
+      rango.push(i);
+    }
+    return rango;
+  };
+
   return (
-    <main className='contenido-central'>
-      <Filtros />
-      <hr />
+    <Container>
+      {/* <Filtros /> */}
       <section id="seccion-categorias">
-        <h3 className="titulo-categorias">Categorías</h3>
+        <div className='catalog-title-container'>
+          <h3 className="titulo-categorias">Nuestros productos</h3>
+
+          <button>
+            <img src={libreria} alt="" />
+            <a href="#">Ver todas las categorías</a>
+          </button>
+        </div>
 
         <div id="productos-categorias">
           {librosExist ? libros.map(libro => (
@@ -71,12 +107,61 @@ export function Categorias() {
 
         {/* Controles de paginación */}
         <div className="categorias-paginacion">
-          <button className='boton-paginacion' onClick={handlePaginaAnterior} disabled={paginaActual === 1}>&#8592;</button>
-          <span>Página {paginaActual} de {totalPaginas}</span>
-          <button className='boton-paginacion' onClick={handlePaginaSiguiente} disabled={paginaActual === totalPaginas}>&#8594;</button>
+
+          <button className='boton-paginacion' onClick={handleFirstPage} disabled={paginaActual === 1}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-double-left" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0" />
+              <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0" />
+            </svg>
+          </button>
+
+          <button className='boton-paginacion' onClick={handlePaginaAnterior} disabled={paginaActual === 1}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-left" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0" />
+            </svg>
+          </button>
+
+          {/* Botones dinámicos para las páginas */}
+          {generarRangoPaginas().map(pagina => (
+            <button
+              key={pagina}
+              className={`boton-paginacion ${pagina === paginaActual ? 'activo' : ''}`}
+              onClick={() => handleSeleccionPagina(pagina)}
+            >
+              {pagina}
+            </button>
+          ))}
+
+          <button className='boton-paginacion' onClick={handlePaginaSiguiente} disabled={paginaActual === totalPaginas}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
+            </svg>
+          </button>
+
+          <button className='boton-paginacion' onClick={handleLastPage} disabled={paginaActual === totalPaginas}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-double-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708" />
+              <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708" />
+            </svg>
+          </button>
+        </div>
+
+        <div>
+          <label htmlFor="cantidad">y estás visualizando </label>
+          <select
+            id="cantidad"
+            value={cantidad}
+            onChange={(e) => setCantidad(Number(e.target.value))}>
+            <option value={4}>4</option>
+            <option value={8}>8</option>
+            <option value={16}>16</option>
+            <option value={24}>24</option>
+            <option value={32}>32</option>
+          </select>
+          <p>productos</p>
         </div>
 
       </section>
-    </main>
+    </Container>
   );
 };

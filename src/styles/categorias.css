@@ -1,18 +1,32 @@
-#seccion-categorias {
-    padding-left: 100px;
-    padding-right: 100px;
+.catalog-title-container {
     display: flex;
-    justify-content: center;
-    flex-flow: row wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.catalog-title-container button {
+    background-color: #807E59;
+    border: none;
+    border-radius: 12px;
+    padding: 0px;
+    height: 48px;
+    padding: 12px;
+}
+
+.catalog-title-container a {
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 0px 0px 0px 12px;
 }
 
 .titulo-categorias {
-    display: block;
-    font-size: 35px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    width: 100%;
-    text-align: center;
+    color: #545454;
+    font-size: 49px;
+    font-weight: 700;
 }
 
 #productos-categorias {
@@ -23,48 +37,34 @@
     align-content: center;
 }
 
-.caja-categorias {
+.container-catalog {
     display: flex;
-    width: 240px;
-    height: 400px;
-    margin: 15px;
-    background-color: rgba(253, 251, 251, 0.973);
-    border: 1px solid rgba(165, 164, 164, 0.678);
-    border-radius: 0px;
+    width: 228px;
+    height: 571px;
+    background-color: #F2EFC4;
+    border-radius: 24px;
+    padding: 24px;
     flex-direction: column;
     align-items: center;
-    border-radius: 15px;
+    border-radius: 24px;
     overflow: hidden;
 }
 
 .foto-categoria {
-    width: 240px;
-    height: 200px;
+    width: 180px;
+    height: 300px;
     margin: 0px;
+    border-radius: 12px;
     display: flex;
-    /* centrar icono de imagen */
     justify-content: center;
-    /* centrar icono de imagen */
     align-content: center;
-    /* centrar icono de imagen */
     flex-flow: row wrap;
-    /* centrar icono de imagen */
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
 }
 
 .foto-categoria img {
-    width: 240px;
-    height: 200px;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    transition: filter 0.3s;
-    /* Transición suave para el filtro de la imagen */
-}
-
-.foto-categoria:hover img {
-    filter: brightness(110%);
-    /* Aclara la imagen al pasar el mouse */
+    width: 180px;
+    height: 300px;
+    border-radius: 12px;    
 }
 
 .texto-categoria {
@@ -78,24 +78,24 @@
 
 .texto-categoria .texto-nombre-libro {
     /* nombre libro */
-    font-size: 18px;
-    margin-bottom: 10px;
-    margin-left: 15px;
-    margin-right: 15px;
+    font-size: 31px;
     font-weight: bold;
     overflow: hidden;
     white-space: nowrap;
-    color: black;
+    color: white;
     text-overflow: ellipsis;
+    margin-bottom: 8px;
+    margin-top: 8px;
+}
+
+.texto-categoria a {
+    text-decoration: none;
 }
 
 .texto-categoria .texto-autor {
     /* autor */
-    font-size: 16px;
-    margin-top: 0px;
-    margin-left: 15px;
-    margin-bottom: 10px;
-    color: rgb(79, 79, 79);
+    font-size: 33px;   
+    color: white;
 }
 
 .caja-categoria-precio .texto-precio {
@@ -197,6 +197,13 @@
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
     /* Transición para color de fondo y color del texto */
+}
+
+.boton-paginacion.activo {
+
+    background-color: black;
+    border: 1px solid black;
+    color: white;
 }
 
 .boton-paginacion:hover {
