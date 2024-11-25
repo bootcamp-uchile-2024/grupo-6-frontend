@@ -3,6 +3,7 @@ import { addProductModify } from '../../states/productModify';
 import iconoEditar from '../../assets/images/icono_editar.png'
 import { ILibro } from "../../interfaces/ILibro";
 import {  useNavigate } from "react-router-dom";
+import Button from "react-bootstrap/esm/Button";
 
 const ButtonProductModify = ({ libro }: { libro: ILibro | null }) => {
     const dispatch = useDispatch();
@@ -21,9 +22,9 @@ const ButtonProductModify = ({ libro }: { libro: ILibro | null }) => {
 
 
     return (
-        <button className="shoppingcart-button-delete" onClick={handleAddProductModify}>
-            <img src={iconoEditar} alt="Editar libro" className="icono-editar" />
-        </button>
+        <Button style={{backgroundColor: '#C99E92'}} onClick={handleAddProductModify}>
+            Editar
+        </Button>
     )
 }
 
