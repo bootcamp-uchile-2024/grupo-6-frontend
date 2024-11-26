@@ -37,7 +37,6 @@ function ShoppingCart() {
     return (
 
         <>
-
             <Container fluid>
                 <div className='shoppingcart'>
                     <Row md="12" style={{ height: '4rem', width: '75.25rem', margin: '1.5rem' }}>
@@ -78,8 +77,6 @@ function ShoppingCart() {
                                 </Col>
                             </Row>
                             {shoppingCartProduct.map((item) => (
-
-
                                 <Row key={item.isbn} md="12" style={{ height: '15rem', width: '75.25rem', margin: '1.5rem', color: '#545454' }}>
                                     <Col md="2">
                                         <Image src='https://placehold.co/800@3x.png' fluid></Image>
@@ -113,7 +110,6 @@ function ShoppingCart() {
                         <div>No existen productos en el carrito de compras.</div>
                     )}
                     <div className="shoppingcart-item-top-footer">
-
                         <Row md="12" style={{ height: '4rem', width: '75.25rem', margin: '1.5rem' }}>
                             <Col md="5">
                                 <h2 className='fw-bold'>Total a Pagar: ${calculateTotal(shoppingCartProduct)}</h2>
@@ -128,8 +124,6 @@ function ShoppingCart() {
                                 </Link>
                             </Col>
                         </Row>
-
-
                     </div>
                 </Container>
             </div>
