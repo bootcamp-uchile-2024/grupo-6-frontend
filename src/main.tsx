@@ -30,7 +30,7 @@ createRoot(document.getElementById('root')!).render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage title={'Páginas Selectas'} />} />
-          <Route path="/categorias" element={<CategoriasPage title='Categorías' />} />
+          <Route path="/categorias" element={<CategoriasPage title='Catálogo' />} />
           <Route path="/about" element={<AboutPage title={'Nosotros'} body={'This is the about page'} />} />
           <Route path='/novedades' element={<NovedadesPage title={'Novedades'} />} />
           <Route path='/product-detail/:isbn' element={<ProductDetailPage />} />
