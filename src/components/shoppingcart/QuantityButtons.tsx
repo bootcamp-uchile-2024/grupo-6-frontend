@@ -23,11 +23,6 @@ const QuantityButtons = ({ isbn }: { isbn: string }) => {
         }
     };
 
-    // Muestra los botones solo si hay mínimo 1 producto
-    /* if (!item || item.cantidad === 0) {
-        return null;
-    } */
-
     return (
         <div className="quantity-buttons">
             <button onClick={handleDecrement}>

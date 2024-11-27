@@ -101,14 +101,22 @@ export function Categorias() {
         </Col>
         <Col lg={10}>
 
-            <div id="productos-categorias">
-              {librosExist ? libros.map(libro => (
-                <CajaCategoria key={libro.isbn} nombre={libro.nombre} autor={libro.autor} precio={libro.precio} isbn={libro.isbn}  ></CajaCategoria>
-              ))
-                :
-                <h3>Ups, no encontramos libros disponibles!!</h3>
-              }
-            </div>
+          <div id="productos-categorias">
+            {librosExist ? libros.map(libro => (
+              <CajaCategoria
+                key={libro.isbn}
+                nombre={libro.nombre}
+                autor={libro.autor}
+                precio={libro.precio}
+                isbn={libro.isbn}  
+                stock={libro.stockLibro}>
+
+              </CajaCategoria>
+            ))
+              :
+              <h3>Ups, no encontramos libros disponibles!!</h3>
+            }
+          </div>
 
           {/* Paginación */}
           <div className="catalog-pagination">

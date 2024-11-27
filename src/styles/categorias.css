@@ -66,12 +66,12 @@
 
 #productos-categorias {
     display: flex;
-justify-content: space-between;
-align-items: center;
-align-content: center;
-row-gap: 24px;
-align-self: stretch;
-flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    row-gap: 24px;
+    align-self: stretch;
+    flex-wrap: wrap;
 
 }
 
@@ -244,4 +244,15 @@ flex-wrap: wrap;
     font-size: 20px;
     color: #545454;
     margin-bottom: 0px;
+}
+
+/* SIN STOCK */
+.out-of-stock {
+    opacity: 0.5;
+    pointer-events: none;
+    background-color: #f5f5f5;
+}
+
+.out-of-stock .catalog-buttons-container {
+    display: none;
 }
