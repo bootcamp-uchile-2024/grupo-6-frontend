@@ -14,7 +14,7 @@ export function Categorias() {
   const [librosExist, setLibrosExist] = useState<boolean>(false);
   const [paginaActual, setPaginaActual] = useState<number>(1);
   const [totalPaginas, setTotalPaginas] = useState<number>(1);
-  const [cantidad, setCantidad] = useState<number>(6); // Definir el valor inicial, por ejemplo 6
+  const [cantidad, setCantidad] = useState<number>(8);
 
   useEffect(() => {
     async function getLibros() {
@@ -165,7 +165,6 @@ export function Categorias() {
               id="cantidad"
               value={cantidad}
               onChange={(e) => setCantidad(Number(e.target.value))}>
-              <option value={4}>4</option>
               <option value={8}>8</option>
               <option value={16}>16</option>
               <option value={24}>24</option>

@@ -90,12 +90,12 @@
     transition: background-color 0.3s, color 0.3s;
 }
 
-.container-catalog:hover {
+.container-catalog:hover:not(.out-of-stock) {
     background-color: #E1D5CA;
     border: 1px solid #E1D5CA;
 }
 
-.container-catalog:active {
+.container-catalog:active:not(.out-of-stock) {
     outline: 2px solid #975C4C;
     background-color: #E1D5CA;
 }
@@ -209,6 +209,7 @@
 
 .boton-paginacion {
     margin-right: 12px;
+    background-color: white;
     margin-left: 12px;
     padding: 16px;
     border-radius: 16px;
@@ -251,6 +252,11 @@
     opacity: 0.5;
     pointer-events: none;
     background-color: #f5f5f5;
+}
+
+/* Asegura que los enlaces dentro de .out-of-stock se mantengan clickeables */
+.out-of-stock a {
+    pointer-events: auto;
 }
 
 .out-of-stock .catalog-buttons-container {
