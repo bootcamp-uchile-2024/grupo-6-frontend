@@ -26,7 +26,7 @@ export function CajaCategoria(props: CajaCategoriaProps) {
     <div className="container-catalog">
       <div className="foto-categoria">
         <Link to={`/product-detail/${props.isbn}`}> {/* Cambiar con back */}
-          <img src={"https://placehold.co/180x300/c7c7c7/white?font=lato"}/* {props.libro.caratula} */ alt="imagen"/* {"imagen del libro " + props.libro.nombre} */ />
+          <img src={"https://placehold.co/216x300/c7c7c7/white?font=lato"}/* {props.libro.caratula} */ alt="imagen"/* {"imagen del libro " + props.libro.nombre} */ />
         </Link>
       </div>
 
@@ -36,14 +36,11 @@ export function CajaCategoria(props: CajaCategoriaProps) {
         </Link>
         <p className='texto-autor'>{props.autor.join(', ')}</p>
 
-        <div className='caja-categoria-comprar'>
-          <div className='caja-categoria-precio'>
-            <p className='texto-precio'>${props.precio}</p>
-          </div>
-          <div className="caja-categoria-botones-carrito">
-            <ButtonAddToCart libro={product} />
-            <QuantityButtons isbn={props.isbn} />
-          </div>
+        <p className='texto-precio'>${props.precio}</p>
+
+        <div className='catalog-buttons-container'>
+          <QuantityButtons isbn={props.isbn} />
+          <ButtonAddToCart libro={product} />
         </div>
       </div>
     </div>
