@@ -1,0 +1,87 @@
+.userPage-container {
+    /* max-width: 1200px; */
+    width: 85%;
+    height: 450px;
+    margin: auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    color: #000000;
+    text-align: center;
+}
+
+.account-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: #777777;
+}
+
+.account-header h1 {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.logout-container {
+    text-align: right;
+    margin-right: 20px;
+}
+
+.logout-button {
+    background: none;
+    border: solid black 1px;
+    color: black;
+    border-radius: 15px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+}
+
+.logout-button:hover {
+    background: black;
+    color: white;
+}
+
+.account-content-admin {
+    display: flex;
+    margin-top: 20px;
+}
+
+.historial-compra {
+    width: 48%;
+    text-align: left;
+}
+
+.account-details {
+    width: 48%;
+    text-align: left;
+    /* padding-left: 10px; */
+}
+
+.historial-compra h2,
+.account-details h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.historial-compra p,
+.account-details p {
+    font-size: 16px;
+    color: #000000;
+}
+
+.account-details a {
+    font-size: 16px;
+    color: #000000;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.account-details a:hover {
+    text-decoration: none;
+}
