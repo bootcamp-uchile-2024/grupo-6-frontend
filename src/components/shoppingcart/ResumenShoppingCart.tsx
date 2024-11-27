@@ -77,9 +77,12 @@ function ResumenShoppingCart() {
                             </div>
                         </Col>
                         <Col md="2">
-                            <Button className="button-shoppingcart-resume" style={{ backgroundColor: '#975C4C', color: '#FBFBFB', border: '#E1D5CA' }} onClick={handleSubmit}>
-                                Pagar el pedido
-                            </Button>
+                        
+                            <Link to={`/shoppingcart-payment`}>
+                                <Button className="button-shoppingcart-resume" style={{ backgroundColor: '#975C4C', color: '#FBFBFB', border: '#E1D5CA' }}>
+                                    Pagar el pedido
+                                </Button>
+                            </Link>
                         </Col>
                     </Row>
                 </div>
@@ -140,35 +143,6 @@ function ResumenShoppingCart() {
 
 
                             ))}
-                        </div>
-                        <Row md="12" style={{ height: '4rem', width: '75.25rem', margin: '1.5rem' }}>
-                            <Col md="5">
-                                <h3 className='fw-bold'>Elige un medio de pago</h3>
-                            </Col>
-                            <Col md="7">
-                            </Col>
-                        </Row>
-                        <div className="metodos-de-pago">
-                            <Row key='despacho' className='d-flex align-items-center justify-content-between fw-bold' md="12" style={{ height: '9rem', width: '75.25rem', margin: '1.5rem', color: '#545454' }}>
-                                    <Col  md="3">
-                                        <Button className='d-flex align-items-center justify-content-between fw-bold' style={{ backgroundColor: 'white', color: '#545454', borderWidth: "8px",borderColor: '#975C4C',   height: '8.5rem', width: '18.5rem'}} >
-                                        <img src={iconoMercadoPago} alt="Mercado Pago"  style={{   height: '2.34rem', width: '3.5rem'}} ></img>
-                                        Transferencia Bancaria      
-                                        </Button>                                
-                                    </Col>
-                                    <Col   md="3">
-                                        <Button style={{ backgroundColor: 'white', color: '#545454', borderWidth: "8px",borderColor: '#975C4C',   height: '8.5rem', width: '18.5rem'}} >
-                                            <img src={iconoPayPal} alt="PayPal" style={{   height: '2.34rem', width: '3.5rem'}} ></img>
-                                            Paga con tu banco
-                                        </Button>                                
-                                    </Col>
-                                    <Col  md="3">
-                                        <Button style={{ backgroundColor: 'white', color: '#545454', borderWidth: "8px",borderColor: '#975C4C',   height: '8.5rem', width: '18.5rem'}} >
-                                            <img src={iconoWebpay} alt="WebPay" style={{   height: '2.34rem', width: '3.5rem'}} ></img>
-                                            Webpay
-                                        </Button>                                
-                                    </Col>
-                            </Row>
                         </div>
                     </div>
 

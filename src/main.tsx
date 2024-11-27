@@ -23,6 +23,7 @@ import { BookProductModifyPage } from './pages/BookProductModifyPage.tsx'
 import { PrivateRoute } from './protected/PrivateRoute.tsx'
 import AdminUserModifyPage from './pages/AdminUserModifyPage.tsx'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { MedioDePagoPage } from './pages/MedioDePagoPage.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -45,6 +46,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path="/carrito" element={<ShoppingCartPage title='Carrito Compras' />} />
           <Route path="/empty-cart" element={<EmptyCartPage title='Carrito Vacío' />} />
           <Route path='/shoppingcart-resume/' element={<ResumenShoppingCartPage title='Resumen carrito de compras' />}></Route>
+          <Route path='/shoppingcart-payment/' element={<MedioDePagoPage title='Pagar pedido' />}></Route>
           <Route path="*" element={<NotFoundPage title='Página No Encontrada' />} />
         </Routes>
       </BrowserRouter>

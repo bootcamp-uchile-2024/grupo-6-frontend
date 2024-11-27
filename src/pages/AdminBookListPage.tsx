@@ -1,4 +1,4 @@
-import AdminBookList from "../components/adminbooks/AdminBookList";
+import AdminBookListTableUx from "../components/adminbooks/AdminBookListTableUx";
 import { MainLayout } from "../layouts/MainLayout";
 
 interface AdminBookListPageProps {
@@ -9,7 +9,7 @@ export const AdminBookListPage = (props: AdminBookListPageProps) => {
     document.title = props.title;
     return (
         <MainLayout>
-            <AdminBookList/>
+            <AdminBookListTableUx/>
         </MainLayout>
     );
 };
