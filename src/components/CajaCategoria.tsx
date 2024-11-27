@@ -9,7 +9,8 @@ interface CajaCategoriaProps {
   nombre: string,
   autor: string[],
   precio: number,
-  stock: number
+  stock: number,
+  caratula: string
 }
 
 export function CajaCategoria(props: CajaCategoriaProps) {
@@ -28,8 +29,12 @@ export function CajaCategoria(props: CajaCategoriaProps) {
   return (
     <div className={`container-catalog ${isOutOfStock ? 'out-of-stock' : ''}`}>
       <div className="foto-categoria">
-        <Link to={`/product-detail/${props.isbn}`}> {/* Cambiar con back */}
+        <Link to={`/product-detail/${props.isbn}`}>
+
+          {/* <img src={`data:image/jpeg;base64,${props.caratula}`} alt={`imagen del libro ${props.nombre}`} /> */}
+
           <img src={"https://placehold.co/216x300/c7c7c7/white?font=lato"}/* {props.libro.caratula} */ alt="imagen"/* {"imagen del libro " + props.libro.nombre} */ />
+        
         </Link>
       </div>
 
