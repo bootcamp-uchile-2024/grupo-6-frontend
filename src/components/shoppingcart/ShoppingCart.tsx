@@ -45,14 +45,14 @@ function ShoppingCart() {
                         </Col>
                         <Col md="3"></Col>
                         <Col md="2">
-                            <Link to={`/categorias`}>
+                            <ButtonClearCart></ButtonClearCart>
+                        </Col>
+                        <Col md="2">
+                        <Link to={`/categorias`}>
                                 <Button style={{ backgroundColor: '#975C4C', color: '#FBFBFB', border: '#E1D5CA' }} >
                                     Seguir comprando
                                 </Button>
                             </Link>
-                        </Col>
-                        <Col md="2">
-                            <ButtonClearCart></ButtonClearCart>
                         </Col>
                     </Row>
                 </div>

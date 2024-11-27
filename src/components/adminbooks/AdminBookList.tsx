@@ -1,19 +1,16 @@
 import '../../styles/shopping_cart.css'
-import { Link } from "react-router-dom";
 import { useFetchGet } from "../../hooks/useFetch";
 import ButtonProductModify from './ButtonProductModify';
 import { ILibroPaginado } from '../../interfaces/ILibroPaginado';
 import ButtonProductDelete from './ButtonProductDelete';
 import { configuracion } from '../../config/appConfiguration';
 import { useState } from 'react';
-import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/esm/Container';
 import Row from 'react-bootstrap/esm/Row';
 import Col from 'react-bootstrap/esm/Col';
 import Collapse from 'react-bootstrap/esm/Collapse';
 import Card from 'react-bootstrap/esm/Card';
 import Button from 'react-bootstrap/esm/Button';
-import CloseButton from 'react-bootstrap/esm/CloseButton';
 import Image from 'react-bootstrap/Image';
 import Form from 'react-bootstrap/esm/Form';
 import ListGroup from 'react-bootstrap/esm/ListGroup';
