@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { clearCart } from "../../states/productSlice";
+import Button from "react-bootstrap/esm/Button";
 /* import iconoBasurero from '../../assets/images/icono_basurero.png'; */
 
 const ButtonClearCart = () => {
@@ -10,8 +11,9 @@ const ButtonClearCart = () => {
     }
 
     return (
-        <button className="shoppingcart-button-clear" onClick={handleClearCart}>Vaciar carrito
-        </button>
+            <Button style={{backgroundColor: '#E1D5CA', color: '#975C4C', border: '#E1D5CA'}} onClick={handleClearCart}>
+                Vaciar carrito
+             </Button>
     );
 };
 

@@ -8,6 +8,11 @@ import iconoWebpay from '../../assets/images/logo-webpay-plus-3-2.png'
 import { Link, useNavigate } from "react-router-dom";
 import { clearCart } from "../../states/productSlice";
 import { configuracion } from "../../config/appConfiguration";
+import Container from "react-bootstrap/esm/Container";
+import Row from "react-bootstrap/esm/Row";
+import Col from "react-bootstrap/esm/Col";
+import Button from "react-bootstrap/esm/Button";
+import Image from "react-bootstrap/esm/Image";
 
 function ResumenShoppingCart() {
 
@@ -54,94 +59,123 @@ function ResumenShoppingCart() {
 
     return (
         <div className='resumen-shopping-cart'>
-            <div className="item-top-resumen">
-                <h2>Resumen de compra</h2>
-                <div className="back-to-carrito">
-                    <Link to={`/carrito`}>
-                        <p className='resumen-to-shoppingcart'>Volver a carrito de compras</p>
-                    </Link>
+
+            <Container fluid>
+                <div className="item-top-resumen">
+                    <Row md="12" style={{ height: '4rem', width: '75.25rem', margin: '1.5rem' }}>
+                        <Col md="5">
+                            <h2 className='fw-bold'>Resumen de compra</h2>
+                        </Col>
+                        <Col md="3"></Col>
+                        <Col md="2">
+                            <div className="back-to-carrito">
+                                <Link to={`/carrito`}>
+                                    <Button style={{ backgroundColor: '#E1D5CA', color: '#975C4C', border: '#E1D5CA' }} >
+                                        Volver a carrito
+                                    </Button>
+                                </Link>
+                            </div>
+                        </Col>
+                        <Col md="2">
+                            <Button className="button-shoppingcart-resume" style={{ backgroundColor: '#975C4C', color: '#FBFBFB', border: '#E1D5CA' }} onClick={handleSubmit}>
+                                Pagar el pedido
+                            </Button>
+                        </Col>
+                    </Row>
                 </div>
-            </div>
-            {shoppingCartProduct.length ? (
-                <div className='shoppingcart-items'>
-                    <table className="shoppingcart-items-table">
-                        <thead>
-                            <tr className="shoppingcart-item-detail-tr">
-                                <th className="shoppingcart-item-detail-th" colSpan={2} scope="col">
-                                    Producto
-                                </th>
-                                <th className="shoppingcart-item-detail-th" colSpan={1} scope="col">
-                                    Cantidad
-                                </th>
-                                <th className="shoppingcart-item-detail-th" colSpan={1} scope="col">
-                                    Total
-                                </th>
-                            </tr>
-                        </thead>
-                        {shoppingCartProduct.map((item) => (
-
-                            <>
-
-                                <tbody className='shoppingcart-item-detail'>
-                                    <tr className="shoppingcart-item-detail-tr">
-                                        <td className="shoppingcart-item-detail-td-image">
-                                            <img src='https://placehold.co/800@3x.png' alt={item.nombre} />
-                                        </td>
-                                        <td className="shoppingcart-item-detail-td-data">
-                                            <div className="shoppingcart-item-detail-td-nombre">
-                                                <label htmlFor="nombre-libro">Nombre: </label>
-                                                <p>{item.nombre}</p>
-                                            </div>
-                                            <div className="shoppingcart-item-detail-td-autor">
-                                                <label htmlFor="autor-libro">Autor: </label>
-                                                <p className='shoppingcart-item-detail'>{item.autor}</p>
-                                            </div>
-                                        </td>
-                                        <td className="shoppingcart-item-detail-td-quantity">
-                                            <div className="shoppingcart-item-detail-td-quantity-1">
-                                                <p className='shoppingcart-item-quantity'>{item.cantidad}</p>
-                                            </div>
-                                        </td>
-
-                                        <td className="shoppingcart-item-detail-td-total">
-                                            <p className='shoppingcart-item-total'>{calculateTotalProduct(item)}</p>
-                                        </td>
-                                    </tr>
-                                </tbody>
-
-                            </>
-                        ))}
-                    </table>
+                <div>
+                    <Row md="12" style={{ height: '4rem', width: '75.25rem', margin: '1.5rem' }}>
+                        <Col md="5">
+                            <h3 className='fw-bold'>Total a Pagar: ${calculateTotal(shoppingCartProduct)}</h3>
+                        </Col>
+                        <Col md="7">
+                        </Col>
+                    </Row>
                 </div>
-            ) : (
-                <div>No existen productos en el carrito de compras.</div>
-            )}
-            <h3>Total: ${calculateTotal(shoppingCartProduct)}</h3>
-            <div className="metodos-de-pago">
-                <h3>Formas de pago</h3>
-                <p>Puedes pagar usando los siguientes métodos:</p>
-                <div className="formas-de-pago">
-                    <div className="imagenes-metodos-pago">
-                        <label>
-                            <input type="radio" name="metodo-pago" value="mercadopago" />
-                            <img src={iconoMercadoPago} alt="Mercado Pago" />
-                        </label>
-                        <label>
-                            <input type="radio" name="metodo-pago" value="paypal" />
-                            <img src={iconoPayPal} alt="PayPal" />
-                        </label>
-                        <label>
-                            <input type="radio" name="metodo-pago" value="webpay" />
-                            <img src={iconoWebpay} alt="WebPay" />
-                        </label>
+
+                {shoppingCartProduct.length ? (
+                    <div className='shoppingcart-items'>
+                        <div className='shoppingcart-items'>
+                            <Row key='header' md="12" style={{ height: '4rem', width: '75.25rem', margin: '1.5rem', color: '#545454' }}>
+                                <Col md="6">
+                                    <p className='fw-bold'>Productos</p>
+                                </Col>
+                                <Col md="1">
+                                </Col>
+                                <Col md="2">
+                                    <p className='d-flex align-items-center justify-content-center fw-bold'>Cantidad</p>
+                                </Col>
+                                <Col md="1">
+                                </Col>
+                                <Col md="2">
+                                    <p className='d-flex align-items-center justify-content-center fw-bold'>Precio</p>
+                                </Col>
+                            </Row>
+                            {shoppingCartProduct.map((item) => (
+                                <Row key={item.isbn} md="12" style={{ height: '15rem', width: '75.25rem', margin: '1.5rem', color: '#545454' }}>
+                                    <Col md="2">
+                                        <Image src='https://placehold.co/800@3x.png' fluid></Image>
+                                    </Col>
+                                    <Col md="1">
+                                    </Col>
+                                    <Col md="3" style={{ height: '9.18rem', width: '15.94rem', margin: '1.5rem' }}>
+                                        <p>{item.nombre}</p>
+                                        <p >{item.autor}</p>
+                                        <p >${item.precio}</p>
+
+                                    </Col>
+                                    <Col md="1">
+                                    </Col>
+                                    <Col md="2" className="d-flex align-items-center justify-content-center" style={{ height: '3rem', width: '14.688rem' }}>
+                                        <div className="shoppingcart-item-detail-td-quantity-1">
+                                            <p>{item.cantidad}</p>
+                                        </div>
+                                    </Col>
+                                    <Col md="1">
+                                    </Col>
+                                    <Col md="2" className="d-flex align-items-center justify-content-center" style={{ height: '3.18rem', width: '8.75rem' }}>
+                                        <p className='fw-bold'>${calculateTotalProduct(item)}</p>
+                                    </Col>
+                                </Row>
+
+
+                            ))}
+                        </div>
+                        <Row md="12" style={{ height: '4rem', width: '75.25rem', margin: '1.5rem' }}>
+                            <Col md="5">
+                                <h3 className='fw-bold'>Elige un medio de pago</h3>
+                            </Col>
+                            <Col md="7">
+                            </Col>
+                        </Row>
+                        <div className="metodos-de-pago">
+                            <Row key='despacho' className='d-flex align-items-center justify-content-between fw-bold' md="12" style={{ height: '9rem', width: '75.25rem', margin: '1.5rem', color: '#545454' }}>
+                                    <Col  md="3">
+                                        <Button className='d-flex align-items-center justify-content-between fw-bold' style={{ backgroundColor: 'white', color: '#545454', borderWidth: "8px",borderColor: '#975C4C',   height: '8.5rem', width: '18.5rem'}} >
+                                        <img src={iconoMercadoPago} alt="Mercado Pago"  style={{   height: '2.34rem', width: '3.5rem'}} ></img>
+                                        Transferencia Bancaria      
+                                        </Button>                                
+                                    </Col>
+                                    <Col   md="3">
+                                        <Button style={{ backgroundColor: 'white', color: '#545454', borderWidth: "8px",borderColor: '#975C4C',   height: '8.5rem', width: '18.5rem'}} >
+                                            <img src={iconoPayPal} alt="PayPal" style={{   height: '2.34rem', width: '3.5rem'}} ></img>
+                                            Paga con tu banco
+                                        </Button>                                
+                                    </Col>
+                                    <Col  md="3">
+                                        <Button style={{ backgroundColor: 'white', color: '#545454', borderWidth: "8px",borderColor: '#975C4C',   height: '8.5rem', width: '18.5rem'}} >
+                                            <img src={iconoWebpay} alt="WebPay" style={{   height: '2.34rem', width: '3.5rem'}} ></img>
+                                            Webpay
+                                        </Button>                                
+                                    </Col>
+                            </Row>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <div>
-                <button className="button-shoppingcart-resume" type='button' onClick={handleSubmit}>Finalizar compra</button>
-            </div>
-
+                ) : (
+                    <div>No existen productos en el carrito de compras.</div>
+                )}
+            </Container>
         </div>
     );
 };
