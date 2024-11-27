@@ -77,6 +77,7 @@ const Login = () => {
                                 name='correoElectronico'
                                 value={form.correoElectronico}
                                 onChange={handleChange}
+                                placeholder='Correo electrónico'
                                 required />
                         </Form.Group>
 
@@ -88,6 +89,7 @@ const Login = () => {
                                 name='contrasena'
                                 value={form.contrasena}
                                 onChange={handleChange}
+                                placeholder='Contrseña'
                                 required />
                         </Form.Group>
 

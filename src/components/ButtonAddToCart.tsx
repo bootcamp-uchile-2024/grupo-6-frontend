@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { ShoppingCartEntrada } from "../interfaces/ShoppingCartEntrada";
 import { addProductToCart } from "../states/productSlice";
 import { useState } from "react";
+import iconoCarritoBoton from "../assets/images/icono-carrito-boton.png"
 
 const ButtonAddToCart = ({ libro }: { libro: ShoppingCartEntrada | null }) => {
     const [producto] = useState<ShoppingCartEntrada>({
@@ -39,7 +40,7 @@ const ButtonAddToCart = ({ libro }: { libro: ShoppingCartEntrada | null }) => {
 
     return(
         <button className="boton-comprar" onClick={handleAddToCart}>
-            Añadir al carro
+            <img src={iconoCarritoBoton} alt="" />
         </button>
     )
 }
