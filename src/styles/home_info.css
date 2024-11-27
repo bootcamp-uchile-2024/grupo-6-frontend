@@ -1,3 +1,4 @@
+/* estilos sliders */
 .carousel-container {
     display: flex;
     justify-content: center;
@@ -72,110 +73,111 @@
     background: lightgray 50% / cover no-repeat;
 }
 
-/* Estilo para las secciones principales */
+/* Estilos contenido destacado home */
+
+/* Contenedor General */
 .products-section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    padding: 20px;
-    /* gap: 24px;
-    margin-bottom: 50px; */
-    
-}
-
-.destacados-section {
-    display: flex;
-    width: 1312px;
-    flex-direction: column;
-    align-items: flex-start;
     gap: 24px;
-
+    width: 100%;
+    padding: 24px 0;
+    box-sizing: border-box;
 }
 
-.centered-container {
-    max-width: 1280px;
-    /* Ancho máximo del contenedor */
-    margin: 0 auto;
-    /* Centrado horizontal */
-    padding: 0 16px;
-    /* Opcional: Espaciado interno */
-    display: flex;
-    /* Asegura que los hijos respeten el alineado */
-    flex-direction: column;
-    /* Alineación vertical */
-    gap: 24px;
-    /* Espaciado entre los elementos */
-}
-
-.products-section h3,
+/* Título de la Sección */
+.destacados-section h3,
 .novedades-section h3,
 .tendencias-section h3 {
+    color: #545454;
     font-family: Sarabun;
     font-size: 39px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    color: #545454;
+    text-align: left;
+    margin-bottom: 16px;
 }
 
+.container-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding: 0;
+}
+
+/* Contenedor de las Cards */
 .row-custom {
-    display: flex;
-    flex-wrap: nowrap;
-    /* No permite que los elementos se envuelvan */
-    justify-content: space-between;
-    gap: 16px;
-    /* Espaciado entre las columnas */
-    margin: 0 auto;
-    max-width: 1280px;
-}
-
-.col-custom {
-    flex: 0 1 19%;
-    /* Cada columna ocupa 19% del ancho */
-    max-width: 19%;
-    /* Previene que las columnas se expandan */
-    display: flex;
-    justify-content: center;
-}
-
-.novedades-libros {
     display: flex;
     justify-content: space-between;
     align-items: center;
     align-self: stretch;
+    gap: 12px;
+    /* Para espacio entre las cards */
+    width: 100%;
+    padding: 0;
 }
 
-/* Estilo de las tarjetas de productos */
-.product-card {
+/* Contenedor Individual de las Cards */
+.col-custom {
     display: flex;
-    width: 248px;
-    height: 506px;
-    padding: 16px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 16px;
-    border-radius: 24px !important;
+    width: 248px;
+    /*     height: 506px; */
+    padding: 0;
+    /* para que no se cree un espacio interno */
+    border-radius: 24px;
     border: 1px solid #975C4C !important;
-    background: #FFF;
+    background: #fff;
+}
+
+.col-custom:hover {
+    background-color: #E1D5CA !important;
+    border: 2px solid #975C4C !important;
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+    border-radius: inherit;
+    border: none;
+    background: transparent;
+    pointer-events: none;
+    gap: 16px;
+}
+
+.product-card * {
+    pointer-events: auto;
+    /* Permite interacción con los elementos internos */
 }
 
 .product-card:hover {
-    background-color: #E1D5CA;
-    border-radius: 24px;
-    border: 2px solid #975C4C;
+    cursor: pointer;
 }
 
+/* Imagen de las tarjetas */
 .product-card img {
     height: 300px;
-    align-self: stretch;
+    width: 100%;
+    object-fit: cover;
     border-radius: 12px;
-    background: lightgray 50%;
 }
 
 .card-body {
+    gap: 8px;
+}
+
+/* Contenedor de Datos en las Cards */
+.container-info-card {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -185,36 +187,108 @@
 
 .card-title {
     color: #545454;
-    /* Sarabun/Titles/16px: Bold */
     font-family: Sarabun;
     font-size: 16px;
     font-style: normal;
-    font-weight: bold !important;
+    font-weight: bold;
     line-height: normal;
     align-self: stretch;
     width: 216px;
+    /* Ajuste del ancho del texto */
+}
+
+.card-text {
+    padding: 0;
+    margin: 0;
 }
 
 .autor-card {
     color: #545454;
-    /* Sarabun/Menu/13px: Regular */
+    height: 17px;
     font-family: Sarabun;
-    font-size: 13px !important;
+    font-size: 13px;
     font-style: normal;
-    font-weight: 400 !important;
+    font-weight: 400;
     line-height: normal;
     align-self: stretch;
 }
 
 .precio-card {
-    color: #373330 !important;
+    color: #373330;
     font-family: Sarabun;
-    font-size: 31px !important;
+    font-size: 31px;
     font-style: normal;
-    font-weight: 500 !important;
+    font-weight: 500;
     line-height: normal;
     align-self: stretch;
+    margin: 0;
 }
+
+/* Botones de Acción */
+.product-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+    width: 100%;
+    height: 48px;
+    gap: 8px;
+}
+
+/* Contenedor general de botones de cantidad */
+.button-cantidad-carrito {
+    display: flex;
+    height: 48px;
+    padding: 0px 12px;
+    align-items: center;
+    gap: 12px;
+    border-radius: 16px;
+    border: 2px solid var(--Verde-Default-Universal, #806259);
+    background: var(--Grises-Blanco, #FFF);
+}
+
+/* Estilo para los botones de cantidad (- y +) */
+.button-cantidad-carrito button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: none;
+    color: #545454;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Estilo del botón del carrito */
+.shopping-cart-button-cards {
+    display: flex;
+    padding: 12px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border-radius: 16px;
+    background: var(--Verde-Usuario-Default, #975C4C);
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: none;
+}
+
+.shopping-cart-button-cards:hover {
+    background: var(--Verde-Usuario-Hover, #7A3B2E);
+}
+
+/* Icono del botón del carrito */
+.icon-shoppingCart-button-cards {
+    width: 24px;
+    height: 24px;
+    fill: #FFFFFF;
+}
+
 
 .tendencias-section {
     margin-bottom: 100px;
