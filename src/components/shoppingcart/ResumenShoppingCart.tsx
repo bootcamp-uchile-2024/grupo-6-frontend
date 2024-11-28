@@ -1,13 +1,8 @@
 import { RootType } from "../../states/store";
 import { ShoppingCartEntrada } from "../../interfaces/ShoppingCartEntrada";
 import '../../styles/resumen_shopping_cart.css'
-import { useDispatch, useSelector } from "react-redux";
-import iconoMercadoPago from '../../assets/images/logo-mercadopago29.png'
-import iconoPayPal from '../../assets/images/Paypal_2014_logo.png'
-import iconoWebpay from '../../assets/images/logo-webpay-plus-3-2.png'
-import { Link, useNavigate } from "react-router-dom";
-import { clearCart } from "../../states/productSlice";
-import { configuracion } from "../../config/appConfiguration";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
@@ -18,8 +13,6 @@ import { SetStateAction, useState } from "react";
 
 function ResumenShoppingCart() {
 
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
 
     const shoppingCartProduct = useSelector((state: RootType) => state.productReducer.cart.items);
     const [selectedAddress, setSelectedAddress] = useState("Los Olmos 666, Macul, RM");
@@ -33,8 +26,6 @@ function ResumenShoppingCart() {
         setSelectedAddress(address);
     };
 
-    
-
     // Calcula el total del carrito de compras
     const calculateTotal = (items: ShoppingCartEntrada[]) => {
         let initialTotal = 0;
@@ -47,28 +38,6 @@ function ResumenShoppingCart() {
     //Calcula el total de cada producto basado en la cantidad
     const calculateTotalProduct = (item: ShoppingCartEntrada) => {
         return item.precio * item.cantidad;
-    }
-
-    const handleSubmit = async () => {
-        //event.preventDefault();
-
-
-        const response = await fetch(configuracion.urlJsonServerBackendShoppingCart, {
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json',
-            },
-            body: JSON.stringify(shoppingCartProduct)
-        });
-
-        if (response.status === 200) {
-            alert("¡Compra exitosa!");
-            navigate('/');
-            dispatch(clearCart());
-
-        } else {
-            alert("No se se pudo realizar la compra.");
-        }
     }
 
     return (

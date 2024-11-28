@@ -95,19 +95,19 @@ function MedioDePagoShoppingCart() {
                         <div className="metodos-de-pago">
                             <Row key='despacho' className='d-flex align-items-center justify-content-between fw-bold' md="12" style={{ height: '9rem', width: '75.25rem', margin: '1.5rem', color: '#545454' }}>
                                     <Col  md="3">
-                                        <Button className='d-flex align-items-center justify-content-between fw-bold' style={{ backgroundColor: 'white', color: '#545454', borderWidth: "8px",borderColor: '#975C4C',   height: '8.5rem', width: '18.5rem'}} onClick={handleSubmit}>
+                                        <Button id="boton-transferencia-bancaria" className='d-flex align-items-center justify-content-between fw-bold' style={{ backgroundColor: 'white', color: '#545454', borderWidth: "8px",borderColor: '#975C4C',   height: '8.5rem', width: '18.5rem'}} onClick={handleSubmit}>
                                         <img src={iconoMercadoPago} alt="Mercado Pago"  style={{   height: '2.34rem', width: '3.5rem'}} ></img>
                                         Transferencia Bancaria      
                                         </Button>                                
                                     </Col>
                                     <Col   md="3">
-                                        <Button style={{ backgroundColor: 'white', color: '#545454', borderWidth: "8px",borderColor: '#975C4C',   height: '8.5rem', width: '18.5rem'}} onClick={handleSubmit}>
+                                        <Button id="boton-tu-banco" style={{ backgroundColor: 'white', color: '#545454', borderWidth: "8px",borderColor: '#975C4C',   height: '8.5rem', width: '18.5rem'}} onClick={handleSubmit}>
                                             <img src={iconoPayPal} alt="PayPal" style={{   height: '2.34rem', width: '3.5rem'}} ></img>
                                             Paga con tu banco
                                         </Button>                                
                                     </Col>
                                     <Col  md="3">
-                                        <Button style={{ backgroundColor: 'white', color: '#545454', borderWidth: "8px",borderColor: '#975C4C',   height: '8.5rem', width: '18.5rem'}}  onClick={handleSubmit}>
+                                        <Button id="boton-web-pay" style={{ backgroundColor: 'white', color: '#545454', borderWidth: "8px",borderColor: '#975C4C',   height: '8.5rem', width: '18.5rem'}}  onClick={handleSubmit}>
                                             <img src={iconoWebpay} alt="WebPay" style={{   height: '2.34rem', width: '3.5rem'}} ></img>
                                             Webpay
                                         </Button>                                
