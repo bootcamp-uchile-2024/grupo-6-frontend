@@ -172,9 +172,9 @@ const ProductDetail: React.FC = () => {
                     <Row className="productDetail-container-recomendaciones">
                         <Col className='productDetail-col-recomendaciones'>
                             <h3 className='productDetail-title-recomendaciones'>Recomendaciones</h3>
-                            <Row className='productDetail-container-recomendaciones-card'>
+                            <div className='productDetail-container-recomendaciones-card'>
                                 {recomendaciones.map((rec, index) => (
-                                    <Col md={3} key={index} className='productDetail-recomendaciones-card'>
+                                    <div key={index} className='productDetail-recomendaciones-card'>
                                         <Card>
                                             <Card.Img
                                                 variant="top"
@@ -186,9 +186,9 @@ const ProductDetail: React.FC = () => {
                                                 <Card.Text>{rec.author}</Card.Text>
                                             </Card.Body>
                                         </Card>
-                                    </Col>
+                                    </div>
                                 ))}
-                            </Row>
+                            </div>
                         </Col>
                     </Row>
                 </>
