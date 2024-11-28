@@ -86,6 +86,8 @@ const ProductDetail: React.FC = () => {
     if (loading) return <div>Cargando...</div>;
     if (error) return <div>{error}</div>;
 
+    const url = configuracion.urlJsonServerBackendCover.toString();
+
     return (
         <Container className="product-detail-container">
             {libro ? (
@@ -96,8 +98,8 @@ const ProductDetail: React.FC = () => {
                             <Card>
                                 <Card.Img
                                     variant="top"
-                                    src="https://placehold.co/446x546"
-                                    alt={libro.nombre}
+                                    src={`${url}/${libro.caratula}`} alt={`imagen del libro ${libro.nombre}`}
+                                    /* alt={libro.nombre} */
                                 />
                             </Card>
                         </Col>
