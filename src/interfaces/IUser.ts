@@ -1,10 +1,10 @@
 interface IUser {
-    nombre: string,
-    apellido_materno: string,
-    apellido_paterno: string,
-    correo_electronico: string,
+    nombres: string,
+    apellidoMaterno: string,
+    apellidoPaterno: string,
+    correoElectronico: string,
     contrasena: string,
-    id: number,
+    idUsuario: number,
 }
 
 export type { IUser };
