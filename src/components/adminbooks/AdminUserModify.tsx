@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { configuracion } from '../../config/appConfiguration';
 import Container from 'react-bootstrap/Container';
@@ -6,11 +6,12 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import  '../../styles/admin-user-modify.css'
 
 const AdminUserModify = () => {
     const { idUsuario } = useParams();
-/*     const navigate = useNavigate();
- */    const [userData, setUserData] = useState({
+    const navigate = useNavigate();
+    const [userData, setUserData] = useState({
         nombres: '',
         apellidoPaterno: '',
         apellidoMaterno: '',
@@ -48,7 +49,7 @@ const AdminUserModify = () => {
             },
             body: JSON.stringify(userData)
         });
-        /*  navigate('/admin'); */ // Redirigir a la página de administración
+         navigate('/admin'); // Redirigir a la página de administración
     };
 
     return (

@@ -43,6 +43,7 @@
     margin-bottom: 24px;
 }
 
+.login-form input::placeholder,
 .registration-form input::placeholder {
     font-size: 20px;
     color: #975C4C;

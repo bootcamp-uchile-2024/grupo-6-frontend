@@ -62,7 +62,7 @@
 
 .modify-user-form .btn-primary:hover,
 .modify-user-form .btn-primary:focus-visible {
-    background-color: #F5FAFF;
+    background-color: #D4E7FA;
     color: #455B73;
     border: 0px;
     box-shadow: none;
@@ -71,8 +71,12 @@
 
 .modify-user-form .btn-primary:active,
 .modify-user-form .btn:first-child:active {
-    background-color: #F5FAFF;
+    background-color: #D4E7FA;
     color: #455B73;
     outline: 4px solid #455B73;
     box-shadow: none;
+}
+
+.modify-user-form svg {
+    margin-left: 12px;
 }
