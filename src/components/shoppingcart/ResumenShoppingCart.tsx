@@ -13,6 +13,8 @@ import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import Button from "react-bootstrap/esm/Button";
 import Image from "react-bootstrap/esm/Image";
+import Dropdown from "react-bootstrap/esm/Dropdown";
+import { SetStateAction, useState } from "react";
 
 function ResumenShoppingCart() {
 
@@ -20,6 +22,18 @@ function ResumenShoppingCart() {
     const dispatch = useDispatch();
 
     const shoppingCartProduct = useSelector((state: RootType) => state.productReducer.cart.items);
+    const [selectedAddress, setSelectedAddress] = useState("Los Olmos 666, Macul, RM");
+    const addresses = [
+        "Los Olmos 666, Macul, RM",
+        "Avenida Siempre Viva 742, Springfield",
+        "Calle Falsa 123, Villa Real, RM",
+    ];
+
+    const handleSelectAddress = (address: SetStateAction<string>) => {
+        setSelectedAddress(address);
+    };
+
+    
 
     // Calcula el total del carrito de compras
     const calculateTotal = (items: ShoppingCartEntrada[]) => {
@@ -77,7 +91,7 @@ function ResumenShoppingCart() {
                             </div>
                         </Col>
                         <Col md="2">
-                        
+
                             <Link to={`/shoppingcart-payment`}>
                                 <Button className="button-shoppingcart-resume" style={{ backgroundColor: '#975C4C', color: '#FBFBFB', border: '#E1D5CA' }}>
                                     Pagar el pedido
@@ -149,6 +163,33 @@ function ResumenShoppingCart() {
                 ) : (
                     <div>No existen productos en el carrito de compras.</div>
                 )}
+
+<div className="'shoppingcart-items">
+                        <Row md="12" style={{ height: '4rem', width: '75.25rem', margin: '1.5rem' }}>
+                            <Col md="6">
+                                <h4 className="d-flex  fw-bold">Despacho a domicilio</h4>
+                            </Col>
+                            <Col md="4">
+                                <Dropdown onSelect={handleSelectAddress} variant='none' style={{ color:  '#FBFBFB', borderColor:  '#975C4C'}}>
+                                    <Dropdown.Toggle variant="outline-primary" id="dropdown-direcciones">
+                                        {selectedAddress || "Seleccionar dirección"}
+                                    </Dropdown.Toggle>
+                                    <Dropdown.Menu>
+                                        {addresses.map((address, index) => (
+                                            <Dropdown.Item key={index} eventKey={address}>
+                                                {address}
+                                            </Dropdown.Item>
+                                        ))}
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                            </Col>
+                            <Col md="1" >
+                            </Col>
+                            <Col md="1" className="d-flex align-items-center justify-content-center" style={{ height: '3.18rem', width: '1rem' }}>
+                                <p className="fw-bold">$5000</p>
+                            </Col>
+                        </Row>
+                    </div>
             </Container>
         </div>
     );

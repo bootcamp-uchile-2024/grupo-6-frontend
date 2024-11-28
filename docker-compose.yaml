@@ -1,43 +1,6 @@
 name: grupo-6-frontend
 services:
   frontend:
-    image: dgajardoi/grupo-6-frontend:entrega-9
+    image: dgajardoi/grupo-6-frontend:entrega-10.0
     ports:
       - 5173:80
-    environment:
-      - VITE_BACKEND_GRUPO6_ENDPOINT_PRODUCTS_CATEGORIES=http://18.222.107.251:3000/categories
-      - VITE_BACKEND_GRUPO6_ENDPOINT_PRODUCTS_CATALOG=http://18.222.107.251:3000/products/catalog
-      - VITE_BACKEND_GRUPO6_ENDPOINT_PRODUCTS_DETAILS_SEARCH=http://18.222.107.251:3000/products/search/
-      - VITE_BACKEND_GRUPO6_ENDPOINT_PRODUCTS=http://18.222.107.251:3000/products/
-      - VITE_BACKEND_GRUPO6_ENDPOINT_USERS=http://18.222.107.251:3000/users
-      - VITE_BACKEND_GRUPO6_ENDPOINT_SHOPPINGCART=http://18.222.107.251:3000/shoppingcart
-  backend:
-    image: ncarvajalg/grupo-6-backend:v4.0.0
-    container_name: g6_backend
-    environment:
-      - ARCHIVO_ENV=production
-      - NODE_ENV=production
-      - ENVIROMENT=PRODUCTION
-      - PORT=5000
-      - MYSQL_ROOT_PASSWORD=grupo-6
-      - MYSQL_DATABASE=Paginas_Selectas
-      - MYSQL_PASSWORD=grupo-6
-      - PORT_DB=3307
-    ports:
-      - "3000:5000"
-    depends_on:
-      - mysql
-  mysql:
-    image: mysql:8.0.39-debian
-    container_name: g6_backend_bd
-    ports:
-      - "3307:3306"
-
-    volumes:
-      - ./sql:/var/lib/mysql
-    environment:
-      - MYSQL_ROOT_PASSWORD=grupo-6
-      - MYSQL_DATABASE=Paginas_Selectas
-      - MYSQL_PASSWORD=grupo-6
-      - PORT_DB=3306
-    
