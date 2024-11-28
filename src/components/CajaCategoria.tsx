@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import ButtonAddToCart from './ButtonAddToCart';
 import QuantityButtons from './shoppingcart/QuantityButtons';
 import { ShoppingCartEntrada } from '../interfaces/ShoppingCartEntrada';
+import { configuracion } from '../config/appConfiguration.ts'
 
 interface CajaCategoriaProps {
   isbn: string,
@@ -26,14 +27,14 @@ export function CajaCategoria(props: CajaCategoriaProps) {
 
   const isOutOfStock = props.stock === 0;
 
+  const url = configuracion.urlJsonServerBackendCover.toString();
+
   return (
     <div className={`container-catalog ${isOutOfStock ? 'out-of-stock' : ''}`}>
       <div className="foto-categoria">
         <Link to={`/product-detail/${props.isbn}`}>
 
-          {/* <img src={`data:image/jpeg;base64,${props.caratula}`} alt={`imagen del libro ${props.nombre}`} /> */}
-
-          <img src={"https://placehold.co/216x300/c7c7c7/white?font=lato"}/* {props.libro.caratula} */ alt="imagen"/* {"imagen del libro " + props.libro.nombre} */ />
+          <img src={`${url}/${props.caratula}`} alt={`imagen del libro ${props.nombre}`} />
         
         </Link>
       </div>
