@@ -1,87 +1,199 @@
-.userPage-container {
-    /* max-width: 1200px; */
-    width: 85%;
-    height: 450px;
-    margin: auto;
-    padding: 20px;
-    font-family: 'Arial', sans-serif;
-    color: #000000;
-    text-align: center;
+.adminAccount-container {
+    width: 1440px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 100px;
+    font-family: Sarabun;
 }
 
-.account-header {
+.adminAccount-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 40px;
-    border-bottom-width: 2px;
-    border-bottom-style: solid;
-    border-bottom-color: #777777;
+    margin-bottom: 24px;
 }
 
-.account-header h1 {
-    font-size: 36px;
-    font-weight: bold;
-}
-
-.logout-container {
-    text-align: right;
-    margin-right: 20px;
+.title-adminAccount {
+    color: var(--Grises-Text-Default, #545454);
+    text-align: center;
+    /* Sarabun/Titles/49px: Bold */
+    font-family: Sarabun;
+    font-size: 49px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
 }
 
 .logout-button {
-    background: none;
-    border: solid black 1px;
-    color: black;
-    border-radius: 15px;
-    padding: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-}
-
-.logout-button:hover {
-    background: black;
-    color: white;
-}
-
-.account-content-admin {
     display: flex;
+    padding: 12px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border-radius: 16px;
+    border: none;
+    background: var(--Verde-200, #E1D5CA) !important;
+    color: var(--Verde-Usuario-Default, #975C4C) !important;
+    text-align: center;
+    /* Sarabun/Components/20px: Medium */
+    font-family: Sarabun;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+
+.logout-button:active {
+    box-shadow: 0 0 0 4px #975C4C !important;
+}
+
+.card-admin-historialPedidos,
+.card-admin-datosCuenta,
+.card-admin-administracion {
+    width: 440px;
+    height: 212px;
+    align-items: flex-start !important;
+    border: none !important;
+}
+
+.container-card-admin-historialPedido,
+.container-card-admin-administracion {
+    padding: 0 !important;
+    width: 440px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.title-card-admin-historialPedidos,
+.title-card-admin-datosCuenta,
+.title-card-admin-administracion {
+    color: var(--Grises-Text-Default, #545454);
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    width: 440px;
+    background: none !important;
+    border: none !important;
+}
+
+.detalle-card-admin-historialPedido {
+    display: flex;
+    align-items: flex-start;
+    color: var(--Grises-Text-Default, #545454);
+    font-family: Sarabun;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.button-admin-historialPedido {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.button-admin-historialPedido button {
+    width: 317px;
+    border-radius: 16px;
+    background: var(--Azul-Administrador-Default, #455B73);
+    color: #F5FAFF;
+    display: flex;
+    gap: 12px !important;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.button-admin-historialPedido:hover button {
+    background: var(--Azul-100, #D4E7FA);
+    color: #455B73;
+}
+
+.button-admin-historialPedido:active button {
+    background: var(--Azul-100, #D4E7FA) !important;
+    color: #455B73;
+    box-shadow: 0 0 0 4px #455B73;
+}
+
+.detalle-card-admin-datosCuenta {
+    color: var(--Grises-Text-Default, #545454);
+    font-family: Sarabun;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 250;
+    line-height: normal;
+    margin-bottom: 12px;
+}
+
+.detalle-card-admin-datosCuenta b {
+    color: var(--Grises-Text-Default, #545454);
+    /* Sarabun/Titles/16px: Bold */
+    font-family: Sarabun;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.button-admin-datosCuenta button {
+    width: 328px;
+    border-radius: 16px;
+    background: var(--Azul-Administrador-Default, #455B73);
+    color: #F5FAFF;
+    display: flex;
+    gap: 12px !important;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.button-admin-datosCuenta:hover button {
+    background: var(--Azul-100, #D4E7FA);
+    color: #455B73;
+}
+
+.button-admin-datosCuenta:active button {
+    background: var(--Azul-100, #D4E7FA) !important;
+    color: #455B73;
+    box-shadow: 0 0 0 4px #455B73;
+}
+
+.buttons-admin-administracion {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* Centra los botones horizontalmente */
+    gap: 10px;
+    /* Espacio entre los botones */
     margin-top: 20px;
+    /* Espaciado superior */
 }
 
-.historial-compra {
-    width: 48%;
-    text-align: left;
+.buttons-admin-administracion button {
+    width: 328px;
+    border-radius: 16px;
+    padding: 12px 16px !important;
+    color: #455B73;
+    display: flex;
+    gap: 12px !important;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-decoration-style: "none";
 }
 
-.account-details {
-    width: 48%;
-    text-align: left;
-    /* padding-left: 10px; */
-}
-
-.historial-compra h2,
-.account-details h2 {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.historial-compra p,
-.account-details p {
-    font-size: 16px;
-    color: #000000;
-}
-
-.account-details a {
-    font-size: 16px;
-    color: #000000;
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-.account-details a:hover {
-    text-decoration: none;
+.buttons-admin-administracion a, link {
+    text-decoration-style: "none" !important;
 }

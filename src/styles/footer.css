@@ -71,9 +71,25 @@
     justify-content: center;
 }
 
+.newsletter-button:hover {
+    background-color: #E1D5CA !important;
+    color: #975C4C !important;
+}
+
+.newsletter-button:active {
+    background-color: #E1D5CA !important;
+    color: #975C4C !important;
+    box-shadow: 0 0 0 4px #975C4C;
+}
+
 .form-input {
     border-radius: 12px;
     border: 0 !important;
+}
+
+.form-input:focus {
+    outline: none !important; 
+    box-shadow: none !important; 
 }
 
 .info-group-text {

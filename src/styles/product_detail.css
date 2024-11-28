@@ -1,137 +1,175 @@
-.container-detail {
+.product-detail-container{
     display: flex;
+    width: 1262px !important;
     flex-direction: column;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
+    align-items: flex-start;
+    gap: 22px;
+    margin-top: 17px;
+    padding: 0 !important;
 }
 
 .product-detail {
+    width: 1262px;
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 20px;
+    flex-wrap: nowrap !important;
+    align-items: center;
+    gap: 80px;
+    align-self: stretch;
 }
 
-.img-libro-detail {
-    width: 40%;
-}
-
-.img-libro-detail img {
+.product-image img {
     width: 100%;
-    height: auto;
-    object-fit: cover;
-    transition: filter 0.3s;
+    flex: 1 0 0;
+    background: transparent;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-.info-libro-detail {
-    width: 55%;
+.productDeteil-info {
+    display: flex;
+    width: 736px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
 }
 
-.info-libro-detail h1 {
-    font-size: 28px;
+.productDeteil-info h1 {
+    color: var(--Grises-Text-Default, #545454);
+    font-family: Sarabun !important;
+    font-size: 39px;
+    font-style: normal;
     font-weight: bold;
-    margin-bottom: 10px;
-    color: #333;
+    line-height: normal;
 }
 
-.info-libro-detail .autor-detail,
-.info-libro-detail .resumen-detail,
-.info-libro-detail .precio-detail {
-    font-size: 16px;
-    margin-bottom: 8px;
-    color: #666;
+.autor-info {
+    width: 506px;
+    color: var(--Grises-Text-Default, #545454);
+    font-family: Sarabun;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 }
 
-.caja-estrellas-detail {
+.price {
+    width: 508px;
+    color: var(--Grises-Text-Default, #545454);
+    font-family: Sarabun;
+    font-size: 39px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.rating-stars {
     display: flex;
     flex-direction: row;
-    margin-left: 2px; 
+    width: 138px;
+    margin-right: 5px;
+    align-items: center;
+    gap: 12px;
 }
 
-.caja-estrellas-detail img {
-    width: 15px;
-    height: auto;
-    display: inline;
-    margin-left: 2px;
-    margin-right: 2px;
+.rating-stars svg {
+    width: 18px !important;
+    height: 24px !important;
 }
 
-.add-to-cart-detail {
+.productDetail-specs {
+    list-style: none;
+    display: flex;
+    padding: 3px 0px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    align-self: stretch;
+
+    color: var(--Grises-Text-Default, #545454);
+    font-family: Sarabun;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.productDetail-specs li {
+    margin-bottom: 5px;
+}
+
+.productDetail-argumento-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    align-self: stretch;
+}
+
+.productDetail-argumento-container h3 {
+    color: var(--Grises-Text-Default, #545454);
+    /* Sarabun/Titles/25px: Bold */
+    font-family: Sarabun;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 24px;
+}
+
+.productDetail-argumento-container {
+    color: var(--Grises-Text-Default, #545454);
+    /* Sarabun/Components/16px: Medium */
+    font-family: Sarabun;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.productDetail-container-recomendaciones {
+    display: flex;
+    width: 1262px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 138px;
+    padding: 0 16px;    
+}
+
+.productDetail-col-recomendaciones{
+    width: 1262px;
+}
+
+.productDetail-title-recomendaciones {
+    margin-left: 16px;
+    color: var(--Grises-Text-Default, #545454);
+    font-family: Sarabun;
+    font-size: 39px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 24px;
+}
+
+.productDetail-container-recomendaciones-card {
+    width: 1262px;
     display: flex;
     justify-content: space-between;
-    width: auto;
-    border: solid black 1px;
-    border-radius: 15px;
-    padding: 10px;
-    background-color: white;
-    color: black;
-    font-weight: bold;
-    align-self: center;
-    font-size: 16px;
-    cursor: pointer;
-    margin-right: 15px;
-    transition: background-color 0.3s, color 0.3s;
+    align-items: center;
 }
 
-.add-to-cart-detail:hover {
-    background-color: black;
-    color: white;
+.productDetail-recomendaciones-card {
+    display: flex;
+    width: 248px;
+    padding: 16px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    border-radius: 24px;
+    border: 1px solid var(--Verde-Usuario-Default, #975C4C) !important;
+    background: var(--Grises-Blanco, #FFF);
 }
 
-.quantity-buttons button{
-    border: none;
-    border-radius: 100px;
-    background-color: rgb(207, 207, 207);
-    color: black;
-    font-size: 20px;
-    cursor: pointer;
-    margin-bottom: 10px;
+.card img {
+    border-radius: 5px;
 }
-
-.libro-descripcion-detail {
-    margin-top: 30px;
-}
-
-.libro-descripcion-detail h2 {
-    font-size: 24px;
-    margin-bottom: 15px;
-    color: #1e1e1e;
-}
-
-.libro-descripcion-detail table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.libro-descripcion-detail table td {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-    font-size: 16px;
-    color: #666;
-}
-
-.libro-descripcion-detail table td:first-child {
-    font-weight: bold;
-    width: 15%;
-    color: #333;
-}
-
-.libro-descripcion-detail table td:last-child {
-    width: 70%;
-}
-
-@media (max-width: 768px) {
-    .product-detail {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .img-libro-detail,
-    .info-libro-detail {
-        width: 100%;
-        text-align: center;
-    }
-} 

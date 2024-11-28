@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
-import { ICreateUser } from '../interfaces/ICreateUser';
+import { IUser } from '../interfaces/IUser';
 
 // Definición del estado inicial
 interface UserState {
-    users: ICreateUser[];
+    users: IUser[];
     loading: boolean;
     error: string | null;
+    role: string;
 }
 
 // Estado inicial
@@ -13,6 +14,7 @@ const initialState: UserState = {
     users: [],
     loading: false,
     error: null,
+    role: 'user',
 };
 
 // Para obtener los usuarios desde el backend
@@ -26,7 +28,7 @@ export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
 // Para actualizar usuario
 export const updateUser = createAsyncThunk(
     'users/updateUser',
-    async (user: ICreateUser) => {
+    async (user: IUser) => {
         const response = await fetch(`http://localhost:3000/users/${user.id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
@@ -53,7 +55,12 @@ const userSlice = createSlice({
     name: 'users',
     initialState,
 
-    reducers: {},
+    reducers: {
+        // Permite actualizar el rol del usuario
+        setUserRole(state, action: PayloadAction<string>){
+            state.role = action.payload; 
+        }
+    },
 
     extraReducers: (builder) => {
         builder
@@ -61,7 +68,7 @@ const userSlice = createSlice({
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(fetchUsers.fulfilled, (state, action: PayloadAction<ICreateUser[]>) => {
+            .addCase(fetchUsers.fulfilled, (state, action: PayloadAction<IUser[]>) => {
                 state.loading = false;
                 state.users = action.payload;
             })
@@ -69,7 +76,7 @@ const userSlice = createSlice({
                 state.loading = false;
                 state.error = action.error.message || 'Error al cargar usuarios';
             })
-            .addCase(updateUser.fulfilled, (state, action: PayloadAction<ICreateUser>) => {
+            .addCase(updateUser.fulfilled, (state, action: PayloadAction<IUser>) => {
                 const index = state.users.findIndex((user) => user.id.toString() === action.payload.id.toString());
                 if (index !== -1) {
                     state.users[index] = action.payload;
@@ -80,5 +87,9 @@ const userSlice = createSlice({
             });
     },
 });
+
+export const { setUserRole } = userSlice.actions;
+
+export const selectUserRole = (state: { users: UserState }) => state.users?.role || 'user';
 
 export default userSlice.reducer;
