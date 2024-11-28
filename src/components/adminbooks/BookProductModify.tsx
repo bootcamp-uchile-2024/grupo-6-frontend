@@ -172,20 +172,23 @@ const BookProductModify = () => {
                             <>
                                 <Row>
                                     {/* Imagen del libro */}
-                                    <Col xs={12} md={5} className="d-flex align-items-center justify-contente-center flex-column ">
-                                        <img src='https://placehold.co/800@2x.png' alt={libro.nombre}
+                                    <Col xs={12} md={5} className="d-flex align-items-center justify-content-center flex-column ">
+                                        <img src='https://placehold.co/216x300/c7c7c7/white?font=lato' alt={libro.nombre}
                                             className="img-fluid mb-3"
                                             style={{ maxHeight: '300px', objectFit: 'contain' }} />
-                                        <Button variant="primary" type="submit" className="mt-3">
+                                        <Button variant="primary" type="submit" className="mt-3"
+                                            style={{
+                                                backgroundColor: '#455B73',
+                                                color: '#F5FAFF',
+                                        }}>
                                             Actualizar información
                                         </Button>
                                     </Col>
 
                                     {/* Formulario */}
                                     <Col xs={12} md={7}>
-                                        <h2>Información básica del producto</h2>
                                         <Form.Group controlId="isbn" className="mb-3">
-                                            <Form.Label>ISBN:</Form.Label>
+                                            <Form.Label>ISBN</Form.Label>
                                             <Form.Control
                                                 type="text"
                                                 name="isbn"
@@ -206,7 +209,7 @@ const BookProductModify = () => {
                                         </Form.Group>
 
                                         <Form.Group controlId="nombre" className="mb-3">
-                                            <Form.Label>Nombre:</Form.Label>
+                                            <Form.Label>Título</Form.Label>
                                             <Form.Control
                                                 type="text"
                                                 name="nombre"
@@ -226,30 +229,9 @@ const BookProductModify = () => {
                                             )}
                                         </Form.Group>
 
-                                        <Form.Group controlId="resumen" className="mb-3">
-                                            <Form.Label>Resumen:</Form.Label>
-                                            <Form.Control
-                                                as="textarea"
-                                                name="resumen"
-                                                value={libro.resumen}
-                                                onChange={handleChange}
-                                                placeholder="Ej. El libro invita a toda la familia a descubrir los vínculos que existen entre las criaturas mágicas..."
-                                                required
-                                                style={{
-                                                    backgroundColor: '#F5FAFF',
-                                                    color: '#455B73',
-                                                }}
-                                                rows={4}
-                                            />
-                                            {errors.resumen && (
-                                                <Form.Text className="text-danger">
-                                                    El resumen no puede estar vacío.
-                                                </Form.Text>
-                                            )}
-                                        </Form.Group>
                                         {/* Campo Editorial */}
                                         <Form.Group controlId="editorial" className="mb-3">
-                                            <Form.Label>Editorial:</Form.Label>
+                                            <Form.Label>Editorial</Form.Label>
                                             <Form.Control
                                                 type="text"
                                                 name="editorial"
@@ -271,7 +253,7 @@ const BookProductModify = () => {
 
                                         {/* Campo Idioma */}
                                         <Form.Group controlId="idioma" className="mb-3">
-                                            <Form.Label>Idioma:</Form.Label>
+                                            <Form.Label>Idioma</Form.Label>
                                             <Form.Control
                                                 type="text"
                                                 name="idioma"
@@ -293,7 +275,7 @@ const BookProductModify = () => {
 
                                         {/* Campo Año de Publicación */}
                                         <Form.Group controlId="agnoPublicacion" className="mb-3">
-                                            <Form.Label>Año de Publicación:</Form.Label>
+                                            <Form.Label>Año de Publicación</Form.Label>
                                             <Form.Control
                                                 type="text"
                                                 name="agnoPublicacion"
@@ -315,7 +297,7 @@ const BookProductModify = () => {
 
                                         {/* Campo Autores */}
                                         <Form.Group controlId="autores" className="mb-4">
-                                            <Form.Label>Autores:</Form.Label>
+                                            <Form.Label>Autores</Form.Label>
                                             {libro.autor.map((autor, index) => (
                                                 <div key={index} className="d-flex align-items-center mb-2">
                                                     <Form.Control
@@ -327,7 +309,11 @@ const BookProductModify = () => {
                                                         style={{ backgroundColor: '#F5FAFF', color: '#455B73' }}
                                                         className="me-2"
                                                     />
-                                                    <Button variant="success" onClick={() => addField('autor')} className="me-2">
+                                                    <Button variant="success" onClick={() => addField('autor')} className="me-2"
+                                                        style={{
+                                                            backgroundColor: '#455B73',
+                                                            color: '#F5FAFF',
+                                                         }}>
                                                         +
                                                     </Button>
                                                     <Button
@@ -346,7 +332,7 @@ const BookProductModify = () => {
 
                                         {/* Campo Géneros */}
                                         <Form.Group controlId="generos" className="mb-4">
-                                            <Form.Label>Géneros:</Form.Label>
+                                            <Form.Label>Géneros</Form.Label>
                                             {libro.genero.map((genero, index) => (
                                                 <div key={index} className="d-flex align-items-center mb-2">
                                                     <Form.Control
@@ -358,7 +344,11 @@ const BookProductModify = () => {
                                                         style={{ backgroundColor: '#F5FAFF', color: '#455B73' }}
                                                         className="me-2"
                                                     />
-                                                    <Button variant="success" onClick={() => addField('genero')} className="me-2">
+                                                    <Button variant="success" onClick={() => addField('genero')} className="me-2"
+                                                        style={{
+                                                            backgroundColor: '#455B73',
+                                                            color: '#F5FAFF',
+                                                         }}>
                                                         +
                                                     </Button>
                                                     <Button
@@ -375,9 +365,29 @@ const BookProductModify = () => {
                                             )}
                                         </Form.Group>
 
+                                        {/* Campo Precio */}
+                                        <Form.Group controlId="precio" className="mb-4">
+                                            <Form.Label>Precio</Form.Label>
+                                            <Form.Control
+                                                type="number"
+                                                name="precio"
+                                                value={libro.precio}
+                                                onChange={handleChange}
+                                                min="1000"
+                                                placeholder="Ej. 15000"
+                                                style={{ backgroundColor: '#F5FAFF', color: '#455B73' }}
+                                            />
+                                            {errors.precio && (
+                                                <Form.Text className="text-danger">
+                                                    El precio mínimo es 1000.
+                                                </Form.Text>
+                                            )}
+                                        </Form.Group>
+
+
                                         {/* Campo Encuadernación */}
                                         <Form.Group controlId="encuadernacion" className="mb-4">
-                                            <Form.Label>Encuadernación:</Form.Label>
+                                            <Form.Label>Encuadernación</Form.Label>
                                             <Form.Select
                                                 name="encuadernacion"
                                                 value={libro.encuadernacion}
@@ -397,7 +407,7 @@ const BookProductModify = () => {
 
                                         {/* Campo Número de Páginas */}
                                         <Form.Group controlId="numeroPaginas" className="mb-4">
-                                            <Form.Label>Número de Páginas:</Form.Label>
+                                            <Form.Label>Páginas</Form.Label>
                                             <Form.Control
                                                 type="number"
                                                 name="numeroPaginas"
@@ -416,7 +426,7 @@ const BookProductModify = () => {
 
                                         {/* Campo Carátula */}
                                         <Form.Group controlId="caratula" className="mb-4">
-                                            <Form.Label>Carátula (URL):</Form.Label>
+                                            <Form.Label>Carátula (URL)</Form.Label>
                                             <Form.Control
                                                 type="url"
                                                 name="caratula"
@@ -433,7 +443,7 @@ const BookProductModify = () => {
 
                                         {/* Campo Dimensiones */}
                                         <Form.Group controlId="dimensiones" className="mb-4">
-                                            <Form.Label>Dimensiones:</Form.Label>
+                                            <Form.Label>Dimensiones</Form.Label>
                                             <Form.Control
                                                 type="text"
                                                 name="dimensiones"
@@ -449,7 +459,7 @@ const BookProductModify = () => {
                                         </Form.Group>
                                         {/* Campo EAN */}
                                         <Form.Group controlId="ean" className="mb-4">
-                                            <Form.Label>EAN (Código de Barra):</Form.Label>
+                                            <Form.Label>EAN (Código de Barra)</Form.Label>
                                             <Form.Control
                                                 type="text"
                                                 name="ean"
@@ -468,7 +478,7 @@ const BookProductModify = () => {
 
                                         {/* Campo Calificación */}
                                         <Form.Group controlId="calificacion" className="mb-4">
-                                            <Form.Label>Calificación (Por defecto es 0):</Form.Label>
+                                            <Form.Label>Calificación (Por defecto es 0)</Form.Label>
                                             <Form.Control
                                                 type="number"
                                                 name="calificacion"
@@ -481,28 +491,10 @@ const BookProductModify = () => {
                                             />
                                         </Form.Group>
 
-                                        {/* Campo Precio */}
-                                        <Form.Group controlId="precio" className="mb-4">
-                                            <Form.Label>Precio:</Form.Label>
-                                            <Form.Control
-                                                type="number"
-                                                name="precio"
-                                                value={libro.precio}
-                                                onChange={handleChange}
-                                                min="1000"
-                                                placeholder="Ej. 15000"
-                                                style={{ backgroundColor: '#F5FAFF', color: '#455B73' }}
-                                            />
-                                            {errors.precio && (
-                                                <Form.Text className="text-danger">
-                                                    El precio mínimo es 1000.
-                                                </Form.Text>
-                                            )}
-                                        </Form.Group>
 
                                         {/* Campo Stock */}
                                         <Form.Group controlId="stockLibro" className="mb-4">
-                                            <Form.Label>Stock:</Form.Label>
+                                            <Form.Label>Stock</Form.Label>
                                             <Form.Control
                                                 type="number"
                                                 name="stockLibro"
@@ -521,7 +513,7 @@ const BookProductModify = () => {
 
                                         {/* Campo Descuento */}
                                         <Form.Group controlId="descuento" className="mb-4">
-                                            <Form.Label>Descuento:</Form.Label>
+                                            <Form.Label>Descuento</Form.Label>
                                             <Form.Control
                                                 type="number"
                                                 name="descuento"
@@ -534,6 +526,28 @@ const BookProductModify = () => {
                                             {errors.descuento && (
                                                 <Form.Text className="text-danger">
                                                     El descuento no puede ser menor a 0.
+                                                </Form.Text>
+                                            )}
+                                        </Form.Group>
+
+                                        <Form.Group controlId="resumen" className="mb-3">
+                                            <Form.Label>Argumento</Form.Label>
+                                            <Form.Control
+                                                as="textarea"
+                                                name="resumen"
+                                                value={libro.resumen}
+                                                onChange={handleChange}
+                                                placeholder="Ej. El libro invita a toda la familia a descubrir los vínculos que existen entre las criaturas mágicas..."
+                                                required
+                                                style={{
+                                                    backgroundColor: '#F5FAFF',
+                                                    color: '#455B73',
+                                                }}
+                                                rows={4}
+                                            />
+                                            {errors.resumen && (
+                                                <Form.Text className="text-danger">
+                                                    El resumen no puede estar vacío.
                                                 </Form.Text>
                                             )}
                                         </Form.Group>
