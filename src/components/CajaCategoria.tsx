@@ -29,6 +29,9 @@ export function CajaCategoria(props: CajaCategoriaProps) {
 
   const url = configuracion.urlJsonServerBackendCover.toString();
 
+  console.log(`Stock para el libro ${props.nombre}: ${props.stock}`);
+
+
   return (
     <div className={`container-catalog ${isOutOfStock ? 'out-of-stock' : ''}`}>
       <div className="foto-categoria">
