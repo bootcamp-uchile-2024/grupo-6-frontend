@@ -57,7 +57,7 @@ function AdminHeader() {
                             <nav className="menu-header-admin">
                                 <Link to="/admin" className="menu-link">Home</Link>
                                 <Link to="/admin/userslist" className="menu-link">Usuarios</Link>
-                                <Link to={`/categorias`} className="menu-link">Productos</Link>
+                                <Link to="/admin/product" className="menu-link">Productos</Link>
                                 <Link to="/inventario" className="menu-link">Inventario</Link>
                                 <Link to="/proveedores" className="menu-link">Proveedores</Link>
                                 <Link to="/pedidos" className="menu-link">Pedidos</Link>

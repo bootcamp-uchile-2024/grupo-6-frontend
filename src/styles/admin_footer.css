@@ -20,6 +20,12 @@
     font-size: 20px;
 }
 
+.container-button-footer-bottom-admin {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px; /* Ajusta el valor según el espacio deseado */
+}
+
 .footer-icon-admin {
     display: flex;
     padding: 12px 16px;
@@ -29,6 +35,8 @@
     border-radius: 16px;
     background: #455B73 !important;
     color: #F5FAFF !important;
+    width: 56px;
+    height: 48px;
 }
 
 .footer-icon-admin:hover {
