@@ -37,7 +37,7 @@ export function CajaCategoria(props: CajaCategoriaProps) {
       <div className="foto-categoria">
         <Link to={`/product-detail/${props.isbn}`}>
 
-          <img src={`${url}/${props.caratula}`} alt={`imagen del libro ${props.nombre}`} />
+          <img src={`${url}${props.caratula}`} alt={`imagen del libro ${props.nombre}`} />
         
         </Link>
       </div>
