@@ -9,7 +9,7 @@ import Col from "react-bootstrap/esm/Col";
 import Button from "react-bootstrap/esm/Button";
 import Image from "react-bootstrap/esm/Image";
 import Dropdown from "react-bootstrap/esm/Dropdown";
-import { SetStateAction, useState } from "react";
+import { useState } from "react";
 
 function ResumenShoppingCart() {
 
@@ -22,8 +22,10 @@ function ResumenShoppingCart() {
         "Calle Falsa 123, Villa Real, RM",
     ];
 
-    const handleSelectAddress = (address: SetStateAction<string>) => {
-        setSelectedAddress(address);
+    const handleSelectAddress = (address: string | null) => {
+        if (address !== null) {
+            setSelectedAddress(address); // Aseguramos que `address` no es nulo
+        }
     };
 
     // Calcula el total del carrito de compras
@@ -133,13 +135,13 @@ function ResumenShoppingCart() {
                     <div>No existen productos en el carrito de compras.</div>
                 )}
 
-<div className="'shoppingcart-items">
+                <div className="'shoppingcart-items">
                         <Row md="12" style={{ height: '4rem', width: '75.25rem', margin: '1.5rem' }}>
                             <Col md="6">
                                 <h4 className="d-flex  fw-bold">Despacho a domicilio</h4>
                             </Col>
                             <Col md="4">
-                                <Dropdown onSelect={handleSelectAddress} variant='none' style={{ color:  '#FBFBFB', borderColor:  '#975C4C'}}>
+                                <Dropdown onSelect={(e) => handleSelectAddress(e)}   style={{ color:  '#FBFBFB', borderColor:  '#975C4C'}}>
                                     <Dropdown.Toggle variant="outline-primary" id="dropdown-direcciones">
                                         {selectedAddress || "Seleccionar dirección"}
                                     </Dropdown.Toggle>

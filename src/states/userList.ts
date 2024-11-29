@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ICreateUser } from '../interfaces/ICreateUser';
-import { updateUser } from './userSlice';
 
 interface UserState {
     users: ICreateUser[];

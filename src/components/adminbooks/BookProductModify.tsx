@@ -14,6 +14,9 @@ import Container from 'react-bootstrap/esm/Container';
 import Row from 'react-bootstrap/esm/Row';
 import Button from 'react-bootstrap/esm/Button';
 
+
+
+
 const BookProductModify = () => {
     const navigate = useNavigate();
     const [libro, setLibro] = useState<ILibro>(
@@ -78,8 +81,10 @@ const BookProductModify = () => {
         }
     };
 
+    type FormControlElement = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
+
     // Manejar cambios en los arrays como autor y género
-    const handleArrayChange = (e: React.ChangeEvent<HTMLInputElement>, field: keyof ILibro, index: number) => {
+    const handleArrayChange = (e: React.ChangeEvent<FormControlElement>, field: keyof ILibro, index: number) => {
         const newArray = [...(libro[field] as string[])];
         newArray[index] = e.target.value;
         setLibro({

@@ -92,8 +92,10 @@ const convertValue = (name: keyof ILibro, value: string): any => {
     }
     };
 
+    type FormControlElement = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
+
     // Manejar cambios en los arrays como autor y género
-    const handleArrayChange = (e: React.ChangeEvent<HTMLInputElement>, field: keyof ILibro, index: number) => {
+    const handleArrayChange = (e: React.ChangeEvent<FormControlElement>, field: keyof ILibro, index: number) => {
         const newArray = [...(libro[field] as string[])];
         newArray[index] = e.target.value;
         setLibro({

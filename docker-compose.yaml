@@ -1,4 +1,4 @@
-name: grupo-6-frontend
+name: grupo-6-frontend-entrega-10
 services:
   frontend:
     image: dgajardoi/grupo-6-frontend:entrega-10.0

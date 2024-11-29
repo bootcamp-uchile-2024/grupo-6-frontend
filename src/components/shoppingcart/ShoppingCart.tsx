@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import ButtonClearCart from "./ButtonClearCart";
 import { Link, useNavigate } from "react-router-dom";
 import QuantityButtons from "./QuantityButtons";
-import { SetStateAction, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import { Button, Col, Container, Row, Image, Dropdown } from "react-bootstrap";
 
 
@@ -21,9 +21,12 @@ function ShoppingCart() {
         "Calle Falsa 123, Villa Real, RM",
     ];
 
-    const handleSelectAddress = (address: SetStateAction<string>) => {
-        setSelectedAddress(address);
+    const handleSelectAddress = (address: string | null) => {
+        if (address !== null) {
+            setSelectedAddress(address); // Aseguramos que `address` no es nulo
+        }
     };
+
 
     const calculateTotal = (items: ShoppingCartEntrada[]) => {
         let initialTotal = 0;
@@ -123,7 +126,7 @@ function ShoppingCart() {
                                         <h4 className="d-flex  fw-bold">Despacho a domicilio</h4>
                                     </Col>
                                     <Col md="4">
-                                        <Dropdown onSelect={handleSelectAddress} variant='none' style={{ color: '#FBFBFB', borderColor: '#975C4C' }}>
+                                        <Dropdown  onSelect={(e) => handleSelectAddress(e)}   style={{ color: '#FBFBFB', borderColor: '#975C4C' }}>
                                             <Dropdown.Toggle variant="outline-primary" id="dropdown-direcciones">
                                                 {selectedAddress || "Seleccionar dirección"}
                                             </Dropdown.Toggle>
