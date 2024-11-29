@@ -55,27 +55,26 @@ const ButtonProductModify = ({ libro }: { libro: ILibro | null }) => {
     }
     return (
         <>
-        <Button variant="light" onClick={handleShow}>
-             <img src={icono3dots} alt="modificar libro" className="icono-modificar" style={{width: '24px', height:'24px', margin: '12px'}} />
-        </Button>
-        <Modal show={show} onHide={handleClose} >
-                <Modal.Header style={{backgroundColor: '#F5FAFF'}} closeButton>
+            <Button variant="light" onClick={handleShow}>
+                <img src={icono3dots} alt="modificar libro" className="icono-modificar" style={{ width: '24px', height: '24px', margin: '12px' }} />
+            </Button>
+            <Modal show={show} onHide={handleClose} >
+                <Modal.Header style={{ backgroundColor: '#F5FAFF' }} closeButton>
                 </Modal.Header>
-                <Modal.Body style={{backgroundColor: '#F5FAFF'}}>
-                      <div className="d-flex align-items-center flex-column ">
-                          <p className='fw-bold'>{libro?.nombre}</p>
-                          <p>{libro?.autor}</p>
-
-                      </div>
-                    </Modal.Body>
-                <Modal.Footer className="d-flex justify-content-around" style={{backgroundColor: '#F5FAFF'}}>
-                    <Button variant="secondary" onClick={handleAddProductDelete} style={{backgroundColor: '#D4E7FA', color:'#455B73'}}>
+                <Modal.Body style={{ backgroundColor: '#F5FAFF' }}>
+                    <div className="d-flex align-items-center flex-column ">
+                        <p className='fw-bold'>{libro?.nombre}</p>
+                        <p>{libro?.autor}</p>
+                    </div>
+                </Modal.Body>
+                <Modal.Footer className="d-flex justify-content-around" style={{ backgroundColor: '#F5FAFF' }}>
+                    <Button variant="secondary" onClick={handleAddProductDelete} style={{ backgroundColor: '#D4E7FA', color: '#455B73' }}>
                         Eliminar Producto
-                        <img src={iconoBorrar} alt="Borrar libro" className="icono-basurero" style={{width: '24px', height:'24px', margin: '12px'}} />
+                        <img src={iconoBorrar} alt="Borrar libro" className="icono-basurero" style={{ width: '24px', height: '24px', margin: '12px' }} />
                     </Button>
-                    <Button variant="primary" style={{backgroundColor: '#455B73'}} onClick={handleAddProductModify}>
+                    <Button variant="primary" style={{ backgroundColor: '#455B73' }} onClick={handleAddProductModify}>
                         Modificar Producto
-                        <img src={iconoEditar} alt="Editar libro" className="icono-editar" style={{width: '24px', height:'24px', margin: '12px'}} />
+                        <img src={iconoEditar} alt="Editar libro" className="icono-editar" style={{ width: '24px', height: '24px', margin: '12px' }} />
                     </Button>
                 </Modal.Footer>
             </Modal></>

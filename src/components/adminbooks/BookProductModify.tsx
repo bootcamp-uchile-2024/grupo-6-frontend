@@ -180,7 +180,7 @@ const BookProductModify = () => {
                                             style={{
                                                 backgroundColor: '#455B73',
                                                 color: '#F5FAFF',
-                                        }}>
+                                            }}>
                                             Actualizar información
                                         </Button>
                                     </Col>
@@ -313,7 +313,7 @@ const BookProductModify = () => {
                                                         style={{
                                                             backgroundColor: '#455B73',
                                                             color: '#F5FAFF',
-                                                         }}>
+                                                        }}>
                                                         +
                                                     </Button>
                                                     <Button
@@ -348,7 +348,7 @@ const BookProductModify = () => {
                                                         style={{
                                                             backgroundColor: '#455B73',
                                                             color: '#F5FAFF',
-                                                         }}>
+                                                        }}>
                                                         +
                                                     </Button>
                                                     <Button
@@ -558,7 +558,7 @@ const BookProductModify = () => {
                             <div>No se encontró el producto</div>
                         )}
                     </div>
-                    
+
                 </Form>
             </Container>
         </div>

@@ -1,27 +1,27 @@
-.container-header {
+.container-header-admin {
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 203px;
 }
 
-.header {
+.header-admin {
     background-color: #E1D5CA;
 }
 
-.header-top {
+.header-top-admin {
     display: flex;
     padding: 24px;
     justify-content: flex-end;
     align-items: center;
     gap: 42px;
     align-self: stretch;
-    background-color: #E1D5CA !important;
+    background-color: #B5D1F0 !important;
     height: 105px;
 }
 
-.header-nav {
-    background-color: #F8F5F0;
+.header-nav-admin {
+    background-color: #F5FAFF;
     display: flex;
     padding: 24px;
     justify-content: flex-end;
@@ -32,7 +32,7 @@
 }
 
 /* Logotipo */
-.header-logo {
+.header-logo-admin {
     position: absolute;
     left: 16px;
     top: 19px;
@@ -43,10 +43,9 @@
     align-items: center;
 }
 
-.container-herramientas {
+.container-herramientas-admin {
     display: flex;
-    justify-content: center;
-    /* Alinea todos los elementos hacia la derecha */
+    justify-content: flex-end;
     align-items: center;
     /* Asegura que los elementos estén alineados verticalmente */
     gap: 16px;
@@ -57,21 +56,21 @@
     /* Alinea con el botón "Catálogo" */
 }
 
-.input-group {
+.input-group-admin {
     display: flex;
     align-items: center;
     width: 400px !important;
 }
 
 /* Barra de búsqueda */
-.header-search-input {
+.header-search-input-admin {
     border-radius: 20px 0 0 20px;
     border: 0 !important;
     padding: 10px 15px;
     font-size: 16px;
 }
 
-.header-search-button {
+.header-search-button-admin {
     background-color: transparent;
     border: 1px solid #CCC;
     border-left: none;
@@ -82,12 +81,12 @@
 
 }
 
-.icon-search-button {
+.icon-search-button-admin {
     color: #975C4C;
 }
 
 /* Íconos */
-.header-icon {
+.header-icon-admin {
     display: flex;
     padding: 12px 16px;
     justify-content: center;
@@ -98,21 +97,21 @@
     color: #F5FAFF !important;
 }
 
-.header-icon:hover {
+.header-icon-admin:hover {
     background-color: #D4E7FA !important;
     color: #455B73 !important;
 }
 
-.header-icon:active {
+.header-icon-admin:active {
     box-shadow: 0 0 0 4px #455B73 !important;
 }
 
-.header-icon svg {
+.header-icon-admin svg {
     width: 24px;
     height: 24px;
 }
 
-.menu-catalog-button {
+.menu-catalog-button-admin {
     display: flex;
     width: 167px;
     padding: 12px 16px;
@@ -121,13 +120,13 @@
     gap: 12px;
 }
 
-.icon-catalog-button svg {
+.icon-catalog-button-admin svg {
     width: 24px !important;
     height: 24px !important;
 }
 
 /* Menú de navegación */
-.menu-link {
+.menu-link-admin {
     color: #545454;
     display: flex;
     width: 164px;
@@ -145,11 +144,11 @@
     line-height: normal;
 }
 
-.menu-link:hover {
+.menu-link-admin:hover {
     color: #975C4C;
 }
 
-.menu-catalog-button {
+.menu-catalog-button-admin {
     border-radius: 16px;
     background: var(--Azul-Administrador-Default, #455B73) !important;
     display: flex;
@@ -167,26 +166,27 @@
     line-height: normal;
 }
 
-.menu-catalog-button:hover {
+.menu-catalog-button-admin:hover {
     background-color: #D4E7FA !important;
     color: #455B73 !important;
 }
 
-.menu-catalog-button:active {
+.menu-catalog-button-admin:active {
     box-shadow: 0 0 0 4px #455B73 !important;
 }
 
-.menu-header {
+.menu-header-admin {
     /* gap: 16px; */
     display: flex;
     padding: 24px;
     justify-content: flex-end;
     align-items: center;
-    gap: 24px;
+    gap: 32px;
     align-self: stretch;
+    width: 1030px;
 }
 
-.dropdown-menu {
+.dropdown-menu-admin {
     border: none !important;
     /* Sin bordes */
     border-radius: 0 !important;
@@ -195,7 +195,7 @@
     /* Sin sombras */
 }
 
-.dropdown-menu-catalog {
+.dropdown-menu-catalog-admin {
     display: flex !important;
     position: absolute !important;
     right: 0;
@@ -213,7 +213,7 @@
     /* Elimina sombras si es necesario */
 }
 
-.menu-container {
+.menu-container-admin {
     display: flex;
     width: 100%;
     padding: 24px;
@@ -227,7 +227,7 @@
     /* Sin esquinas redondeadas */
 }
 
-.menu-column {
+.menu-column-admin {
     display: flex;
     width: 240px;
     flex-direction: column;
@@ -235,14 +235,14 @@
     flex-shrink: 0;
 }
 
-.menu-column a {
+.menu-column-admin a {
     color: white;
     text-decoration: none;
     display: block;
     margin-bottom: 5px;
 }
 
-.dropdown-item:hover {
+.dropdown-item-admin:hover {
     background-color: #98BADF !important;
     color: #FFFFFF !important;
 }
