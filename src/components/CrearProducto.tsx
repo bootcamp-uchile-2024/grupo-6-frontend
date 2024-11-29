@@ -59,37 +59,37 @@ const CrearProducto = () => {
         const { name, value } = e.target;
 
         setLibro({
-        ...libro,
-        [name]: convertValue(name as keyof ILibro, value)
+            ...libro,
+            [name]: convertValue(name as keyof ILibro, value)
         })
     };
 
-// Función para convertir el valor según el tipo de la clave
-const convertValue = (name: keyof ILibro, value: string): any => {
-    switch (name) {
-        case "nombre":
-        case "isbn":
-        case "editorial":
-        case "idioma":
-        case "encuadernacion":
-        case "agnoPublicacion":
-        case "caratula":
-        case "dimensiones":
-        case "ean":
-        case "resumen":
-            return value; // `string`
-        case "autor":
-        case "genero":
-            return value.split(","); // `string[]` -> Convertir valor separado por comas
-        case "precio":
-        case "stockLibro":
-        case "numeroPaginas":
-        case "descuento":
-        case "calificacion":
-            return Number(value); // `number`
-        default:
-            return value;
-    }
+    // Función para convertir el valor según el tipo de la clave
+    const convertValue = (name: keyof ILibro, value: string): any => {
+        switch (name) {
+            case "nombre":
+            case "isbn":
+            case "editorial":
+            case "idioma":
+            case "encuadernacion":
+            case "agnoPublicacion":
+            case "caratula":
+            case "dimensiones":
+            case "ean":
+            case "resumen":
+                return value; // `string`
+            case "autor":
+            case "genero":
+                return value.split(","); // `string[]` -> Convertir valor separado por comas
+            case "precio":
+            case "stockLibro":
+            case "numeroPaginas":
+            case "descuento":
+            case "calificacion":
+                return Number(value); // `number`
+            default:
+                return value;
+        }
     };
 
     type FormControlElement = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
@@ -99,16 +99,16 @@ const convertValue = (name: keyof ILibro, value: string): any => {
         const newArray = [...(libro[field] as string[])];
         newArray[index] = e.target.value;
         setLibro({
-        ...libro,
-        [field]: newArray
+            ...libro,
+            [field]: newArray
         });
     };
 
     // Agregar un nuevo campo para el autor o género
     const addField = (field: keyof ILibro) => {
         setLibro({
-        ...libro,
-        [field]: [...(libro[field] as string[]), '']
+            ...libro,
+            [field]: [...(libro[field] as string[]), '']
         });
     };
 
@@ -117,22 +117,22 @@ const convertValue = (name: keyof ILibro, value: string): any => {
         const newArray = [...(libro[field] as string[])];
         newArray.splice(index, 1);
         setLibro({
-        ...libro,
-        [field]: newArray
+            ...libro,
+            [field]: newArray
         });
     };
 
     // Enviar el formulario
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        
-        setErrors(validateValues(libro, errors));
-        if(errors.isbn || errors.nombre  || errors.autor  || errors.precio  || errors.stockLibro   
-            || errors.genero   || errors.editorial   || errors.idioma   || errors.encuadernacion  
-            || errors.agnoPublicacion   || errors.numeroPaginas   || errors.descuento  || errors.caratula  
-            || errors.dimensiones  || errors.ean   || errors.resumen ){
 
-            console.log("Los errores son: ",errors);
+        setErrors(validateValues(libro, errors));
+        if (errors.isbn || errors.nombre || errors.autor || errors.precio || errors.stockLibro
+            || errors.genero || errors.editorial || errors.idioma || errors.encuadernacion
+            || errors.agnoPublicacion || errors.numeroPaginas || errors.descuento || errors.caratula
+            || errors.dimensiones || errors.ean || errors.resumen) {
+
+            console.log("Los errores son: ", errors);
             navigate("/create/product");
         } else {
             console.log("Se envia el formulario");
@@ -142,7 +142,7 @@ const convertValue = (name: keyof ILibro, value: string): any => {
                     'Content-Type': 'application/json'
                 }
             });
-    
+
             if (response.status == 201) {
                 console.log("Libro creado correctamente al Backend");
 
@@ -172,15 +172,15 @@ const convertValue = (name: keyof ILibro, value: string): any => {
             });
             navigate("/create/product");
         }
-        
+
     };
-    
-    
+
+
 
     return (
 
         <><div className="caja-editar-producto">
-             <Container className="mt-4">
+            <Container className="mt-4">
                 <Form onSubmit={handleSubmit}>
 
                     <div className='container-detail'>
@@ -196,7 +196,7 @@ const convertValue = (name: keyof ILibro, value: string): any => {
                                             style={{
                                                 backgroundColor: '#455B73',
                                                 color: '#F5FAFF',
-                                        }}>
+                                            }}>
                                             Actualizar información
                                         </Button>
                                     </Col>
@@ -329,7 +329,7 @@ const convertValue = (name: keyof ILibro, value: string): any => {
                                                         style={{
                                                             backgroundColor: '#455B73',
                                                             color: '#F5FAFF',
-                                                         }}>
+                                                        }}>
                                                         +
                                                     </Button>
                                                     <Button
@@ -364,7 +364,7 @@ const convertValue = (name: keyof ILibro, value: string): any => {
                                                         style={{
                                                             backgroundColor: '#455B73',
                                                             color: '#F5FAFF',
-                                                         }}>
+                                                        }}>
                                                         +
                                                     </Button>
                                                     <Button
@@ -574,7 +574,7 @@ const convertValue = (name: keyof ILibro, value: string): any => {
                             <div>No se encontró el producto</div>
                         )}
                     </div>
-                    
+
                 </Form>
             </Container>
         </div></>

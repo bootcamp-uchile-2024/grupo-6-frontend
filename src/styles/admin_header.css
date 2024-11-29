@@ -215,7 +215,7 @@
 
 .menu-container-admin {
     display: flex;
-    width: 100%;
+    width: 320px;
     padding: 24px;
     align-items: flex-start;
     gap: 16px;

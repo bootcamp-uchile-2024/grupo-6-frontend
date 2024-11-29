@@ -57,7 +57,7 @@ function AdminHeader() {
                             <nav className="menu-header-admin">
                                 <Link to="/admin" className="menu-link">Home</Link>
                                 <Link to="/admin/userslist" className="menu-link">Usuarios</Link>
-                                <Link to={`/categorias`} className="menu-link">Productos</Link>
+                                <Link to="/admin/product" className="menu-link">Productos</Link>
                                 <Link to="/inventario" className="menu-link">Inventario</Link>
                                 <Link to="/proveedores" className="menu-link">Proveedores</Link>
                                 <Link to="/pedidos" className="menu-link">Pedidos</Link>
@@ -94,7 +94,7 @@ function AdminHeader() {
                                                 <Dropdown.Item href="/categoria/autoayuda" className="dropdown-item-categoria">Autoayuda</Dropdown.Item>
                                                 <Dropdown.Item href="/categoria/historia" className="dropdown-item-categoria">Historia</Dropdown.Item>
                                                 <Dropdown.Item href="/categoria/fotografia" className="dropdown-item-categoria">Fotografía</Dropdown.Item>
-                                                <Dropdown.Item href="/categorias" className="dropdown-item-categoria">Revisar todas las categorías</Dropdown.Item>
+                                                <Dropdown.Item href={`/categorias`} className="dropdown-item-categoria">Revisar todas las categorías</Dropdown.Item>
                                             </div>
                                             <div className="menu-column-admin">
                                                 <Dropdown.Item href="/categoria/terror" className="dropdown-item-categoria">Terror</Dropdown.Item>

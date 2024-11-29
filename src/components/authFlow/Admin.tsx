@@ -71,7 +71,7 @@ const AdminPage = () => {
                             <Card.Header className="title-card-admin-administracion">Administración</Card.Header>
                             <Card.Body className="container-card-admin-administracion">
                                 <div className="buttons-admin-administracion text-center mt-3">
-                                    <Button variant="none">
+                                    <Button variant="none" className='button-users-administracion'>
                                         <Link to="/admin/userslist">
                                             Usuarios
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">

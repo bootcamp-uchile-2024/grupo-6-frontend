@@ -178,6 +178,7 @@
     /* Espacio entre los botones */
     margin-top: 20px;
     /* Espaciado superior */
+    text-decoration: none !important;
 }
 
 .buttons-admin-administracion button {
@@ -194,6 +195,6 @@
     text-decoration-style: "none";
 }
 
-.buttons-admin-administracion a, link {
+a, link {
     text-decoration-style: "none" !important;
 }

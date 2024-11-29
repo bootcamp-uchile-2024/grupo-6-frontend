@@ -115,7 +115,7 @@ function Header() {
                         <Dropdown.Item href="/categoria/autoayuda" className="dropdown-item-categoria">Autoayuda</Dropdown.Item>
                         <Dropdown.Item href="/categoria/historia"className="dropdown-item-categoria">Historia</Dropdown.Item>
                         <Dropdown.Item href="/categoria/fotografia"className="dropdown-item-categoria">Fotografía</Dropdown.Item>
-                        <Dropdown.Item href="/categorias" className="dropdown-item-categoria">Revisar todas las categorías</Dropdown.Item>
+                        <Dropdown.Item href={`/categorias`} className="dropdown-item-categoria">Revisar todas las categorías</Dropdown.Item>
                       </div>
                       <div className="menu-column">
                         <Dropdown.Item href="/categoria/terror" className="dropdown-item-categoria">Terror</Dropdown.Item>
