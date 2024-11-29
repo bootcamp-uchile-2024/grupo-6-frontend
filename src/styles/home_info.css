@@ -131,13 +131,18 @@
     padding: 0;
     /* para que no se cree un espacio interno */
     border-radius: 24px;
-    border: 1px solid #975C4C !important;
+    border: 1px solid #975C4C;
     background: #fff;
 }
 
 .col-custom:hover {
-    background-color: #E1D5CA !important;
-    border: 2px solid #975C4C !important;
+    background-color: #E1D5CA;
+    border: 0px !important;
+}
+
+.col-custom:active {
+    background-color: #E1D5CA;
+    border: 2px solid #975C4C;
 }
 
 .product-card {
@@ -145,8 +150,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
-    height: 100%;
+    width: 248px;
+    height: 506px;
     padding: 16px;
     border-radius: inherit;
     border: none;
@@ -185,7 +190,7 @@
     align-self: stretch;
 }
 
-.card-title {
+.container-info-card .card-title {
     color: #545454;
     font-family: Sarabun;
     font-size: 16px;
@@ -236,51 +241,63 @@
 }
 
 /* Contenedor general de botones de cantidad */
-.button-cantidad-carrito {
+.product-actions {
     display: flex;
-    height: 48px;
-    padding: 0px 12px;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.product-actions .button-cantidad-carrito {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
     align-items: center;
-    gap: 12px;
+    width: 128px;
+    height: 48px;
+    border: 2px solid #806259;
     border-radius: 16px;
-    border: 2px solid var(--Verde-Default-Universal, #806259);
-    background: var(--Grises-Blanco, #FFF);
+    background-color: white;
+    cursor: pointer;
 }
 
 /* Estilo para los botones de cantidad (- y +) */
-.button-cantidad-carrito button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
+.button-cantidad-carrito .btn {
+    margin: 0px;
+    background-color: transparent;
     border: none;
+}
+
+.button-cantidad-carrito span {
+    font-size: 25px;
     color: #545454;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s;
 }
 
 /* Estilo del botón del carrito */
-.shopping-cart-button-cards {
-    display: flex;
-    padding: 12px 16px;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
+.product-actions .shopping-cart-button-cards {
+    background-color: #975C4C;
     border-radius: 16px;
-    background: var(--Verde-Usuario-Default, #975C4C);
-    color: #FFFFFF;
-    cursor: pointer;
-    transition: background-color 0.3s;
     border: none;
+    width: 56px;
+    height: 48px;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.shopping-cart-button-cards:hover {
-    background: var(--Verde-Usuario-Hover, #7A3B2E);
+.button-cantidad-carrito .btn:hover,
+.button-cantidad-carrito .btn:active,
+.button-cantidad-carrito .btn:focus,
+.button-cantidad-carrito .btn:focus-visible {
+    background-color: transparent !important;
+    border: none !important;
 }
+
+.shopping-cart-button-cards:hover,
+.shopping-cart-button-cards:active,
+.shopping-cart-button-cards:focus-visible {
+    background-color: #975C4C !important;
+    color: white !important;
+    border: none !important;
+}
+
 
 /* Icono del botón del carrito */
 .icon-shoppingCart-button-cards {
@@ -288,7 +305,6 @@
     height: 24px;
     fill: #FFFFFF;
 }
-
 
 .tendencias-section {
     margin-bottom: 100px;

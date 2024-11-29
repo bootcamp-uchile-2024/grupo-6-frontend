@@ -1,6 +1,5 @@
 import { useDispatch } from "react-redux";
 import { addProductModify } from '../../states/productModify';
-import iconoBorrar from '../../assets/images/icono_basurero.png'
 import { ILibro } from "../../interfaces/ILibro";
 import { configuracion } from "../../config/appConfiguration";
 import Button from "react-bootstrap/esm/Button";

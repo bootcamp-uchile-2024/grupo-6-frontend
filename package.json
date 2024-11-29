@@ -8,8 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "publish": "docker build -t dgajardoi/grupo-6-frontend:entrega-9 .",
-    "postpublish": "docker push dgajardoi/grupo-6-frontend:entrega-9"
+    "publish": "docker build -t dgajardoi/grupo-6-frontend:entrega-10.0 .",
+    "postpublish": "docker push dgajardoi/grupo-6-frontend:entrega-10.0"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.3.0",

@@ -8,9 +8,10 @@
     color: #545454;
 }
 
-/* .registration-form {
-    border: 1px solid black;
-} */
+.login-form,
+.registration-form {
+    margin-bottom: 240px;
+}
 
 .login-form label {
     position: absolute;
@@ -42,6 +43,7 @@
     margin-bottom: 24px;
 }
 
+.login-form input::placeholder,
 .registration-form input::placeholder {
     font-size: 20px;
     color: #975C4C;
@@ -118,4 +120,58 @@
     font-weight: 500;
     text-decoration: none;
     margin: 12px;
+}
+
+/* MODAL */
+.user-register-modal .modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+    border: 4px solid #975C4C;
+    border-radius: 24px;
+    padding: 24px;
+}
+
+.user-register-modal .modal-header {
+    padding: 0px;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.user-register-modal .modal-header .btn-close {
+    padding: 0px;
+}
+
+.user-register-modal .modal-title {
+    font-weight: bolder;
+    color: #975C4C;
+    font-size: 25px;
+    margin: 0px;
+}
+
+.user-register-modal .modal-body {
+    padding: 0px;
+    text-align: center;
+    color: #975C4C;
+    font-size: 25px;
+    margin: 0px;
+}
+
+.user-register-modal .modal-body p {
+    margin: 0px;
+}
+
+/* ERRORES*/
+
+.login-form .error,
+.registration-form .error {
+    font-size: 16px;
+    color: rgb(204, 0, 0);
+    margin-left: 15px;
 }

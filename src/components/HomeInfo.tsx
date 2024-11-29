@@ -245,13 +245,21 @@ const HomeInfo = () => {
                                     <p className="precio-card">${product.precio.toLocaleString()}</p>
                                     <div className="product-actions">
                                         <div className="button-cantidad-carrito">
-                                            <Button variant="outline-secondary">-</Button>
+                                            <Button variant="outline-secondary">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                    <path d="M18 12H6" stroke="#545454" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                </svg>
+                                            </Button>
                                             <span>1</span>
-                                            <Button variant="outline-secondary">+</Button>
+                                            <Button variant="outline-secondary">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                    <path d="M12 6V12M12 12V18M12 12H18M12 12L6 12" stroke="#545454" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                </svg>
+                                            </Button>
                                         </div>
                                         <Button variant="none" className="shopping-cart-button-cards">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 25 26" fill="none" className="icon-shoppingCart-button-cards">
-                                                <path fillRule="evenodd" clipRule="evenodd" d="M0.923085 0.571411C0.413279 0.571411 0 1.0309 0 1.59771C0 2.16452 0.413279 2.62401 0.923085 2.62401H3.0375L3.25474 4.31471C3.25636 4.32957 3.25825 4.34434 3.26043 4.359L4.75386 15.9819C4.75549 15.9969 4.7574 16.0118 4.75961 16.0266L5.25629 19.8921C5.32125 20.3977 5.71072 20.7733 6.17009 20.7733H6.52868C6.09407 21.2884 5.83008 21.9668 5.83008 22.7101C5.83008 24.3211 7.06992 25.627 8.59933 25.627C10.1288 25.627 11.3686 24.3211 11.3686 22.7101C11.3686 21.9668 11.1046 21.2884 10.67 20.7733H15.7591C15.3245 21.2884 15.0605 21.9668 15.0605 22.7101C15.0605 24.3211 16.3004 25.627 17.8298 25.627C19.3592 25.627 20.5991 24.3211 20.5991 22.7101C20.5991 21.6423 20.0543 20.7085 19.2415 20.2002C19.3021 20.0635 19.3362 19.9097 19.3362 19.747C19.3362 19.1802 18.9229 18.7207 18.4131 18.7207H6.97068L6.73471 16.8841H19.579C19.9763 16.8841 20.3291 16.6015 20.4547 16.1824L23.9527 4.51501C24.0466 4.20204 23.9994 3.858 23.8259 3.59038C23.6524 3.32275 23.3738 3.16417 23.077 3.16417H4.97182L4.7519 1.45257C4.68693 0.946964 4.29746 0.571411 3.83809 0.571411H0.923085ZM5.23556 5.21676L6.47097 14.8315H18.9137L21.7963 5.21676H5.23556ZM8.59933 21.4476C7.93734 21.4476 7.4007 22.0128 7.4007 22.7101C7.4007 23.4074 7.93734 23.9726 8.59933 23.9726C9.26135 23.9726 9.79797 23.4074 9.79797 22.7101C9.79797 22.0128 9.26135 21.4476 8.59933 21.4476ZM16.6312 22.7101C16.6312 22.0128 17.1678 21.4476 17.8298 21.4476C18.4918 21.4476 19.0284 22.0128 19.0284 22.7101C19.0284 23.4074 18.4918 23.9726 17.8298 23.9726C17.1678 23.9726 16.6312 23.4074 16.6312 22.7101Z" fill="currentColor" />
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                <path d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.70711 15.2929C4.07714 15.9229 4.52331 17 5.41421 17H17M17 17C15.8954 17 15 17.8954 15 19C15 20.1046 15.8954 21 17 21C18.1046 21 19 20.1046 19 19C19 17.8954 18.1046 17 17 17ZM9 19C9 20.1046 8.10457 21 7 21C5.89543 21 5 20.1046 5 19C5 17.8954 5.89543 17 7 17C8.10457 17 9 17.8954 9 19Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
                                         </Button>
                                     </div>
@@ -284,12 +292,22 @@ const HomeInfo = () => {
                                         <Card.Text className="autor-card">{product.autor.join(', ')}</Card.Text>
                                         <p className="precio-card">${product.precio.toLocaleString()}</p>
                                         <div className="product-actions">
-                                            <Button variant="outline-secondary">-</Button>
-                                            <span>1</span>
-                                            <Button variant="outline-secondary">+</Button>
-                                            <Button variant="none" className="shopping-cart-cards">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 25 26" fill="none" className="icon-shoppingCart-button">
-                                                    <path fillRule="evenodd" clipRule="evenodd" d="M0.923085 0.571411C0.413279 0.571411 0 1.0309 0 1.59771C0 2.16452 0.413279 2.62401 0.923085 2.62401H3.0375L3.25474 4.31471C3.25636 4.32957 3.25825 4.34434 3.26043 4.359L4.75386 15.9819C4.75549 15.9969 4.7574 16.0118 4.75961 16.0266L5.25629 19.8921C5.32125 20.3977 5.71072 20.7733 6.17009 20.7733H6.52868C6.09407 21.2884 5.83008 21.9668 5.83008 22.7101C5.83008 24.3211 7.06992 25.627 8.59933 25.627C10.1288 25.627 11.3686 24.3211 11.3686 22.7101C11.3686 21.9668 11.1046 21.2884 10.67 20.7733H15.7591C15.3245 21.2884 15.0605 21.9668 15.0605 22.7101C15.0605 24.3211 16.3004 25.627 17.8298 25.627C19.3592 25.627 20.5991 24.3211 20.5991 22.7101C20.5991 21.6423 20.0543 20.7085 19.2415 20.2002C19.3021 20.0635 19.3362 19.9097 19.3362 19.747C19.3362 19.1802 18.9229 18.7207 18.4131 18.7207H6.97068L6.73471 16.8841H19.579C19.9763 16.8841 20.3291 16.6015 20.4547 16.1824L23.9527 4.51501C24.0466 4.20204 23.9994 3.858 23.8259 3.59038C23.6524 3.32275 23.3738 3.16417 23.077 3.16417H4.97182L4.7519 1.45257C4.68693 0.946964 4.29746 0.571411 3.83809 0.571411H0.923085ZM5.23556 5.21676L6.47097 14.8315H18.9137L21.7963 5.21676H5.23556ZM8.59933 21.4476C7.93734 21.4476 7.4007 22.0128 7.4007 22.7101C7.4007 23.4074 7.93734 23.9726 8.59933 23.9726C9.26135 23.9726 9.79797 23.4074 9.79797 22.7101C9.79797 22.0128 9.26135 21.4476 8.59933 21.4476ZM16.6312 22.7101C16.6312 22.0128 17.1678 21.4476 17.8298 21.4476C18.4918 21.4476 19.0284 22.0128 19.0284 22.7101C19.0284 23.4074 18.4918 23.9726 17.8298 23.9726C17.1678 23.9726 16.6312 23.4074 16.6312 22.7101Z" fill="currentColor" />
+                                            <div className="button-cantidad-carrito">
+                                                <Button variant="outline-secondary">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                        <path d="M18 12H6" stroke="#545454" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                    </svg>
+                                                </Button>
+                                                <span>1</span>
+                                                <Button variant="outline-secondary">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                        <path d="M12 6V12M12 12V18M12 12H18M12 12L6 12" stroke="#545454" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                    </svg>
+                                                </Button>
+                                            </div>
+                                            <Button variant="none" className="shopping-cart-button-cards">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                    <path d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.70711 15.2929C4.07714 15.9229 4.52331 17 5.41421 17H17M17 17C15.8954 17 15 17.8954 15 19C15 20.1046 15.8954 21 17 21C18.1046 21 19 20.1046 19 19C19 17.8954 18.1046 17 17 17ZM9 19C9 20.1046 8.10457 21 7 21C5.89543 21 5 20.1046 5 19C5 17.8954 5.89543 17 7 17C8.10457 17 9 17.8954 9 19Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                                 </svg>
                                             </Button>
                                         </div>
@@ -322,12 +340,22 @@ const HomeInfo = () => {
                                         <Card.Text className="autor-card">{product.autor.join(', ')}</Card.Text>
                                         <p className="precio-card">${product.precio.toLocaleString()}</p>
                                         <div className="product-actions">
-                                            <Button variant="outline-secondary">-</Button>
-                                            <span>1</span>
-                                            <Button variant="outline-secondary">+</Button>
-                                            <Button variant="none" className="shopping-cart-cards">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 25 26" fill="none" className="icon-shoppingCart-button">
-                                                    <path fillRule="evenodd" clipRule="evenodd" d="M0.923085 0.571411C0.413279 0.571411 0 1.0309 0 1.59771C0 2.16452 0.413279 2.62401 0.923085 2.62401H3.0375L3.25474 4.31471C3.25636 4.32957 3.25825 4.34434 3.26043 4.359L4.75386 15.9819C4.75549 15.9969 4.7574 16.0118 4.75961 16.0266L5.25629 19.8921C5.32125 20.3977 5.71072 20.7733 6.17009 20.7733H6.52868C6.09407 21.2884 5.83008 21.9668 5.83008 22.7101C5.83008 24.3211 7.06992 25.627 8.59933 25.627C10.1288 25.627 11.3686 24.3211 11.3686 22.7101C11.3686 21.9668 11.1046 21.2884 10.67 20.7733H15.7591C15.3245 21.2884 15.0605 21.9668 15.0605 22.7101C15.0605 24.3211 16.3004 25.627 17.8298 25.627C19.3592 25.627 20.5991 24.3211 20.5991 22.7101C20.5991 21.6423 20.0543 20.7085 19.2415 20.2002C19.3021 20.0635 19.3362 19.9097 19.3362 19.747C19.3362 19.1802 18.9229 18.7207 18.4131 18.7207H6.97068L6.73471 16.8841H19.579C19.9763 16.8841 20.3291 16.6015 20.4547 16.1824L23.9527 4.51501C24.0466 4.20204 23.9994 3.858 23.8259 3.59038C23.6524 3.32275 23.3738 3.16417 23.077 3.16417H4.97182L4.7519 1.45257C4.68693 0.946964 4.29746 0.571411 3.83809 0.571411H0.923085ZM5.23556 5.21676L6.47097 14.8315H18.9137L21.7963 5.21676H5.23556ZM8.59933 21.4476C7.93734 21.4476 7.4007 22.0128 7.4007 22.7101C7.4007 23.4074 7.93734 23.9726 8.59933 23.9726C9.26135 23.9726 9.79797 23.4074 9.79797 22.7101C9.79797 22.0128 9.26135 21.4476 8.59933 21.4476ZM16.6312 22.7101C16.6312 22.0128 17.1678 21.4476 17.8298 21.4476C18.4918 21.4476 19.0284 22.0128 19.0284 22.7101C19.0284 23.4074 18.4918 23.9726 17.8298 23.9726C17.1678 23.9726 16.6312 23.4074 16.6312 22.7101Z" fill="currentColor" />
+                                            <div className="button-cantidad-carrito">
+                                                <Button variant="outline-secondary">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                        <path d="M18 12H6" stroke="#545454" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                    </svg>
+                                                </Button>
+                                                <span>1</span>
+                                                <Button variant="outline-secondary">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                        <path d="M12 6V12M12 12V18M12 12H18M12 12L6 12" stroke="#545454" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                    </svg>
+                                                </Button>
+                                            </div>
+                                            <Button variant="none" className="shopping-cart-button-cards">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                    <path d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.70711 15.2929C4.07714 15.9229 4.52331 17 5.41421 17H17M17 17C15.8954 17 15 17.8954 15 19C15 20.1046 15.8954 21 17 21C18.1046 21 19 20.1046 19 19C19 17.8954 18.1046 17 17 17ZM9 19C9 20.1046 8.10457 21 7 21C5.89543 21 5 20.1046 5 19C5 17.8954 5.89543 17 7 17C8.10457 17 9 17.8954 9 19Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                                 </svg>
                                             </Button>
                                         </div>

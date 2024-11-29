@@ -3,10 +3,21 @@
     padding: 20px 0;
 }
 
+.footer-top-admin {
+    background-color: #D4E7FA;
+    padding: 20px 0;
+}
+
 .footer-bottom {
     background-color: #373330;
     padding: 15px 0;
 }
+
+.footer-bottom-admin {
+    background-color: #B5D1F0;
+    padding: 15px 0;
+}
+
 
 .footer-link {
     color: #545454;
@@ -19,7 +30,18 @@
     font-size: 20px;
 }
 
+.footer-text-admin {
+    color: #545454;
+    font-size: 20px;
+}
+
 .footer-icon {
+    color: #FFFFFF;
+    margin: 0 10px;
+}
+
+.footer-icon-admin {
+    background-color: #455B73;
     color: #FFFFFF;
     margin: 0 10px;
 }
@@ -27,6 +49,18 @@
 .newsletter-button {
     background-color: #975C4C !important;
     color: #FFFFFF !important;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.newsletter-button-admin {
+    background-color: #455B73 !important;
+    color: #F5FAFF !important;
     font-size: 20px;
     border: none;
     border-radius: 5px;
