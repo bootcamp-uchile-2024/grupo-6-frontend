@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Table, Button, Container, Row, Col } from "react-bootstrap";
 import { IUserPaginado } from "../../interfaces/IUserPaginado";
 import '../../styles/admin_users_list.css'
-import { useFetchUsersList } from "../../hooks/useFetchUsersList"; 
+import { useFetchUsersList } from "../../hooks/useFetchUsersList";
 import { configuracion } from "../../config/appConfiguration";
 
 const AdminUsersListPage = () => {
@@ -23,21 +23,17 @@ const AdminUsersListPage = () => {
         if (paginaActual < totalPaginas) setPaginaActual(paginaActual + 1);
     };
 
-    if (loading) {return <p>Cargando datos...</p>;}
-    if (error) {return <p>Error al cargar usuarios: {error}</p>;}
+    if (loading) { return <p>Cargando datos...</p>; }
+    if (error) { return <p>Error al cargar usuarios: {error}</p>; }
 
     return (
-        <Container className="mt-4">
-            <Row className="mb-4">
-                <Col>
-                    <h1 className="text-center">Usuarios</h1>
-                </Col>
-                <Col className="text-right">
-                    <Button variant="primary">
-                        Cerrar sesión
-                    </Button>
-                </Col>
-            </Row>
+        <Container className="adminAccount-container mt-4">
+            <div className="adminAccount-header">
+                <h1 className="title-adminAccount">Usuarios</h1>
+                <Button variant="none" className="admin-createUser-button">
+                    Crear usuario
+                </Button>
+            </div>
 
             <Row>
                 <Col>
