@@ -98,7 +98,7 @@ const ProductDetail: React.FC = () => {
                             <Card>
                                 <Card.Img
                                     variant="top"
-                                    src={`${url}/${libro.caratula}`} alt={`imagen del libro ${libro.nombre}`}
+                                    src={`${url}${libro.caratula}`} alt={`imagen del libro ${libro.nombre}`}
                                     /* alt={libro.nombre} */
                                 />
                             </Card>
