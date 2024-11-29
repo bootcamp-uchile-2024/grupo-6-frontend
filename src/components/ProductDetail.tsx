@@ -50,6 +50,8 @@ const ProductDetail: React.FC = () => {
         isbn: "",
         cantidad: 1,
         correoElectronico: "",
+        caratula: "",
+
     });
 
     useEffect(() => {
@@ -70,7 +72,9 @@ const ProductDetail: React.FC = () => {
                     precio: productData?.precio || 0,
                     isbn: productData?.isbn || "",
                     cantidad: 1,
-                    correoElectronico: ""
+                    correoElectronico: "",
+                    caratula: productData?.caratula || '',
+
                 });
 
             } catch (error) {

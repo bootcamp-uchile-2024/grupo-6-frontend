@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
@@ -19,6 +18,8 @@ import Button from 'react-bootstrap/esm/Button';
 
 const BookProductModify = () => {
     const navigate = useNavigate();
+    const url = configuracion.urlJsonServerBackendCover.toString();
+
     const [libro, setLibro] = useState<ILibro>(
         useSelector((state: RootType) => state.productModifyReducer.book)
     );
@@ -178,7 +179,7 @@ const BookProductModify = () => {
                                 <Row>
                                     {/* Imagen del libro */}
                                     <Col xs={12} md={5} className="d-flex align-items-center justify-content-center flex-column ">
-                                        <img src='https://placehold.co/216x300/c7c7c7/white?font=lato' alt={libro.nombre}
+                                        <img src={`${url}${libro.caratula}`} alt={libro.nombre}
                                             className="img-fluid mb-3"
                                             style={{ maxHeight: '300px', objectFit: 'contain' }} />
                                         <Button variant="primary" type="submit" className="mt-3"

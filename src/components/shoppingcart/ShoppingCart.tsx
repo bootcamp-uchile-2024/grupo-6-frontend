@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { RootType } from "../../states/store";
 import { ShoppingCartEntrada } from "../../interfaces/ShoppingCartEntrada";
 import '../../styles/shopping_cart.css'
@@ -9,6 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import QuantityButtons from "./QuantityButtons";
 import {  useEffect, useState } from "react";
 import { Button, Col, Container, Row, Image, Dropdown } from "react-bootstrap";
+import { configuracion } from "../../config/appConfiguration";
 
 
 function ShoppingCart() {
@@ -47,6 +47,9 @@ function ShoppingCart() {
         }
     }, [shoppingCartProduct, navigate])
 
+
+    const url = configuracion.urlJsonServerBackendCover.toString();
+    
     return (
 
         <>
@@ -92,7 +95,7 @@ function ShoppingCart() {
                             {shoppingCartProduct.map((item) => (
                                 <Row key={item.isbn} md="12" style={{ height: '15rem', width: '75.25rem', margin: '1.5rem', color: '#545454' }}>
                                     <Col md="2">
-                                        <Image src='https://placehold.co/800@3x.png' fluid></Image>
+                                        <Image src={`${url}${item.caratula}`} alt={`imagen del libro ${item.nombre}`} style={{width: '160px', height: '240px'}} fluid></Image>
                                     </Col>
                                     <Col md="1">
                                     </Col>

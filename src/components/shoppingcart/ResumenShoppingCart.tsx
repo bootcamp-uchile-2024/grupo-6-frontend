@@ -10,12 +10,13 @@ import Button from "react-bootstrap/esm/Button";
 import Image from "react-bootstrap/esm/Image";
 import Dropdown from "react-bootstrap/esm/Dropdown";
 import { useState } from "react";
+import { configuracion } from "../../config/appConfiguration";
 
 function ResumenShoppingCart() {
-
-
     const shoppingCartProduct = useSelector((state: RootType) => state.productReducer.cart.items);
     const [selectedAddress, setSelectedAddress] = useState("Los Olmos 666, Macul, RM");
+    const url = configuracion.urlJsonServerBackendCover.toString();
+
     const addresses = [
         "Los Olmos 666, Macul, RM",
         "Avenida Siempre Viva 742, Springfield",
@@ -102,7 +103,7 @@ function ResumenShoppingCart() {
                             {shoppingCartProduct.map((item) => (
                                 <Row key={item.isbn} md="12" style={{ height: '15rem', width: '75.25rem', margin: '1.5rem', color: '#545454' }}>
                                     <Col md="2">
-                                        <Image src='https://placehold.co/800@3x.png' fluid></Image>
+                                    <Image src={`${url}${item.caratula}`} alt={`imagen del libro ${item.nombre}`} style={{width: '160px', height: '240px'}} fluid></Image>
                                     </Col>
                                     <Col md="1">
                                     </Col>

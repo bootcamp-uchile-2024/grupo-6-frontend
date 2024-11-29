@@ -58,7 +58,7 @@ function NovedadesHome() {
                 <h3 className="titulo-novedades">Novedades</h3>
                 <div id="productos-novedades">
                     {librosExist ? libros.map(libro => (
-                        <CajaNovedades key={libro.isbn} nombre={libro.nombre} autor={libro.autor} precio={libro.precio} isbn={libro.isbn}></CajaNovedades>
+                        <CajaNovedades key={libro.isbn} nombre={libro.nombre} autor={libro.autor} precio={libro.precio} isbn={libro.isbn} caratula={libro.caratula}></CajaNovedades>
                     ))
                         :
                         <h3>Ups, no encontramos libros disponibles!!</h3>

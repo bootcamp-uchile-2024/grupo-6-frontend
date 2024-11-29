@@ -23,6 +23,8 @@ export function CajaCategoria(props: CajaCategoriaProps) {
     isbn: props.isbn,
     cantidad: 0,
     correoElectronico: '',
+    caratula: props.caratula,
+
   };
 
   const isOutOfStock = props.stock === 0;

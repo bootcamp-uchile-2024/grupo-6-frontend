@@ -69,7 +69,7 @@ export function Categorias() {
     const rango: number[] = [];
     const maxVisible = 4; // Número máximo de páginas visibles en el rango
     let inicio = Math.max(1, paginaActual - 1); // Comienza con 1 o una página antes de la actual
-    let fin = Math.min(totalPaginas, inicio + maxVisible - 1); // Calcula el final del rango
+    const fin = Math.min(totalPaginas, inicio + maxVisible - 1); // Calcula el final del rango
 
     if (fin - inicio + 1 < maxVisible) {
       inicio = Math.max(1, fin - maxVisible + 1);
