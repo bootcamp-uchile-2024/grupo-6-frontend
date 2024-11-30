@@ -1,17 +1,41 @@
-#seccion-filtros {
+.filtros-categoria {
+    margin-top: 24px;
     display: flex;
     flex-direction: column;
-    width: 20%;
-    background-color: rgb(253, 253, 253)
+
+}
+
+.checkbox-container {
+    margin-top: 12px;
+}
+
+.checkbox-container label {
+    font-size: 25px;
+    color: #545454;
+    font-weight: 500;
+    margin-left: 12px;
+    margin-bottom: 8px;
+}
+
+/* Estilo base para el checkbox */
+.checkbox-container [type="checkbox"] {
+    border-radius: 8px;
+    accent-color: #E1D5CA;
+    width: 24px;
+    height: 24px;
+    background-color: #D9D9D9;
+}
+
+.checkbox-container [type="checkbox"]:checked,
+.checkbox-container [type="checkbox"]:hover {
+    background-color: #E1D5CA;
 }
 
 .titulo-filtro {
-    width: 100%;
-    background-color: black;
-    color: white;
-    font-size: large;
-    font-family: Arial, Helvetica, sans-serif;
-    padding: 10px;
+    color: #545454;
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 12px;
 }
 
 .precio-row {
@@ -20,9 +44,56 @@
     margin: 10px;
 }
 
-.precio-row #minimo,
-.precio-row #maximo,
-.precio-row #precioSeparador {
-    margin: 10px;
-    width: 100px;
+.price-filter-container {
+    margin: 12px 0px 12px 0px;
+}
+
+.price-input-container {
+    margin: 12px 0px 12px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.price-input-container input {
+    background-color: white;
+    border: none;
+    border-radius: 12px;
+    width: 125px;
+    height: 57px;
+}
+
+.price-input-container input:active,
+.price-input-container input:focus-visible {
+    border: 4px solid #975C4C;
+    outline: none;
+}
+
+.price-input-container input::placeholder {
+    font-size: 25px;
+    color: #975C4C;
+}
+
+.filter-button {
+    width: 151px;
+    height: 50px;
+    background-color: #975C4C;
+    border: none;
+    border-radius: 16px;
+    margin-top: 12px;
+    font-size: 20px;
+    color: #FBFBFB;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.filter-button:hover {
+    background-color: #E1D5CA;
+    color: #975C4C;
+}
+
+.filter-button:active {
+    background-color: #E1D5CA;
+    color: #975C4C;
+    border: 4px solid #975C4C;
 }

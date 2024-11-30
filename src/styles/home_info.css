@@ -1,0 +1,311 @@
+/* estilos sliders */
+.carousel-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 1084px;
+    height: 435px;
+    flex-shrink: 0;
+    border-radius: 40px;
+    background: #FBFBFB;
+    box-shadow: -6px 8px 13.8px 0px rgba(0, 0, 0, 0.25);
+    position: relative;
+}
+
+.custom-carousel .carousel-indicators button {
+    background-color: #545454;
+    /* Cambiar color de los indicadores */
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+}
+
+.custom-carousel img {
+    max-height: 200px;
+    /* Ajustar el tamaño máximo de las imágenes */
+    border-radius: 12px;
+}
+
+.carousel-slide {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    gap: 42px;
+}
+
+.text-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 426px;
+    height: 216px;
+    flex-shrink: 0;
+    text-align: center;
+}
+
+.main-title {
+    color: var(--Azul-Administrador-Default, #455B73);
+    font-family: 'Sarabun', sans-serif;
+    font-size: 39px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.sub-title {
+    color: var(--Azul-Administrador-Default, #455B73);
+    font-family: 'Sarabun', sans-serif;
+    font-size: 31px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.image-section {
+    width: 577.209px;
+    height: 287.623px;
+    flex-shrink: 0;
+    border-radius: 40px;
+    background: lightgray 50% / cover no-repeat;
+}
+
+/* Estilos contenido destacado home */
+
+/* Contenedor General */
+.products-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+    padding: 24px 0;
+    box-sizing: border-box;
+}
+
+/* Título de la Sección */
+.destacados-section h3,
+.novedades-section h3,
+.tendencias-section h3 {
+    color: #545454;
+    font-family: Sarabun;
+    font-size: 39px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-align: left;
+    margin-bottom: 16px;
+}
+
+.container-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding: 0;
+}
+
+/* Contenedor de las Cards */
+.row-custom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+    gap: 12px;
+    /* Para espacio entre las cards */
+    width: 100%;
+    padding: 0;
+}
+
+/* Contenedor Individual de las Cards */
+.col-custom {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    width: 248px;
+    /*     height: 506px; */
+    padding: 0;
+    /* para que no se cree un espacio interno */
+    border-radius: 24px;
+    border: 1px solid #975C4C;
+    background: #fff;
+}
+
+.col-custom:hover {
+    background-color: #E1D5CA;
+    border: 0px !important;
+}
+
+.col-custom:active {
+    background-color: #E1D5CA;
+    border: 2px solid #975C4C;
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 248px;
+    height: 506px;
+    padding: 16px;
+    border-radius: inherit;
+    border: none;
+    background: transparent;
+    pointer-events: none;
+    gap: 16px;
+}
+
+.product-card * {
+    pointer-events: auto;
+    /* Permite interacción con los elementos internos */
+}
+
+.product-card:hover {
+    cursor: pointer;
+}
+
+/* Imagen de las tarjetas */
+.product-card img {
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.card-body {
+    gap: 8px;
+}
+
+/* Contenedor de Datos en las Cards */
+.container-info-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    align-self: stretch;
+}
+
+.container-info-card .card-title {
+    color: #545454;
+    font-family: Sarabun;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    align-self: stretch;
+    width: 216px;
+    /* Ajuste del ancho del texto */
+}
+
+.card-text {
+    padding: 0;
+    margin: 0;
+}
+
+.autor-card {
+    color: #545454;
+    height: 17px;
+    font-family: Sarabun;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    align-self: stretch;
+}
+
+.precio-card {
+    color: #373330;
+    font-family: Sarabun;
+    font-size: 31px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    align-self: stretch;
+    margin: 0;
+}
+
+/* Botones de Acción */
+.product-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+    width: 100%;
+    height: 48px;
+    gap: 8px;
+}
+
+/* Contenedor general de botones de cantidad */
+.product-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.product-actions .button-cantidad-carrito {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 128px;
+    height: 48px;
+    border: 2px solid #806259;
+    border-radius: 16px;
+    background-color: white;
+    cursor: pointer;
+}
+
+/* Estilo para los botones de cantidad (- y +) */
+.button-cantidad-carrito .btn {
+    margin: 0px;
+    background-color: transparent;
+    border: none;
+}
+
+.button-cantidad-carrito span {
+    font-size: 25px;
+    color: #545454;
+}
+
+/* Estilo del botón del carrito */
+.product-actions .shopping-cart-button-cards {
+    background-color: #975C4C;
+    border-radius: 16px;
+    border: none;
+    width: 56px;
+    height: 48px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button-cantidad-carrito .btn:hover,
+.button-cantidad-carrito .btn:active,
+.button-cantidad-carrito .btn:focus,
+.button-cantidad-carrito .btn:focus-visible {
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.shopping-cart-button-cards:hover,
+.shopping-cart-button-cards:active,
+.shopping-cart-button-cards:focus-visible {
+    background-color: #975C4C !important;
+    color: white !important;
+    border: none !important;
+}
+
+
+/* Icono del botón del carrito */
+.icon-shoppingCart-button-cards {
+    width: 24px;
+    height: 24px;
+    fill: #FFFFFF;
+}
+
+.tendencias-section {
+    margin-bottom: 100px;
+}

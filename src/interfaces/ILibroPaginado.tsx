@@ -8,4 +8,3 @@ interface ILibroPaginado {
 }
 
 export type { ILibroPaginado };
-

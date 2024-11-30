@@ -11,7 +11,7 @@ html {
 }
 
 body {
-    font-family: Helvetica, sans-serif;
+    font-family: 'Sarabun', sans-serif !important;
     margin: 0;
     padding: 0;
 }

@@ -19,15 +19,15 @@ function NovedadesHome() {
                 const url = configuracion.urlJsonServerBackendCatalog.toString().concat(`?pagina=${paginaActual}&cantidad=${cantidad}`);
                 console.log(url);
                 const response = await fetch(url, {
-                  method: 'GET',
+                    method: 'GET',
                 });
-        
+
                 if (!response.ok) {
-                  console.log('No pudimos obtener los productos');
-                  setLibrosExist(false);
-                  return; // Salir si no hay respuesta OK
+                    console.log('No pudimos obtener los productos');
+                    setLibrosExist(false);
+                    return; // Salir si no hay respuesta OK
                 }
-        
+
                 const librosJson: ILibroPaginado = await response.json();
                 console.log(librosJson);
                 console.log("nroPagina: " + librosJson.nroPagina + ", totalPaginas: " + librosJson.totalPaginas + ", totalProductos: " + librosJson.totalProductos);
@@ -58,7 +58,7 @@ function NovedadesHome() {
                 <h3 className="titulo-novedades">Novedades</h3>
                 <div id="productos-novedades">
                     {librosExist ? libros.map(libro => (
-                        <CajaNovedades key={libro.isbn} nombre={libro.nombre} autor={libro.autor} precio={libro.precio} isbn={libro.isbn}></CajaNovedades>
+                        <CajaNovedades key={libro.isbn} nombre={libro.nombre} autor={libro.autor} precio={libro.precio} isbn={libro.isbn} caratula={libro.caratula}></CajaNovedades>
                     ))
                         :
                         <h3>Ups, no encontramos libros disponibles!!</h3>
