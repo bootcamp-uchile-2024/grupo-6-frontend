@@ -1,5 +1,5 @@
 import { MainLayout } from "../layouts/MainLayout";
-import AdminUsersList from "../components/adminUsers/AdminUsersList";
+import AdminUsersList from "../components/adminUsers/adminUsersList";
 
 interface AdminUserListPageProps {
     title: string;
