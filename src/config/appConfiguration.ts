@@ -7,6 +7,7 @@ export const configuracion = {
     urlJsonServerBackendDetailsSearch: import.meta.env.VITE_BACKEND_GRUPO6_ENDPOINT_PRODUCTS_DETAILS_SEARCH,
     urlJsonServerBackendProducts: import.meta.env.VITE_BACKEND_GRUPO6_ENDPOINT_PRODUCTS,
     urlJsonServerBackendUsers: import.meta.env.VITE_BACKEND_GRUPO6_ENDPOINT_USERS,
-    urlJsonServerBackendShoppingCart: import.meta.env.VITE_BACKEND_GRUPO6_ENDPOINT_SHOPPINGCART
+    urlJsonServerBackendShoppingCart: import.meta.env.VITE_BACKEND_GRUPO6_ENDPOINT_SHOPPINGCART,
+    urlJsonServerBackendCover: import.meta.env.VITE_BACKEND_GRUPO6_ENDPOINT_COVER
     
 } as const;

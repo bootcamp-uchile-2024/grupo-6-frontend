@@ -1,83 +1,63 @@
-#footer {
-    border: 1px solid black;
-    padding: 30px;
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    background-color: black;
-    width: 100%;
-    height: auto;
-    margin-top: 50px;
+.footer-top {
+    background-color: #E1D5CA;
+    padding: 20px 0;
 }
 
-.caja-footer {
-    border: 1px solid black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: column wrap;
-    background-color: black;
-    width: 25%;
-    height: 100%;
+.footer-bottom {
+    background-color: #373330;
+    padding: 15px 0;
 }
 
-.nombres-footer {
-    font-weight: bold;
-    font-size: 18px;
-    color: white;
-    margin-bottom: 0px;
-}
-
-.caja-footer ul {
-    list-style-type: none;
-    color: white;
-    padding: 0px;
-
-}
-
-.caja-footer li {
-    margin: 10px 0;
-    font-size: 18px;
-}
-
-.caja-footer a {
+.footer-link {
+    color: #545454;
     text-decoration: none;
-    color: white;
-    padding-top: 40px;
+    font-size: 20px;
 }
 
-.imagenes-rrss,
-.imagenes-pago {
-    display: flex;
-    flex-flow: row wrap;
-    margin-top: 30px;
+.footer-text {
+    color: #FFFFFF;
+    font-size: 20px;
 }
 
-.imagenes-rrss img,
-.imagenes-rrss a {
-    width: auto;
-    height: 30px;
-    margin: 10px;
-    padding: 0px;
+.newsletter-button {
+    background-color: #975C4C !important;
+    color: #FFFFFF !important;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.imagenes-pago img {
-    width: auto;
-    height: 40px;
-    margin: 10px;
-    padding: 0px;
+.newsletter-button:hover {
+    background-color: #E1D5CA !important;
+    color: #975C4C !important;
 }
 
-.copyright {
-    border: 1px solid black;
-    width: 100%;
-    height: auto;
-    margin-top: 20px;
+.newsletter-button:active {
+    background-color: #E1D5CA !important;
+    color: #975C4C !important;
+    box-shadow: 0 0 0 4px #975C4C;
 }
 
-.copyright p {
-    color: white;
-    text-align: center;
-    margin: 0px;
-    font-size: 18px;
+.form-input {
+    border-radius: 12px;
+    border: 0 !important;
+}
+
+.form-input:focus {
+    outline: none !important; 
+    box-shadow: none !important; 
+}
+
+.info-group-text {
+    background-color: #FFFFFF;
+    border-radius: 0 12px 12px 0;
+}
+
+.footer-icon{
+    color: #FFFFFF !important;
 }

@@ -5,6 +5,9 @@ import { login } from '../../services/loginService'; // Importamos el servicio d
 import '../../styles/login.css';
 import { useDispatch } from 'react-redux';
 import { loginAction } from '../../states/authSlice';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import { Col, Container, Row } from 'react-bootstrap';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -27,7 +30,7 @@ const Login = () => {
         }
 
         // loginService para validar credenciales
-        const isValidLogin = login(form);        
+        const isValidLogin = login(form);
         if (isValidLogin) {
             alert("Inicio de sesión exitoso.");
             console.log("Inicio de sesión exitoso.");
@@ -60,42 +63,60 @@ const Login = () => {
     };
 
     return (
-        <div className="caja-login">
-            <p>¡Bienvenido de nuevo!</p>
-            <h3>Inicia sesión</h3>
-            <form className="form-login" onSubmit={handleSubmit}>
-                <label htmlFor="correoElectronico">Correo electrónico</label>
-                <input
-                    type="email"
-                    id='correoElectronico'
-                    name='correoElectronico'
-                    value={form.correoElectronico}
-                    onChange={handleChange}
-                    placeholder="Ej: tuemail@gmail.com"
-                    required
-                />
+        <Container className="login-container">
+            <h3>Inicio de sesión</h3>
 
-                <label htmlFor="contrasena">Contraseña</label>
-                <input
-                    type="password"
-                    id='contrasena'
-                    name='contrasena'
-                    value={form.contrasena}
-                    onChange={handleChange}
-                    placeholder="Ingresa tu contraseña"
-                    required
-                />
+            <Row className='d-flex justify-content-center align-content-center'>
+                <Col Col lg={5} className='login-form'>
+                    <Form onSubmit={handleSubmit}>
+                        <Form.Group className="mb-3">
+                            <Form.Label htmlFor="correoElectronico">Correo electrónico</Form.Label>
+                            <Form.Control
+                                type="email"
+                                id='correoElectronico'
+                                name='correoElectronico'
+                                value={form.correoElectronico}
+                                onChange={handleChange}
+                                placeholder='Correo electrónico'
+                                required />
+                        </Form.Group>
 
-                {error && <p className="error">Complete todos los campos.</p>}
-                {!validCredential && <p className="error">Nombre de usuario o contraseña incorrecta.</p>}
+                        <Form.Group className="mb-3">
+                            <Form.Label htmlFor="contrasena">Contrseña</Form.Label>
+                            <Form.Control
+                                type="password"
+                                id='contrasena'
+                                name='contrasena'
+                                value={form.contrasena}
+                                onChange={handleChange}
+                                placeholder='Contrseña'
+                                required />
+                        </Form.Group>
 
-                <button type="submit">Enviar</button>
-            </form>
+                        {error && <p className="error">Complete todos los campos.</p>}
+                        {!validCredential && <p className="error">Nombre de usuario o contraseña incorrecta.</p>}
 
-            <div className="crear-cuenta">
-                <Link to="/register">Crea una cuenta</Link>
-            </div>
-        </div>
+                        <Form.Group>
+                            <Col className="d-flex justify-content-center link-olvidaste-contrasena">
+                                <a href="#" onClick={(e) => e.preventDefault()}>¿Olvidaste tu contraseña?</a>
+                            </Col>
+                        </Form.Group>
+
+                        <Form.Group>
+                            <Col className="d-flex justify-content-center">
+                                <Button variant="primary" size='lg' type="submit">
+                                    Iniciar sesión
+                                </Button>
+                            </Col>
+                        </Form.Group>
+                    </Form>
+
+                    <div className="d-flex justify-content-center link-crear-cuenta"> 
+                        <Link to="/register">Crear cuenta</Link>
+                    </div>
+                </Col>
+            </Row >
+        </Container >
     );
 };
 

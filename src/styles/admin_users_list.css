@@ -1,0 +1,174 @@
+.userList-admin-container {
+    width: 1312px;
+    margin: 0 auto;
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 100px;
+    font-family: Sarabun;
+}
+
+.userList-admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+
+.title-admin-userList {
+    color: var(--Grises-Text-Default, #545454);
+    text-align: left;
+    font-family: Sarabun;
+    font-size: 49px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.button-admin-createUser {
+    width: 317px;
+    border-radius: 16px;
+    background: var(--Azul-Administrador-Default, #455B73);
+    color: var(--Neutral-200, #F1F3F9) !important;
+    width: 317px;
+    border-radius: 16px;
+    background: var(--Azul-Administrador-Default, #455B73);
+    color: #F5FAFF;
+    display: inline-flex;
+    gap: 12px !important;
+    align-items: flex-end !important;
+    justify-content: center;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.button-admin-createUser:hover {
+    background: var(--Azul-100, #D4E7FA);
+    color: #455B73 !important;
+}
+
+
+.button-admin-createUser:active {
+    background: var(--Azul-100, #D4E7FA) !important;
+    color: #455B73 !important;
+    box-shadow: 0 0 0 4px #455B73;
+}
+
+.table-userList {
+    width: 70%;
+    border-radius: 8px;
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+}
+
+.description-table-userList th {
+    text-align: left;
+    padding: 8px 12px;
+}
+
+
+.description-table-userList {
+    background: var(--Neutral-200, #F1F3F9) !important;
+    font-family: Sarabun;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 16px;
+    letter-spacing: 0.28px;
+    text-transform: capitalize;
+}
+
+.modal-content {
+    border-radius: 24px;
+    border: 4px solid var(--Azul-Administrador-Default, #455B73);
+    background: var(--Azul-0, #F5FAFF);
+    display: inline-flex;
+    padding: 24px;
+}
+
+.modal-header {
+    border-bottom: none;
+    /* Elimina la línea inferior del encabezado */
+    background-color: #F5FAFF;
+    /* Asegúrate de mantener el color si es necesario */
+}
+
+.modal-body {
+    background-color: #F5FAFF;
+    /* Fondo uniforme */
+}
+
+.modal-footer {
+    border-top: none;
+    /* Elimina la línea superior del pie */
+    background-color: #F5FAFF;
+    /* Fondo uniforme */
+}
+
+
+.id-user-admin-userList {
+    color: var(--Azul-Administrador-Default, #455B73);
+    text-align: center;
+    font-family: Sarabun;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.nombre-user-admin-userList {
+    color: var(--Azul-Administrador-Default, #455B73);
+    text-align: center;
+    font-family: Sarabun;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.button-delete-admin-usersList {
+    display: flex;
+    padding: 12px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border-radius: 16px;
+    border: none;
+    background: var(--Azul-100, #D4E7FA);
+}
+
+.button-delete-admin-usersList:active {
+    background: var(--Azul-100, #D4E7FA) !important;
+    color: #455B73 !important;
+    box-shadow: 0 0 0 4px #455B73;
+}
+
+.button-modify-admin-usersList {
+    display: flex;
+    padding: 12px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border-radius: 16px;
+    border: none;
+    background: var(--Azul-Administrador-Default, #455B73);
+}
+
+.button-modify-admin-usersList:hover {
+    border-radius: 16px;
+    border: none;
+    background: var(--Azul-100, #D4E7FA) !important;
+    color: #455B73;
+}
+
+.button-modify-admin-usersList:active {
+    background: var(--Azul-100, #D4E7FA) !important;
+    color: #455B73 !important;
+    box-shadow: 0 0 0 4px #455B73;
+}
+
+a {
+    text-decoration: none !important;
+}

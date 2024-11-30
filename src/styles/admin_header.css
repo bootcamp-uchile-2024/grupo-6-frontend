@@ -1,0 +1,248 @@
+.container-header-admin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 203px;
+}
+
+.header-admin {
+    background-color: #E1D5CA;
+}
+
+.header-top-admin {
+    display: flex;
+    padding: 24px;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 42px;
+    align-self: stretch;
+    background-color: #B5D1F0 !important;
+    height: 105px;
+}
+
+.header-nav-admin {
+    background-color: #F5FAFF;
+    display: flex;
+    padding: 24px;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 24px;
+    align-self: stretch;
+    height: 98px;
+}
+
+/* Logotipo */
+.header-logo-admin {
+    position: absolute;
+    left: 16px;
+    top: 19px;
+    display: flex;
+    width: 213px;
+    height: 159px;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-herramientas-admin {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    /* Asegura que los elementos estén alineados verticalmente */
+    gap: 16px;
+    /* Espacio entre el input y los íconos */
+    width: auto;
+    /* Evita que el contenedor se extienda más de lo necesario */
+    margin-right: 24px;
+    /* Alinea con el botón "Catálogo" */
+}
+
+.input-group-admin {
+    display: flex;
+    align-items: center;
+    width: 400px !important;
+}
+
+/* Barra de búsqueda */
+.header-search-input-admin {
+    border-radius: 20px 0 0 20px;
+    border: 0 !important;
+    padding: 10px 15px;
+    font-size: 16px;
+}
+
+.header-search-button-admin {
+    background-color: transparent;
+    border: 1px solid #CCC;
+    border-left: none;
+    border-radius: 0 20px 20px 0;
+    color: #975C4C;
+    font-size: 18px;
+    padding: 10px 15px;
+
+}
+
+.icon-search-button-admin {
+    color: #975C4C;
+}
+
+/* Íconos */
+.header-icon-admin {
+    display: flex;
+    padding: 12px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border-radius: 16px;
+    background: #455B73 !important;
+    color: #F5FAFF !important;
+}
+
+.header-icon-admin:hover {
+    background-color: #D4E7FA !important;
+    color: #455B73 !important;
+}
+
+.header-icon-admin:active {
+    box-shadow: 0 0 0 4px #455B73 !important;
+}
+
+.header-icon-admin svg {
+    width: 24px;
+    height: 24px;
+}
+
+.menu-catalog-button-admin {
+    display: flex;
+    width: 167px;
+    padding: 12px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.icon-catalog-button-admin svg {
+    width: 24px !important;
+    height: 24px !important;
+}
+
+/* Menú de navegación */
+.menu-link-admin {
+    color: #545454;
+    display: flex;
+    width: 164px;
+    height: 33px;
+    padding: 3px 16.527px 4px 16.527px;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: var(--Grises-Text-Default, #545454);
+    text-align: center;
+    font-family: Sarabun;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.menu-link-admin:hover {
+    color: #975C4C;
+}
+
+.menu-catalog-button-admin {
+    border-radius: 16px;
+    background: var(--Azul-Administrador-Default, #455B73) !important;
+    display: flex;
+    width: 167px;
+    padding: 12px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    color: #F5FAFF !important;
+    text-align: center;
+    font-family: Sarabun;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.menu-catalog-button-admin:hover {
+    background-color: #D4E7FA !important;
+    color: #455B73 !important;
+}
+
+.menu-catalog-button-admin:active {
+    box-shadow: 0 0 0 4px #455B73 !important;
+}
+
+.menu-header-admin {
+    /* gap: 16px; */
+    display: flex;
+    padding: 24px;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 32px;
+    align-self: stretch;
+    width: 1030px;
+}
+
+.dropdown-menu-admin {
+    border: none !important;
+    /* Sin bordes */
+    border-radius: 0 !important;
+    /* Sin esquinas redondeadas */
+    box-shadow: none !important;
+    /* Sin sombras */
+}
+
+.dropdown-menu-catalog-admin {
+    display: flex !important;
+    position: absolute !important;
+    right: 0;
+    top: 100%;
+    width: 100vw !important;
+    /*     max-width: 1600px; */
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: #1e3a5f;
+    z-index: 1050;
+    border: none !important;
+    border-radius: 0 !important;
+    /* Quita los bordes curvos */
+    box-shadow: none !important;
+    /* Elimina sombras si es necesario */
+}
+
+.menu-container-admin {
+    display: flex;
+    width: 320px;
+    padding: 24px;
+    align-items: flex-start;
+    gap: 16px;
+    background-color: #455B73;
+    color: #FFFFFF;
+    border: none;
+    /* Sin bordes */
+    border-radius: 0;
+    /* Sin esquinas redondeadas */
+}
+
+.menu-column-admin {
+    display: flex;
+    width: 240px;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-shrink: 0;
+}
+
+.menu-column-admin a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.dropdown-item-admin:hover {
+    background-color: #98BADF !important;
+    color: #FFFFFF !important;
+}

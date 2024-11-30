@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { ShoppingCartEntrada } from "../interfaces/ShoppingCartEntrada";
 import { addProductToCart } from "../states/productSlice";
 import { useState } from "react";
+import iconoCarritoBoton from "../assets/images/icono-carrito-boton.png"
 
 const ButtonAddToCart = ({ libro }: { libro: ShoppingCartEntrada | null }) => {
     const [producto] = useState<ShoppingCartEntrada>({
@@ -11,6 +12,8 @@ const ButtonAddToCart = ({ libro }: { libro: ShoppingCartEntrada | null }) => {
         isbn: "",
         cantidad: 1,
         correoElectronico: "",
+        caratula: "",
+
     });
     //const productCount = useSelector((state: RootType) => state.productReducer.cart.items);
     const dispatch = useDispatch();
@@ -33,13 +36,15 @@ const ButtonAddToCart = ({ libro }: { libro: ShoppingCartEntrada | null }) => {
         producto.isbn = libro.isbn;
         producto.cantidad = 1;
         producto.correoElectronico = "";
+        producto.caratula = libro.caratula;
+
         console.log(producto);
         return producto;
     }
 
     return(
         <button className="boton-comprar" onClick={handleAddToCart}>
-            Añadir al carro
+            <img src={iconoCarritoBoton} alt="" />
         </button>
     )
 }

@@ -1,37 +1,42 @@
 import { useEffect, useState } from "react";
 
-export function useFetchGet<T>(url: string): { data: T | null, loading: boolean, error: string } {
+export function useFetchGet<T>(url: string, paginaActual: number, cantidad: number): { data: T | null, loading: boolean, error: string | null } {
 
     const [data, setData] = useState<T | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string>("");
+    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
 
         const fetchData = async () => {
+            setLoading(true); // Reinicia el estado de loading
+            setError(null);  // Limpia errores previos
 
             try {
-                
-                const response = await fetch(url);
-                if (response.ok) {
-                    const json = await response.json();
-                    setData(json);
+                const urlRequest = url.toString().concat(`?pagina=${paginaActual}&cantidad=${cantidad}`);
+                console.log("URL generada:", `${url}?pagina=${paginaActual}&cantidad=${cantidad}`);
 
-                } else {
-                    setError(response.statusText);
+                const response = await fetch(urlRequest);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP Error: ${response.statusText} (${response.status})`);
                 }
 
-            } catch (error) {
-                setError(error instanceof Error ? error.message : 'error desconocido');
+                const json = await response.json();
+                console.log("Datos obtenidos:", json); // Para depuración
+                setData(json);
+
+            } catch (err) {
+                console.error("Error en useFetchGet:", err); // Log detallado del error
+                setError(err instanceof Error ? err.message : "Error desconocido");
 
             } finally {
-                setLoading(false);
+                setLoading(false); // Siempre termina cargando
             }
-        }
+        };
 
         fetchData();
-
-    }, [url]);
+    }, [url, paginaActual, cantidad]);
 
     return { data, loading, error };
 }
@@ -73,7 +78,7 @@ export function useFetchPost<T>(url: string, requestBody: T): { data: T | null, 
 
         fetchDataPost();
 
-    }, [url,requestBody]);
+    }, [url, requestBody]);
 
     return { data, loading, error };
 }
@@ -115,7 +120,7 @@ export function useFetchPut<T>(url: string, requestBody: T): { data: T | null, l
 
         fetchDataPost();
 
-    }, [url,requestBody]);
+    }, [url, requestBody]);
 
     return { data, loading, error };
 }

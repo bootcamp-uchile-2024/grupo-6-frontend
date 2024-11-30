@@ -1,8 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { ICreateUser } from '../../interfaces/ICreateUser';
-import '../../styles/login.css'
 import { configuracion } from '../../config/appConfiguration';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import '../../styles/login.css'
 
 const CrearCuenta = () => {
     const navigate = useNavigate();
@@ -12,6 +18,12 @@ const CrearCuenta = () => {
     const [errorApellidoMaterno, setErrorApellidoMaterno] = useState<boolean>(false);
     const [errorCorreo, setErrorCorreo] = useState<boolean>(false);
     const [errorContrasena, setErrorContrasena] = useState<boolean>(false);
+
+    // Estados para el modal
+    const [showModal, setShowModal] = useState(false); //cambiar a true mientras trabajas el css
+    const [modalMessage, setModalMessage] = useState('');
+    const [modalTitle, setModalTitle] = useState('');
+    const [shouldNavigate, setShouldNavigate] = useState(false);
 
     const [form, setForm] = useState<ICreateUser>({
         nombres: '',
@@ -69,7 +81,9 @@ const CrearCuenta = () => {
 
                 if (response.ok) {
                     const data = await response.json();
-                    alert("Cuenta de usuario ha sido creada con éxito.");
+                    setModalTitle('Te has registrado con éxito :D');
+                    setModalMessage('Serás redirigido a la pantalla de inicio al cerrar este mensaje.');
+                    setShowModal(true);
                     console.log('Usuario creado:', data);
                     setForm({
                         nombres: '',
@@ -78,19 +92,24 @@ const CrearCuenta = () => {
                         correoElectronico: '',
                         contrasena: '',
                     });
-                    navigate('/');
+                    setShouldNavigate(true); // Indica que se debe redirigir después de cerrar el modal
                 } else {
                     const errorData = await response.json();
-                    alert(errorData.error); // Esto muestra el error del backend
+                    setModalTitle('Error');
+                    setModalMessage(errorData.error);
+                    setShowModal(true);
+                    console.log(errorData.error); // Esto muestra el error del backend
                 }
             } catch (error) {
                 console.error('Error al crear el usuario:', error);
-                alert('Hubo un error al crear la cuenta. Por favor, intenta de nuevo.');
+                setModalTitle('Error');
+                setModalMessage('Hubo un error al crear la cuenta. Por favor, intenta de nuevo.');
+                setShowModal(true);
             }
         }
     };
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target as HTMLInputElement;
 
         setErrorNombres(false);
@@ -107,40 +126,87 @@ const CrearCuenta = () => {
         }
     };
 
+    const handleCloseModal = () => {
+        setShowModal(false);
+        if (shouldNavigate) {
+            navigate('/'); // Redirige solo si el estado lo indica
+        }
+    };
+
     return (
-        <div className="caja-crear-cuenta">
-            <p>¡Se parte de nuestra familia de lectores!</p>
-            <h3>Crea una cuenta</h3>
-            <form onSubmit={handleSubmit} className="form-crear-cuenta">
-                <div className='form-crear-cuenta-row'>
-                    <div className='crear-cuenta-column-1'>
-                        <label htmlFor="nombres">Nombres</label>
-                        <input type="text" onChange={handleChange} id='nombres' name='nombres' placeholder="Ej: Roberto Andrés" />
-                        {errorNombres && <p className="error">Ingrese nombres.</p>}
+        <Container className="registration-container">
 
-                        <label htmlFor="apellidoPaterno">Apellido Paterno</label>
-                        <input type="text" onChange={handleChange} id='apellidoPaterno' name='apellidoPaterno' placeholder="Ej: Gonzáles" />
-                        {errorApellidoPaterno && <p className="error">Ingrese apellido paterno.</p>}
+            <h3>¡Se parte de nuestra comunidad!</h3>
 
-                        <label htmlFor="apellidoMaterno">Apellido Materno</label>
-                        <input type="text" onChange={handleChange} id='apellidoMaterno' name='apellidoMaterno' placeholder="Ej: Ramírez" />
-                        {errorApellidoMaterno && <p className="error">Ingrese apellido materno.</p>}
+            <Row className='d-flex justify-content-center align-content-center'>
+                <Col lg={5} className='registration-form'>
+                    <Form onSubmit={handleSubmit}>
+                        <Form.Group className="mb-3">
+                            <Form.Label htmlFor='nombres'>
+                                Nombres
+                            </Form.Label>
+                            <Form.Control type="text" onChange={handleChange} id='nombres' name='nombres' placeholder='Julian Idilio' />
+                            {errorNombres && <p className="error">Ingrese nombres.</p>}
+                        </Form.Group>
 
-                        <label htmlFor="correoElectronico">Correo electrónico</label>
-                        <input type="email" onChange={handleChange} id='correoElectronico' name='correoElectronico' placeholder="Ej: tuemail@gmail.com" />
-                        {errorCorreo && <p className="error">Ingrese correo electrónico válido.</p>}
+                        <Form.Group className="mb-3">
+                            <Form.Label htmlFor='apellidoPaterno'>
+                                Apellido paterno
+                            </Form.Label>
+                            <Col>
+                                <Form.Control type="text" onChange={handleChange} id='apellidoPaterno' name='apellidoPaterno' placeholder='Pérez' />
+                                {errorApellidoPaterno && <p className="error">Ingrese apellido paterno.</p>}
+                            </Col>
+                        </Form.Group>
 
-                        <label htmlFor="contrasena">Contraseña</label>
-                        <input type="password" onChange={handleChange} id='contrasena' name='contrasena' placeholder="Crea una contraseña segura" />
-                        {errorContrasena && <p className="error">Cree una contraseña.</p>}
+                        <Form.Group className="mb-3">
+                            <Form.Label htmlFor="apellidoMaterno">
+                                Apellido materno
+                            </Form.Label>
+                            <Col>
+                                <Form.Control type="text" onChange={handleChange} id='apellidoMaterno' name='apellidoMaterno' placeholder='Martínez' />
+                                {errorApellidoMaterno && <p className="error">Ingrese apellido materno.</p>}
+                            </Col>
+                        </Form.Group>
 
-                    </div>
-                </div>
+                        <Form.Group className="mb-3">
+                            <Form.Label htmlFor="correoElectronico">
+                                Correo electrónico
+                            </Form.Label>
+                            <Col>
+                                <Form.Control type="email" onChange={handleChange} id='correoElectronico' name='correoElectronico' placeholder='eljuancho@undominio.cl' />
+                                {errorCorreo && <p className="error">Ingrese correo electrónico válido.</p>}
+                            </Col>
+                        </Form.Group>
 
-                <button type="submit" className='boton-crear-cuenta'>Crear Cuenta</button>
+                        <Form.Group className="mb-3">
+                            <Form.Label htmlFor="contrasena">
+                                Contraseña
+                            </Form.Label>
+                            <Col>
+                                <Form.Control type="password" onChange={handleChange} id='contrasena' name='contrasena' placeholder='Crea una contraseña segura' />
+                                {errorContrasena && <p className="error">Cree una contraseña.</p>}
+                            </Col>
+                        </Form.Group>
 
-            </form>
-        </div>
+                        <Form.Group>
+                            <Col className="d-flex justify-content-center">
+                                <Button variant='primary' size='lg' type="submit">Crear cuenta</Button>
+                            </Col>
+                        </Form.Group>
+                    </Form>
+                </Col>
+            </Row>
+
+            <Modal className='user-register-modal' show={showModal} onHide={handleCloseModal}>
+                <Modal.Header closeButton>
+                    <Modal.Title>{modalTitle}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <p>{modalMessage}</p>
+                </Modal.Body>
+            </Modal>
+        </Container>
     );
 };
 

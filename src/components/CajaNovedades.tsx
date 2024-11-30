@@ -11,6 +11,7 @@ interface CajaNovedadesProps {
     nombre: string,
     autor: string[],
     precio: number,
+    caratula: string,
 }
 
 function CajaNovedades(props: CajaNovedadesProps) {
@@ -22,6 +23,7 @@ function CajaNovedades(props: CajaNovedadesProps) {
         isbn: props.isbn,
         cantidad: 0,
         correoElectronico: '',
+        caratula: props.caratula,
     };
 
     return (

@@ -84,13 +84,13 @@ Asegúrate de tener Docker Desktop instalado en tu máquina. Puedes seguir los p
 Para construir la imagen del frontend, se ejecuto el siguiente comando en la raíz del proyecto donde se encuentra el archivo Dockerfile:
 
 ```bash
-docker build -t grupo-6-frontend:entrega-9 .
+docker build -t grupo-6-frontend:entrega-10 .
 ```
 
 2. Subir imagen al dockerHub:
 Para subir la imagen de frontend a un repositorio de DockerHub, se ejecuto el siguiente comando:
 ```bash
-docker push dgajardoi/grupo-6-frontend:entrega-9
+docker push dgajardoi/grupo-6-frontend:entrega-10
 ```
 3. Levantar el contenedor:
 Para levantar el contenedor con Docker Compose, ejecuta el siguiente comando:

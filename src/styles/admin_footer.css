@@ -1,0 +1,93 @@
+.footer-top-admin {
+    background-color: #D4E7FA;
+    padding: 20px 0;
+}
+
+.footer-bottom-admin {
+    background-color: #B5D1F0;
+    padding: 15px 0;
+}
+
+
+.footer-link {
+    color: #545454;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.footer-text-admin {
+    color: #545454;
+    font-size: 20px;
+}
+
+.container-button-footer-bottom-admin {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px; /* Ajusta el valor según el espacio deseado */
+}
+
+.footer-icon-admin {
+    display: flex;
+    padding: 12px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border-radius: 16px;
+    background: #455B73 !important;
+    color: #F5FAFF !important;
+    width: 56px;
+    height: 48px;
+}
+
+.footer-icon-admin:hover {
+    background-color: #D4E7FA !important;
+    color: #455B73 !important;
+}
+
+.footer-icon-admin:active {
+    box-shadow: 0 0 0 4px #455B73 !important;
+}
+
+.footer-icon-admin svg {
+    width: 24px;
+    height: 24px;
+}
+
+.newsletter-button-admin {
+    background-color: #455B73 !important;
+    color: #F5FAFF !important;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.newsletter-button:hover {
+    background-color: #E1D5CA !important;
+    color: #975C4C !important;
+}
+
+.newsletter-button:active {
+    background-color: #E1D5CA !important;
+    color: #975C4C !important;
+    box-shadow: 0 0 0 4px #975C4C;
+}
+
+.form-input {
+    border-radius: 12px;
+    border: 0 !important;
+}
+
+.form-input:focus {
+    outline: none !important; 
+    box-shadow: none !important; 
+}
+
+.info-group-text {
+    background-color: #FFFFFF;
+    border-radius: 0 12px 12px 0;
+}
