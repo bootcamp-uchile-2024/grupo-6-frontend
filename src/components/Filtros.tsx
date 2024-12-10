@@ -5,18 +5,25 @@ import { configuracion } from '../config/appConfiguration';
 interface FiltrosProps {
   actualizarGeneros: (generos: string[]) => void;
   actualizarEditoriales: (editoriales: string[]) => void;
+  actualizarPrecioMinimo: (precio: number) => void;
+  actualizarPrecioMaximo: (precio: number) => void;
 }
 
-function Filtros({ actualizarGeneros, actualizarEditoriales }: FiltrosProps) {
+function Filtros({ actualizarGeneros, actualizarEditoriales, actualizarPrecioMinimo, actualizarPrecioMaximo }: FiltrosProps) {
 
+  // ESTADOS GÉENROS
   const [generos, setGeneros] = useState<string[]>([]);
   const [generosFiltrados, setGenerosFiltrados] = useState<Record<string, boolean>>({});
-  
+
+  // ESTADOS EDITORIALES
   const [editoriales, setEditoriales] = useState<string[]>([]);
   const [editorialesFiltradas, setEditorialesFiltradas] = useState<Record<string, boolean>>({});
 
+  // ESTADOS PRECIOS
+  const [precioMinimo, setPrecioMinimo] = useState<string>(''); // Para el precio mínimo
+  const [precioMaximo, setPrecioMaximo] = useState<string>(''); // Para el precio máximo
 
-  // GÉNEROS
+  // LLAMADA A GÉNEROS
   useEffect(() => {
     fetch(configuracion.urlJsonServerBackendGenres)
       .then((response) => {
@@ -32,7 +39,7 @@ function Filtros({ actualizarGeneros, actualizarEditoriales }: FiltrosProps) {
       .catch((error) => console.error('Hubo un error:', error));
   }, []);
 
-  // EDITORIALES
+  // LLAMADA A EDITORIALES
   useEffect(() => {
     fetch(configuracion.urlJsonServerBackendPublishers)
       .then((response) => {
@@ -47,8 +54,8 @@ function Filtros({ actualizarGeneros, actualizarEditoriales }: FiltrosProps) {
       })
       .catch((error) => console.error('Hubo un error:', error));
   }, []);
-  
-  // HANDLE GÉNEROS
+
+  // HANDLE DE GÉNEROS
   const handleOnGenre = (e: React.ChangeEvent<HTMLInputElement>) => {
     const nuevoEstado = {
       ...generosFiltrados,
@@ -56,92 +63,112 @@ function Filtros({ actualizarGeneros, actualizarEditoriales }: FiltrosProps) {
     };
     console.log('Estado actualizado:', nuevoEstado); // géneros que están marcados
     setGenerosFiltrados(nuevoEstado);
+  };
 
-    const generosSeleccionados = Object.keys(nuevoEstado).filter(
-      (genero) => nuevoEstado[genero]
+  // HANDLE DE EDITORIALES
+  const handleOnEditorial = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const nuevoEstado = {
+      ...editorialesFiltradas,
+      [e.target.value]: e.target.checked,
+    };
+    setEditorialesFiltradas(nuevoEstado);
+  };
+
+  // HANDLE DE PRECIOS
+  const handlePrecioMinimoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPrecioMinimo(e.target.value);
+  };
+
+  const handlePrecioMaximoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPrecioMaximo(e.target.value);
+  }
+
+  // HANDLE APLICAR TODOS LOS FILTROS
+  const handleAplicarFiltros = () => {
+    const generosSeleccionados = Object.keys(generosFiltrados).filter(
+      (genero) => generosFiltrados[genero]
     );
-    console.log('Géneros seleccionados:', generosSeleccionados);
-    actualizarGeneros(generosSeleccionados); // Notifica a Categorias los géneros seleccionados
+    const editorialesSeleccionadas = Object.keys(editorialesFiltradas).filter(
+      (editorial) => editorialesFiltradas[editorial]
+    );
+    const precioMinimoNum = precioMinimo ? Number(precioMinimo) : 0;
+    const precioMaximoNum = precioMaximo ? Number(precioMaximo) : 0;
+
+    // Enviar los filtros al componente Categorias
+    actualizarGeneros(generosSeleccionados);
+    actualizarEditoriales(editorialesSeleccionadas);
+    actualizarPrecioMinimo(precioMinimoNum);
+    actualizarPrecioMaximo(precioMaximoNum);
   };
 
-  // HANDLE EDITORIALES
-const handleOnEditorial = (e: React.ChangeEvent<HTMLInputElement>) => {
-  const nuevoEstado = {
-    ...editorialesFiltradas,
-    [e.target.value]: e.target.checked,
-  };
-  setEditorialesFiltradas(nuevoEstado);
+  return (
+    <>
+      <div className="filtros-categoria">
+        <h2 className="titulo-filtro">Filtros</h2>
+        <h2 className="titulo-filtro">Categorías</h2>
 
-  const editorialesSeleccionadas = Object.keys(nuevoEstado).filter(
-    (editorial) => nuevoEstado[editorial]
+        {/* GÉNEROS */}
+        <div className="checkbox-container">
+          {generos.map((genero) => (
+            <div key={genero}>
+              <input
+                id={genero}
+                type="checkbox"
+                onChange={handleOnGenre}
+                value={genero} />
+              <label htmlFor={genero}>{genero}</label>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* PRECIOS */}
+      <div className='price-filter-container'>
+        <h2 className="titulo-filtro">Precios entre</h2>
+        <div className='price-input-container'>
+          <input
+            id="minimo"
+            name="minimo"
+            type='number'
+            pattern="^[0-9]+([,.][0-9]+)?$"
+            placeholder="$mínimo"
+            value={precioMinimo}
+            onChange={handlePrecioMinimoChange} />
+          <p className="titulo-filtro">y</p>
+          <input
+            id="maximo"
+            name="maximo"
+            type="number"
+            pattern="^[0-9]+([,.][0-9]+)?$"
+            placeholder="$máximo"
+            value={precioMaximo}
+            onChange={handlePrecioMaximoChange} />
+        </div>
+      </div>
+
+      {/* EDITORIALES */}
+      <h2 className="titulo-filtro">Editorial</h2>
+      <div className="checkbox-container">
+        {editoriales.map((editorial) => (
+          <div key={editorial}>
+            <input
+              id={editorial}
+              type="checkbox"
+              onChange={handleOnEditorial}
+              value={editorial} />
+            <label htmlFor={editorial}>{editorial}</label>
+          </div>
+        ))}
+      </div>
+
+      <button
+        type="button"
+        className='filter-button'
+        onClick={handleAplicarFiltros}
+      >Aplicar filtros</button>
+
+    </>
   );
-  actualizarEditoriales(editorialesSeleccionadas); // Notifica a Categorias las editoriales seleccionadas
 };
 
-
-    return (
-      <>
-        <div className="filtros-categoria">
-          <h2 className="titulo-filtro">Filtros</h2>
-          <h2 className="titulo-filtro">Categorías</h2>
-
-          {/* filtros de generos*/}
-          <div className="checkbox-container">
-            {generos.map((genero) => (
-              <div key={genero}>
-                <input
-                  id={genero}
-                  type="checkbox"
-                  onChange={handleOnGenre}
-                  value={genero} />
-                <label htmlFor={genero}>{genero}</label>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* filtros de precio*/}
-        <div className='price-filter-container'>
-          <h2 className="titulo-filtro">Precios entre</h2>
-          <div className='price-input-container'>
-            <input
-              id="minimo"
-              name="minimo"
-              type='number'
-              pattern="^[0-9]+([,.][0-9]+)?$"
-              placeholder="$mínimo" />
-            <p className="titulo-filtro">y</p>
-            <input
-              id="maximo"
-              name="maximo"
-              type="number"
-              pattern="^[0-9]+([,.][0-9]+)?$"
-              placeholder="$máximo" />
-          </div>
-        </div>
-
-        {/* filtros de editorial*/}
-        <h2 className="titulo-filtro">Editorial</h2>
-        <div className="checkbox-container">
-            {editoriales.map((editorial) => (
-              <div key={editorial}>
-                <input
-                  id={editorial}
-                  type="checkbox"
-                  onChange={handleOnEditorial}
-                  value={editorial} />
-                <label htmlFor={editorial}>{editorial}</label>
-              </div>
-            ))}
-          </div>
-
-        <button
-          type="button"
-          className='filter-button'
-        >Aplicar filtros</button>
-
-      </>
-    );
-  };
-
-  export default Filtros;
+export default Filtros;
