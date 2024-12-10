@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import '../styles/filtros.css';
+import { configuracion } from '../config/appConfiguration';
 
 interface FiltrosProps {
   actualizarGeneros: (generos: string[]) => void;
@@ -11,7 +12,7 @@ function Filtros({ actualizarGeneros }: FiltrosProps) {
   const [generosFiltrados, setGenerosFiltrados] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
-    fetch('http://18.222.107.138:3000/products/genres')
+    fetch(configuracion.urlJsonServerBackendGenres)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Error en la respuesta del servidor');

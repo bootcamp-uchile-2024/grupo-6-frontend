@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "publish": "docker build -t dgajardoi/grupo-6-frontend:entrega-10 .",
-    "postpublish": "docker push dgajardoi/grupo-6-frontend:entrega-10"
+    "postpublish": "docker push dgajardoi/grupo-6-frontend:entrega-10",
+    "json-server": "json-server --watch src/data/catalog.json"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.3.0",

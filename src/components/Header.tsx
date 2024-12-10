@@ -80,7 +80,7 @@ function Header() {
                 <Link to="/" className="menu-link">Home</Link>
                 <Link to="/about" className="menu-link">Nosotros</Link>
                 <Link to={`/novedades`} className="menu-link">Novedades</Link>
-                <Link to="/mistery-boxes" className="menu-link">Mystery Box</Link>
+                <Link to="/mystery-box" className="menu-link">Mystery Box</Link>
                 <Link to="/supcripciones" className="menu-link">Suscripciones</Link>
 
                 <Dropdown>
