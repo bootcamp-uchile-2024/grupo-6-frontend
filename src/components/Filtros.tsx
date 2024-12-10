@@ -4,13 +4,19 @@ import { configuracion } from '../config/appConfiguration';
 
 interface FiltrosProps {
   actualizarGeneros: (generos: string[]) => void;
+  actualizarEditoriales: (editoriales: string[]) => void;
 }
 
-function Filtros({ actualizarGeneros }: FiltrosProps) {
+function Filtros({ actualizarGeneros, actualizarEditoriales }: FiltrosProps) {
 
   const [generos, setGeneros] = useState<string[]>([]);
   const [generosFiltrados, setGenerosFiltrados] = useState<Record<string, boolean>>({});
+  
+  const [editoriales, setEditoriales] = useState<string[]>([]);
+  const [editorialesFiltradas, setEditorialesFiltradas] = useState<Record<string, boolean>>({});
 
+
+  // GÉNEROS
   useEffect(() => {
     fetch(configuracion.urlJsonServerBackendGenres)
       .then((response) => {
@@ -25,9 +31,25 @@ function Filtros({ actualizarGeneros }: FiltrosProps) {
       })
       .catch((error) => console.error('Hubo un error:', error));
   }, []);
-  
 
-  const handleOnCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
+  // EDITORIALES
+  useEffect(() => {
+    fetch(configuracion.urlJsonServerBackendPublishers)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Error en la respuesta del servidor');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log('Editoriales recibidas:', data); // para ver editoriales que llegan
+        setEditoriales(data);
+      })
+      .catch((error) => console.error('Hubo un error:', error));
+  }, []);
+  
+  // HANDLE GÉNEROS
+  const handleOnGenre = (e: React.ChangeEvent<HTMLInputElement>) => {
     const nuevoEstado = {
       ...generosFiltrados,
       [e.target.value]: e.target.checked,
@@ -42,6 +64,21 @@ function Filtros({ actualizarGeneros }: FiltrosProps) {
     actualizarGeneros(generosSeleccionados); // Notifica a Categorias los géneros seleccionados
   };
 
+  // HANDLE EDITORIALES
+const handleOnEditorial = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const nuevoEstado = {
+    ...editorialesFiltradas,
+    [e.target.value]: e.target.checked,
+  };
+  setEditorialesFiltradas(nuevoEstado);
+
+  const editorialesSeleccionadas = Object.keys(nuevoEstado).filter(
+    (editorial) => nuevoEstado[editorial]
+  );
+  actualizarEditoriales(editorialesSeleccionadas); // Notifica a Categorias las editoriales seleccionadas
+};
+
+
     return (
       <>
         <div className="filtros-categoria">
@@ -55,7 +92,7 @@ function Filtros({ actualizarGeneros }: FiltrosProps) {
                 <input
                   id={genero}
                   type="checkbox"
-                  onChange={handleOnCheckbox}
+                  onChange={handleOnGenre}
                   value={genero} />
                 <label htmlFor={genero}>{genero}</label>
               </div>
@@ -85,6 +122,18 @@ function Filtros({ actualizarGeneros }: FiltrosProps) {
 
         {/* filtros de editorial*/}
         <h2 className="titulo-filtro">Editorial</h2>
+        <div className="checkbox-container">
+            {editoriales.map((editorial) => (
+              <div key={editorial}>
+                <input
+                  id={editorial}
+                  type="checkbox"
+                  onChange={handleOnEditorial}
+                  value={editorial} />
+                <label htmlFor={editorial}>{editorial}</label>
+              </div>
+            ))}
+          </div>
 
         <button
           type="button"
