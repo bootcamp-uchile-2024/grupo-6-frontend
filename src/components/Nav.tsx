@@ -55,7 +55,7 @@ function Nav() {
 
         </li>
         <li><Link to={`/novedades`}>Novedades</Link></li>
-        <li><Link to="/mistery-boxes">Mystery Boxes</Link></li>
+        <li><Link to="/mystery-box">Mystery Boxes</Link></li>
         <li><Link to="/contacto">Contacto</Link></li>
 
         {/* Mostrar esta página solo si el usuario es admin */}

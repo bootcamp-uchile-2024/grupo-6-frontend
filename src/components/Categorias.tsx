@@ -16,11 +16,18 @@ export function Categorias() {
   const [totalPaginas, setTotalPaginas] = useState<number>(1);
   const [cantidad, setCantidad] = useState<number>(12);
   const [generosSeleccionados, setGenerosSeleccionados] = useState<string[]>([]);
+  const [editorialesSeleccionadas, setEditorialesSeleccionadas] = useState<string[]>([]);
 
   // Actualiza los filtros de géneros
   const actualizarGenerosSeleccionados = (nuevosGeneros: string[]) => {
     setGenerosSeleccionados(nuevosGeneros);
   };
+
+  // Actualiza los filtros de editoriales
+  const actualizarEditorialesSeleccionadas = (nuevasEditoriales: string[]) => {
+    setEditorialesSeleccionadas(nuevasEditoriales);
+  };
+
 
   useEffect(() => {
     async function getLibros() {
@@ -28,11 +35,13 @@ export function Categorias() {
         const generosQuery = generosSeleccionados.length
           ? generosSeleccionados.map(genero => `genero=${encodeURIComponent(genero)}`).join('&')
           : '';
+        const editorialesQuery = editorialesSeleccionadas.length
+          ? editorialesSeleccionadas.map(editorial => `editorial=${encodeURIComponent(editorial)}`).join('&')
+          : '';
         const url = configuracion.urlJsonServerBackendCatalog.toString().concat(
-          `?pagina=${paginaActual}&cantidad=${cantidad}${generosQuery ? '&' + generosQuery : ''}`
+          `?pagina=${paginaActual}&cantidad=${cantidad}${generosQuery ? '&' + generosQuery : ''}${editorialesQuery ? '&' + editorialesQuery : ''}`
         );
         console.log('URL generada:', url);
-
 
         const response = await fetch(url, {
           method: 'GET',
@@ -55,7 +64,8 @@ export function Categorias() {
     }
 
     getLibros();
-  }, [paginaActual, cantidad, generosSeleccionados]);
+  }, [paginaActual, cantidad, generosSeleccionados, editorialesSeleccionadas]);
+
 
   /* Handles Paginación */
   const handlePaginaAnterior = () => {
@@ -111,7 +121,9 @@ export function Categorias() {
         </Col>
 
         <Col lg={2}>
-          <Filtros actualizarGeneros={actualizarGenerosSeleccionados} />
+          <Filtros
+            actualizarGeneros={actualizarGenerosSeleccionados}
+            actualizarEditoriales={actualizarEditorialesSeleccionadas} />
         </Col>
         <Col lg={10}>
 

@@ -1,0 +1,164 @@
+/* GENERAL STYLES */
+.mystery-container h1 {
+    font-size: 31px;
+    color: #545454;
+    font-weight: bold;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.mystery-info p, .mystery-select p, .mystery-text p {
+    font-size: 25px;
+    color: #545454;
+}
+
+.mystery-info {
+    margin-bottom: 48px;
+}
+
+.mystery-select {
+    margin-top: 48px;
+    margin-bottom: 48px;
+}
+
+.mystery-text p {
+    text-align: center;
+    margin-top: 36px;
+    margin-bottom: 36px;
+}
+
+/* MYSTERY SELECT (Dropdown) */
+.mystery-select p {
+    margin: 0px;
+}
+
+.mystery-dropdown .dropdown-menu.show {
+    display: flex;
+    flex-direction: row;
+}
+
+.mystery-dropdown .btn-success,
+.mystery-dropdown .btn-success:active {
+    background-color: #F8F5F0;
+    border: none;
+    border-radius: 8px;
+    color: #545454;
+    width: 320px;
+    text-align: left;
+}
+
+.mystery-dropdown .dropdown-menu {
+    background-color: #455B73;
+}
+
+.mystery-dropdown .dropdown-menu a {
+    color: #FFFFFF;
+}
+
+/* MYSTERY CARDS (Essential and Supreme) */
+.mystery-card-container {
+    margin-bottom: 23px;
+}
+
+.mystery-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 275px;
+}
+
+.mystery-card label {
+    font-size: 25px;
+    color: #545454;
+    margin-bottom: 24px;
+}
+
+.mystery-card input {
+    margin-bottom: 24px;
+    height: 24px;
+    width: 24px;
+}
+
+.mystery-card p {
+    font-size: 20px;
+    color: #545454;
+    margin: 0px;
+}
+
+.mystery-card .precio {
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 22px;
+}
+
+.mystery-card img {
+    display: block;
+    width: 240px;
+    height: 240px;
+    margin-bottom: 24px;
+}
+
+.mystery-card div.radio-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    accent-color: #975C4C;
+}
+
+.essential {
+    height: 430px;
+}
+
+.supreme {
+    height: 482px;
+}
+
+/* MYSTERY CHECKBOXES (Regalo, Suscripción) */
+.mystery-checkbox label {
+    font-size: 25px;
+    color: #545454;
+    margin-left: 12px;
+}
+
+.mystery-checkbox input {
+    width: 24px;
+    height: 24px;
+    border-radius: 8px;
+    background-color: #D9D9D9;
+    cursor: pointer;
+    accent-color: #975C4C;
+}
+
+.mystery-checkbox input:checked {
+    background-color: #E1D5CA;
+}
+
+/* MYSTERY BUTTON (Add to Cart) */
+.mystery-button button {
+    width: 222px;
+    height: 50px;
+    background-color: #975C4C;
+    color: #FBFBFB;
+    font-size: 20px;
+    border-radius: 16px;
+    border: none;
+    margin-top: 24px;
+    margin-bottom: 56px;
+    transition: background-color 0.2s ease, color 0.2s ease, outline 0.1s ease;
+}
+
+.mystery-button button:hover {
+    background-color: #E1D5CA;
+    color: #806259;
+}
+
+.mystery-button button:active {
+    background-color: #E1D5CA;
+    color: #806259;
+    outline: 4px solid #975C4C;
+}
+
+.mystery-button button svg {
+    margin-right: 12px;
+}

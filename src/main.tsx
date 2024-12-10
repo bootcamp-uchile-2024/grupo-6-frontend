@@ -25,6 +25,8 @@ import AdminUserModifyPage from './pages/AdminUserModifyPage.tsx'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { MedioDePagoPage } from './pages/MedioDePagoPage.tsx'
 import { AdminUsersListPage } from './pages/AdminUserListPage.tsx';
+import { AdminCreateUserPage } from './pages/AdminCreateUserPage.tsx'
+import { MysteryBoxPage } from './pages/MysteryBoxPage.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -43,12 +45,14 @@ createRoot(document.getElementById('root')!).render(
           <Route path='/admin/update/product' element={<PrivateRoute roles={['admin']}><BookProductModifyPage title='Actualizar Producto'  /></PrivateRoute>} />
           <Route path='/admin/edit-user/:idUsuario' element={<PrivateRoute roles={['admin']}><AdminUserModifyPage title='Editor de usuarios' /></PrivateRoute>} />
           <Route path='/admin/userslist' element={<PrivateRoute roles={['admin']}><AdminUsersListPage title='Lista de usuarios' /></PrivateRoute>} />
+          <Route path='/admin/createuser' element={<PrivateRoute roles={['admin']}><AdminCreateUserPage title='Lista de usuarios' /></PrivateRoute>} />
           <Route path='/admin' element={<PrivateRoute roles={['admin']}><AdminPage title='Panel de administración' /></PrivateRoute>} />
           <Route path='/user' element={<PrivateRoute roles={['user']}><UserPage title='Cuenta' /></PrivateRoute>} />
           <Route path="/carrito" element={<ShoppingCartPage title='Carrito Compras' />} />
           <Route path="/empty-cart" element={<EmptyCartPage title='Carrito Vacío' />} />
           <Route path='/shoppingcart-resume/' element={<ResumenShoppingCartPage title='Resumen carrito de compras' />}></Route>
           <Route path='/shoppingcart-payment/' element={<MedioDePagoPage title='Pagar pedido' />}></Route>
+          <Route path='/mystery-box' element={<MysteryBoxPage title='Mystery box' />}></Route>
           <Route path="*" element={<NotFoundPage title='Página No Encontrada' />} />
         </Routes>
       </BrowserRouter>

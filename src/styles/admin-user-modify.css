@@ -1,4 +1,5 @@
-.modify-user-container h3 {
+.modify-user-container h3,
+.create-user-container h3 {
     font-size: 49px;
     text-align: center;
     font-weight: bold;
@@ -7,18 +8,21 @@
     color: #545454;
 }
 
-.modify-user-container label {
+.modify-user-container label,
+.create-user-container label {
     font-size: 16px;
     color: #545454;
     font-weight: bold;
     margin-bottom: 12px;
 }
 
-.modify-user-form {
+.modify-user-form,
+.create-user-form {
     margin-bottom: 240px;
 }
 
-.modify-user-form .form-control {
+.modify-user-form .form-control,
+.create-user-form .form-control {
     width: 100%;
     height: 57px;
     background-color: #F5FAFF;
@@ -28,14 +32,17 @@
     margin-bottom: 24px;
 }
 
-.modify-user-form input::placeholder {
+.modify-user-form input::placeholder,
+.create-user-form input::placeholder {
     font-size: 20px;
     color: #455B73;
     font-weight: 500;
 }
 
 .modify-user-form .form-control:hover,
-.modify-user-form .form-control:focus {
+.modify-user-form .form-control:focus,
+.create-user-form .form-control:hover,
+.create-user-form .form-control:focus  {
     width: 100%;
     height: 57px;
     background-color: #F5FAFF;
@@ -44,7 +51,9 @@
     box-shadow: none;
 }
 
-.modify-user-form .btn-primary {  
+.modify-user-form .btn-primary,
+.create-user-form .btn-primary {  
+    width: 332px;
     margin-top: 24px;
     margin-bottom: 24px;  
     padding: 12px 16px 12px 16px;
@@ -56,12 +65,10 @@
     transition: border 0.1s ease;
 }
 
-.modify-user-form .btn-primary {
-    width: 332px;
-}
-
 .modify-user-form .btn-primary:hover,
-.modify-user-form .btn-primary:focus-visible {
+.modify-user-form .btn-primary:focus-visible,
+.create-user-form .btn-primary:hover,
+.create-user-form .btn-primary:focus-visible {
     background-color: #D4E7FA;
     color: #455B73;
     border: 0px;
@@ -70,13 +77,64 @@
 }
 
 .modify-user-form .btn-primary:active,
-.modify-user-form .btn:first-child:active {
+.modify-user-form .btn:first-child:active,
+.create-user-form .btn-primary:active,
+.create-user-form .btn:first-child:active {
     background-color: #D4E7FA;
     color: #455B73;
     outline: 4px solid #455B73;
     box-shadow: none;
 }
 
-.modify-user-form svg {
-    margin-left: 12px;
+/* MODAL */
+.admin-user-register-modal .modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #F5FAFF;
+    border: 4px solid #455B73;
+    border-radius: 24px;
+    padding: 24px;
+}
+
+.admin-user-register-modal .modal-header {
+    padding: 0px;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.admin-user-register-modal .modal-header .btn-close {
+    padding: 0px;
+}
+
+.admin-user-register-modal .modal-title {
+    font-weight: bolder;
+    color: #455B73;
+    font-size: 25px;
+    margin: 0px;
+}
+
+.admin-admin-user-register-modal .modal-body {
+    padding: 0px;
+    text-align: center;
+    color: #455B73;
+    font-size: 25px;
+    margin: 0px;
+}
+
+.admin-user-register-modal .modal-body p {
+    margin: 0px;
+}
+
+/* ERRORES*/
+
+.create-user-form .error {
+    font-size: 16px;
+    color: rgb(204, 0, 0);
+    margin-left: 15px;
 }

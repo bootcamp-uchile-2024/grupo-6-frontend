@@ -1,251 +1,136 @@
-[
-    {
-        "isbn": "9788420412146",
-        "nombre": "Don Quijote de la Mancha",
-        "autor": [
-            "Miguel de Cervantes"
-        ],
-        "stockLibro": 50,
-        "precio": 19000,
-        "rating": 0,
-        "genero": [
-            "Novela",
-            "Clásico"
-        ],
-        "editorial": "Lengua Viva",
-        "idioma": "Español",
-        "encuadernacion": "Tapa dura",
-        "agnoPublicacion": "2015-01-01T03:00:00.000Z",
-        "numeroPaginas": 1376,
-        "resenas": [],
-        "descuento": 0,
-        "caratula": "9788420412146.jpg",
-        "dimensiones": "15cm x 25cm",
-        "ean": "978-8-42-041214-6",
-        "resumen": "La obra maestra de Miguel de Cervantes narra las aventuras de Alonso Quijano, quien, tras leer muchos libros de caballerías, decide convertirse en un caballero andante, Don Quijote. Acompañado por su fiel escudero Sancho Panza, busca revivir la caballería en un mundo moderno. Es una sátira profunda sobre la realidad y la ficción, y un clásico de la literatura universal."
-    },
-    {
-        "isbn": "9789585581616",
-        "nombre": "Cien Años de Soledad",
-        "autor": [
-            "Gabriel García Márquez"
-        ],
-        "stockLibro": 70,
-        "precio": 20500,
-        "rating": 0,
-        "genero": [
-            "Novela",
-            "Clásico"
-        ],
-        "editorial": "Literatura Random House",
-        "idioma": "Español",
-        "encuadernacion": "Tapa dura",
-        "agnoPublicacion": "2021-01-01T03:00:00.000Z",
-        "numeroPaginas": 400,
-        "resenas": [],
-        "descuento": 20,
-        "caratula": "9789585581616.jpeg",
-        "dimensiones": "13cm x 25cm",
-        "ean": "978-9-58-558161-6",
-        "resumen": "Gabriel García Márquez cuenta la historia de la familia Buendía en el mítico pueblo de Macondo. Con un estilo de realismo mágico, explora temas como el destino, la soledad y los ciclos de la vida. La novela es un referente del boom latinoamericano y una de las más importantes del siglo XX."
-    },
-    {
-        "isbn": "9781847498571",
-        "nombre": "1984",
-        "autor": [
-            "George Orwell"
-        ],
-        "stockLibro": 20,
-        "precio": 12000,
-        "rating": 0,
-        "genero": [
-            "Distópia",
-            "Ciencia ficción"
-        ],
-        "editorial": "Alma classic",
-        "idioma": "Inglés",
-        "encuadernacion": "Tapa blanda",
-        "agnoPublicacion": "2021-01-01T03:00:00.000Z",
-        "numeroPaginas": 400,
-        "resenas": [],
-        "descuento": 0,
-        "caratula": "9781847498571.jpeg",
-        "dimensiones": "15cm x 20cm",
-        "ean": "978-1-84-749857-1",
-        "resumen": "George Orwell presenta una sociedad distópica controlada por el Estado totalitario liderado por el Gran Hermano. Winston Smith, el protagonista, lucha por su libertad y por descubrir la verdad en un mundo de vigilancia y manipulación constante. Es un alegato contra el autoritarismo y la pérdida de libertad individual."
-    },
-    {
-        "isbn": "9788484284888",
-        "nombre": "Orgullo y Prejucio",
-        "autor": [
-            "Jane Austen"
-        ],
-        "stockLibro": 30,
-        "precio": 30000,
-        "rating": 0,
-        "genero": [
-            "Romance",
-            "Clásico"
-        ],
-        "editorial": "Alba Editorial",
-        "idioma": "Español",
-        "encuadernacion": "Tapa dura",
-        "agnoPublicacion": "2009-01-01T03:00:00.000Z",
-        "numeroPaginas": 424,
-        "resenas": [],
-        "descuento": 10,
-        "caratula": "9788484284888.jpeg",
-        "dimensiones": "14cm x 21cm",
-        "ean": "978-8-48-428488-8",
-        "resumen": "En este clásico de Jane Austen, Elizabeth Bennet navega las presiones sociales y familiares para encontrar el amor verdadero. Su historia con el orgulloso Sr. Darcy revela las complejidades de las primeras impresiones y las dinámicas sociales en la Inglaterra del siglo XIX. Es una de las novelas románticas más influyentes de la historia."
-    },
-    {
-        "isbn": "9788445009598",
-        "nombre": "El Señor de los Anillos - La Comunidad del Anillo",
-        "autor": [
-            "R. R. Tolkien"
-        ],
-        "stockLibro": 100,
-        "precio": 17200,
-        "rating": 0,
-        "genero": [
-            "Fantasía",
-            "Aventura"
-        ],
-        "editorial": "Minotauro",
-        "idioma": "Español",
-        "encuadernacion": "Tapa blanda",
-        "agnoPublicacion": "2022-01-01T03:00:00.000Z",
-        "numeroPaginas": 488,
-        "resenas": [],
-        "descuento": 0,
-        "caratula": "9788445009598.webp",
-        "dimensiones": "14cm x 25cm",
-        "ean": "978-8-44-500959-8",
-        "resumen": "La primera parte de la trilogía de J.R.R. Tolkien sigue a Frodo Bolsón, quien debe destruir el Anillo Único para evitar que Sauron, el Señor Oscuro, lo use para dominar la Tierra Media. Frodo es acompañado por una comunidad de héroes. Es una de las obras fundacionales del género de fantasía épica."
-    },
-    {
-        "isbn": "9788413417943",
-        "nombre": "Nieve, Cristal, Manzanas",
-        "autor": [
-            "Neil Gaiman",
-            "Collen Duran"
-        ],
-        "stockLibro": 25,
-        "precio": 17500,
-        "rating": 0,
-        "genero": [
-            "Fantasía",
-            "Terror"
-        ],
-        "editorial": "Planeta Comic",
-        "idioma": "Español",
-        "encuadernacion": "Tapa dura",
-        "agnoPublicacion": "2021-01-01T03:00:00.000Z",
-        "numeroPaginas": 72,
-        "resenas": [],
-        "descuento": 0,
-        "caratula": "9788413417943.jpeg",
-        "dimensiones": "15cm x 22cm",
-        "ean": "978-8-41-341794-3",
-        "resumen": "Neil Gaiman y Colleen Duran ofrecen una reinterpretación oscura del cuento de Blancanieves desde la perspectiva de la madrastra. La historia explora temas de belleza, envejecimiento y traición. Este relato gráfico es una combinación única de fantasía y horror."
-    },
-    {
-        "isbn": "9788423352838",
-        "nombre": "Mitos Nórdicos",
-        "autor": [
-            "Neil Gaiman"
-        ],
-        "stockLibro": 12,
-        "precio": 21500,
-        "rating": 0,
-        "genero": [
-            "Fantasía",
-            "Historia"
-        ],
-        "editorial": "Destino",
-        "idioma": "Español",
-        "encuadernacion": "Tapa blanda",
-        "agnoPublicacion": "2017-01-01T03:00:00.000Z",
-        "numeroPaginas": 272,
-        "resenas": [],
-        "descuento": 15,
-        "caratula": "9788423352838.jpeg",
-        "dimensiones": "15cm x 22cm",
-        "ean": "978-8-42-335283-8",
-        "resumen": "Neil Gaiman recrea los mitos nórdicos, desde la creación del mundo hasta el Ragnarok, el fin de los tiempos. Presenta a dioses como Odin, Thor y Loki con un estilo accesible y moderno. Es una obra que invita a conocer más sobre la mitología escandinava."
-    },
-    {
-        "isbn": "9789873752131",
-        "nombre": "De Animales a Dioses",
-        "autor": [
-            "Yuval Noah Harari"
-        ],
-        "stockLibro": 120,
-        "precio": 14000,
-        "rating": 0,
-        "genero": [
-            "Historia"
-        ],
-        "editorial": "Debate",
-        "idioma": "Español",
-        "encuadernacion": "Tapa blanda",
-        "agnoPublicacion": "2014-01-01T03:00:00.000Z",
-        "numeroPaginas": 496,
-        "resenas": [],
-        "descuento": 0,
-        "caratula": "9789873752131.jpeg",
-        "dimensiones": "15cm x 22cm",
-        "ean": "978-9-87-375213-1",
-        "resumen": "Yuval Noah Harari analiza la evolución de la humanidad desde los primeros homínidos hasta el presente. Explora cómo los humanos han dominado el mundo a través de la cultura, la religión y la ciencia. Es un libro de historia que mezcla ciencia, filosofía y reflexiones sobre el futuro."
-    },
-    {
-        "isbn": "9780156013987",
-        "nombre": "Le Petit Prince",
-        "autor": [
-            "Antoine De Saint-Exupéry"
-        ],
-        "stockLibro": 96,
-        "precio": 17050,
-        "rating": 0,
-        "genero": [
-            "Infantil",
-            "Filosofía y religión"
-        ],
-        "editorial": "Mariner Books",
-        "idioma": "Francés",
-        "encuadernacion": "Tapa blanda",
-        "agnoPublicacion": "2001-01-01T03:00:00.000Z",
-        "numeroPaginas": 96,
-        "resenas": [],
-        "descuento": 10,
-        "caratula": "9780156013987.jpeg",
-        "dimensiones": "12cm x 20cm",
-        "ean": "978-0-15-601398-7",
-        "resumen": "Antoine de Saint-Exupéry relata las aventuras de un joven príncipe que viaja entre planetas, aprendiendo sobre la vida, el amor y la soledad. Aunque es un cuento infantil, tiene profundas reflexiones filosóficas. Es uno de los libros más traducidos y leídos en el mundo."
-    },
-    {
-        "isbn": "9789585404267",
-        "nombre": "Una Educacion",
-        "autor": [
-            "Tara Westover"
-        ],
-        "stockLibro": 8,
-        "precio": 22300,
-        "rating": 0,
-        "genero": [
-            "Biografías y autobiografías"
-        ],
-        "editorial": "Lumen",
-        "idioma": "Español",
-        "encuadernacion": "Tapa blanda",
-        "agnoPublicacion": "2018-01-01T03:00:00.000Z",
-        "numeroPaginas": 470,
-        "resenas": [],
-        "descuento": 0,
-        "caratula": "9789585404267.jpeg",
-        "dimensiones": "13.5cm x 21cm",
-        "ean": "978-9-58-540426-7",
-        "resumen": "Tara Westover narra sus memorias sobre crecer en una familia mormona radical en Idaho, sin educación formal hasta los 17 años. A pesar de los obstáculos, logra acceder a la universidad y transformar su vida. Es una historia de superación, educación y la búsqueda de la identidad."
-    }
-]
+{
+    "catalog": [
+        {
+            "isbn": "978-1-8386-6004-8",
+            "nombre": "Grandes mujeres artistas",
+            "autor": "VV.AA",
+            "precio": 82400,
+            "stockLibro": 82,
+            "genero": "Arte",
+            "editorial": "Phaidon",
+            "idioma": "Español",
+            "encuadernacion": "Tapa dura",
+            "agnoPublicacion": "2022",
+            "numeroPaginas": 464,
+            "descuento": 10,
+            "caratula": "",
+            "dimensiones": "25,4x29 cm",
+            "ean": "1234567890123",
+            "resumen": "Este volumen nos muestra el trabajo de nombres muy conocidos, Artemisia gentileschi, Mary Cassatt, Georgia O'Keeffe, Frida Kahlo, Agnes Martin, Louise Bourgeois, ya yo i kusama, Cindy Sherman entre otros al lado de artistas menos conocidas con historias fascinantes.",
+            "calificacion": 4.5
+        },
+        {
+            "isbn": "978-84-140-2495-9",
+            "nombre": "Historias de fantasmas de Japón",
+            "autor": "Benjamin Lacombe",
+            "precio": 46400,
+            "stockLibro": 40,
+            "genero": "Ilustración",
+            "editorial": "Edelvives",
+            "idioma": "Español",
+            "encuadernacion": "Tapa blanda",
+            "agnoPublicacion": "2021",
+            "numeroPaginas": 224,
+            "descuento": 15,
+            "caratula": "",
+            "dimensiones": "20x28 cm",
+            "ean": "2345678901234",
+            "resumen": "Lafcadio Hearn, nacido en la isla griega de Léucade en 1850 y fallecido en Tokio en 1904, fue el primer gran japonólogo de la literatura occidental, por sus relatos de fantasmas y sus libros de divulgación. Gracias a su mujer nipona conoció los cuentos tradicionales sobre espectros y apariciones, que se encargó de convertir en nuevos relatos tras someterlos a un cuidado proceso de reescritura y reelaboración.",
+            "calificacion": 4.8
+        },
+        {
+            "isbn": "9789562626477",
+            "nombre": "Algún tiempo atrás: La vida de Gustavo Cerati",
+            "autor": "Sergio Marchi",
+            "precio": 20000,
+            "stockLibro": 25,
+            "genero": "Biografías",
+            "editorial": "Sudamericana",
+            "idioma": "Español",
+            "encuadernacion": "Tapa blanda",
+            "agnoPublicacion": "2019",
+            "numeroPaginas": 368,
+            "descuento": 20,
+            "caratula": "",
+            "dimensiones": "15x23 cm",
+            "ean": "3456789012345",
+            "resumen": "La perfección es inalcanzable. Sin embargo, Gustavo Cerati la buscó con fuerza y pasión en su arte. En conexión con ese espíritu irreductible, Algún tiempo atrás: La vida de Gustavo Cerati aborda el recorrido vital y creativo del hombre y del artista con la misma conciencia -la de que hay enigmas de imposible resolución- pero sin limitarse jamás en su afanosa investigación.",
+            "calificacion": 4.0
+        },
+        {
+            "isbn": "978-3-8365-9798-2",
+            "nombre": "Sneaker Freaker. The Ultimate Sneaker Book. 40th Ed.",
+            "autor": "Simon Woody Wood",
+            "precio": 38800,
+            "stockLibro": 10,
+            "genero": "Diseño",
+            "editorial": "Taschen",
+            "idioma": "Inglés",
+            "encuadernacion": "Tapa dura",
+            "agnoPublicacion": "2023",
+            "numeroPaginas": 512,
+            "descuento": 5,
+            "caratula": "",
+            "dimensiones": "15,6x21,7 cm",
+            "ean": "4567890123456",
+            "resumen": "En 2002, Simon “Woody” Wood le daba vueltas a la fórmula para conseguir zapatillas gratis. Dos semanas más tarde, era el orgulloso propietario de Sneaker Freaker y su vida no volvió a ser la misma. Desde sus primeros pasos como un fanzine de estilo punk hasta la primorosa edición en papel y la presencia en Internet de la actualidad, esta publicación ferozmente independiente ha recogido todas las zapatillas de deporte colaborativas, personalizadas, de edición limitada, retro, Quickstrike, Hyperstrike y Tier Zero lanzadas en los últimos 20 años.",
+            "calificacion": 4.7
+        },
+        {
+            "isbn": "9788433911001",
+            "nombre": "Maniac",
+            "genero": "Historia, Ficción",
+            "autor": "Benjamin Labatut",
+            "precio": 25000,
+            "stockLibro": 30,
+            "editorial": "Anagrama",
+            "idioma": "Español",
+            "encuadernacion": "Tapa dura",
+            "agnoPublicacion": "2020",
+            "numeroPaginas": 400,
+            "descuento": 10,
+            "caratula": "",
+            "dimensiones": "14x22 cm",
+            "ean": "5678901234567",
+            "resumen": "Un tríptico del siglo XX. Cada una de las tres partes de este libro está protagonizada por un personaje real. El primero es Paul Ehrenfest, físico austriaco amigo de Einstein. Temeroso por el destino de su hijo con síndrome de Down cuando los nazis ascendieron al poder, huyó a Ámsterdam y allí tomó una decisión dramática.",
+            "calificacion": 4.3
+        }
+    ],
+    "genres": [ 
+        "Novelas",
+        "Literatura",
+        "Deportes",
+        "Biografías",
+        "Clásicos",
+        "Arquitectura",
+        "Diseño",
+        "Arte",
+        "Intantil",
+        "Juvenil",
+        "Poesía",
+        "Romance",
+        "Ficción",
+        "Terror",
+        "Misterio",
+        "Ilustración",
+        "Autoayuda",
+        "Gestión",
+        "Historia",
+        "Estilo de vida",
+        "Fotografía",
+        "Ciencias"
+    ],
+    "editorials": [
+        "Taschen",
+        "Librero",
+        "Alfaguara",
+        "De Bolsillo",
+        "Catatonia",
+        "Destino",
+        "Alma",
+        "Edelvives",
+        "Phaidon",
+        "Sudamericana",
+        "Anagrama"
+    ]
+}
