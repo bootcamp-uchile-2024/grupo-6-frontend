@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import { ILibro, validateValues } from '../interfaces/ILibro';
-import '../styles/create_product.css'
-import { IErrorsLibro } from '../interfaces/IErrorsLibro';
+import { ILibro, validateValues } from '../../interfaces/ILibro';
+import '../../styles/create_product.css'
+import { IErrorsLibro } from '../../interfaces/IErrorsLibro';
 import axios from 'axios';
-import { configuracion } from '../config/appConfiguration';
+import { configuracion } from '../../config/appConfiguration';
 import Col from 'react-bootstrap/esm/Col';
 import Form from 'react-bootstrap/esm/Form';
 import Row from 'react-bootstrap/esm/Row';

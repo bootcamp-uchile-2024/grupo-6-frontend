@@ -309,3 +309,28 @@
 .tendencias-section {
     margin-bottom: 100px;
 }
+
+.container-catalog:hover:not(.out-of-stock) {
+    background-color: #E1D5CA;
+    border: 1px solid #E1D5CA;
+}
+
+.container-catalog:active:not(.out-of-stock) {
+    outline: 2px solid #975C4C;
+    background-color: #E1D5CA;
+}
+
+.catalog-buttons-container .boton-comprar {
+    background-color: #975C4C;
+    border-radius: 16px;
+    border: none;
+    width: 56px;
+    height: 48px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.catalog-buttons-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
