@@ -1,0 +1,129 @@
+{
+    "destacados": [
+      {
+        "isbn": "100",
+        "nombre": "The ultimate sneak...",
+        "autor": ["Simon \"woody\" Wood"],
+        "precio": 30990,
+        "stockLibro": 5,
+        "caratula": "./src/assets/images/Libros/libro zapatillas.webp"
+      },
+      {
+        "isbn": "101",
+        "nombre": "Animals",
+        "autor": ["Steve McCurry"],
+        "precio": 18990,
+        "stockLibro": 3,
+        "caratula": "./src/assets/images/Libros/animals.webp"
+      },
+      {
+        "isbn": "102",
+        "nombre": "Diseño, toda la historia",
+        "autor": ["Elizabeth Wilhide"],
+        "precio": 15990,
+        "stockLibro": 10,
+        "caratula": "./src/assets/images/Libros/libro diseño historia.webp"
+      },
+      {
+        "isbn": "103",
+        "nombre": "Motorcycles",
+        "autor": ["Charlotte & Peter Fiell"],
+        "precio": 27990,
+        "stockLibro": 5,
+        "caratula": "./src/assets/images/Libros/libro motos.webp"
+      },
+      {
+        "isbn": "104",
+        "nombre": "El árbol de saliva",
+        "autor": ["Brian Aldiss"],
+        "precio": 12990,
+        "stockLibro": 5,
+        "caratula": "./src/assets/images/Libros/arbol-de-saliva.webp"
+      }
+    ],
+    "novedades": [
+      {
+        "isbn": "105",
+        "nombre": "Living in asia",
+        "autor": ["Sunil Sethi"],
+        "precio": 18990,
+        "stockLibro": 3,
+        "caratula": "./src/assets/images/Libros/libro asia.webp"
+      },
+      {
+        "isbn": "106",
+        "nombre": "Manual del fotógrafo",
+        "autor": ["Michael Freeman"],
+        "precio": 15990,
+        "stockLibro": 9,
+        "caratula": "./src/assets/images/Libros/Manual-del-fotografo.webp"
+      },
+      {
+        "isbn": "107",
+        "nombre": "Diseño escandinavo",
+        "autor": ["Charlotte & Peter Fiell"],
+        "precio": 25990,
+        "stockLibro": 7,
+        "caratula": "./src/assets/images/Libros/libro diseño.webp"
+      },
+      {
+        "isbn": "108",
+        "nombre": "100 manga artist",
+        "autor": ["Julius Wideman"],
+        "precio": 18990,
+        "stockLibro": 15,
+        "caratula": "./src/assets/images/Libros/100-manga.webp"
+      },
+      {
+        "isbn": "109",
+        "nombre": "Los 12 pasos",
+        "autor": ["Kikan Massara"],
+        "precio": 13990,
+        "stockLibro": 6,
+        "caratula": "./src/assets/images/Libros/12-pasos.webp"
+      }
+    ],
+    "tendencias": [
+      {
+        "isbn": "110",
+        "nombre": "The Beatles on the...",
+        "autor": ["Harry Benson"],
+        "precio": 25990,
+        "stockLibro": 15,
+        "caratula": "./src/assets/images/Libros/libro beatles.webp"
+      },
+      {
+        "isbn": "111",
+        "nombre": "Tree houses",
+        "autor": ["Philip Jodidio"],
+        "precio": 21990,
+        "stockLibro": 10,
+        "caratula": "./src/assets/images/Libros/tree-houses.webp"
+      },
+      {
+        "isbn": "112",
+        "nombre": "Dibujo fácil",
+        "autor": ["Chelsea Ward"],
+        "precio": 13990,
+        "stockLibro": 5,
+        "caratula": "./src/assets/images/Libros/libro dibujo facil.webp"
+      },
+      {
+        "isbn": "113",
+        "nombre": "El invitado de drácula",
+        "autor": ["Dram Stoker"],
+        "precio": 18990,
+        "stockLibro": 5,
+        "caratula": "./src/assets/images/Libros/invitado-dracula.webp"
+      },
+      {
+        "isbn": "114",
+        "nombre": "Iliada",
+        "autor": ["Homero"],
+        "precio": 15990,
+        "stockLibro": 5,
+        "caratula": "./src/assets/images/Libros/iliada.webp"
+      }
+    ]
+  }
+  

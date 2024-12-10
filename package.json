@@ -4,13 +4,15 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "start": "react-scripts start",
+    "json-server": "json-server ./src/data/home.json --port 4000",
+    "json-server-catalog": "json-server ./src/data/catalog.json --port 4001",
+    "dev": "concurrently \"npm start\" \"npm run json-server\" \"npm run json-server-catalog\" \"vite\"",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "publish": "docker build -t dgajardoi/grupo-6-frontend:entrega-10 .",
-    "postpublish": "docker push dgajardoi/grupo-6-frontend:entrega-10",
-    "json-server": "json-server --watch src/data/catalog.json"
+    "postpublish": "docker push dgajardoi/grupo-6-frontend:entrega-10"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.3.0",
