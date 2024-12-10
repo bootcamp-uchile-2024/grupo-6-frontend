@@ -15,11 +15,25 @@ export function Categorias() {
   const [paginaActual, setPaginaActual] = useState<number>(1);
   const [totalPaginas, setTotalPaginas] = useState<number>(1);
   const [cantidad, setCantidad] = useState<number>(12);
+  const [generosSeleccionados, setGenerosSeleccionados] = useState<string[]>([]);
+
+  // Actualiza los filtros de géneros
+  const actualizarGenerosSeleccionados = (nuevosGeneros: string[]) => {
+    setGenerosSeleccionados(nuevosGeneros);
+  };
 
   useEffect(() => {
     async function getLibros() {
       try {
-        const url = configuracion.urlJsonServerBackendCatalog.toString().concat(`?pagina=${paginaActual}&cantidad=${cantidad}`);
+        const generosQuery = generosSeleccionados.length
+          ? generosSeleccionados.map(genero => `genero=${encodeURIComponent(genero)}`).join('&')
+          : '';
+        const url = configuracion.urlJsonServerBackendCatalog.toString().concat(
+          `?pagina=${paginaActual}&cantidad=${cantidad}${generosQuery ? '&' + generosQuery : ''}`
+        );
+        console.log('URL generada:', url);
+
+
         const response = await fetch(url, {
           method: 'GET',
         });
@@ -41,7 +55,7 @@ export function Categorias() {
     }
 
     getLibros();
-  }, [paginaActual, cantidad]);
+  }, [paginaActual, cantidad, generosSeleccionados]);
 
   /* Handles Paginación */
   const handlePaginaAnterior = () => {
@@ -97,7 +111,7 @@ export function Categorias() {
         </Col>
 
         <Col lg={2}>
-          <Filtros />
+          <Filtros actualizarGeneros={actualizarGenerosSeleccionados} />
         </Col>
         <Col lg={10}>
 
@@ -108,7 +122,7 @@ export function Categorias() {
                 nombre={libro.nombre}
                 autor={libro.autor}
                 precio={libro.precio}
-                isbn={libro.isbn}  
+                isbn={libro.isbn}
                 stock={libro.stockLibro}
                 caratula={libro.caratula}>
 
