@@ -10,20 +10,19 @@ function Footer() {
                 <Container>
                     <Row className="align-items-center">
 
-                        <Col md={6} className="footer-recibe-ofertas d-flex">
+                        <Col md={6} className="footer-recibe-ofertas">
 
-                            <div className="input-group-footer">
+                            <div className="input-group-footer justify-content-center align-items-center">
                                 <Form.Control type="email" placeholder="Inscríbete a nuestro Newsletter ;D" className="form-input" />
+                                <Button variant="none" className="ms-3 newsletter-button">Recibe ofertas</Button>
                             </div>
-
-                            <Button variant="none" className="ms-3 newsletter-button">Recibe ofertas</Button>
                         </Col>
 
-                        <Col md={3} className="text-center">
+                        <Col md={3} className="text-center footer-item-link">
                             <a href="" className="footer-link">Publica con nosotros</a>
                         </Col>
 
-                        <Col md={3} className="text-center">
+                        <Col md={3} className="text-center footer-item-link">
                             <a href="" className="footer-link">Preguntas frecuentes</a>
                         </Col>
 

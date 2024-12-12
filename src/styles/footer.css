@@ -3,6 +3,17 @@
     padding: 24px;
 }
 
+.footer-recibe-oferta{
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.input-group-footer{
+    display: flex;
+    gap: 42px !important;
+}
+
 .footer-bottom {
     background-color: #545454;
     padding: 24px;
@@ -20,16 +31,19 @@
 }
 
 .newsletter-button {
+    width: 158px;
+    height: 50px;
     background-color: #975C4C !important;
     color: #FFFFFF !important;
-    font-size: 20px;
+    font-size: 20px !important;
     border: none;
-    border-radius: 5px;
+    border-radius: 16px !important;
     padding: 8px 16px;
     white-space: nowrap;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    margin: 0;
 }
 
 .newsletter-button:hover {
@@ -43,11 +57,8 @@
     box-shadow: 0 0 0 4px #975C4C;
 }
 
-.input-group-footer{
-    width: 315px !important;
-}
-
 .form-input {
+    width: 315px !important;
     border-radius: 12px;
     border: 0 !important;
     padding: 8px !important;
@@ -63,6 +74,11 @@
 .form-input:focus {
     outline: none !important; 
     box-shadow: none !important; 
+}
+
+.footer-item-link{
+    width: 300px;
+    height: 33px;
 }
 
 .info-group-text {
