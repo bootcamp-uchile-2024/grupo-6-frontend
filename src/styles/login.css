@@ -1,6 +1,6 @@
 .login-container h3,
 .registration-container h3 {
-    font-size: 49px;
+    font-size: 31px;
     text-align: center;
     font-weight: bold;
     margin-top: 24px;
@@ -14,15 +14,12 @@
 }
 
 .login-form label {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
+    font-size: 16px;
+    color: #545454;
+    margin-bottom: 8px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 }
 
 .registration-container label {
@@ -35,39 +32,42 @@
 .login-form .form-control,
 .registration-form .form-control {
     width: 100%;
-    height: 57px;
-    background-color: #FBFBFB;
+    height: 42px;
+    background-color: #F8F5F0;
     border: none;
-    border-radius: 12px;
+    border-radius: 8px;
     transition: border 0.1s ease;
     margin-bottom: 24px;
 }
 
+.login-form input[type="email"] {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIj4KPHBhdGggZmlsbC1ydWxlPSJldmVuX29kZCIgY2xpcC1ydWxlPSJldmVuX29rZCIgZD0iTTEuODg4MTAgMi43MTMwOCwgMS4wNzExMSA0LjI1MS0uMjAyMzg0IDEuNTczNzk5NjAgMi4zNzgzMy0uMzYzMzkzOC41MTcyOCzRHD0uMj5IHhEHL%3Bgb24YquJEXHlZGQppPbsZXJE3FVGqg5seSej6Zyg68Um7gKmeHlI6g%29;');
+}
+
+
 .login-form input::placeholder,
 .registration-form input::placeholder {
     font-size: 20px;
-    color: #975C4C;
+    color: #ADABAB;
     font-weight: 500;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 }
 
 .login-form .form-control:hover,
 .login-form .form-control:focus,
 .registration-form .form-control:hover,
 .registration-form .form-control:focus {
-    width: 100%;
-    height: 57px;
-    background-color: #FBFBFB;
-    border: 3px solid #975C4C;
-    border-radius: 12px;
+    outline: 2px solid #806259;
     box-shadow: none;
 }
 
-
 /* BOTONES */
 .login-form .btn-primary,
-.registration-form .btn-primary {  
+.registration-form .btn-primary {
     margin-top: 24px;
-    margin-bottom: 24px;  
+    margin-bottom: 24px;
     padding: 12px 16px 12px 16px;
     border: none;
     border-radius: 16px;

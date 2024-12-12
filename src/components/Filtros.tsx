@@ -18,10 +18,11 @@ function Filtros({ actualizarGeneros, actualizarEditoriales, actualizarPrecioMin
   // ESTADOS EDITORIALES
   const [editoriales, setEditoriales] = useState<string[]>([]);
   const [editorialesFiltradas, setEditorialesFiltradas] = useState<Record<string, boolean>>({});
+  const [mostrarMasEditoriales, setMostrarMasEditoriales] = useState<boolean>(false);
 
   // ESTADOS PRECIOS
-  const [precioMinimo, setPrecioMinimo] = useState<string>(''); // Para el precio mínimo
-  const [precioMaximo, setPrecioMaximo] = useState<string>(''); // Para el precio máximo
+  const [precioMinimo, setPrecioMinimo] = useState<string>('');
+  const [precioMaximo, setPrecioMaximo] = useState<string>('');
 
   // LLAMADA A GÉNEROS
   useEffect(() => {
@@ -101,6 +102,15 @@ function Filtros({ actualizarGeneros, actualizarEditoriales, actualizarPrecioMin
     actualizarPrecioMaximo(precioMaximoNum);
   };
 
+  // BOTONES "VER MÁS + VER MENOS"
+  const handleVerMasEditoriales = () => {
+    setMostrarMasEditoriales(true);
+  };
+
+  const handleVerMenosEditoriales = () => {
+    setMostrarMasEditoriales(false);
+  };
+
   return (
     <>
       <div className="filtros-categoria">
@@ -149,7 +159,7 @@ function Filtros({ actualizarGeneros, actualizarEditoriales, actualizarPrecioMin
       {/* EDITORIALES */}
       <h2 className="titulo-filtro">Editorial</h2>
       <div className="checkbox-container">
-        {editoriales.map((editorial) => (
+        {editoriales.slice(0, mostrarMasEditoriales ? editoriales.length : 7).map((editorial) => (
           <div key={editorial}>
             <input
               id={editorial}
@@ -161,6 +171,16 @@ function Filtros({ actualizarGeneros, actualizarEditoriales, actualizarPrecioMin
         ))}
       </div>
 
+      {/* VER MÁS + VER MENOS */}
+      {!mostrarMasEditoriales && editoriales.length > 7 && (
+        <button className="ver-mas-button" onClick={handleVerMasEditoriales}>Ver más</button>
+      )}
+
+      {mostrarMasEditoriales && (
+        <button className="ver-menos-button" onClick={handleVerMenosEditoriales}>Ver menos</button>
+      )}
+
+      {/* BOTÓN APLICAR FILTROS */}
       <button
         type="button"
         className='filter-button'

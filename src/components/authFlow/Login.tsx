@@ -68,9 +68,9 @@ const Login = () => {
 
             <Row className='d-flex justify-content-center align-content-center'>
                 <Col Col lg={5} className='login-form'>
-                    <Form onSubmit={handleSubmit}>
+                    <Form onSubmit={handleSubmit} noValidate>
                         <Form.Group className="mb-3">
-                            <Form.Label htmlFor="correoElectronico">Correo electrónico</Form.Label>
+                            <Form.Label htmlFor="correoElectronico">Introduce tu correo electrónico</Form.Label>
                             <Form.Control
                                 type="email"
                                 id='correoElectronico'
@@ -78,11 +78,15 @@ const Login = () => {
                                 value={form.correoElectronico}
                                 onChange={handleChange}
                                 placeholder='Correo electrónico'
+                                isInvalid={error || !validCredential}
                                 required />
+                            <Form.Control.Feedback type="invalid">
+                                {error ? "Complete todos los campos." : "Nombre de usuario o contraseña incorrecta."}
+                            </Form.Control.Feedback>
                         </Form.Group>
 
                         <Form.Group className="mb-3">
-                            <Form.Label htmlFor="contrasena">Contrseña</Form.Label>
+                            <Form.Label htmlFor="contrasena">Introduce tu contrseña</Form.Label>
                             <Form.Control
                                 type="password"
                                 id='contrasena'
@@ -90,8 +94,14 @@ const Login = () => {
                                 value={form.contrasena}
                                 onChange={handleChange}
                                 placeholder='Contrseña'
+                                isInvalid={error || !validCredential}  // Aquí agregamos isInvalid
                                 required />
+                            <Form.Control.Feedback type="invalid">
+                                {error ? "Complete todos los campos." : "Nombre de usuario o contraseña incorrecta."}
+                            </Form.Control.Feedback>
                         </Form.Group>
+
+                        <Form.Control.Feedback type="invalid">Please provide a valid city.</Form.Control.Feedback>
 
                         {error && <p className="error">Complete todos los campos.</p>}
                         {!validCredential && <p className="error">Nombre de usuario o contraseña incorrecta.</p>}
@@ -111,7 +121,7 @@ const Login = () => {
                         </Form.Group>
                     </Form>
 
-                    <div className="d-flex justify-content-center link-crear-cuenta"> 
+                    <div className="d-flex justify-content-center link-crear-cuenta">
                         <Link to="/register">Crear cuenta</Link>
                     </div>
                 </Col>
