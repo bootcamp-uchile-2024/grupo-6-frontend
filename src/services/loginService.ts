@@ -1,58 +1,53 @@
+import { configuracion } from "../config/appConfiguration";
 import { ILoginUser } from "../interfaces/ILoginUser";
 
+export const login = async (user: ILoginUser): Promise<boolean> => {
+    try {
+        const response = await fetch(configuracion.urlJsonServerBackendLogin, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(user),
+        });
 
-export const login = (user: ILoginUser): boolean => {
-    const validAdmin = {
-        correoElectronico: 'admin@gmail.com',
-        contrasena: 'admin',
-        rol: 'admin'
-    };
+        // Verifica si respuesta es exitosa (status 200-299)
+        if (!response.ok) {
+            throw new Error('Credenciales incorrectas o error en el servidor');
+        }
 
-    const validUser = {
-        correoElectronico: 'usuario@gmail.com',
-        contrasena: 'usuario',
-        rol: 'user'
-    };
+        // Guardamos datos de la respuesta
+        const data = await response.json();
 
-    if (user.correoElectronico === validAdmin.correoElectronico && user.contrasena === validAdmin.contrasena) {
-        const adminResponse = { rol: validAdmin.rol, correoElectronico: validAdmin.correoElectronico };
-        console.log('Guardando en localStorage (admin):', adminResponse); // Depuración
-        localStorage.setItem('__redux__user__', JSON.stringify(adminResponse));
+        // Guardamos datos importantes en localStorage
+        localStorage.setItem('__redux__user__', JSON.stringify({
+            idUsuario: data.idUsuario,
+            nombres: data.nombres,
+            apellidoPaterno: data.apellidoPaterno,
+            apellidoMaterno: data.apellidoMaterno,
+            correoElectronico: data.correoElectronico,
+            rol: data.rol,
+            token: data.token
+        }));
+
+        console.log('Usuario logueado correctamente:', data);
         return true;
-    }
 
-    if (user.correoElectronico === validUser.correoElectronico && user.contrasena === validUser.contrasena) {
-        const userResponse = { rol: validUser.rol, correoElectronico: validUser.correoElectronico };
-        console.log('Guardando en localStorage (usuario):', userResponse); // Depuración
-        localStorage.setItem('__redux__user__', JSON.stringify(userResponse));
-        return true;
+    } catch (error) {
+        console.error('Error al autenticar al usuario:', error);
+        return false;
     }
-
-    console.log('Credenciales incorrectas, eliminando localStorage');
-    localStorage.removeItem('__redux__user__');
-    return false;
 };
 
-
+// Verificamos rol de usuario
 export const userHasRole = (roles: string[]): boolean => {
     const storedData = localStorage.getItem('__redux__user__');
-    console.log('Contenido de localStorage:', storedData); // Depuración
-
     if (storedData) {
         const parsedData = JSON.parse(storedData);
+        const userRole = parsedData.rol;
 
-        // Asegúrate de acceder al "rol" dentro de la propiedad "user"
-        const userRole = parsedData?.user?.rol;
-
-        console.log('Rol obtenido:', userRole); // Depuración
-
-        // Verifica si el rol existe y coincide con alguno de los roles permitidos
-        const hasRole = roles.includes(userRole || '');
-        console.log('¿Tiene el rol adecuado?', hasRole); // Depuración
-        return hasRole;
+        // Verifica si el rol del usuario está en la lista de roles permitidos
+        return roles.includes(userRole);
     }
-
-    console.log('No se encontró un usuario en localStorage');
     return false;
 };
-

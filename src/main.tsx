@@ -40,14 +40,14 @@ createRoot(document.getElementById('root')!).render(
           <Route path='/product-detail/:isbn' element={<ProductDetailPage />} />
           <Route path='/login' element={<LoginPage title='Iniciar Sesión' />} />
           <Route path='/register' element={<CrearCuentaPage title='Crear Cuenta' />} />
-          <Route path='/create/product' element={<PrivateRoute roles={['admin']}><CrearProductoPage title='Crear Producto' /></PrivateRoute>} />
-          <Route path='/admin/product' element={<PrivateRoute roles={['admin']}><AdminBookListPage title='Lista admin Producto' /></PrivateRoute>} />
-          <Route path='/admin/update/product' element={<PrivateRoute roles={['admin']}><BookProductModifyPage title='Actualizar Producto'  /></PrivateRoute>} />
-          <Route path='/admin/edit-user/:idUsuario' element={<PrivateRoute roles={['admin']}><AdminUserModifyPage title='Editor de usuarios' /></PrivateRoute>} />
-          <Route path='/admin/userslist' element={<PrivateRoute roles={['admin']}><AdminUsersListPage title='Lista de usuarios' /></PrivateRoute>} />
-          <Route path='/admin/createuser' element={<PrivateRoute roles={['admin']}><AdminCreateUserPage title='Lista de usuarios' /></PrivateRoute>} />
-          <Route path='/admin' element={<PrivateRoute roles={['admin']}><AdminPage title='Panel de administración' /></PrivateRoute>} />
-          <Route path='/user' element={<PrivateRoute roles={['user']}><UserPage title='Cuenta' /></PrivateRoute>} />
+          <Route path='/create/product' element={<PrivateRoute roles={['ADMIN']}><CrearProductoPage title='Crear Producto' /></PrivateRoute>} />
+          <Route path='/admin/product' element={<PrivateRoute roles={['ADMIN']}><AdminBookListPage title='Lista admin Producto' /></PrivateRoute>} />
+          <Route path='/admin/update/product' element={<PrivateRoute roles={['ADMIN']}><BookProductModifyPage title='Actualizar Producto'  /></PrivateRoute>} />
+          <Route path='/admin/edit-user/:idUsuario' element={<PrivateRoute roles={['ADMIN']}><AdminUserModifyPage title='Editor de usuarios' /></PrivateRoute>} />
+          <Route path='/admin/userslist' element={<PrivateRoute roles={['ADMIN']}><AdminUsersListPage title='Lista de usuarios' /></PrivateRoute>} />
+          <Route path='/admin/createuser' element={<PrivateRoute roles={['ADMIN']}><AdminCreateUserPage title='Lista de usuarios' /></PrivateRoute>} />
+          <Route path='/admin' element={<PrivateRoute roles={['ADMIN']}><AdminPage title='Panel de administración' /></PrivateRoute>} />
+          <Route path='/user' element={<PrivateRoute roles={['USER']}><UserPage title='Cuenta' /></PrivateRoute>} />
           <Route path="/carrito" element={<ShoppingCartPage title='Carrito Compras' />} />
           <Route path="/empty-cart" element={<EmptyCartPage title='Carrito Vacío' />} />
           <Route path='/shoppingcart-resume/' element={<ResumenShoppingCartPage title='Resumen carrito de compras' />}></Route>

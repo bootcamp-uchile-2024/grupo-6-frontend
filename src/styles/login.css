@@ -16,7 +16,7 @@
 .login-form label {
     font-size: 16px;
     color: #545454;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -25,8 +25,10 @@
 .registration-container label {
     font-size: 16px;
     color: #545454;
-    font-weight: bold;
-    margin-bottom: 12px;
+    margin-bottom: 4px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 }
 
 .login-form .form-control,
@@ -38,12 +40,19 @@
     border-radius: 8px;
     transition: border 0.1s ease;
     margin-bottom: 24px;
+    /* ICONOS KEY Y MAIL */
+    background-repeat: no-repeat;
+    background-position: 98% center;
 }
 
+/* ICONOS KEY Y MAIL */
 .login-form input[type="email"] {
-    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIj4KPHBhdGggZmlsbC1ydWxlPSJldmVuX29kZCIgY2xpcC1ydWxlPSJldmVuX29rZCIgZD0iTTEuODg4MTAgMi43MTMwOCwgMS4wNzExMSA0LjI1MS0uMjAyMzg0IDEuNTczNzk5NjAgMi4zNzgzMy0uMzYzMzkzOC41MTcyOCzRHD0uMj5IHhEHL%3Bgb24YquJEXHlZGQppPbsZXJE3FVGqg5seSej6Zyg68Um7gKmeHlI6g%29;');
+    background-image: url('../assets/images/mail-icon.png');
 }
 
+.login-form input[type="password"] {
+    background-image: url('../assets/images/key-icon.png');
+}
 
 .login-form input::placeholder,
 .registration-form input::placeholder {
@@ -73,12 +82,12 @@
     border-radius: 16px;
     font-size: 20px;
     color: #FBFBFB;
-    background-color: #975C4C;
+    background-color: #806259;
     transition: border 0.1s ease;
 }
 
 .login-form .btn-primary {
-    width: 152px;
+    width: 240px;
 }
 
 .registration-form .btn-primary {
@@ -90,7 +99,7 @@
 .registration-form .btn-primary:hover,
 .registration-form .btn-primary:focus-visible {
     background-color: #E1D5CA;
-    color: #975C4C;
+    color: #806259;
     border: 0px;
     box-shadow: none;
     transition: background-color 0.3s, color 0.3s;
@@ -101,8 +110,8 @@
 .registration-form .btn-primary:active,
 .registration-form .btn:first-child:active {
     background-color: #E1D5CA;
-    color: #975C4C;
-    outline: 4px solid #975C4C;
+    color: #806259;
+    outline: 4px solid #806259;
     box-shadow: none;
 }
 
@@ -129,7 +138,7 @@
     justify-content: center;
     align-items: center;
     background-color: #FFFFFF;
-    border: 4px solid #975C4C;
+    border: 4px solid #806259;
     border-radius: 24px;
     padding: 24px;
 }
@@ -150,7 +159,7 @@
 
 .user-register-modal .modal-title {
     font-weight: bolder;
-    color: #975C4C;
+    color: #806259;
     font-size: 25px;
     margin: 0px;
 }
@@ -158,7 +167,7 @@
 .user-register-modal .modal-body {
     padding: 0px;
     text-align: center;
-    color: #975C4C;
+    color: #806259;
     font-size: 25px;
     margin: 0px;
 }

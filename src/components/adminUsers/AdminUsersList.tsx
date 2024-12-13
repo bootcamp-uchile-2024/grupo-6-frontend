@@ -14,6 +14,11 @@ const AdminUsersList = () => {
     const [showModal, setShowModal] = useState(false); // Control del modal
     const [selectedUser, setSelectedUser] = useState<IUser | null>(null); // Usuario seleccionado
     const [shouldFetch, setShouldFetch] = useState<boolean>(true); // Controla cuándo obtener la lista de usuarios
+    
+    console.log(localStorage.getItem('__redux__user__'));
+    const userData = JSON.parse(localStorage.getItem('__redux__user__') || "{}");
+    const adminToken = userData.token;
+    console.log(`El token del admin es: ${adminToken}`)
 
     // Obtener usuarios desde el backend
     useEffect(() => {
@@ -21,7 +26,14 @@ const AdminUsersList = () => {
             try {
                 setLoading(true); // Activa el indicador de carga
                 const result = await fetch(
-                    `${configuracion.urlJsonServerBackendUsers}?_page=${paginaActual}&_limit=${cantidad}`
+                    `${configuracion.urlJsonServerBackendUsers}/${paginaActual}/${cantidad}`,
+                    {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${adminToken}`,
+                        },
+                    }
                 );
                 if (result.ok) {
                     const usersResponse: IUser[] = await result.json();
