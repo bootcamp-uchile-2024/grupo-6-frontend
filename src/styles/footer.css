@@ -1,11 +1,22 @@
 .footer-top {
     background-color: #E1D5CA;
-    padding: 20px 0;
+    padding: 24px;
+}
+
+.footer-recibe-oferta{
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.input-group-footer{
+    display: flex;
+    gap: 42px !important;
 }
 
 .footer-bottom {
-    background-color: #373330;
-    padding: 15px 0;
+    background-color: #545454;
+    padding: 24px;
 }
 
 .footer-link {
@@ -20,16 +31,19 @@
 }
 
 .newsletter-button {
+    width: 158px;
+    height: 50px;
     background-color: #975C4C !important;
     color: #FFFFFF !important;
-    font-size: 20px;
+    font-size: 20px !important;
     border: none;
-    border-radius: 5px;
+    border-radius: 16px !important;
     padding: 8px 16px;
     white-space: nowrap;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    margin: 0;
 }
 
 .newsletter-button:hover {
@@ -44,8 +58,17 @@
 }
 
 .form-input {
+    width: 315px !important;
     border-radius: 12px;
     border: 0 !important;
+    padding: 8px !important;
+}
+
+.form-input::placeholder{
+    color: #806259 !important;
+    font-family: sarabun !important;
+    font-size: 20px;
+    font-weight: normal;
 }
 
 .form-input:focus {
@@ -53,11 +76,37 @@
     box-shadow: none !important; 
 }
 
+.footer-item-link{
+    width: 300px;
+    height: 33px;
+}
+
 .info-group-text {
     background-color: #FFFFFF;
     border-radius: 0 12px 12px 0;
 }
 
+.footer-link{
+    color: #545454 !important;
+}
+
+.footer-link:hover {
+    color: #455B73 !important;
+}
+
+.footer-link:active{
+    color: #806259 !important;
+}
+
 .footer-icon{
     color: #FFFFFF !important;
+}
+
+.footer-icon:hover{
+    background-color: #E1D5CA !important;
+    color:#373330 !important;
+}
+
+.footer-icon:active{
+    box-shadow: 0 0 0 4px #806259 !important;
 }
