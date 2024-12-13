@@ -1,10 +1,9 @@
 interface IUser {
-    id: number,
-    nombre: string,
-    segundo_nombre: string | null,
-    apellido_materno: string,
-    apellido_paterno: string,
-    correo_electronico: string,
+    idUsuario: number,
+    nombres: string,
+    apellidoPaterno: string,
+    apellidoMaterno: string,
+    correoElectronico: string,
 }
 
 export type { IUser };

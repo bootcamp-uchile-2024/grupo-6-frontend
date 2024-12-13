@@ -15,10 +15,10 @@ function AdminHeader() {
     const handleUserIconClick = () => {
         if (!isAuthenticated) {
             navigate('/login');
-        } else if (user?.rol === 'admin') {
-            navigate('/admin');
-        } else if (user?.rol === 'user') {
-            navigate('/user');
+        } else if (user?.rol === 'ADMIN') {
+            navigate('/ADMIN');
+        } else if (user?.rol === 'USER') {
+            navigate('/USER');
         }
     };
 

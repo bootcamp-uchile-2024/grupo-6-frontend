@@ -1,3 +1,4 @@
+import { jwtDecode } from "jwt-decode";
 import { configuracion } from "../config/appConfiguration";
 import { ILoginUser } from "../interfaces/ILoginUser";
 
@@ -18,19 +19,22 @@ export const login = async (user: ILoginUser): Promise<boolean> => {
 
         // Guardamos datos de la respuesta
         const data = await response.json();
+        // Verificación de formato de token
+        const decodedToken = data.token ? jwtDecode<{ idUsuario: number; rol: string }>(data.token) : null;
+        if (!decodedToken) {
+            throw new Error("El token recibido no es válido.");
+        }
 
-        // Guardamos datos importantes en localStorage
+        // Guardamos datos en localStorage
         localStorage.setItem('__redux__user__', JSON.stringify({
-            idUsuario: data.idUsuario,
-            nombres: data.nombres,
-            apellidoPaterno: data.apellidoPaterno,
-            apellidoMaterno: data.apellidoMaterno,
-            correoElectronico: data.correoElectronico,
-            rol: data.rol,
-            token: data.token
+            idUsuario: decodedToken.idUsuario,
+            rol: decodedToken.rol,
+            token: data.token,
         }));
 
-        console.log('Usuario logueado correctamente:', data);
+        console.log('Usuario autenticado correctamente:', data);
+        console.log('Token decodificado:', decodedToken);
+
         return true;
 
     } catch (error) {

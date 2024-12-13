@@ -20,18 +20,16 @@ const persistedCartState: Middleware = store => next => action => {
 
 // Middleware para persistir el estado de autenticación del usuario
 const persistedLoggedInState: Middleware = store => next => action => {
-
     next(action);
     const estado = store.getState();
 
-    // solo guardamos en localStorage si usuario está autenticado
-    if (estado.authReducer.isAuthenticated) {
-        const estadoAsJson = JSON.stringify(estado.authReducer);
-        localStorage.setItem('__redux__user__', estadoAsJson);
+    if (estado.authReducer.isAuthenticated && estado.authReducer.user) {
+        const { idUsuario, rol, token } = estado.authReducer.user;
+        localStorage.setItem('__redux__user__', JSON.stringify({ idUsuario, rol, token }));
     } else {
         localStorage.removeItem('__redux__user__');
-    }    
-}
+    }
+};
 
 /* Configuración inicial de nuestro Store */
 export const store = configureStore({

@@ -8,6 +8,7 @@ import { loginAction } from '../../states/authSlice';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Col, Container, Row } from 'react-bootstrap';
+import { jwtDecode } from 'jwt-decode';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -29,23 +30,28 @@ const Login = () => {
             return;
         }
 
-        // Llamamos al loginService y esperamos la respuesta
+        // Llama a loginService y esperamos su respuesta
         const isValidLogin = await login(form);
 
         if (isValidLogin) {
             alert("Inicio de sesión exitoso.");
-            console.log("Inicio de sesión exitoso.");
 
+            // Extrae el token de localStorage
             const loggedInUser = JSON.parse(localStorage.getItem('__redux__user__') || '{}');
+            const decodedToken = jwtDecode<{ idUsuario: number; rol: string; exp: number }>(loggedInUser.token);
 
-            // Actualizamos el estado del store con los datos del usuario
-            dispatch(loginAction(loggedInUser));
+            // Actualizamos estado del store con datos extraídos del token
+            dispatch(loginAction({
+                idUsuario: loggedInUser.idUsuario,
+                rol: decodedToken.rol,
+                token: loggedInUser.token,
+            }));
 
             // Redirigimos según el rol del usuario
-            if (loggedInUser?.rol === 'ADMIN') {
-                navigate('/admin'); // Redirige al panel de administración
-            } else if (loggedInUser?.rol === 'USER') {
-                navigate('/user'); // Redirige al panel de usuario
+            if (loggedInUser.rol === 'ADMIN') {
+                navigate('/admin');
+            } else if (loggedInUser.rol === 'USER') {
+                navigate('/user');
             }
 
         } else {

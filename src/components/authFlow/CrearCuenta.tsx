@@ -71,7 +71,7 @@ const CrearCuenta = () => {
 
         if (validaForm()) {
             try {
-                const response = await fetch(configuracion.urlJsonServerBackendSignIn, {
+                const response = await fetch(configuracion.urlJsonServerBackendSignUp, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
