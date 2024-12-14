@@ -11,23 +11,22 @@ const getInitialState = (): AuthState => {
     if (savedData) {
         const parsed = JSON.parse(savedData);
 
-        // Verifica si el token está dentro de parsed.user y si es un string
-        if (parsed.user && typeof parsed.user.token === 'string') {
+        // Verifica si el token está presente y es válido
+        if (parsed.token) {
             try {
-                const decodedToken = jwtDecode<{ rol: string }>(parsed.user.token);
+                // Decodificar el token para verificar su validez
+                const decodedToken = jwtDecode<{ rol: string }>(parsed.token);
                 return {
-                    isAuthenticated: parsed.isAuthenticated,
+                    isAuthenticated: true, // Estado autenticado
                     user: {
-                        idUsuario: parsed.user.idUsuario,
+                        idUsuario: parsed.idUsuario,
                         rol: decodedToken.rol,
-                        token: parsed.user.token,
+                        token: parsed.token,
                     },
                 };
             } catch (error) {
                 console.error("Error al decodificar el token:", error);
             }
-        } else {
-            console.error("El token no es una cadena válida.");
         }
     }
     return {

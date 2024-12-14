@@ -27,6 +27,8 @@ import { MedioDePagoPage } from './pages/MedioDePagoPage.tsx'
 import { AdminUsersListPage } from './pages/AdminUserListPage.tsx';
 import { AdminCreateUserPage } from './pages/AdminCreateUserPage.tsx'
 import { MysteryBoxPage } from './pages/MysteryBoxPage.tsx'
+import { CompraExitosa } from './components/shoppingcart/CompraExitosa.tsx'
+import { UserModifyDirection } from './components/authFlow/UserModifyDirection.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -48,10 +50,12 @@ createRoot(document.getElementById('root')!).render(
           <Route path='/admin/createuser' element={<PrivateRoute roles={['ADMIN']}><AdminCreateUserPage title='Lista de usuarios' /></PrivateRoute>} />
           <Route path='/admin' element={<PrivateRoute roles={['ADMIN']}><AdminPage title='Panel de administración' /></PrivateRoute>} />
           <Route path='/user' element={<PrivateRoute roles={['USER']}><UserPage title='Cuenta' /></PrivateRoute>} />
+          <Route path='/user/settings/address' element={<PrivateRoute roles={['USER']}><UserModifyDirection title='Edita tu dirección' /></PrivateRoute>} />
           <Route path="/carrito" element={<ShoppingCartPage title='Carrito Compras' />} />
           <Route path="/empty-cart" element={<EmptyCartPage title='Carrito Vacío' />} />
           <Route path='/shoppingcart-resume/' element={<ResumenShoppingCartPage title='Resumen carrito de compras' />}></Route>
           <Route path='/shoppingcart-payment/' element={<MedioDePagoPage title='Pagar pedido' />}></Route>
+          <Route path='/successful-purchase' element={<CompraExitosa title='Compra exitosa' />}></Route>
           <Route path='/mystery-box' element={<MysteryBoxPage title='Mystery box' />}></Route>
           <Route path="*" element={<NotFoundPage title='Página No Encontrada' />} />
         </Routes>
