@@ -42,7 +42,7 @@ function MedioDePagoShoppingCart() {
 
         if (response.status === 200) {
             alert("¡Compra exitosa!");
-            navigate('/');
+            navigate('/successful-purchase');
             dispatch(clearCart());
 
         } else {

@@ -17,6 +17,8 @@ export function Categorias() {
   const [cantidad, setCantidad] = useState<number>(12);
   const [generosSeleccionados, setGenerosSeleccionados] = useState<string[]>([]);
   const [editorialesSeleccionadas, setEditorialesSeleccionadas] = useState<string[]>([]);
+  const [precioMinimo, setPrecioMinimo] = useState<number | null>(null);
+  const [precioMaximo, setPrecioMaximo] = useState<number | null>(null);
 
   // Actualiza los filtros de géneros
   const actualizarGenerosSeleccionados = (nuevosGeneros: string[]) => {
@@ -28,6 +30,15 @@ export function Categorias() {
     setEditorialesSeleccionadas(nuevasEditoriales);
   };
 
+  // Actualiza el precio mínimo
+  const actualizarPrecioMinimo = (precio: number) => {
+    setPrecioMinimo(precio);
+  };
+
+  // Actualiza el precio máximo
+  const actualizarPrecioMaximo = (precio: number) => {
+    setPrecioMaximo(precio);
+  };
 
   useEffect(() => {
     async function getLibros() {
@@ -38,21 +49,25 @@ export function Categorias() {
         const editorialesQuery = editorialesSeleccionadas.length
           ? editorialesSeleccionadas.map(editorial => `editorial=${encodeURIComponent(editorial)}`).join('&')
           : '';
+        const precioMinimoQuery = precioMinimo ? `priceMin=${encodeURIComponent(precioMinimo)}` : '';
+        const precioMaximoQuery = precioMaximo ? `priceMax=${encodeURIComponent(precioMaximo)}` : '';
+  
         const url = configuracion.urlJsonServerBackendCatalog.toString().concat(
-          `?pagina=${paginaActual}&cantidad=${cantidad}${generosQuery ? '&' + generosQuery : ''}${editorialesQuery ? '&' + editorialesQuery : ''}`
+          `?pagina=${paginaActual}&cantidad=${cantidad}${generosQuery ? '&' + generosQuery : ''}${editorialesQuery ? '&' + editorialesQuery : ''}${precioMinimoQuery ? '&' + precioMinimoQuery : ''}${precioMaximoQuery ? '&' + precioMaximoQuery : ''}`
         );
+  
         console.log('URL generada:', url);
-
+  
         const response = await fetch(url, {
           method: 'GET',
         });
-
+  
         if (!response.ok) {
           console.log('No pudimos obtener los productos');
           setLibrosExist(false);
           return; // Salir si no hay respuesta OK
         }
-
+  
         const librosJson: ILibroPaginado = await response.json();
         setLibros(librosJson?.productos);
         setLibrosExist(true);
@@ -62,10 +77,9 @@ export function Categorias() {
         setLibrosExist(false);
       }
     }
-
+  
     getLibros();
-  }, [paginaActual, cantidad, generosSeleccionados, editorialesSeleccionadas]);
-
+  }, [paginaActual, cantidad, generosSeleccionados, editorialesSeleccionadas, precioMinimo, precioMaximo]);
 
   /* Handles Paginación */
   const handlePaginaAnterior = () => {
@@ -123,7 +137,9 @@ export function Categorias() {
         <Col lg={2}>
           <Filtros
             actualizarGeneros={actualizarGenerosSeleccionados}
-            actualizarEditoriales={actualizarEditorialesSeleccionadas} />
+            actualizarEditoriales={actualizarEditorialesSeleccionadas} 
+            actualizarPrecioMinimo={actualizarPrecioMinimo}
+            actualizarPrecioMaximo={actualizarPrecioMaximo} />
         </Col>
         <Col lg={10}>
 
@@ -191,7 +207,7 @@ export function Categorias() {
               className='select-pagination'
               id="cantidad"
               value={cantidad}
-              onChange={(e) => setCantidad(Number(e.target.value))}>
+              onChange={(e) => setCantidad(Number(e.target.value))}> {/* Number(e.target.value) convierte el string a un número */}
               <option value={12}>12</option>
               <option value={24}>24</option>
               <option value={36}>36</option>

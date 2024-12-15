@@ -1,20 +1,39 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { jwtDecode } from 'jwt-decode';
 
 interface AuthState {
     isAuthenticated: boolean;
-    user: { correoElectronico: string; rol?: string } | null;  // Puede ser null si no está logueado
+    user: { idUsuario: number; rol?: string, token?: string } | null;  // Puede ser null si no está logueado
 }
 
 const getInitialState = (): AuthState => {
-    const savedLoggedIn = localStorage.getItem('__redux__user__');
-    if (savedLoggedIn) {
-        return JSON.parse(savedLoggedIn) as AuthState;
+    const savedData = localStorage.getItem('__redux__user__');
+    if (savedData) {
+        const parsed = JSON.parse(savedData);
+
+        // Verifica si el token está presente y es válido
+        if (parsed.token) {
+            try {
+                // Decodificar el token para verificar su validez
+                const decodedToken = jwtDecode<{ rol: string }>(parsed.token);
+                return {
+                    isAuthenticated: true, // Estado autenticado
+                    user: {
+                        idUsuario: parsed.idUsuario,
+                        rol: decodedToken.rol,
+                        token: parsed.token,
+                    },
+                };
+            } catch (error) {
+                console.error("Error al decodificar el token:", error);
+            }
+        }
     }
     return {
         isAuthenticated: false,
         user: null,
-    }
-}
+    };
+};
 
 const initialState: AuthState = getInitialState();
 
@@ -23,7 +42,7 @@ const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        loginAction: (state, action: PayloadAction<{ correoElectronico: string; rol: string }>) => {
+        loginAction: (state, action: PayloadAction<{ idUsuario: number; rol: string, token: string }>) => {
             state.isAuthenticated = true;
             state.user = action.payload;
         },

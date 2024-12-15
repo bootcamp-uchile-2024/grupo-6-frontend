@@ -71,7 +71,7 @@ const AdminCreateUser = () => {
 
         if (validaForm()) {
             try {
-                const response = await fetch(configuracion.urlJsonServerBackendUsers, {
+                const response = await fetch(configuracion.urlJsonServerBackendSignUp, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -95,8 +95,8 @@ const AdminCreateUser = () => {
                     setShouldNavigate(true); // Indica que se debe redirigir después de cerrar el modal
                 } else {
                     const errorData = await response.json();
-                    setModalTitle('Error');
-                    setModalMessage(errorData.error);
+                    setModalTitle('Algo salió mal');
+                    setModalMessage(errorData.error.message);
                     setShowModal(true);
                     console.log(errorData.error); // Esto muestra el error del backend
                 }

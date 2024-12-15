@@ -1,0 +1,71 @@
+.container-compra-exitosa {
+    margin-bottom: 216px;
+}
+.compra-exitosa-title {
+    color: #545454;
+    text-align: center;
+    font-family: Sarabun;
+    font-size: 31px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-top: 24px;
+    margin-bottom: 0px;
+}
+
+.compra-exitosa-texto,
+.compra-exitosa-direccion {
+    color: var(--Grises-Text-Default, #545454);
+    text-align: center;
+    font-size: 20px;
+    font-weight: 500;
+    font-style: normal;
+    line-height: normal;
+    margin-top: 24px;
+    margin-bottom: 0px;
+}
+
+.compra-exitosa-direccion {
+    font-weight: bold;
+}
+
+.compra-exitosa-button {
+    width: 234px;
+    height: 50px;
+    border: none;
+    border-radius: 16px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    background: #806259;
+    color: #FBFBFB;
+    text-align: center;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    transition: background-color 0.1s ease, color 0.1s ease;
+}
+
+.compra-exitosa-button svg {
+    margin-right: 12px;
+}
+
+.compra-exitosa-button:hover svg path,
+.compra-exitosa-button:active svg path {
+    margin-right: 12px;
+    fill: #806259;
+}
+
+.compra-exitosa-button:hover,
+.compra-exitosa-button:focus-visible {
+    background-color: #E1D5CA;
+    color: #806259;
+    border: none;
+    outline: none;
+}
+
+.compra-exitosa-button:active {
+    background-color: #E1D5CA;
+    color: #806259;
+    outline: 4px solid #806259;
+}

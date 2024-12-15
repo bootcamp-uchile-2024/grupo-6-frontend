@@ -253,7 +253,7 @@
 .out-of-stock {
     opacity: 0.5;
     pointer-events: none;
-    background-color: #f5f5f5;
+    background-color: #ffffff;
 }
 
 /* Asegura que los enlaces dentro de .out-of-stock se mantengan clickeables */
@@ -261,6 +261,12 @@
     pointer-events: auto;
 }
 
-.out-of-stock .catalog-buttons-container {
-    display: none;
+/* botones ver más y ver menos */
+.ver-mas-button,
+.ver-menos-button {
+    background-color: transparent;
+    border: none;
+    color: #545454;
+    text-decoration: underline;
+    font-size: 20px;
 }

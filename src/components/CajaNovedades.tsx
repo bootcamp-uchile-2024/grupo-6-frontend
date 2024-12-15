@@ -1,6 +1,6 @@
 import '../styles/home_info.css'
 import { Link } from 'react-router-dom';
-import ButtonAddToCart from './ButtonAddToCart'
+import ButtonAddToCart from './shoppingcart/ButtonAddToCart';
 import QuantityButtons from './shoppingcart/QuantityButtons';
 import { ShoppingCartEntrada } from '../interfaces/ShoppingCartEntrada'
 import Card from 'react-bootstrap/esm/Card';
@@ -25,6 +25,8 @@ function CajaNovedades(props: CajaNovedadesProps) {
         correoElectronico: '',
         caratula: props.caratula,
     };
+    
+    const isOutOfStock = props.stock === 0;
 
     return (
         <div key={product.isbn} className="col-custom">
@@ -45,17 +47,15 @@ function CajaNovedades(props: CajaNovedadesProps) {
                     <Card.Text className="autor-card">{product.autor.join(', ')}</Card.Text>
                     <p className="precio-card">${product.precio.toLocaleString()}</p>
                     <div className="product-actions">
-                        <div className='catalog-buttons-container'>
-                            <QuantityButtons isbn={props.isbn} />
-                            <ButtonAddToCart libro={product} />
+                        <div className='home-buttons-container'>
+                            <QuantityButtons isbn={props.isbn} disabled={isOutOfStock}/>
+                            <ButtonAddToCart libro={product} showIcon={true}/>
                         </div>
                     </div>
                 </Card.Body>
 
             </div>
         </div>
-
-
     );
 };
 

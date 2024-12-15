@@ -1,6 +1,6 @@
 import '../styles/categorias.css';
 import { Link } from 'react-router-dom';
-import ButtonAddToCart from './ButtonAddToCart';
+import ButtonAddToCart from './shoppingcart/ButtonAddToCart';
 import QuantityButtons from './shoppingcart/QuantityButtons';
 import { ShoppingCartEntrada } from '../interfaces/ShoppingCartEntrada';
 import { configuracion } from '../config/appConfiguration.ts'
@@ -50,8 +50,8 @@ export function CajaCategoria(props: CajaCategoriaProps) {
         <p className='texto-precio'>${props.precio}</p>
 
         <div className='catalog-buttons-container'>
-          <QuantityButtons isbn={props.isbn} />
-          <ButtonAddToCart libro={product} />
+          <QuantityButtons isbn={props.isbn} disabled={isOutOfStock}/>
+          <ButtonAddToCart libro={product} showIcon={true}/>
         </div>
       </div>
     </div>

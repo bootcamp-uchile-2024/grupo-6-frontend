@@ -5,11 +5,10 @@ import ButtonDeleteToCart from "./ButtonDeleteToCart";
 import { useSelector } from "react-redux";
 import ButtonClearCart from "./ButtonClearCart";
 import { Link, useNavigate } from "react-router-dom";
-import QuantityButtons from "./QuantityButtons";
 import {  useEffect, useState } from "react";
 import { Button, Col, Container, Row, Image, Dropdown } from "react-bootstrap";
 import { configuracion } from "../../config/appConfiguration";
-
+import QuantityButtons from "./QuantityButtons";
 
 function ShoppingCart() {
     const shoppingCartProduct = useSelector((state: RootType) => state.productReducer.cart.items);
@@ -109,7 +108,7 @@ function ShoppingCart() {
                                     </Col>
                                     <Col md="2" className="d-flex align-items-center justify-content-center" style={{ height: '3rem', width: '14.688rem' }}>
                                         <div className="shoppingcart-item-detail-td-quantity-1">
-                                            <QuantityButtons isbn={item.isbn} />
+                                            <QuantityButtons isbn={item.isbn} disabled={false}/>
                                             <ButtonDeleteToCart libro={item}></ButtonDeleteToCart>
                                         </div>
                                     </Col>

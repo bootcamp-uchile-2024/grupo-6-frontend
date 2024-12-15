@@ -1,6 +1,6 @@
 .login-container h3,
 .registration-container h3 {
-    font-size: 49px;
+    font-size: 31px;
     text-align: center;
     font-weight: bold;
     margin-top: 24px;
@@ -14,71 +14,80 @@
 }
 
 .login-form label {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
+    font-size: 16px;
+    color: #545454;
+    margin-bottom: 4px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 }
 
 .registration-container label {
     font-size: 16px;
     color: #545454;
-    font-weight: bold;
-    margin-bottom: 12px;
+    margin-bottom: 4px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 }
 
 .login-form .form-control,
 .registration-form .form-control {
     width: 100%;
-    height: 57px;
-    background-color: #FBFBFB;
+    height: 42px;
+    background-color: #F8F5F0;
     border: none;
-    border-radius: 12px;
+    border-radius: 8px;
     transition: border 0.1s ease;
     margin-bottom: 24px;
+    /* ICONOS KEY Y MAIL */
+    background-repeat: no-repeat;
+    background-position: 98% center;
+}
+
+/* ICONOS KEY Y MAIL */
+.login-form input[type="email"] {
+    background-image: url('../assets/images/mail-icon.png');
+}
+
+.login-form input[type="password"] {
+    background-image: url('../assets/images/key-icon.png');
 }
 
 .login-form input::placeholder,
 .registration-form input::placeholder {
     font-size: 20px;
-    color: #975C4C;
+    color: #ADABAB;
     font-weight: 500;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 }
 
 .login-form .form-control:hover,
 .login-form .form-control:focus,
 .registration-form .form-control:hover,
 .registration-form .form-control:focus {
-    width: 100%;
-    height: 57px;
-    background-color: #FBFBFB;
-    border: 3px solid #975C4C;
-    border-radius: 12px;
+    outline: 2px solid #806259;
     box-shadow: none;
 }
 
-
 /* BOTONES */
 .login-form .btn-primary,
-.registration-form .btn-primary {  
+.registration-form .btn-primary {
     margin-top: 24px;
-    margin-bottom: 24px;  
+    margin-bottom: 24px;
     padding: 12px 16px 12px 16px;
     border: none;
     border-radius: 16px;
     font-size: 20px;
     color: #FBFBFB;
-    background-color: #975C4C;
+    background-color: #806259;
     transition: border 0.1s ease;
 }
 
 .login-form .btn-primary {
-    width: 152px;
+    width: 240px;
 }
 
 .registration-form .btn-primary {
@@ -90,7 +99,7 @@
 .registration-form .btn-primary:hover,
 .registration-form .btn-primary:focus-visible {
     background-color: #E1D5CA;
-    color: #975C4C;
+    color: #806259;
     border: 0px;
     box-shadow: none;
     transition: background-color 0.3s, color 0.3s;
@@ -101,8 +110,8 @@
 .registration-form .btn-primary:active,
 .registration-form .btn:first-child:active {
     background-color: #E1D5CA;
-    color: #975C4C;
-    outline: 4px solid #975C4C;
+    color: #806259;
+    outline: 4px solid #806259;
     box-shadow: none;
 }
 
@@ -129,7 +138,7 @@
     justify-content: center;
     align-items: center;
     background-color: #FFFFFF;
-    border: 4px solid #975C4C;
+    border: 4px solid #806259;
     border-radius: 24px;
     padding: 24px;
 }
@@ -150,7 +159,7 @@
 
 .user-register-modal .modal-title {
     font-weight: bolder;
-    color: #975C4C;
+    color: #806259;
     font-size: 25px;
     margin: 0px;
 }
@@ -158,7 +167,7 @@
 .user-register-modal .modal-body {
     padding: 0px;
     text-align: center;
-    color: #975C4C;
+    color: #806259;
     font-size: 25px;
     margin: 0px;
 }
