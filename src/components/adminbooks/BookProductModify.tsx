@@ -19,7 +19,7 @@ import Button from 'react-bootstrap/esm/Button';
 const BookProductModify = () => {
     const navigate = useNavigate();
     const url = configuracion.urlJsonServerBackendCover.toString();
-
+    const loggedInUser = JSON.parse(localStorage.getItem('__redux__user__') || '{}');
     const [libro, setLibro] = useState<ILibro>(
         useSelector((state: RootType) => state.productModifyReducer.book)
     );
@@ -123,26 +123,31 @@ const BookProductModify = () => {
             || errors.dimensiones || errors.ean || errors.resumen) {
 
             console.log("Los errores son: ", errors);
-            navigate("/create/product");
+            navigate("/admin/update/product");
         } else {
             console.log("Se envia el libro para su modificación");
             console.log("El libro a modificar es: ", libro);
 
             // Se deberia cambiar por un metodo PUT
-            const response = await fetch(`${configuracion.urlJsonServerBackendProducts}/${libro.isbn}`, {
+            console.log("TOKEN: ", loggedInUser.token);
+            const response = await fetch(`${configuracion.urlJsonServerBackendProducts}${libro.id}`, {
                 method: 'PATCH',
                 headers: {
-                    'Content-Type': 'application/json'
-                }
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${loggedInUser.token}`
+                },
+                body: JSON.stringify(libro)
             });
 
             if (response.status == 200) {
                 alert(`Se modifico el libro correctamente " ${libro.nombre} " en el Backend`);
+                navigate('/admin/product')
             } else {
                 console.log(`Error al modificar el libro en el Backend. Datos: ${libro} `);
                 alert(`Error al modificar el libro " ${libro.nombre} " en el Backend`);
             }
             setLibro({
+                id: -1,
                 isbn: '',
                 nombre: '',
                 autor: [''],
@@ -161,7 +166,7 @@ const BookProductModify = () => {
                 resumen: '',
                 calificacion: 0
             });
-            navigate("/create/product");
+            navigate('/admin/product')
         }
 
     };

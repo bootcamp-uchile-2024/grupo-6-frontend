@@ -14,8 +14,10 @@ import Container from 'react-bootstrap/esm/Container';
 
 const CrearProducto = () => {
     const navigate = useNavigate();
+    const loggedInUser = JSON.parse(localStorage.getItem('__redux__user__') || '{}');
 
     const [libro, setLibro] = useState<ILibro>({
+        id: -1,
         isbn: '',
         nombre: '',
         autor: [''],
@@ -139,7 +141,9 @@ const CrearProducto = () => {
             console.log("La estructura del form es: ", libro);
             const response = await axios.post(configuracion.urlJsonServerBackendProducts, libro, {
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${loggedInUser.token}`
+
                 }
             });
 
@@ -152,6 +156,7 @@ const CrearProducto = () => {
                 alert('Error al crear el libro en el Backend');
             }
             setLibro({
+                id: -1,
                 isbn: '',
                 nombre: '',
                 autor: [''],

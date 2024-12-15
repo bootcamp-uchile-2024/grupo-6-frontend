@@ -1,6 +1,7 @@
 import { IErrorsLibro } from "./IErrorsLibro";
 
 interface ILibro {
+    id: number;          // identificador
     isbn: string;                // Si - ISBN del libro  
     nombre: string;              // Si - Nombre del libro
     autor: string[];             // Si - Autor del libro (array de strings)
