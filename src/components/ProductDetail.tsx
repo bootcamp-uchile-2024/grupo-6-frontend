@@ -43,7 +43,7 @@ const ProductDetail: React.FC = () => {
 
     const [producto, setProducto] = useState<ShoppingCartEntrada>({
         nombre: '',
-        autor: [""],
+        autor: "",
         precio: 0,
         isbn: "",
         cantidad: 1,
@@ -66,7 +66,7 @@ const ProductDetail: React.FC = () => {
 
                 setProducto({
                     nombre: productData?.nombre || '',
-                    autor: productData?.autor || [""],
+                    autor: productData?.autor || "",
                     precio: productData?.precio || 0,
                     isbn: productData?.isbn || "",
                     cantidad: 1,

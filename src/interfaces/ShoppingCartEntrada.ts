@@ -1,7 +1,7 @@
 interface ShoppingCartEntrada {
     caratula: string;
     nombre: string;
-    autor: string[];
+    autor: string;
     precio: number;
     isbn: string;
     cantidad: number;
