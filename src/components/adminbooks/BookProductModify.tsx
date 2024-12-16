@@ -66,9 +66,9 @@ const BookProductModify = () => {
             case "caratula":
             case "dimensiones":
             case "ean":
+            case "autor":
             case "resumen":
                 return value; // `string`
-            case "autor":
             case "genero":
                 return value.split(","); // `string[]` -> Convertir valor separado por comas
             case "precio":
@@ -130,7 +130,7 @@ const BookProductModify = () => {
 
             // Se deberia cambiar por un metodo PUT
             console.log("TOKEN: ", loggedInUser.token);
-            const response = await fetch(`${configuracion.urlJsonServerBackendProducts}${libro.id}`, {
+            const response = await fetch(`${configuracion.urlJsonServerBackendProducts}${libro.isbn}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -147,10 +147,9 @@ const BookProductModify = () => {
                 alert(`Error al modificar el libro " ${libro.nombre} " en el Backend`);
             }
             setLibro({
-                id: -1,
                 isbn: '',
                 nombre: '',
-                autor: [''],
+                autor: '',
                 precio: 0,
                 stockLibro: 0,
                 genero: [''],
@@ -306,36 +305,21 @@ const BookProductModify = () => {
                                             )}
                                         </Form.Group>
 
-                                        {/* Campo Autores */}
+                                        {/* Campo Autor */}
                                         <Form.Group controlId="autores" className="mb-4">
-                                            <Form.Label>Autores</Form.Label>
-                                            {libro.autor.map((autor, index) => (
-                                                <div key={index} className="d-flex align-items-center mb-2">
-                                                    <Form.Control
-                                                        type="text"
-                                                        value={autor}
-                                                        onChange={(e) => handleArrayChange(e, 'autor', index)}
-                                                        placeholder="Ej. J.K. Rowling"
-                                                        required
-                                                        style={{ backgroundColor: '#F5FAFF', color: '#455B73' }}
-                                                        className="me-2"
-                                                    />
-                                                    <Button variant="success" onClick={() => addField('autor')} className="me-2"
-                                                        style={{
-                                                            backgroundColor: '#455B73',
-                                                            color: '#F5FAFF',
-                                                        }}>
-                                                        +
-                                                    </Button>
-                                                    <Button
-                                                        variant="danger"
-                                                        onClick={() => removeField('autor', index)}
-                                                        disabled={libro.autor.length === 1}
-                                                    >
-                                                        -
-                                                    </Button>
-                                                </div>
-                                            ))}
+                                        <Form.Label>Autor</Form.Label>
+                                        <Form.Control
+                                                type="text"
+                                                name="autor"
+                                                value={libro.autor}
+                                                onChange={handleChange}
+                                                placeholder="Ej. J.K. Rowling"
+                                                required
+                                                style={{
+                                                    backgroundColor: '#F5FAFF',
+                                                    color: '#455B73',
+                                                }}
+                                            />
                                             {errors.autor && (
                                                 <Form.Text className="text-danger">El autor no puede estar vacío.</Form.Text>
                                             )}
@@ -439,7 +423,7 @@ const BookProductModify = () => {
                                         <Form.Group controlId="caratula" className="mb-4">
                                             <Form.Label>Carátula (URL)</Form.Label>
                                             <Form.Control
-                                                type="url"
+                                                type="string"
                                                 name="caratula"
                                                 value={libro.caratula}
                                                 onChange={handleChange}
@@ -448,7 +432,7 @@ const BookProductModify = () => {
                                                 style={{ backgroundColor: '#F5FAFF', color: '#455B73' }}
                                             />
                                             {errors.caratula && (
-                                                <Form.Text className="text-danger">La URL debe tener un formato válido.</Form.Text>
+                                                <Form.Text className="text-danger">La caratula no debe ser nula.</Form.Text>
                                             )}
                                         </Form.Group>
 

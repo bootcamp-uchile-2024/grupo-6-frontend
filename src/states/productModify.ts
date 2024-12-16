@@ -13,10 +13,9 @@ const getInitialState = (): ProductModifyState => {
     }
     return {
         book: {
-            id: -1,
             isbn: '',
             nombre: '',
-            autor: [],
+            autor: '',
             precio: 0,
             stockLibro: 0,
             genero: [],
@@ -51,10 +50,9 @@ export const productModifyReducer = createSlice({
             const { payload } = action;
             console.log("payload removeProducttModify" + payload);
             const emptyBook =  {
-                id: -1,
                 isbn: '',
                 nombre: '',
-                autor: [],
+                autor: '',
                 precio: 0,
                 stockLibro: 0,
                 genero: [],

@@ -1,58 +1,33 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Container, Carousel } from 'react-bootstrap';
 import '../styles/home_info.css';
 import CajaNovedades from './CajaNovedades';
 import esoterismo from '../assets/images/esoterismo.png';
 import autoAyuda from '../assets/images/autoayuda.png';
 import ciencias from '../assets/images/ciencias.png';
-
-interface IProductCards {
-  isbn: string;
-  nombre: string;
-  autor: string[];
-  precio: number;
-  stockLibro: number;
-  caratula: string;
-}
+import { useFetchGetDestacados, useFetchGetNovedades, useFetchGetTendencias } from '../hooks/useFetch';
+import { ILibroPaginado } from '../interfaces/ILibroPaginado';
+import { configuracion } from '../config/appConfiguration';
 
 const HomeInfo = () => {
-  const [products, setProducts] = useState<{
-    destacados: IProductCards[];
-    novedades: IProductCards[];
-    tendencias: IProductCards[];
-  }>({
-    destacados: [],
-    novedades: [],
-    tendencias: [],
-  });
 
-  const [error, setError] = useState<string | null>(null);
+  const [error] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        // Fetch destacados, novedades y tendencias desde el servidor JSON
-        const destacadosResponse = await fetch('http://localhost:4000/destacados');
-        const novedadesResponse = await fetch('http://localhost:4000/novedades');
-        const tendenciasResponse = await fetch('http://localhost:4000/tendencias');
+  const [paginaActual] = useState<number>(1);
 
-        if (!destacadosResponse.ok || !novedadesResponse.ok || !tendenciasResponse.ok) {
-          throw new Error('Error al cargar los datos del servidor');
-        }
+  const cantidad = 5; // Número de productos por página, se puede cambiar
 
-        const destacados = await destacadosResponse.json();
-        const novedades = await novedadesResponse.json();
-        const tendencias = await tendenciasResponse.json();
+  const { data: destacadosResponse, loading: loadingDestacados, error:  errorDestacados } = useFetchGetDestacados<ILibroPaginado>(configuracion.urlJsonServerBackendCatalog, paginaActual, cantidad,true);
+  const { data: novedadesResponse, loading: loadingNovedades, error:  errorNovedades } = useFetchGetNovedades<ILibroPaginado>(configuracion.urlJsonServerBackendCatalog, paginaActual, cantidad,true);
+  const { data: tendenciasResponse, loading: loadingTendencias, error:  errorTendencias } = useFetchGetTendencias<ILibroPaginado>(configuracion.urlJsonServerBackendCatalog, paginaActual, cantidad,true);
 
-        setProducts({ destacados, novedades, tendencias });
-      } catch (error) {
-        console.error('Error al cargar los productos:', error);
-        setError('Error al cargar los productos. Intente nuevamente más tarde.');
-      }
-    };
+  if (loadingDestacados) return <p>Cargando datos...</p>
+  if (errorDestacados) return <p>Error en la consulta de datos {error}</p>
+  if (loadingNovedades) return <p>Cargando datos...</p>
+  if (errorNovedades) return <p>Error en la consulta de datos {error}</p>
+  if (loadingTendencias) return <p>Cargando datos...</p>
+  if (errorTendencias) return <p>Error en la consulta de datos {error}</p>
 
-    fetchProducts();
-  }, []);
 
   return (
     <main>
@@ -119,8 +94,8 @@ const HomeInfo = () => {
                 <h3>Productos destacados</h3>
               </div>
               <div className="row-custom">
-                {products.destacados.length > 0 ? (
-                  products.destacados.map((libro) => (
+                {destacadosResponse?.productos ? (
+                  destacadosResponse.productos.map((libro) => (
                     <CajaNovedades
                       key={libro.isbn}
                       nombre={libro.nombre}
@@ -145,8 +120,8 @@ const HomeInfo = () => {
                 <h3>Novedades</h3>
               </div>
               <div className="row-custom">
-                {products.novedades.length > 0 ? (
-                  products.novedades.map((libro) => (
+              {novedadesResponse?.productos ? (
+                  novedadesResponse.productos.map((libro) => (
                     <CajaNovedades
                       key={libro.isbn}
                       nombre={libro.nombre}
@@ -171,8 +146,8 @@ const HomeInfo = () => {
                 <h3>Tendencias</h3>
               </div>
               <div className="row-custom">
-                {products.tendencias.length > 0 ? (
-                  products.tendencias.map((libro) => (
+              {tendenciasResponse?.productos ? (
+                  tendenciasResponse.productos.map((libro) => (
                     <CajaNovedades
                       key={libro.isbn}
                       nombre={libro.nombre}

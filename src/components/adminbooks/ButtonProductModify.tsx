@@ -33,7 +33,7 @@ const ButtonProductModify = ({ libro }: { libro: ILibro | null }) => {
     const handleAddProductDelete = async () => {
         if (libro) { // Verificar si product no es null
             dispatch(addProductModify(libro));
-            const response = await fetch(`${configuracion.urlJsonServerBackendProducts}${libro.id}`, {
+            const response = await fetch(`${configuracion.urlJsonServerBackendProducts}${libro.isbn}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

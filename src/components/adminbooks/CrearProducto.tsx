@@ -17,10 +17,9 @@ const CrearProducto = () => {
     const loggedInUser = JSON.parse(localStorage.getItem('__redux__user__') || '{}');
 
     const [libro, setLibro] = useState<ILibro>({
-        id: -1,
         isbn: '',
         nombre: '',
-        autor: [''],
+        autor: '',
         precio: 0,
         stockLibro: 0,
         genero: [''],
@@ -139,11 +138,32 @@ const CrearProducto = () => {
         } else {
             console.log("Se envia el formulario");
             console.log("La estructura del form es: ", libro);
-            const response = await axios.post(configuracion.urlJsonServerBackendProducts, libro, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${loggedInUser.token}`
 
+    // Crear el objeto FormData
+    const formData = new FormData();
+    formData.append('caratula', libro.caratula); // Adjuntar el archivo
+    formData.append('isbn', libro.isbn);
+    formData.append('nombre', libro.nombre);
+    formData.append('precio', libro.precio.toString());
+    formData.append('stockLibro', libro.stockLibro.toString());
+    formData.append('autor', libro.autor.toString());
+    libro.genero.forEach((genero) => formData.append('genero[]', genero)); // Array de géneros
+    formData.append('editorial', libro.editorial);
+    formData.append('idioma', libro.idioma);
+    formData.append('encuadernacion', libro.encuadernacion);
+    formData.append('agnoPublicacion', libro.agnoPublicacion);
+    formData.append('numeroPaginas', libro.numeroPaginas.toString());
+    formData.append('descuento', libro.descuento.toString());
+    formData.append('dimensiones', libro.dimensiones);
+    formData.append('ean', libro.ean);
+    formData.append('resumen', libro.resumen);
+    formData.append('originalName', "changoyculebra.png");
+
+
+            const response = await axios.post(configuracion.urlJsonServerBackendProducts, formData, {
+                headers: {
+                    'Authorization': `Bearer ${loggedInUser.token}`,
+                    "Content-Type": "multipart/form-data"
                 }
             });
 
@@ -156,10 +176,9 @@ const CrearProducto = () => {
                 alert('Error al crear el libro en el Backend');
             }
             setLibro({
-                id: -1,
                 isbn: '',
                 nombre: '',
-                autor: [''],
+                autor: '',
                 precio: 0,
                 stockLibro: 0,
                 genero: [''],
@@ -316,36 +335,21 @@ const CrearProducto = () => {
                                             )}
                                         </Form.Group>
 
-                                        {/* Campo Autores */}
+                                        {/* Campo Autor */}
                                         <Form.Group controlId="autores" className="mb-4">
-                                            <Form.Label>Autores</Form.Label>
-                                            {libro.autor.map((autor, index) => (
-                                                <div key={index} className="d-flex align-items-center mb-2">
-                                                    <Form.Control
-                                                        type="text"
-                                                        value={autor}
-                                                        onChange={(e) => handleArrayChange(e, 'autor', index)}
-                                                        placeholder="Ej. J.K. Rowling"
-                                                        required
-                                                        style={{ backgroundColor: '#F5FAFF', color: '#455B73' }}
-                                                        className="me-2"
-                                                    />
-                                                    <Button variant="success" onClick={() => addField('autor')} className="me-2"
-                                                        style={{
-                                                            backgroundColor: '#455B73',
-                                                            color: '#F5FAFF',
-                                                        }}>
-                                                        +
-                                                    </Button>
-                                                    <Button
-                                                        variant="danger"
-                                                        onClick={() => removeField('autor', index)}
-                                                        disabled={libro.autor.length === 1}
-                                                    >
-                                                        -
-                                                    </Button>
-                                                </div>
-                                            ))}
+                                        <Form.Label>Autor</Form.Label>
+                                        <Form.Control
+                                                type="text"
+                                                name="autor"
+                                                value={libro.autor}
+                                                onChange={handleChange}
+                                                placeholder="Ej. J.K. Rowling"
+                                                required
+                                                style={{
+                                                    backgroundColor: '#F5FAFF',
+                                                    color: '#455B73',
+                                                }}
+                                            />
                                             {errors.autor && (
                                                 <Form.Text className="text-danger">El autor no puede estar vacío.</Form.Text>
                                             )}
@@ -445,22 +449,21 @@ const CrearProducto = () => {
                                             )}
                                         </Form.Group>
 
-                                        {/* Campo Carátula */}
+                                        {/* Campo Carátula (Archivo)*/} 
                                         <Form.Group controlId="caratula" className="mb-4">
-                                            <Form.Label>Carátula (URL)</Form.Label>
+                                            <Form.Label>Carátula</Form.Label>
                                             <Form.Control
-                                                type="url"
+                                                type="file"
                                                 name="caratula"
-                                                value={libro.caratula}
                                                 onChange={handleChange}
-                                                placeholder="Ej. https://ejemplo.com/caratula.jpg"
                                                 required
                                                 style={{ backgroundColor: '#F5FAFF', color: '#455B73' }}
                                             />
                                             {errors.caratula && (
-                                                <Form.Text className="text-danger">La URL debe tener un formato válido.</Form.Text>
+                                                <Form.Text className="text-danger">Debe seleccionar una carátula válida.</Form.Text>
                                             )}
                                         </Form.Group>
+
 
                                         {/* Campo Dimensiones */}
                                         <Form.Group controlId="dimensiones" className="mb-4">
