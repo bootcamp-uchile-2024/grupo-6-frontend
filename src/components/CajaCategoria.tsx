@@ -47,7 +47,7 @@ export function CajaCategoria(props: CajaCategoriaProps) {
         </Link>
         <p className='texto-autor'>{props.autor.join(', ')}</p>
 
-        <p className='texto-precio'>${props.precio}</p>
+        <p className='texto-precio'>${props.precio.toLocaleString()}</p>
 
         <div className='catalog-buttons-container'>
           <QuantityButtons isbn={props.isbn} disabled={isOutOfStock}/>
