@@ -13,6 +13,8 @@ import icono3dots from '../../assets/images/dots.png'
 const ButtonProductModify = ({ libro }: { libro: ILibro | null }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const loggedInUser = JSON.parse(localStorage.getItem('__redux__user__') || '{}');
+
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -31,10 +33,11 @@ const ButtonProductModify = ({ libro }: { libro: ILibro | null }) => {
     const handleAddProductDelete = async () => {
         if (libro) { // Verificar si product no es null
             dispatch(addProductModify(libro));
-            const response = await fetch(`${configuracion.urlJsonServerBackendProducts}/${libro.isbn}`, {
+            const response = await fetch(`${configuracion.urlJsonServerBackendProducts}${libro.isbn}`, {
                 method: 'DELETE',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${loggedInUser.token}`
                 }
             });
 
@@ -43,9 +46,12 @@ const ButtonProductModify = ({ libro }: { libro: ILibro | null }) => {
 
                 alert('Libro eliminado correctamente');
                 console.log("Libro eliminado:", libro);
+                navigate('/admin/product');
+
             } else {
                 console.log(`Error al eliminar el libro en el Backend. Datos: ${libro} `);
                 alert(`Error al eliminar el libro " ${libro.nombre} " en el Backend`);
+                navigate('/admin/product');
             }
 
 

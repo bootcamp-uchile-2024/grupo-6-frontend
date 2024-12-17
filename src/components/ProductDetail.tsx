@@ -43,7 +43,7 @@ const ProductDetail: React.FC = () => {
 
     const [producto, setProducto] = useState<ShoppingCartEntrada>({
         nombre: '',
-        autor: [""],
+        autor: "",
         precio: 0,
         isbn: "",
         cantidad: 1,
@@ -66,7 +66,7 @@ const ProductDetail: React.FC = () => {
 
                 setProducto({
                     nombre: productData?.nombre || '',
-                    autor: productData?.autor || [""],
+                    autor: productData?.autor || "",
                     precio: productData?.precio || 0,
                     isbn: productData?.isbn || "",
                     cantidad: 1,
@@ -112,7 +112,7 @@ const ProductDetail: React.FC = () => {
                         <Col md={8} className="productDeteil-info">
                             <h1 className='productDetail-title-info'>{libro.nombre}</h1>
                             <h3 className="autor-info">{libro.autor.join(", ")}</h3>
-                            <p className="price">${libro.precio}</p>
+                            <p className="price">${libro.precio.toLocaleString()}</p>
 
                             {/* Estrellas de calificación */}
                             <div className="rating-stars">

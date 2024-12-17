@@ -70,6 +70,7 @@
 .registration-form .form-control:focus {
     outline: 2px solid #806259;
     box-shadow: none;
+    background-color: #F8F5F0;
 }
 
 /* BOTONES */

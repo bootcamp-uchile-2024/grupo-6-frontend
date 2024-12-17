@@ -12,7 +12,7 @@ interface ButtonAddToCartProps {
 const ButtonAddToCart = ({ libro, showIcon }: ButtonAddToCartProps) => {
     const [producto] = useState<ShoppingCartEntrada>({
         nombre: '',
-        autor: [""],
+        autor: "",
         precio: 0,
         isbn: "",
         cantidad: 1,

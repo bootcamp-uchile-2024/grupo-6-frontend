@@ -5,9 +5,8 @@
   "type": "module",
   "scripts": {
     "start": "react-scripts start",
-    "json-server": "json-server ./src/data/home.json --port 4000",
     "json-server-catalog": "json-server ./src/data/catalog.json --port 4001",
-    "dev": "concurrently \"npm start\" \"npm run json-server\" \"npm run json-server-catalog\" \"vite\"",
+    "dev": "concurrently \"npm start\" \"npm run json-server-catalog\" \"vite\"",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
@@ -19,6 +18,7 @@
     "axios": "^1.7.7",
     "bootstrap": "^5.3.3",
     "cors": "^2.8.5",
+    "json-server": "^1.0.0-beta.3",
     "jwt-decode": "^4.0.0",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.6",

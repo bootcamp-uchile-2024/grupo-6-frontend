@@ -9,6 +9,8 @@ import Row from 'react-bootstrap/esm/Row';
 import Col from 'react-bootstrap/esm/Col';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from "react-bootstrap/esm/Button";
+import Table from "react-bootstrap/esm/Table";
+import '../../styles/admin_product_list.css'
 
 function AdminBookListTableUx() {
 
@@ -32,81 +34,61 @@ function AdminBookListTableUx() {
     };
 
     return (
-        <Container fluid>
 
-            <div className='shoppingcart'>
-                <Row md="10">
-                    <div className="shoppingcart-item-top-footer">
-                        <Col md="4">
-                            <h2>Productos</h2>
-                        </Col>
-                        <Col md="4"></Col>
-                        <Col md="2">
-                            <div className="shoppingcart-button-options">
-                                <Link to={`/create/product`}>
-                                <Button className="button-shoppingcart-resume" style={{ backgroundColor: '#455B73', color: '#F5FAFF', border: '#455B73' }}>
-                                    Crear Producto
-                                </Button>
-                            </Link>
-                            </div>
-                        </Col>
-                    </div>
+        <Container className="productList-admin-container mt-4">
+        <Row className="productList-admin-header">
+            <Col xs={12} md={8} className="text-start">
+                <h1 className="title-admin-productList">Productos</h1>
+            </Col>
+            <Col xs={12} md={4} className="text-end">
+            
+                <Button className="button-shoppingcart-resume" variant="none" style={{ backgroundColor: '#455B73', color: '#F5FAFF', border: '#455B73' }}>
+                    <Link to={`/create/product`}>
+                        Crear Producto
+                    </Link>
+                </Button>
+            </Col>
+        </Row>
 
-                </Row>
-                {bookList?.productos.length ? (
-                    <div className="left" style={{maxWidth: '50%' }} >
-                        <Container style={{alignSelf: 'flex-start'}} >
-                            {/* Encabezado */}
-                            <Row className="d-flex align-items-center justify-content-between" style={{ backgroundColor: '#F1F3F9' }}>
-                                <Col xs={3}>
-                                    <strong>ISBN</strong>
-                                </Col>
-                                <Col xs={4}>
-                                    <strong>Título</strong>
-                                </Col>
-                                <Col xs={4}>
-                                    <strong>Autor</strong>
-                                </Col>
-                                <Col xs={1}>
-                                    <strong>Modificar</strong>
-                                </Col>
-                            </Row>
-
-                            {/* Filas de libros */}
+        <Row>
+            <Col xs={12}>
+                 {bookList?.productos.length ? (
+                    <Table className="table-productList">
+                        <thead className="description-table-productList">
+                            <tr>
+                                <th className="head-table-product"><strong>ISBN</strong></th>
+                                <th className="head-table-product"><strong>Título</strong></th>
+                                <th className="head-table-product"><strong>Autor</strong></th>
+                                <th className="head-table-product"><strong>Opciones</strong></th>
+                            </tr>
+                        </thead>
+                        <tbody className="body-table-productList">
                             {bookList.productos.map((item) => (
-                                <Row
-                                    key={item.isbn}
-                                    className="d-flex align-items-center justify-content-between py-2"
-                                    style={{ borderBottom: '1px solid #ddd' }}
-                                >
-                                    <Col xs={3}>
-                                        <p>{item.isbn}</p>
-                                    </Col>
-                                    <Col xs={4}>
-                                        <p>{item.nombre}</p>
-                                    </Col>
-                                    <Col xs={4}>
-                                        <p>{item.autor}</p>
-                                    </Col>
-                                    <Col xs={1}>
+                                <tr key={item.isbn}>
+                                    <td>{item.isbn}</td>
+                                    <td>{item.nombre}</td>
+                                    <td>{item.autor}</td>
+                                    <td>
                                         <ButtonProductModify libro={item} />
-                                    </Col>
-                                </Row>
+                                    </td>
+                                </tr>
                             ))}
-                        </Container>
-                    </div>
+                        </tbody>
+                    </Table>
+                    
                 ) : (
                     <div>No existen libros en el backend.</div>
                 )}
+            </Col>
 
-                {/* Controles de paginación */}
-                <div className="categorias-paginacion">
-                    <button className='boton-paginacion' onClick={handlePaginaAnterior} disabled={paginaActual === 1}>&#8592;</button>
-                    <span>Página {paginaActual} de {bookList?.totalPaginas}</span>
-                    <button className='boton-paginacion' onClick={handlePaginaSiguiente} disabled={paginaActual === bookList?.totalPaginas}>&#8594;</button>
-                </div>
+            {/* Controles de paginación */}
+            <div className="categorias-paginacion">
+                <button className='boton-paginacion' onClick={handlePaginaAnterior} disabled={paginaActual === 1}>&#8592;</button>
+                <span>Página {paginaActual} de {bookList?.totalPaginas}</span>
+                <button className='boton-paginacion' onClick={handlePaginaSiguiente} disabled={paginaActual === bookList?.totalPaginas}>&#8594;</button>
             </div>
-        </Container>
+        </Row>
+    </Container>
     );
 };
 

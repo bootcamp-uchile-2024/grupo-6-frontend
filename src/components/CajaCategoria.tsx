@@ -8,7 +8,7 @@ import { configuracion } from '../config/appConfiguration.ts'
 interface CajaCategoriaProps {
   isbn: string,
   nombre: string,
-  autor: string[],
+  autor: string,
   precio: number,
   stock: number,
   caratula: string
@@ -45,9 +45,9 @@ export function CajaCategoria(props: CajaCategoriaProps) {
         <Link to={`/product-detail/${props.isbn}`}> {/* Cambiar con back */}
           <p className='texto-nombre-libro'>{props.nombre}</p>
         </Link>
-        <p className='texto-autor'>{props.autor.join(', ')}</p>
+        <p className='texto-autor'>{props.autor}</p>
 
-        <p className='texto-precio'>${props.precio}</p>
+        <p className='texto-precio'>${props.precio.toLocaleString()}</p>
 
         <div className='catalog-buttons-container'>
           <QuantityButtons isbn={props.isbn} disabled={isOutOfStock}/>
