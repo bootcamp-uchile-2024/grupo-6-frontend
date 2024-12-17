@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../../styles/user.css';
 import { useDispatch } from 'react-redux';
 import { logoutAction } from '../../states/authSlice';
@@ -73,14 +73,14 @@ const UserPage = () => {
                             {userAddress?.map((item) => (
                             <>
                                 <p><b>Dirección de despacho actual:</b></p>
-                                {item.tipoDireccion.includes('Envio')?  (
+                                {item.tipoDireccion?.includes('Envio')?  (
                                 <><p>{item.calle} {item.numeroCalle}, {item.ciudad}, {item.comuna}, {item.region}.</p></>
                                 ) : (
                                 <><p>No existen direcciones de envio.</p></>
                                 )}
                                 
                                 <p><b>Dirección de facturacion:</b></p>
-                                {item.tipoDireccion.includes('Facturacion')?  (
+                                {item.tipoDireccion?.includes('Facturacion')?  (
                                 <><p>{item.calle} {item.numeroCalle}, {item.ciudad}, {item.comuna}, {item.region}.</p></>
                                 ) : (
                                     <><p>No existen direcciones de facturación.</p></>
@@ -95,7 +95,9 @@ const UserPage = () => {
                     <Col md={2}>
                             <div className="d-flex flex-column gap-2">
                                 <Button variant="none" className='direcciones-button'>
-                                Gestionar direcciones
+                                    <Link to={`/user/address`}>
+                                        Gestionar direcciones
+                                    </Link>
                                 </Button>
                             </div>
                     </Col>
