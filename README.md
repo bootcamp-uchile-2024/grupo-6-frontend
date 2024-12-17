@@ -15,28 +15,42 @@ Este proyecto de frontend, desarrollado con React, TypeScript y Vite, se centra 
  7. [Flujo de trabajo](#Flujo-de-trabajo)
  8. [Contacto](#Contacto)
 
-## Tecnologías utilizadas
+## Tecnologías principales
 - **React**
-- **React Router**
 - **Redux**
+- **React Router**
+- **React Bootstrap**
+- **JWT-decode**
+
+## Herramientas de desarrollo
 - **TypeScript**
+- **ESLint**
 - **Vite**
 - **Docker**
-- **ESLint**
 
 ## Requisitos previos
 Antes de ejecutar el proyecto, asegúrate de tener instalados los siguientes componentes:
-- **Node.js**: >= v20.13.1
+- **Node.js** (versión 16 o superior):
+  - Puedes descargarlo desde [Node.js oficial](https://nodejs.org/).
+
 
 ```bash
     nvm install node
 ```
+
+- **npm** (viene incluido con Node.js): El gestor de paquetes de Node.js para instalar las dependencias del proyecto.
+  
+- **Docker** (opcional, solo si necesitas construir y ejecutar el contenedor): Para el despliegue de la aplicación en un contenedor.
+  - Puedes instalar Docker desde [Docker](https://www.docker.com/get-started).  
 
 - **Typescript:**
 
 ```bash
     npm install -g typescript
 ```
+
+- **Git**: Para clonar el repositorio y gestionar el control de versiones.
+  - Puedes descargarlo desde [Git oficial](https://git-scm.com/).
 
 ## Instalación
 1. Clona el repositorio:

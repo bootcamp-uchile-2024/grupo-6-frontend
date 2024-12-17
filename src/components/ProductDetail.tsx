@@ -139,7 +139,10 @@ const ProductDetail: React.FC = () => {
                                     <div className={`quantity-section ${isOutOfStock ? 'disabled' : ''}`}>
                                         {isbn && <QuantityButtons isbn={isbn} disabled={isOutOfStock} />}
                                     </div>
-                                    <ButtonAddToCart libro={producto} showIcon={false} />
+                                    <div className='buy-now-container'>
+                                        <ButtonAddToCart libro={producto} showIcon={false} />
+                                        {/* <button type='button' className='buy-now'>Comprar ahora</button> */}
+                                    </div>
                                 </div>
                             </div>
 
