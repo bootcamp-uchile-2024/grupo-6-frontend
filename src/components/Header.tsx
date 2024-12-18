@@ -5,10 +5,18 @@ import { RootType } from '../states/store';
 import { selectCartItemCount } from '../states/productSlice';
 import { Container, Row, Col, Form, Button, Dropdown } from 'react-bootstrap';
 import logoPaginasSelectas from '../assets/images/logo-ux.png'
+import { useEffect, useRef, useState } from 'react';
+import { configuracion } from '../config/appConfiguration';
+import { ILibro } from '../interfaces/ILibro';
+
 
 function Header() {
 
   const navigate = useNavigate();
+
+  // ESTADO PARA LA BÚSQUEDA
+  const [query, setQuery] = useState("");
+  const [results, setResults] = useState<ILibro[]>([]);
 
   // Para obtener la cantidad de productos del carrito
   const itemCount = useSelector(selectCartItemCount);
@@ -27,9 +35,9 @@ function Header() {
   const handleUserIconClick = () => {
     if (!isAuthenticated) {
       navigate('/login');
-    } else if (user?.rol === 'admin') {
+    } else if (user?.rol === 'ADMIN') {
       navigate('/admin');
-    } else if (user?.rol === 'user') {
+    } else if (user?.rol === 'USER') {
       navigate('/user');
     }
   };
@@ -44,6 +52,44 @@ function Header() {
     </svg>
   );
 
+  // HANDLES PARA BÚSQUEDA
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(event.target.value);
+  };
+
+  const handleSearch = async () => {
+    if (query.trim() === "") return;
+
+    try {
+      const response = await fetch(`${configuracion.urlJsonServerBackendDetailsSearch}?query=${query}`, {
+        method: 'GET',
+        headers: { 'accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setResults(data.productos);
+      } else {
+        console.error("Error en la búsqueda");
+      }
+    } catch (error) {
+      console.error("Error al realizar la petición:", error);
+    }
+  };
+
+  const searchResultsRef = useRef<HTMLDivElement>(null);
+
+  // Detectar clics fuera del contenedor de resultados
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchResultsRef.current && !searchResultsRef.current.contains(event.target as HTMLElement)) {
+        setResults([]); // Ocultar resultados si el usuario hace clic fuera
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, []);
 
   return (
 
@@ -55,12 +101,36 @@ function Header() {
           <Row className="container-herramientas">
             <Col className="d-flex align-items-center">
               <div className="input-group">
-                <Form.Control type="text" placeholder="Busca tus libros aquí" className="header-search-input" />
-                <span className="input-group-text bg-white border-0">
+                <Form.Control
+                  type="text"
+                  placeholder="Busca tus libros aquí"
+                  className="header-search-input"
+                  value={query}
+                  onChange={handleSearchChange} />
+                <button
+                  className="input-group-text bg-white border-0"
+                  onClick={handleSearch}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none" className="icon-search-button">
                     <path fillRule="evenodd" clipRule="evenodd" d="M10.2 3.02695C5.89217 3.02695 2.4 6.51913 2.4 10.827C2.4 15.1347 5.89218 18.627 10.2 18.627C14.5078 18.627 18 15.1347 18 10.827C18 6.51913 14.5078 3.02695 10.2 3.02695ZM0 10.827C0 5.19364 4.56669 0.626953 10.2 0.626953C15.8333 0.626953 20.4 5.19364 20.4 10.827C20.4 13.2154 19.5791 15.412 18.204 17.1502L23.6473 22.5772C24.1166 23.0451 24.1177 23.8049 23.6498 24.2742C23.1819 24.7435 22.4221 24.7447 21.9527 24.2768L16.505 18.8454C14.7697 20.2118 12.5801 21.027 10.2 21.027C4.56669 21.027 0 16.4602 0 10.827Z" fill="currentColor" />
                   </svg>
-                </span>
+                </button>
+
+                {/* RESULTADOS BÚSQUEDA */}
+                {results.length > 0 && (
+                  <div ref={searchResultsRef}  className="search-results">
+                    <ul>
+                      {results.map((product) => (
+                        <div key={product.isbn}>
+                          <Link to={`/product-detail/${product.isbn}`}>
+                            <li>
+                              <p>{product.nombre}, {product.autor}, {product.editorial}</p>
+                            </li>
+                          </Link>
+                        </div>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
             </Col>
 
@@ -147,9 +217,7 @@ function Header() {
         </Link>
 
       </div>
-
     </header>
-
   );
 };
 

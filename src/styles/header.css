@@ -54,7 +54,7 @@
 .input-group {
     display: flex;
     align-items: center;
-    width: 495px !important ;
+    width: 495px !important;
     height: 42px;
 }
 
@@ -65,6 +65,15 @@
     border-radius: 20px 0 0 20px;
     border: 0 !important;
     font-size: 16px;
+}
+
+.input-group .form-control:focus {
+    box-shadow: none;
+}
+
+.input-group .form-control:focus-visible,
+.input-group .input-group-text:focus-visible {
+    outline: none;
 }
 
 .header-search-button {
@@ -87,6 +96,64 @@
     justify-content: flex-end;
     width: 128px !important;
     gap: 16px !important;
+}
+
+/* RESULTADOS BÚSQUEDA */
+.search-results {
+    position: absolute; /* Para que los resultados se ubiquen justo debajo del input */
+    top: 100%; /* Se coloca justo debajo del input */
+    left: 0;
+    width: 100%;
+    background-color: #455B73;
+    z-index: 9999; /* Muy alto para que quede encima de otros elementos */
+    max-height: 300px;
+    overflow-y: auto; /* Si hay muchos resultados, agrega un scroll */
+}
+
+.search-results {
+    background-color: #455B73;
+}
+
+.search-results ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.search-results a {
+    color: #FFF;
+    font-family: Sarabun;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.search-results li {
+    cursor: pointer;
+    padding: 12px;
+}
+
+.search-results li:hover,
+.search-results a:hover {
+    background-color: #B5D1F0;
+}
+
+.search-results p {
+    color: #FFFFFF;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-family: Sarabun;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0px;
+}
+
+.search-results p:hover {
+    color: #545454;
 }
 
 /* Íconos */
