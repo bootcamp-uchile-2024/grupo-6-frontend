@@ -4,9 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "react-scripts start",
-    "json-server-catalog": "json-server ./src/data/catalog.json --port 4001",
-    "dev": "concurrently \"npm start\" \"npm run json-server-catalog\" \"vite\"",
+    "dev": "concurrently \"vite\"",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
