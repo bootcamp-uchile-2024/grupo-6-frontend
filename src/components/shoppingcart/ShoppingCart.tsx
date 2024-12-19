@@ -5,27 +5,14 @@ import ButtonDeleteToCart from "./ButtonDeleteToCart";
 import { useSelector } from "react-redux";
 import ButtonClearCart from "./ButtonClearCart";
 import { Link, useNavigate } from "react-router-dom";
-import {  useEffect, useState } from "react";
-import { Button, Col, Container, Row, Image, Dropdown } from "react-bootstrap";
+import { useEffect } from "react";
+import { Button, Col, Container, Row, Image } from "react-bootstrap";
 import { configuracion } from "../../config/appConfiguration";
 import QuantityButtons from "./QuantityButtons";
 
 function ShoppingCart() {
     const shoppingCartProduct = useSelector((state: RootType) => state.productReducer.cart.items);
     const navigate = useNavigate();
-    const [selectedAddress, setSelectedAddress] = useState("Los Olmos 666, Macul, RM");
-    const addresses = [
-        "Los Olmos 666, Macul, RM",
-        "Avenida Siempre Viva 742, Springfield",
-        "Calle Falsa 123, Villa Real, RM",
-    ];
-
-    const handleSelectAddress = (address: string | null) => {
-        if (address !== null) {
-            setSelectedAddress(address); // Aseguramos que `address` no es nulo
-        }
-    };
-
 
     const calculateTotal = (items: ShoppingCartEntrada[]) => {
         let initialTotal = 0;
@@ -46,133 +33,87 @@ function ShoppingCart() {
         }
     }, [shoppingCartProduct, navigate])
 
-
     const url = configuracion.urlJsonServerBackendCover.toString();
-    
+
     return (
 
         <>
             <Container fluid>
                 <div className='shoppingcart'>
-                    <Row md="12" style={{ height: '4rem', width: '75.25rem', margin: '1.5rem' }}>
-                        <Col md="5">
+                    <Row>
+                        <Col>
                             <h2 className='fw-bold'>Carrito de Compras</h2>
                         </Col>
-                        <Col md="3"></Col>
-                        <Col md="2">
+                        <Col className="clear-cart-button">
                             <ButtonClearCart></ButtonClearCart>
                         </Col>
-                        <Col md="2">
+                        <Col className="seguir-comprando-button">
                             <Link to={`/categorias`}>
-                                <Button variant='none' className='md-2' style={{ backgroundColor: '#975C4C', color: '#FBFBFB', border: '#E1D5CA' }}>
+                                <Button variant='none' className='md-2'>
                                     Seguir comprando
                                 </Button>
                             </Link>
                         </Col>
                     </Row>
                 </div>
-            </Container>
-            <div className='shoppingcart'>
-                <Container fluid>
+                <div className='shoppingcart'>
                     {shoppingCartProduct.length ? (
                         <div className='shoppingcart-items'>
-                            <Row key='header' md="12" style={{ height: '4rem', width: '75.25rem', margin: '1.5rem', color: '#545454' }}>
-                                <Col md="6">
-                                    <p className='fw-bold'>Productos</p>
-                                </Col>
-                                <Col md="1">
-                                </Col>
-                                <Col md="2">
-                                    <p className='d-flex align-items-center justify-content-center fw-bold'>Cantidad</p>
-                                </Col>
-                                <Col md="1">
-                                </Col>
-                                <Col md="2">
-                                    <p className='d-flex align-items-center justify-content-center fw-bold'>Precio</p>
-                                </Col>
-                            </Row>
+
                             {shoppingCartProduct.map((item) => (
-                                <Row key={item.isbn} md="12" style={{ height: '15rem', width: '75.25rem', margin: '1.5rem', color: '#545454' }}>
-                                    <Col md="2">
-                                        <Image src={`${url}${item.caratula}`} alt={`imagen del libro ${item.nombre}`} style={{width: '160px', height: '240px'}} fluid></Image>
+                                <Row key={item.isbn} md="12" style={{ height: '15rem', margin: '1.5rem', color: '#545454' }}>
+                                    <Col>
+                                        <Image src={`${url}${item.caratula}`} alt={`imagen del libro ${item.nombre}`} style={{ width: '160px', height: '240px' }} fluid></Image>
                                     </Col>
-                                    <Col md="1">
+                                    <Col>
                                     </Col>
-                                    <Col md="3" style={{ height: '9.18rem', width: '15.94rem', margin: '1.5rem' }}>
+                                    <Col>
                                         <p>{item.nombre}</p>
                                         <p >{item.autor}</p>
                                         <p >${item.precio}</p>
 
                                     </Col>
-                                    <Col md="1">
-                                    </Col>
-                                    <Col md="2" className="d-flex align-items-center justify-content-center" style={{ height: '3rem', width: '14.688rem' }}>
+                                    <Col className="d-flex align-items-center justify-content-center" style={{ height: '3rem', width: '14.688rem' }}>
                                         <div className="shoppingcart-item-detail-td-quantity-1">
-                                            <QuantityButtons isbn={item.isbn} disabled={false}/>
+                                            <QuantityButtons isbn={item.isbn} disabled={false} />
                                             <ButtonDeleteToCart libro={item}></ButtonDeleteToCart>
                                         </div>
                                     </Col>
-                                    <Col md="1">
-                                    </Col>
-                                    <Col md="2" className="d-flex align-items-center justify-content-center" style={{ height: '3.18rem', width: '8.75rem' }}>
+                                    <Col className="d-flex align-items-center justify-content-center" style={{ height: '3.18rem', width: '8.75rem' }}>
                                         <p className='fw-bold'>${calculateTotalProduct(item)}</p>
                                     </Col>
                                 </Row>
 
                             ))}
-
-
-                            <div className="'shoppingcart-items">
-                                <Row md="12" style={{ height: '4rem', width: '75.25rem', margin: '1.5rem' }}>
-                                    <Col md="6">
-                                        <h4 className="d-flex  fw-bold">Despacho a domicilio</h4>
-                                    </Col>
-                                    <Col md="4">
-                                        <Dropdown  onSelect={(e) => handleSelectAddress(e)}   style={{ color: '#FBFBFB', borderColor: '#975C4C' }}>
-                                            <Dropdown.Toggle variant="outline-primary" id="dropdown-direcciones">
-                                                {selectedAddress || "Seleccionar dirección"}
-                                            </Dropdown.Toggle>
-                                            <Dropdown.Menu>
-                                                {addresses.map((address, index) => (
-                                                    <Dropdown.Item key={index} eventKey={address}>
-                                                        {address}
-                                                    </Dropdown.Item>
-                                                ))}
-                                            </Dropdown.Menu>
-                                        </Dropdown>
-                                    </Col>
-                                    <Col md="1" >
-                                    </Col>
-                                    <Col md="1" className="d-flex align-items-center justify-content-center" style={{ height: '3.18rem', width: '1rem' }}>
-                                        <p className="fw-bold">$5000</p>
-                                    </Col>
-                                </Row>
-                            </div>
                         </div>
 
                     ) : (
                         <div>No existen productos en el carrito de compras.</div>
                     )}
 
-
                     <div className="shoppingcart-item-top-footer">
-                        <Row md="12" style={{ height: '4rem', width: '75.25rem', margin: '1.5rem' }}>
-                            <Col md="5">
-                                <h2 className='fw-bold'>Total a Pagar: ${calculateTotal(shoppingCartProduct)}</h2>
+                        <Row>
+                            <Col>
+                                <h2>Total a Pagar: ${calculateTotal(shoppingCartProduct)}</h2>
                             </Col>
-                            <Col md="5"></Col>
+                            <Col></Col>
 
-                            <Col md="2">
+                            <Col className="iniciar-sesion-button">
+                                <Link to={`/login`}>
+                                    <Button>
+                                        Iniciar sesión
+                                    </Button>
+                                </Link>
                                 <Link to={`/shoppingcart-resume/`}>
-                                    <Button style={{ backgroundColor: '#975C4C', color: '#FBFBFB', border: '#E1D5CA' }}>
-                                        Comprar Ahora
+                                    <Button>
+                                        Resumen compra
                                     </Button>
                                 </Link>
                             </Col>
                         </Row>
                     </div>
-                </Container>
-            </div>
+                </div>
+            </Container>
         </>
     );
 };

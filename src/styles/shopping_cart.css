@@ -170,3 +170,71 @@
     background-color: transparent;
     border: none;
 }
+
+/* TÍTULO SHOPPING CART */
+.shoppingcart h2 {
+    color: #545454;
+    font-size: 31px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+/* BOTÓN VACIAR CARRITO */
+
+.clear-cart-button .btn-primary,
+.clear-cart-button .btn-primary:hover,
+.clear-cart-button .btn-primary:active,
+.clear-cart-button .btn-primary:focus,
+.clear-cart-button .btn-primary:focus-visible {
+    background-color: transparent !important;
+    color: #806259 !important;
+    width: 185px;
+    height: 50px;
+    border: 4px solid #806259 !important;
+    border-radius: 16px;
+    box-shadow: none;
+    padding: 12px;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-align: center;
+    margin-right: 24px;
+}
+
+.clear-cart-button .btn-primary svg {
+    margin-right: 12px;
+}
+
+/* BOTÓN SEGUIR COMPRANDO + INICIAR SESIÓN */
+
+.seguir-comprando-button .btn,
+.seguir-comprando-button .btn:focus-visible,
+.iniciar-sesion-button .btn,
+.iniciar-sesion-button .btn:focus-visible {
+    width: 229px;
+    height: 50px;
+    background-color: #806259;
+    color: #FBFBFB;
+    border-radius: 16px;
+    border: none;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-align: center;
+}
+
+.seguir-comprando-button .btn:hover,
+.seguir-comprando-button .btn:active,
+.iniciar-sesion-button .btn:hover,
+.iniciar-sesion-button .btn:active {
+    background-color: #E1D5CA !important;
+    color: #806259 !important;
+}
+
+.seguir-comprando-button .btn:active,
+.iniciar-sesion-button .btn:active {
+    border: 4px solid #806259 !important;
+}
