@@ -140,7 +140,7 @@
 
 .direcciones-button {
     display: flex;
-    width: 258px;
+    width: 229px;
     height: 42px;
     padding: 8px 16px;
     margin: 16px;
@@ -191,4 +191,9 @@
 .library-button:active {
     background-color: #E1D5CA !important;
     border: 2px solid #975C4C !important;
+}
+
+.image-icon {
+    margin-left: 12px;
+    margin-right: 16px;
 }

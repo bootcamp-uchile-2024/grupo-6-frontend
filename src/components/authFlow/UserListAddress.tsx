@@ -58,16 +58,8 @@ const UserListAddress = () => {
             <Row lg={12}>
                 <Col lg={8}>
                     <p className='user-mod-dir-title'>Tus direcciones</p>
-
                 </Col>
-                <Col lg={1}>
-                </Col>
-                <Col lg={2}>
-                    <Link to={`/user/settings/address`}>
-                        <Button variant="none" className='direcciones-button'>
-                                Editar dirección
-                        </Button>
-                    </Link>
+                <Col lg={4}>
                 </Col>
 
             </Row>
@@ -75,10 +67,20 @@ const UserListAddress = () => {
                 <Col lg={12}>
                 </Col>
 
-                <Col lg={12}>
-                    <p className='user-mod-dir-sub'>Selecciona una dirección de Envio</p>
+                <Col lg={10}>
+                    <p className='user-mod-dir-sub'>Escoge tu dirección de despacho</p>
                 </Col>
-
+                <Col lg={2}>
+                    <Link to={`/user/settings/address`}>
+                    
+                        <Button variant="none" className='direcciones-list-button'>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" className='image-direcciones-icon ' >
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M18.517 0.270363C18.1565 -0.090121 17.572 -0.090121 17.2115 0.270363L13.3187 4.16322C13.3129 4.16868 13.3072 4.17423 13.3016 4.17986C13.296 4.1855 13.2904 4.19119 13.285 4.19693L0.270363 17.2115C0.0972524 17.3847 0 17.6194 0 17.8643V23.0769C0 23.5867 0.413276 24 0.923077 24H6.13575C6.38056 24 6.61535 23.9027 6.78846 23.7296L23.7296 6.78846C24.0901 6.42798 24.0901 5.84352 23.7296 5.48303L18.517 0.270363ZM13.9545 6.13822L1.84615 18.2466V22.1538H5.7534L17.8618 10.0455L13.9545 6.13822ZM19.1672 8.74003L21.7715 6.13575L17.8643 2.22851L15.26 4.83279L19.1672 8.74003Z" fill="currentColor" />
+                            </svg>
+                                Editar dirección
+                        </Button>
+                    </Link>
+                </Col>
                 {addressesEnvio?.map((addressesEnvio) => (
                     <Col key={addressesEnvio.idDireccion} lg={12} className='d-flex justify-content-start user-mod-dir-radio'>
                         <input
@@ -99,16 +101,19 @@ const UserListAddress = () => {
 
                 <Col key={"nueva-direccion-envio"} lg={12} className='d-flex justify-content-start user-mod-dir-radio'>
                     <div className="d-flex flex-column gap-2">
-                        <Button variant="none" className='direcciones-button-new'>
-                            <Link to={`/user/address/add`}>
+                        <Link to={`/user/address/add`}>
+                            <Button variant="none" className='direcciones-button-new'>
+                            <svg fill="#000000" width="24px" height="24px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16 0c-8.836 0-16 7.163-16 16s7.163 16 16 16c8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 30.032c-7.72 0-14-6.312-14-14.032s6.28-14 14-14 14 6.28 14 14-6.28 14.032-14 14.032zM23 15h-6v-6c0-0.552-0.448-1-1-1s-1 0.448-1 1v6h-6c-0.552 0-1 0.448-1 1s0.448 1 1 1h6v6c0 0.552 0.448 1 1 1s1-0.448 1-1v-6h6c0.552 0 1-0.448 1-1s-0.448-1-1-1z" fill="#806259"></path>
+                            </svg>
                                 Agregar direcciones
-                            </Link>
-                        </Button>
+                            </Button>
+                        </Link>
                     </div>
                 </Col>
 
                 <Col lg={12}>
-                    <p className='user-mod-dir-sub'>Selecciona una dirección de Facturación</p>
+                    <p className='user-mod-dir-sub'>Escoge tu dirección de facturación</p>
                 </Col>
 
                 {addressesFacturacion?.map((addressesFacturacion) => (
@@ -131,11 +136,14 @@ const UserListAddress = () => {
 
                 <Col key={"nueva-direccion-facturacion"} lg={12} className='d-flex justify-content-start user-mod-dir-radio'>
                     <div className="d-flex flex-column gap-2">
-                        <Button variant="none" className='direcciones-button-new'>
-                            <Link to={`/user/address/add`}>
+                        <Link to={`/user/address/add`}>
+                            <Button variant="none" className='direcciones-button-new'>
+                            <svg fill="#000000" width="24px" height="24px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16 0c-8.836 0-16 7.163-16 16s7.163 16 16 16c8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 30.032c-7.72 0-14-6.312-14-14.032s6.28-14 14-14 14 6.28 14 14-6.28 14.032-14 14.032zM23 15h-6v-6c0-0.552-0.448-1-1-1s-1 0.448-1 1v6h-6c-0.552 0-1 0.448-1 1s0.448 1 1 1h6v6c0 0.552 0.448 1 1 1s1-0.448 1-1v-6h6c0.552 0 1-0.448 1-1s-0.448-1-1-1z" fill="#806259"></path>
+                            </svg>
                                 Agregar direcciones
-                            </Link>
-                        </Button>
+                            </Button>
+                        </Link>
                     </div>
                 </Col>
             </Row>
