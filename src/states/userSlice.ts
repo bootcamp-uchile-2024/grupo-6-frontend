@@ -29,7 +29,7 @@ export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
 export const updateUser = createAsyncThunk(
     'users/updateUser',
     async (user: IUser) => {
-        const response = await fetch(`http://localhost:3000/users/${user.id}`, {
+        const response = await fetch(`http://localhost:3000/users/${user.idUsuario}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(user),
@@ -42,12 +42,12 @@ export const updateUser = createAsyncThunk(
 // Para eliminar usuario
 export const deleteUser = createAsyncThunk(
     'users/deleteUser',
-    async (id: string) => {
-        const response = await fetch(`http://localhost:3000/users/${id}`, {
+    async (idUsuario: string) => {
+        const response = await fetch(`http://localhost:3000/users/${idUsuario}`, {
             method: 'DELETE',
         });
         if (!response.ok) throw new Error('Error al eliminar el usuario');
-        return id;
+        return idUsuario;
     }
 );
 
@@ -77,13 +77,13 @@ const userSlice = createSlice({
                 state.error = action.error.message || 'Error al cargar usuarios';
             })
             .addCase(updateUser.fulfilled, (state, action: PayloadAction<IUser>) => {
-                const index = state.users.findIndex((user) => user.id.toString() === action.payload.id.toString());
+                const index = state.users.findIndex((user) => user.idUsuario.toString() === action.payload.idUsuario.toString());
                 if (index !== -1) {
                     state.users[index] = action.payload;
                 }
             })
             .addCase(deleteUser.fulfilled, (state, action: PayloadAction<string>) => {
-                state.users = state.users.filter((user) => user.id.toString() !== action.payload);
+                state.users = state.users.filter((user) => user.idUsuario.toString() !== action.payload);
             });
     },
 });

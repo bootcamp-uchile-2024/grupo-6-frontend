@@ -119,6 +119,8 @@ export function useFetchGetAddressEnvioFacturacion<T>(url: string, idUsuario: nu
             setError(null);  // Limpia errores previos
 
             try {
+                console.log("Objeto data inicial de useFetchGetAddressEnvioFacturacion:", data); // Para depuración
+
                 const urlRequest = url.toString().concat(`/${idUsuario}/addresses`);
                 console.log("URL generada:", `${urlRequest}`);
 

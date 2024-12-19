@@ -55,7 +55,6 @@
 .catalog-title-container a:active img,
 .catalog-title-container a:hover img {
     filter: invert(39%) sepia(20%) saturate(700%) hue-rotate(326deg) brightness(95%) contrast(70%);
-    ;
 }
 
 .titulo-categorias {
