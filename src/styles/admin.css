@@ -78,7 +78,7 @@
 
 .titulo-historial-pedidos-admin,
 .titulo-datos-cuenta-admin {
-    color:#545454;
+    color: #545454;
     text-align: center;
     font-family: Sarabun;
     font-size: 31px;
@@ -92,15 +92,24 @@
     background-color: #455B73 !important;
     border: none !important;
     color: #fff;
-    border-radius: 8px;
+    border-radius: 16px !important;
     font-size: 16px;
     padding: 8px 16px !important;
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: 8px;
-    max-width: fit-content;
     margin-bottom: 16px;
+    font-family: Sarabun;
+    font-size: 20px !important;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.button-historial-admin svg,
+.button-editar-admin svg {
+    margin-left: 12px;
 }
 
 .button-historial-admin:hover,
@@ -108,16 +117,26 @@
     background-color: #3A4E60;
 }
 
+ol,
+ul {
+    padding-left: 0 !important;
+}
+
 .list-historial-admin {
     margin-top: 16px;
-    padding-left: 16px;
 }
 
 .li-item-light-admin {
-    background-color: #E5EFFA;
+    background-color: #F5FAFF;
     padding: 8px;
     border-radius: 4px;
     margin-bottom: 8px;
+    list-style-position: inside;
+    font-family: Sarabun;
+    font-size: 16px !important;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
 }
 
 .li-item-dark-admin {
@@ -125,9 +144,29 @@
     padding: 8px;
     border-radius: 4px;
     margin-bottom: 8px;
+    list-style-position: inside;
+    font-family: Sarabun;
+    font-size: 16px !important;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
 }
 
 .datos-cuenta-admin p {
     margin-bottom: 8px;
     color: #545454;
+    font-family: Sarabun;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 250;
+    line-height: normal;
+}
+
+.datos-cuenta-admin b {
+    color: #545454;
+    font-family: Sarabun;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
 }

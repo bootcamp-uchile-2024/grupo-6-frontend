@@ -28,6 +28,7 @@ const AdminUserModify = () => {
             if (result.ok) {
                 const data = await result.json();
                 setUserData(data);
+                console.log(data);
             }
         };
         fetchUser();

@@ -42,9 +42,9 @@ const AdminPage = () => {
                         </Button>
                     </div>
                     <ul className="list-historial-admin">
-                        <li className="li-item-light-admin">Se han cambiado los datos del <b>ISBN 123456</b></li>
-                        <li className="li-item-dark-admin">Se despachó el pedido <b>2401234</b></li>
-                        <li className="li-item-light-admin">Se ha cambiado la información de un usuario</li>
+                        <li className="li-item-light-admin"> Se han cambiado los datos del <b>ISBN 123456</b></li>
+                        <li className="li-item-dark-admin"> Se despachó el pedido <b>2401234</b></li>
+                        <li className="li-item-light-admin"> Se ha cambiado la información de un usuario</li>
                     </ul>
                 </Col>
 
@@ -61,11 +61,9 @@ const AdminPage = () => {
                     <div className="datos-cuenta-admin">
                         <p><b>Nombre completo:</b> Admin</p>
                         <p><b>Correo electrónico:</b> admin@gmail.com</p>
-                        <p><b>Dirección de despacho actual:</b> una dirección, Chile</p>
                     </div>
                 </Col>
             </Row>
-
 
         </Container>
     );
