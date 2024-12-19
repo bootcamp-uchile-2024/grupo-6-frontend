@@ -22,7 +22,7 @@ function UserCreateAddress() {
         region: '',
         informacionAdicional: '',
         tipoDireccion: []});
-    const [originalAddress, setOriginalAddress] = useState<IDireccion>({
+    const [originalAddress] = useState<IDireccion>({
             idDireccion: 0,
             calle: '',
             numeroCalle: '',
@@ -69,6 +69,7 @@ function UserCreateAddress() {
         };
 
         try {
+            console.log("Objeto error inicial vacio:", error);
             const response = await fetch(`${configuracion.urlJsonServerBackendUsers}/${decodedToken.idUsuario}/address`, {
                 method: 'POST',
                 headers: {

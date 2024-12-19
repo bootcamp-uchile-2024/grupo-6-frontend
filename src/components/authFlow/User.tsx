@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import { Link, useNavigate } from 'react-router-dom';
 import '../../styles/user.css';
 import { useDispatch } from 'react-redux';
@@ -7,7 +6,7 @@ import { Row, Col, Button, Card } from "react-bootstrap";
 import { ICreateUserResponse } from '../../interfaces/ICreateUser';
 import { jwtDecode } from 'jwt-decode';
 import { configuracion } from '../../config/appConfiguration';
-import { useFetchGetAddress, useFetchGetAddressEnvioFacturacion, useFetchGeUser } from '../../hooks/useFetchUser';
+import {  useFetchGetAddressEnvioFacturacion, useFetchGeUser } from '../../hooks/useFetchUser';
 import { IDireccion } from '../../interfaces/IDireccion';
 
 const UserPage = () => {
