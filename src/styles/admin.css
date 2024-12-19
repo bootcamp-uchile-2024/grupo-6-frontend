@@ -12,7 +12,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 24px;
+    margin-bottom: 56px;
 }
 
 .title-adminAccount {
@@ -32,8 +32,7 @@
     padding: 12px 16px;
     justify-content: center;
     align-items: center;
-    gap: 12px !important;
-    border-radius: 16px;
+    border-radius: 16px !important;
     box-shadow: 0 0 0 4px #455B73 !important;
     background: none !important;
     color: #455B73 !important;
@@ -45,7 +44,7 @@
     line-height: normal;
 }
 
-.logout-button-admin:hover{
+.logout-button-admin:hover {
     background-color: #D4E7FA !important;
     box-shadow: none !important;
 }
@@ -54,4 +53,81 @@
 .logout-button:active {
     background-color: #D4E7FA !important;
     box-shadow: 0 0 0 4px #455B73 !important;
+}
+
+.logout-button-admin svg {
+    margin-left: 12px;
+}
+
+.adminAccount-info-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 32px;
+}
+
+.admin-historial-pedidos {
+    margin-bottom: 56px;
+}
+
+.admin-historial-container,
+.admin-datos-container {
+    display: flex;
+    justify-content: space-between;
+    width: 925px;
+}
+
+.titulo-historial-pedidos-admin,
+.titulo-datos-cuenta-admin {
+    color:#545454;
+    text-align: center;
+    font-family: Sarabun;
+    font-size: 31px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.button-historial-admin,
+.button-editar-admin {
+    background-color: #455B73 !important;
+    border: none !important;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 16px;
+    padding: 8px 16px !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    max-width: fit-content;
+    margin-bottom: 16px;
+}
+
+.button-historial-admin:hover,
+.button-editar-admin:hover {
+    background-color: #3A4E60;
+}
+
+.list-historial-admin {
+    margin-top: 16px;
+    padding-left: 16px;
+}
+
+.li-item-light-admin {
+    background-color: #E5EFFA;
+    padding: 8px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.li-item-dark-admin {
+    background-color: #D4E7FA;
+    padding: 8px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.datos-cuenta-admin p {
+    margin-bottom: 8px;
+    color: #545454;
 }
