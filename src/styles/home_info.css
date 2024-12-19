@@ -187,9 +187,13 @@
 }
 
 /* Imagen de las tarjetas */
+
+.card-image, .card-image-container {
+    width: 216px !important;
+    height: 300px !important;
+}
+
 .product-card img {
-    height: 300px;
-    width: 100%;
     object-fit: cover;
     border-radius: 12px;
 }
@@ -216,7 +220,9 @@
     line-height: normal;
     align-self: stretch;
     width: 216px;
-    /* Ajuste del ancho del texto */
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .card-text {
@@ -233,6 +239,9 @@
     font-weight: 400;
     line-height: normal;
     align-self: stretch;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .precio-card {
