@@ -2,7 +2,7 @@ import '../styles/admin_header.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 import { RootType } from '../states/store';
-import { Container, Row, Col, Form, Button, Dropdown } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button} from 'react-bootstrap';
 import logoPaginasSelectas from '../assets/images/logo-ux.png'
 import { useEffect, useRef, useState } from 'react';
 import { configuracion } from '../config/appConfiguration';
@@ -136,58 +136,11 @@ function AdminHeader() {
                     <Row className="container-nav-admin">
                         <Col className="col-nav-admin">
                             <nav className="menu-header-admin">
-                                <Link to="/admin" className="menu-link">Home</Link>
                                 <Link to="/admin/userslist" className="menu-link">Usuarios</Link>
                                 <Link to="/admin/product" className="menu-link">Productos</Link>
                                 <Link to="/inventario" className="menu-link">Inventario</Link>
                                 <Link to="/proveedores" className="menu-link">Proveedores</Link>
                                 <Link to="/pedidos" className="menu-link">Pedidos</Link>
-
-                                <Dropdown>
-                                    <Dropdown.Toggle as="div" className="menu-catalog-button-admin">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none" className="icon-catalog-button">
-                                            <path fillRule="evenodd" clipRule="evenodd" d="M2.5 4.92695C2.5 2.27599 4.64904 0.126953 7.3 0.126953H18.1C20.0883 0.126953 21.7 1.73874 21.7 3.72695V22.927C21.7 23.5897 21.1627 24.127 20.5 24.127H6.1C4.11179 24.127 2.5 22.5152 2.5 20.527V4.92695ZM4.9 17.1318V4.92695C4.9 3.60147 5.97452 2.52695 7.3 2.52695H18.1C18.7628 2.52695 19.3 3.0642 19.3 3.72695V16.927H6.1C5.67924 16.927 5.27534 16.9991 4.9 17.1318ZM19.3 19.327H6.1C5.43725 19.327 4.9 19.8642 4.9 20.527C4.9 21.1897 5.43725 21.727 6.1 21.727H19.3V19.327ZM8.5 7.32695C8.5 6.66421 9.03726 6.12695 9.7 6.12695H14.5C15.1627 6.12695 15.7 6.66421 15.7 7.32695C15.7 7.98969 15.1627 8.52695 14.5 8.52695H9.7C9.03726 8.52695 8.5 7.98969 8.5 7.32695Z" fill="currentColor" />
-                                        </svg>
-                                        Catálogo
-                                    </Dropdown.Toggle>
-
-                                    <Dropdown.Menu className="dropdown-menu-catalog-admin" flip={false}>
-                                        <div className="menu-container-admin">
-                                            <div className="menu-column-admin">
-                                                <Dropdown.Item href="/categoria/novelas" className="dropdown-item-categoria">Novelas</Dropdown.Item>
-                                                <Dropdown.Item href="/categoria/deportes" className="dropdown-item-categoria">Deportes</Dropdown.Item>
-                                                <Dropdown.Item href="/categoria/clasicos" className="dropdown-item-categoria">Clásicos</Dropdown.Item>
-                                                <Dropdown.Item href="/categoria/diseno" className="dropdown-item-categoria">Diseño</Dropdown.Item>
-                                                <Dropdown.Item href="/categoria/infantil" className="dropdown-item-categoria">Infantil</Dropdown.Item>
-                                                <Dropdown.Item href="/categoria/poesia" className="dropdown-item-categoria">Poesía</Dropdown.Item>
-                                            </div>
-                                            <div className="menu-column-admin">
-                                                <Dropdown.Item href="/categoria/literatura" className="dropdown-item-categoria">Literatura</Dropdown.Item>
-                                                <Dropdown.Item href="/categoria/biografias" className="dropdown-item-categoria">Biografías</Dropdown.Item>
-                                                <Dropdown.Item href="/categoria/arquitectura" className="dropdown-item-categoria">Arquitectura</Dropdown.Item>
-                                                <Dropdown.Item href="/categoria/arte" className="dropdown-item-categoria">Arte</Dropdown.Item>
-                                                <Dropdown.Item href="/categoria/juvenil" className="dropdown-item-categoria">Juvenil</Dropdown.Item>
-                                                <Dropdown.Item href="/categoria/romance" className="dropdown-item-categoria">Romance</Dropdown.Item>
-                                            </div>
-                                            <div className="menu-column-admin">
-                                                <Dropdown.Item href="/categoria/ficcion" className="dropdown-item-categoria">Ficción</Dropdown.Item>
-                                                <Dropdown.Item href="/categoria/misterio" className="dropdown-item-categoria">Misterio</Dropdown.Item>
-                                                <Dropdown.Item href="/categoria/autoayuda" className="dropdown-item-categoria">Autoayuda</Dropdown.Item>
-                                                <Dropdown.Item href="/categoria/historia" className="dropdown-item-categoria">Historia</Dropdown.Item>
-                                                <Dropdown.Item href="/categoria/fotografia" className="dropdown-item-categoria">Fotografía</Dropdown.Item>
-                                                <Dropdown.Item href={`/categorias`} className="dropdown-item-categoria">Revisar todas las categorías</Dropdown.Item>
-                                            </div>
-                                            <div className="menu-column-admin">
-                                                <Dropdown.Item href="/categoria/terror" className="dropdown-item-categoria">Terror</Dropdown.Item>
-                                                <Dropdown.Item href="/categoria/ilustracion" className="dropdown-item-categoria">Ilustración</Dropdown.Item>
-                                                <Dropdown.Item href="/categoria/gestion" className="dropdown-item-categoria">Gestión</Dropdown.Item>
-                                                <Dropdown.Item href="/categoria/estilo-de-vida" className="dropdown-item-categoria">Estilo de vida</Dropdown.Item>
-                                                <Dropdown.Item href="/categoria/ciencias" className="dropdown-item-categoria">Ciencias</Dropdown.Item>
-                                            </div>
-                                        </div>
-                                    </Dropdown.Menu>
-                                </Dropdown>
-
                             </nav>
                         </Col>
                     </Row>

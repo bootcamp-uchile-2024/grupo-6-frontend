@@ -72,6 +72,7 @@ export function Categorias() {
         setLibros(librosJson?.productos);
         setLibrosExist(true);
         setTotalPaginas(librosJson.totalPaginas);
+        console.log(librosJson);
       } catch (error) {
         console.error('Error al obtener los productos', error); // Usando 'error'
         setLibrosExist(false);

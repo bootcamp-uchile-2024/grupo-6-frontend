@@ -26,7 +26,7 @@ function CajaNovedades(props: CajaNovedadesProps) {
         correoElectronico: '',
         caratula: props.caratula,
     };
-    
+
     const isOutOfStock = props.stock === 0;
     const url = configuracion.urlJsonServerBackendCover.toString();
 
@@ -34,12 +34,14 @@ function CajaNovedades(props: CajaNovedadesProps) {
         <div key={product.isbn} className="col-custom">
             <div className="product-card">
                 <Link to={`/product-detail/${props.isbn}`}> {/* Cambiar con back */}
-                    <Card.Img
-                        variant="top"
-                        src={`${url}${props.caratula}`}
-                        alt={props.nombre}
-                        className="card-image"
-                    />
+                    <div className='card-image-container'>
+                        <Card.Img
+                            variant="top"
+                            src={`${url}${props.caratula}`}
+                            alt={props.nombre}
+                            className="card-image"
+                        />
+                    </div>
                 </Link>
                 <Card.Body className="container-info-card">
                     <Link to={`/product-detail/${props.isbn}`}> {/* Cambiar con back */}
@@ -50,8 +52,8 @@ function CajaNovedades(props: CajaNovedadesProps) {
                     <p className="precio-card">${product.precio.toLocaleString()}</p>
                     <div className="product-actions">
                         <div className='home-buttons-container'>
-                            <QuantityButtons isbn={props.isbn} disabled={isOutOfStock}/>
-                            <ButtonAddToCart libro={product} showIcon={true}/>
+                            <QuantityButtons isbn={props.isbn} disabled={isOutOfStock} />
+                            <ButtonAddToCart libro={product} showIcon={true} />
                         </div>
                     </div>
                 </Card.Body>
