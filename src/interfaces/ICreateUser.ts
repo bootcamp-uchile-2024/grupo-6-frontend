@@ -7,6 +7,7 @@ export interface ICreateUser {
     correoElectronico: string,
     contrasena: string,
     direccion?: IDireccion;
+    token?: string;
 }
 
 export interface ICreateUserResponse extends ICreateUser {

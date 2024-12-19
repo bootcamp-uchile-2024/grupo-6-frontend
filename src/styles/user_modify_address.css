@@ -194,3 +194,21 @@
 .user-mod-dir-modal .modal-body p {
     margin: 0px;
 }
+
+.image-direcciones-icon {
+    margin-left: -20px;
+    margin-right: 16px;
+    color: #806259
+}
+
+.direcciones-list-button, .direcciones-button-new {
+    display: flex;
+    width: 229px;
+    height: 42px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px !important;
+    border-radius: 16px;
+    background: white !important;
+    color: #806259 !important;
+}

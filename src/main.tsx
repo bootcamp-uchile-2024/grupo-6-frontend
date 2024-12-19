@@ -29,6 +29,8 @@ import { AdminCreateUserPage } from './pages/AdminCreateUserPage.tsx'
 import { MysteryBoxPage } from './pages/MysteryBoxPage.tsx'
 import { CompraExitosa } from './components/shoppingcart/CompraExitosa.tsx'
 import { UserModifyAddressPage } from './pages/UserModifyAddress.tsx'
+import { UserListAddressPage } from './pages/UserListAddress.tsx'
+import { UserCreateAddressPage } from './pages/UserCreateAddressPage.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -51,6 +53,8 @@ createRoot(document.getElementById('root')!).render(
           <Route path='/admin' element={<PrivateRoute roles={['ADMIN']}><AdminPage title='Panel de administración' /></PrivateRoute>} />
           <Route path='/user' element={<PrivateRoute roles={['USER']}><UserPage title='Cuenta' /></PrivateRoute>} />
           <Route path='/user/settings/address' element={<PrivateRoute roles={['USER']}><UserModifyAddressPage title='Edita tu dirección' /></PrivateRoute>} />
+          <Route path='/user/address' element={<PrivateRoute roles={['USER']}><UserListAddressPage title='Tus direcciones' /></PrivateRoute>} />
+          <Route path='/user/address/add' element={<PrivateRoute roles={['USER']}><UserCreateAddressPage title='Crear direccion' /></PrivateRoute>} />
           <Route path="/carrito" element={<ShoppingCartPage title='Carrito Compras' />} />
           <Route path="/empty-cart" element={<EmptyCartPage title='Carrito Vacío' />} />
           <Route path='/shoppingcart-resume/' element={<ResumenShoppingCartPage title='Resumen carrito de compras' />}></Route>

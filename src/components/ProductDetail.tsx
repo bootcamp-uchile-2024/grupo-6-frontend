@@ -111,7 +111,7 @@ const ProductDetail: React.FC = () => {
                         {/* Información del libro */}
                         <Col md={8} className="productDeteil-info">
                             <h1 className='productDetail-title-info'>{libro.nombre}</h1>
-                            <h3 className="autor-info">{libro.autor.join(", ")}</h3>
+                            <h3 className="autor-info">{libro.autor}</h3>
                             <p className="price">${libro.precio.toLocaleString()}</p>
 
                             {/* Estrellas de calificación */}
@@ -139,7 +139,10 @@ const ProductDetail: React.FC = () => {
                                     <div className={`quantity-section ${isOutOfStock ? 'disabled' : ''}`}>
                                         {isbn && <QuantityButtons isbn={isbn} disabled={isOutOfStock} />}
                                     </div>
-                                    <ButtonAddToCart libro={producto} showIcon={false} />
+                                    <div className='buy-now-container'>
+                                        <ButtonAddToCart libro={producto} showIcon={false} />
+                                        {/* <button type='button' className='buy-now'>Comprar ahora</button> */}
+                                    </div>
                                 </div>
                             </div>
 

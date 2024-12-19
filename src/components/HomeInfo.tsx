@@ -17,9 +17,9 @@ const HomeInfo = () => {
 
   const cantidad = 5; // Número de productos por página, se puede cambiar
 
-  const { data: destacadosResponse, loading: loadingDestacados, error:  errorDestacados } = useFetchGetDestacados<ILibroPaginado>(configuracion.urlJsonServerBackendCatalog, paginaActual, cantidad,true);
-  const { data: novedadesResponse, loading: loadingNovedades, error:  errorNovedades } = useFetchGetNovedades<ILibroPaginado>(configuracion.urlJsonServerBackendCatalog, paginaActual, cantidad,true);
-  const { data: tendenciasResponse, loading: loadingTendencias, error:  errorTendencias } = useFetchGetTendencias<ILibroPaginado>(configuracion.urlJsonServerBackendCatalog, paginaActual, cantidad,true);
+  const { data: destacadosResponse, loading: loadingDestacados, error: errorDestacados } = useFetchGetDestacados<ILibroPaginado>(configuracion.urlJsonServerBackendCatalog, paginaActual, cantidad, true);
+  const { data: novedadesResponse, loading: loadingNovedades, error: errorNovedades } = useFetchGetNovedades<ILibroPaginado>(configuracion.urlJsonServerBackendCatalog, paginaActual, cantidad, true);
+  const { data: tendenciasResponse, loading: loadingTendencias, error: errorTendencias } = useFetchGetTendencias<ILibroPaginado>(configuracion.urlJsonServerBackendCatalog, paginaActual, cantidad, true);
 
   if (loadingDestacados) return <p>Cargando datos...</p>
   if (errorDestacados) return <p>Error en la consulta de datos {error}</p>
@@ -33,6 +33,7 @@ const HomeInfo = () => {
     <main>
       {/* Slider */}
       <Container className="carousel-container">
+
         <Carousel className="custom-carousel" interval={5000} indicators controls>
           {/* Slice 1 */}
           <Carousel.Item>
@@ -51,7 +52,7 @@ const HomeInfo = () => {
             </div>
           </Carousel.Item>
 
-          {/* Slice 2 */}
+          {/* {Slice 2} */}
           <Carousel.Item>
             <div className="carousel-slide">
               <div className="text-section">
@@ -120,7 +121,7 @@ const HomeInfo = () => {
                 <h3>Novedades</h3>
               </div>
               <div className="row-custom">
-              {novedadesResponse?.productos ? (
+                {novedadesResponse?.productos ? (
                   novedadesResponse.productos.map((libro) => (
                     <CajaNovedades
                       key={libro.isbn}
@@ -146,7 +147,7 @@ const HomeInfo = () => {
                 <h3>Tendencias</h3>
               </div>
               <div className="row-custom">
-              {tendenciasResponse?.productos ? (
+                {tendenciasResponse?.productos ? (
                   tendenciasResponse.productos.map((libro) => (
                     <CajaNovedades
                       key={libro.isbn}

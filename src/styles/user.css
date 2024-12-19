@@ -13,6 +13,20 @@
     align-items: center;
     margin-bottom: 24px;
 }
+.account-header-user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 56px;
+}
+
+.account-user-cuenta-direccion {
+    display: flex;
+    margin-bottom: 56px;
+    justify-content: space-between;
+
+
+}
 
 .logout-button {
     display: flex;
@@ -64,19 +78,21 @@
     align-items: center;
     gap: 12px; /* Espaciado entre texto e ícono */
     border-radius: 16px;
-    padding: 12px 16px;
+    padding: 8px 16px;
 }
 
 .button-avatar,
 .edit-dato-button {
-    margin-top: 24px;
     display: flex;
-    padding: 12px 16px;
+    width: 174px;
+    height: 42px;
+    padding: 8px 16px;
+    margin: 16px;
     justify-content: center;
     align-items: center;
     gap: 12px !important;
     border-radius: 16px;
-    background: #975C4C !important;
+    background: #806259 !important;
     color: #FBFBFB !important;
 }
 
@@ -85,10 +101,6 @@
     height: 50px;
 }
 
-.edit-dato-button {
-    width: 274px;
-    height: 50px;
-}
 
 .button-avatar svg {
     width: 24px;
@@ -127,16 +139,17 @@
 }
 
 .direcciones-button {
-    width: 337px;
-    height: 50px;
     display: flex;
-    padding: 12px 16px;
+    width: 229px;
+    height: 42px;
+    padding: 8px 16px;
+    margin: 16px;
     justify-content: center;
     align-items: center;
-    gap: 12px;
+    gap: 12px !important;
     border-radius: 16px;
-    background: var(--Verde-200, #E1D5CA) !important;
-    color: #975C4C !important;
+    background: #806259 !important;
+    color: #FBFBFB !important;
 }
 
 .biblioteca {
@@ -178,4 +191,9 @@
 .library-button:active {
     background-color: #E1D5CA !important;
     border: 2px solid #975C4C !important;
+}
+
+.image-icon {
+    margin-left: 12px;
+    margin-right: 16px;
 }

@@ -235,28 +235,63 @@
 
 /* BOTÓN AÑADIR AL CARRITO */
 
+.detail-buttons-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.buy-now-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: baseline;
+}
+
 .detail-buttons-container .boton-comprar,
 .detail-buttons-container .boton-comprar:focus,
-.detail-buttons-container .boton-comprar:focus-visible {
+.detail-buttons-container .boton-comprar:focus-visible,
+.detail-buttons-container .boton-comprar:active,
+.detail-buttons-container .boton-comprar:hover {
     margin-top: 12px;
+    margin-right: 12px;
     width: 223px;
     height: 50px;
     font-size: 20px;
-    color: #975C4C;
+    color: #806259 !important;
     background-color: transparent;
     border-radius: 16px;
+    border: 4px solid #806259 !important;
+}
+
+/* BOTÓN COMPRAR AHORA */
+.buy-now {
+    width: 223px;
+    height: 50px;
+    border-radius: 16px;
+    background: #806259;
     border: none;
-    outline: 4px solid #975C4C;
+    color: #FBFBFB;
+    text-align: center;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
     transition: background-color 0.3s, color 0.3s;
 }
 
-.detail-buttons-container .boton-comprar:hover {
-    color: #975C4C !important;
+.buy-now:hover {
+    background-color: #E1D5CA;
+    color: #806259;
 }
 
-.detail-buttons-container .boton-comprar:active {
-    background-color: #E1D5CA !important;
-    color: #975C4C !important;
+.buy-now:active,
+.buy-now:focus,
+.buy-now:focus-visible {
+    background-color: #E1D5CA;
+    color: #806259;
+    border: 4px solid #806259;
 }
 
 /* SIN STOCK */
