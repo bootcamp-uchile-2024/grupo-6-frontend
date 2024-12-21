@@ -1,4 +1,4 @@
-import { EmptyCart } from "../components/shoppingcart/EmptyCart"
+import EmptyCart from '../components/shoppingcart/EmptyCart'
 import { MainLayout } from "../layouts/MainLayout";
 
 interface EmptyCartPageProps {
