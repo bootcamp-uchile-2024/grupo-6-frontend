@@ -5,6 +5,8 @@ Páginas Selectas es un eCommerce B2C diseñado para ofrecer una experiencia de 
 
 Este proyecto de frontend, desarrollado con React, TypeScript y Vite, se centra en crear una interfaz atractiva y fácil de usar que fomente una comunidad de lectores y mejore su experiencia de compra.
 
+Este archivo proporciona instrucciones sobre cómo instalar, ejecutar, configurar y desplegar la aplicación.
+
  ## Contenidos
  1. [Tecnologías utilizadas](#Tecnologías-utilizadas)
  2. [Requisitos previos](#Requisitos-previos)
@@ -38,9 +40,7 @@ Antes de ejecutar el proyecto, asegúrate de tener instalados los siguientes com
     nvm install node
 ```
 
-- **npm** (viene incluido con Node.js): El gestor de paquetes de Node.js para instalar las dependencias del proyecto.
-  
-- **Docker** (opcional, solo si necesitas construir y ejecutar el contenedor): Para el despliegue de la aplicación en un contenedor.
+- **Docker**: Para el despliegue de la aplicación en un contenedor.
   - Puedes instalar Docker desde [Docker](https://www.docker.com/get-started).  
 
 - **Typescript:**
@@ -71,12 +71,11 @@ Antes de ejecutar el proyecto, asegúrate de tener instalados los siguientes com
 Primero debes levantar el repositorio de backend, puedes leer como hacerlo en el siguiente [link](https://github.com/bootcamp-uchile-2024/grupo-6-backend/blob/main/README.md). 
 
 
-
 ## Levantar el Proyecto
 1. Para compilar el proyecto:
 
  ```bash
- npm build
+ npm run build
  ```
 
  2. Para ejecutar el proyecto:
@@ -95,18 +94,13 @@ Asegúrate de tener Docker Desktop instalado en tu máquina. Puedes seguir los p
 
 ### Construcción y Ejecución con Docker
 1. Construir la imagen de Docker:
-Para construir la imagen del frontend, se ejecuto el siguiente comando en la raíz del proyecto donde se encuentra el archivo Dockerfile:
+Para construir la imagen del frontend, ejecuta el siguiente comando en la raíz del proyecto donde se encuentra el archivo Dockerfile:
 
 ```bash
-docker build -t grupo-6-frontend:entrega-10 .
+docker build -t grupo-6-frontend:v1.0.0 .
 ```
 
-2. Subir imagen al dockerHub:
-Para subir la imagen de frontend a un repositorio de DockerHub, se ejecuto el siguiente comando:
-```bash
-docker push dgajardoi/grupo-6-frontend:entrega-10
-```
-3. Levantar el contenedor:
+2. Levantar el contenedor:
 Para levantar el contenedor con Docker Compose, ejecuta el siguiente comando:
 
 ```bash
