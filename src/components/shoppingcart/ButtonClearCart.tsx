@@ -1,7 +1,6 @@
 import { useDispatch } from "react-redux";
 import { clearCart } from "../../states/productSlice";
 import Button from "react-bootstrap/esm/Button";
-/* import iconoBasurero from '../../assets/images/icono_basurero.png'; */
 
 const ButtonClearCart = () => {
     const dispatch = useDispatch();
