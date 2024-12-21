@@ -18,13 +18,20 @@ const AdminUserModify = () => {
         correoElectronico: '',
         contrasena: ''
     });
+    const loggedInUser = JSON.parse(localStorage.getItem('__redux__user__') || '{}');
 
     // Cargar los datos actuales del usuario
     useEffect(() => {
         const fetchUser = async () => {
             const url = configuracion.urlJsonServerBackendUsers.toString().concat(`/${idUsuario}`);
             console.log(url);
-            const result = await fetch(url);
+            const result = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${loggedInUser.token}`
+                }
+            });
             if (result.ok) {
                 const data = await result.json();
                 setUserData(data);
@@ -41,12 +48,13 @@ const AdminUserModify = () => {
 
     const handleEdit = async (e: React.FormEvent) => {
         e.preventDefault();
-        const url = configuracion.urlJsonServerBackendUsers.toString().concat(`/${idUsuario}`);
+        const url = configuracion.urlJsonServerBackendUsers.toString().concat(`/${idUsuario}/admin`);
         console.log(url);
         await fetch(url, {
             method: 'PUT',
             headers: {
-                'Content-type': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${loggedInUser.token}`
             },
             body: JSON.stringify(userData)
         });
