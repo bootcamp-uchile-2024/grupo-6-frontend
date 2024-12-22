@@ -40,7 +40,7 @@ const UserProfile = () => {
         };
 
         fetchUser();
-    }, [loggedInUser.id]);
+    }, [loggedInUser]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
