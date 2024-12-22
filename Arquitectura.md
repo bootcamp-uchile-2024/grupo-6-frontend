@@ -16,6 +16,7 @@ En el entorno productivo, la aplicación frontend se ejecuta en una instancia de
 
 #### Diagrama Dev
 En el entorno de desarrollo, la aplicación **frontend** se ejecuta en la **maquina local** del desarrollador y se expone en la url `http://localhost:5173`. La aplicación **backend** se ejecuta en una instancia de **Amazon EC2** y se expone en el puerto 3000. La base de datos se despliega en un contenedor Docker en la instancia de Amazon EC2 y se expone en el puerto 3306.
+
 ![Arquitectura Frontend](./public/arquitectura-frontend-dev.png)
 
 
@@ -84,12 +85,12 @@ Se encuentra en la instancia de Computer Engine de GCP y se utiliza para ejecuta
 1. **Preparación de la máquina local**:
    - Descarga de dependencias.
     ```bash
-     npm install
-     ```
+    npm install
+    ```
    - Ejecución de la aplicación.
-     ```bash
-     npm run dev
-     ```
+    ```bash
+    npm run dev
+    ```
 
 ### **Backend Producción y Desarrollo**
 En el caso del backend actualmente se utiliza la misma instancia para probar desde frontend para desarrollo y producción. El backend se ejecuta en una instancia de **Amazon EC2** y se expone en el puerto 3000. La base de datos se despliega en un contenedor Docker en la instancia de Amazon EC2 y se expone en el puerto 3306.
