@@ -10,8 +10,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "publish": "docker build -t antoniahorta/test1:entrega11 .",
-    "postpublish": "docker push antoniahorta/test1:entrega11"
+    "publish": "docker build -t antoniahorta/grupo-6-frontend:1.0.0 .",
+    "postpublish": "docker push antoniahorta/grupo-6-frontend:1.0.0"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.3.0",

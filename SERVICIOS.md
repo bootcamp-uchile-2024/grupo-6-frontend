@@ -97,7 +97,8 @@ interface ICreateUser {
     apellidoPaterno: string,
     correoElectronico: string,
     contrasena: string,
-    direccion?: IDireccion;
+    direccion?: IDireccion,
+    token?: string
 }
 ```
 

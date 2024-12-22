@@ -97,7 +97,7 @@ Asegúrate de tener Docker Desktop instalado en tu máquina. Puedes seguir los p
 Para construir la imagen del frontend, ejecuta el siguiente comando en la raíz del proyecto donde se encuentra el archivo Dockerfile:
 
 ```bash
-docker build -t grupo-6-frontend:v1.0.0 .
+docker build -t grupo-6-frontend:1.0.0 .
 ```
 
 2. Levantar el contenedor:
