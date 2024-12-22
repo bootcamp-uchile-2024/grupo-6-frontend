@@ -1,4 +1,4 @@
-import { Categorias } from "../components/Categorias";
+import Categorias from "../components/Categorias";
 import { MainLayout } from "../layouts/MainLayout";
 
 interface CategoriasPageProps {
