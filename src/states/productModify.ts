@@ -15,7 +15,7 @@ const getInitialState = (): ProductModifyState => {
         book: {
             isbn: '',
             nombre: '',
-            autor: [],
+            autor: '',
             precio: 0,
             stockLibro: 0,
             genero: [],
@@ -52,7 +52,7 @@ export const productModifyReducer = createSlice({
             const emptyBook =  {
                 isbn: '',
                 nombre: '',
-                autor: [],
+                autor: '',
                 precio: 0,
                 stockLibro: 0,
                 genero: [],

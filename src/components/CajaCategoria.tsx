@@ -1,6 +1,6 @@
 import '../styles/categorias.css';
 import { Link } from 'react-router-dom';
-import ButtonAddToCart from './ButtonAddToCart';
+import ButtonAddToCart from './shoppingcart/ButtonAddToCart';
 import QuantityButtons from './shoppingcart/QuantityButtons';
 import { ShoppingCartEntrada } from '../interfaces/ShoppingCartEntrada';
 import { configuracion } from '../config/appConfiguration.ts'
@@ -8,7 +8,7 @@ import { configuracion } from '../config/appConfiguration.ts'
 interface CajaCategoriaProps {
   isbn: string,
   nombre: string,
-  autor: string[],
+  autor: string,
   precio: number,
   stock: number,
   caratula: string
@@ -31,9 +31,6 @@ export function CajaCategoria(props: CajaCategoriaProps) {
 
   const url = configuracion.urlJsonServerBackendCover.toString();
 
-  console.log(`Stock para el libro ${props.nombre}: ${props.stock}`);
-
-
   return (
     <div className={`container-catalog ${isOutOfStock ? 'out-of-stock' : ''}`}>
       <div className="foto-categoria">
@@ -48,13 +45,13 @@ export function CajaCategoria(props: CajaCategoriaProps) {
         <Link to={`/product-detail/${props.isbn}`}> {/* Cambiar con back */}
           <p className='texto-nombre-libro'>{props.nombre}</p>
         </Link>
-        <p className='texto-autor'>{props.autor.join(', ')}</p>
+        <p className='texto-autor'>{props.autor}</p>
 
-        <p className='texto-precio'>${props.precio}</p>
+        <p className='texto-precio'>${props.precio.toLocaleString()}</p>
 
         <div className='catalog-buttons-container'>
-          <QuantityButtons isbn={props.isbn} />
-          <ButtonAddToCart libro={product} />
+          <QuantityButtons isbn={props.isbn} disabled={isOutOfStock}/>
+          <ButtonAddToCart libro={product} showIcon={true}/>
         </div>
       </div>
     </div>

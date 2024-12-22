@@ -1,6 +1,6 @@
-name: grupo-6-frontend-entrega-10
+name: grupo-6-frontend-entrega-11
 services:
   frontend:
-    image: dgajardoi/grupo-6-frontend:entrega-10
+    image: antoniahorta/grupo-6-frontend:1.0.0
     ports:
       - 5173:80

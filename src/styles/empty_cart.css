@@ -1,48 +1,87 @@
-.caja-empty-cart{
-    margin: 20px auto;
+/* CONTENEDOR */
+
+.container-empty-cart-header {
+    margin-top: 24px !important;
+}
+
+/* TÍTULO */
+
+.title-empty-cart {
+    color: #545454;
+    font-family: Sarabun;
+    font-size: 31px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 24px;
+}
+
+/* BOTÓN VACIAR CARRITO */
+
+.clear-cart-button-empty-cart .btn-primary {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 12px;
+    background-color: #D4D4D4 !important;
+    color: #FFF !important;
+    width: 185px;
+    height: 50px;
+    border: none !important;
+    border-radius: 16px;
+    box-shadow: none;
+    padding: 12px;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
     text-align: center;
+    margin-right: 24px;
 }
 
-.titulo-empty-cart{
-    font-size: 25px;
-    font-weight: bold;
-    margin-top: 40px;
-    margin-bottom: 10px;
+.clear-cart-button-empty-cart svg {
+    color: #ADABAB !important;
 }
 
-.info-empty-cart{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+/* BOTÓN SEGUIR COMPRANDO + INICIAR SESIÓN */
+
+.seguir-comprando-button .btn,
+.seguir-comprando-button .btn:focus-visible {
+    width: 229px;
+    height: 50px;
+    background-color: #806259;
+    color: #FBFBFB;
+    border-radius: 16px;
+    border: none;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
     text-align: center;
-    width: 100%;
+    box-shadow: none;
 }
 
-.info-empty-cart img{
-    align-items: center;
-    width: 90px;
-    height: auto;
-    margin: 0 auto 20px;
-    display: block;
+.seguir-comprando-button .btn:hover,
+.seguir-comprando-button .btn:active {
+    background-color: #E1D5CA !important;
+    color: #806259 !important;
 }
 
-.emptycart-to-product{
-    display: flex;
-    padding: 10px;
-    border: 1px solid black;
-    border-radius: 10px;
-    color: black;
-    font-size: 14px;
-    cursor: pointer;
+.seguir-comprando-button .btn:active {
+    border: 4px solid #806259 !important;
 }
 
-.emptycart-to-product:hover{
-    background-color: black;
-    color: white;
-    font-size: 14px;
+.info-empty-cart {
+    color: #545454;
+    font-family: Sarabun;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-bottom: 24px;
+}
+
+.separador-empty-cart{
+    height: 192px;
+    margin-bottom: 24px;
 }

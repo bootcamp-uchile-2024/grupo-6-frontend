@@ -8,40 +8,79 @@ import { configuracion } from '../config/appConfiguration.ts'
 import { Col, Container, Row } from 'react-bootstrap'
 import libreria from '../assets/images/libreria.svg'
 
-export function Categorias() {
+const Categorias = () => {
 
   const [libros, setLibros] = useState<ILibro[]>([]);
   const [librosExist, setLibrosExist] = useState<boolean>(false);
   const [paginaActual, setPaginaActual] = useState<number>(1);
   const [totalPaginas, setTotalPaginas] = useState<number>(1);
   const [cantidad, setCantidad] = useState<number>(12);
+  const [generosSeleccionados, setGenerosSeleccionados] = useState<string[]>([]);
+  const [editorialesSeleccionadas, setEditorialesSeleccionadas] = useState<string[]>([]);
+  const [precioMinimo, setPrecioMinimo] = useState<number | null>(null);
+  const [precioMaximo, setPrecioMaximo] = useState<number | null>(null);
+
+  // Actualiza los filtros de géneros
+  const actualizarGenerosSeleccionados = (nuevosGeneros: string[]) => {
+    setGenerosSeleccionados(nuevosGeneros);
+  };
+
+  // Actualiza los filtros de editoriales
+  const actualizarEditorialesSeleccionadas = (nuevasEditoriales: string[]) => {
+    setEditorialesSeleccionadas(nuevasEditoriales);
+  };
+
+  // Actualiza el precio mínimo
+  const actualizarPrecioMinimo = (precio: number) => {
+    setPrecioMinimo(precio);
+  };
+
+  // Actualiza el precio máximo
+  const actualizarPrecioMaximo = (precio: number) => {
+    setPrecioMaximo(precio);
+  };
 
   useEffect(() => {
     async function getLibros() {
       try {
-        const url = configuracion.urlJsonServerBackendCatalog.toString().concat(`?pagina=${paginaActual}&cantidad=${cantidad}`);
+        const generosQuery = generosSeleccionados.length
+          ? generosSeleccionados.map(genero => `genero=${encodeURIComponent(genero)}`).join('&')
+          : '';
+        const editorialesQuery = editorialesSeleccionadas.length
+          ? editorialesSeleccionadas.map(editorial => `editorial=${encodeURIComponent(editorial)}`).join('&')
+          : '';
+        const precioMinimoQuery = precioMinimo ? `priceMin=${encodeURIComponent(precioMinimo)}` : '';
+        const precioMaximoQuery = precioMaximo ? `priceMax=${encodeURIComponent(precioMaximo)}` : '';
+  
+        const url = configuracion.urlJsonServerBackendCatalog.toString().concat(
+          `?pagina=${paginaActual}&cantidad=${cantidad}${generosQuery ? '&' + generosQuery : ''}${editorialesQuery ? '&' + editorialesQuery : ''}${precioMinimoQuery ? '&' + precioMinimoQuery : ''}${precioMaximoQuery ? '&' + precioMaximoQuery : ''}`
+        );
+  
+        console.log('URL generada:', url);
+  
         const response = await fetch(url, {
           method: 'GET',
         });
-
+  
         if (!response.ok) {
           console.log('No pudimos obtener los productos');
           setLibrosExist(false);
           return; // Salir si no hay respuesta OK
         }
-
+  
         const librosJson: ILibroPaginado = await response.json();
         setLibros(librosJson?.productos);
         setLibrosExist(true);
         setTotalPaginas(librosJson.totalPaginas);
+        console.log(librosJson);
       } catch (error) {
         console.error('Error al obtener los productos', error); // Usando 'error'
         setLibrosExist(false);
       }
     }
-
+  
     getLibros();
-  }, [paginaActual, cantidad]);
+  }, [paginaActual, cantidad, generosSeleccionados, editorialesSeleccionadas, precioMinimo, precioMaximo]);
 
   /* Handles Paginación */
   const handlePaginaAnterior = () => {
@@ -97,7 +136,11 @@ export function Categorias() {
         </Col>
 
         <Col lg={2}>
-          <Filtros />
+          <Filtros
+            actualizarGeneros={actualizarGenerosSeleccionados}
+            actualizarEditoriales={actualizarEditorialesSeleccionadas} 
+            actualizarPrecioMinimo={actualizarPrecioMinimo}
+            actualizarPrecioMaximo={actualizarPrecioMaximo} />
         </Col>
         <Col lg={10}>
 
@@ -108,7 +151,7 @@ export function Categorias() {
                 nombre={libro.nombre}
                 autor={libro.autor}
                 precio={libro.precio}
-                isbn={libro.isbn}  
+                isbn={libro.isbn}
                 stock={libro.stockLibro}
                 caratula={libro.caratula}>
 
@@ -165,7 +208,7 @@ export function Categorias() {
               className='select-pagination'
               id="cantidad"
               value={cantidad}
-              onChange={(e) => setCantidad(Number(e.target.value))}>
+              onChange={(e) => setCantidad(Number(e.target.value))}> {/* Number(e.target.value) convierte el string a un número */}
               <option value={12}>12</option>
               <option value={24}>24</option>
               <option value={36}>36</option>
@@ -178,3 +221,5 @@ export function Categorias() {
     </Container>
   );
 };
+
+export default Categorias;

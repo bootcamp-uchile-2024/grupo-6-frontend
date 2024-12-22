@@ -1,5 +1,5 @@
 import { MainLayout } from "../layouts/MainLayout"
-import CrearProducto from "../components/CrearProducto"
+import CrearProducto from "../components/adminbooks/CrearProducto"
 
 interface CrearProductoPageProps {
     title: string
