@@ -13,43 +13,43 @@ function Nav() {
         <li><Link to="/">Home</Link></li>
         <li><Link to="/about">Nosotros</Link></li>
         <li className='categorias'>
-          <Link to="/categorias">Catálogo</Link>
+          <Link to={`/carrito`}>Catálogo</Link>
           <div className='caja-categoria-desplegable'>
             <ul className='columna-categoria-1'>
-              <li><Link to="/categorias">Aventura</Link></li>
-              <li><Link to="/categorias">Arte</Link></li>
-              <li><Link to="/categorias">Biografías y autobiografías</Link></li>
-              <li><Link to="/categorias">Ciencia ficción</Link></li>
-              <li><Link to="/categorias">Ciencia y matemáticas</Link></li>
-              <li><Link to="/categorias">Clásico</Link></li>
-              <li><Link to="/categorias">Cocina</Link></li>
+              <li><Link to={`/carrito`}>Aventura</Link></li>
+              <li><Link to={`/carrito`}>Arte</Link></li>
+              <li><Link to={`/carrito`}>Biografías y autobiografías</Link></li>
+              <li><Link to={`/carrito`}>Ciencia ficción</Link></li>
+              <li><Link to={`/carrito`}>Ciencia y matemáticas</Link></li>
+              <li><Link to={`/carrito`}>Clásico</Link></li>
+              <li><Link to={`/carrito`}>Cocina</Link></li>
             </ul>
             <ul className='columna-categoria-2'>
-              <li><Link to="/categorias">Computación</Link></li>
-              <li><Link to="/categorias">Contemporáneo</Link></li>
-              <li><Link to="/categorias">Derecho y política</Link></li>
-              <li><Link to="/categorias">Distópia</Link></li>
-              <li><Link to="/categorias">Economía y finanzas</Link></li>
-              <li><Link to="/categorias">Educación</Link></li>
-              <li><Link to="/categorias">Fantasía</Link></li>
+              <li><Link to={`/carrito`}>Computación</Link></li>
+              <li><Link to={`/carrito`}>Contemporáneo</Link></li>
+              <li><Link to={`/carrito`}>Derecho y política</Link></li>
+              <li><Link to={`/carrito`}>Distópia</Link></li>
+              <li><Link to={`/carrito`}>Economía y finanzas</Link></li>
+              <li><Link to={`/carrito`}>Educación</Link></li>
+              <li><Link to={`/carrito`}>Fantasía</Link></li>
             </ul>
             <ul className='columna-categoria-3'>
-              <li><Link to="/categorias">Filosofía y religión</Link></li>
-              <li><Link to="/categorias">Infantil</Link></li>
-              <li><Link to="/categorias">Historia</Link></li>
-              <li><Link to="/categorias">Juvenil</Link></li>
-              <li><Link to="/categorias">Novela</Link></li>
-              <li><Link to="/categorias">Novela histórica</Link></li>
-              <li><Link to="/categorias">Paranormal</Link></li>
+              <li><Link to={`/carrito`}>Filosofía y religión</Link></li>
+              <li><Link to={`/carrito`}>Infantil</Link></li>
+              <li><Link to={`/carrito`}>Historia</Link></li>
+              <li><Link to={`/carrito`}>Juvenil</Link></li>
+              <li><Link to={`/carrito`}>Novela</Link></li>
+              <li><Link to={`/carrito`}>Novela histórica</Link></li>
+              <li><Link to={`/carrito`}>Paranormal</Link></li>
             </ul>
             <ul className='columna-categoria-4'>
-              <li><Link to="/categorias">Poesía</Link></li>
-              <li><Link to="/categorias">Romance</Link></li>
-              <li><Link to="/categorias">Salud y deporte</Link></li>
-              <li><Link to="/categorias">Técnicos y especializados</Link></li>
-              <li><Link to="/categorias">Terror</Link></li>
-              <li><Link to="/categorias">Thriller</Link></li>
-              <li><Link to="/categorias">Viajes</Link></li>
+              <li><Link to={`/carrito`}>Poesía</Link></li>
+              <li><Link to={`/carrito`}>Romance</Link></li>
+              <li><Link to={`/carrito`}>Salud y deporte</Link></li>
+              <li><Link to={`/carrito`}>Técnicos y especializados</Link></li>
+              <li><Link to={`/carrito`}>Terror</Link></li>
+              <li><Link to={`/carrito`}>Thriller</Link></li>
+              <li><Link to={`/carrito`}>Viajes</Link></li>
             </ul>
           </div>
 
