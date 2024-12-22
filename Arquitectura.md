@@ -11,18 +11,18 @@ Se presenta la arquitectura de la aplicación frontend, tanto en su entorno prod
 ### **Diagrama de Arquitectura**
 En esta sección se presentan los diagramas de arquitectura de la aplicación frontend, tanto en su entorno productivo como en el entorno de desarrollo.
 #### Diagrama Productivo
-En el entorno productivo, la aplicación frontend se ejecuta en una instancia de **Google Compute Engine**, la cual está expuesta públicamente en el puerto 80. La instancia tiene instalado Docker y ejecuta la imagen `dgajardoi/grupo-6-frontend:entrega11` para desplegar la aplicación frontend.
+En el entorno productivo, la aplicación frontend se ejecuta en una instancia de **Google Compute Engine**, la cual está expuesta públicamente en el puerto 80. La instancia tiene instalado Docker y ejecuta la imagen `dgajardoi/grupo-6-frontend:entrega11` para desplegar la aplicación frontend. En el caso del backend, se ejecuta en una instancia de **Amazon EC2** y se expone en el puerto 3000. La base de datos se despliega en un contenedor Docker en la instancia de Amazon EC2 y se expone en el puerto 3306.
 ![Arquitectura Frontend](./public/arquitectura-frontend.png)
 
 #### Diagrama Dev
-En el entorno de desarrollo, la aplicación **frontend** se ejecuta en la **maquina local** del desarrollador y se expone en la url `http://localhost:5173`. La aplicación **backend** se ejecuta en la **maquina local** del desarrollador y se expone en la url `http://localhost::3000` y la **base de datos** se despliegue en un *contenedor Docker* en la máquina local del desarrollador se expone en el puerto 3306.
-![Arquitectura Frontend](./public/arquitectura-frontend.png)
+En el entorno de desarrollo, la aplicación **frontend** se ejecuta en la **maquina local** del desarrollador y se expone en la url `http://localhost:5173`. La aplicación **backend** se ejecuta en una instancia de **Amazon EC2** y se expone en el puerto 3000. La base de datos se despliega en un contenedor Docker en la instancia de Amazon EC2 y se expone en el puerto 3306.
+![Arquitectura Frontend](./public/arquitectura-frontend-dev.png)
 
 
-## Componentes Productivos
+## Componentes
 En esta sección se describen los componentes de la aplicación frontend en su entorno productivo.
 
-### **Frontend**
+### **Frontend Producción**
 #### **Instancia de Google Compute Engine**
 - **Proveedor**: Google Cloud Platform (GCP).
 - **Tipo de instancia**: Compute Engine.
@@ -74,8 +74,27 @@ Se encuentra en la instancia de Computer Engine de GCP y se utiliza para ejecuta
      ```
 
 ---
+### **Frontend Desarrollo**
+#### **Maquina Local**
+- **Sistema Operativo**: Windows.
+- **Puerto Abierto**: `5173` (para HTTP).
+- **Firewall**: Configurado para permitir tráfico entrante en el puerto `5173`.
 
-### Backend
+#### Flujo de despliegue
+1. **Preparación de la máquina local**:
+   - Descarga de dependencias.
+    ```bash
+     npm install
+     ```
+   - Ejecución de la aplicación.
+     ```bash
+     npm run dev
+     ```
+
+### **Backend Producción y Desarrollo**
+En el caso del backend actualmente se utiliza la misma instancia para probar desde frontend para desarrollo y producción. El backend se ejecuta en una instancia de **Amazon EC2** y se expone en el puerto 3000. La base de datos se despliega en un contenedor Docker en la instancia de Amazon EC2 y se expone en el puerto 3306.
+
+**Nota**: Antes de que existiera la instancia de EC2, el backend se ejecutaba en la máquina local del desarrollador y se exponía en el puerto 3000. La base de datos se desplegaba en un contenedor Docker en la máquina local del desarrollador y se exponía en el puerto 3306.
 
 #### 1. **Instancia de Amazon EC2**
 - **Proveedor**: Amazon Web Services (AWS).
@@ -84,12 +103,10 @@ Se encuentra en la instancia de Computer Engine de GCP y se utiliza para ejecuta
 - **IP Pública**: `18.118.95.35`.
 - **Puertos Abiertos**:
   - `3000` (para el backend NestJS).
-  - `3306` (para MySQL, opcional si necesitas acceso remoto a la base de datos).
 - **Seguridad**:
   - Grupo de seguridad configurado para permitir tráfico en los puertos mencionados.
 
 ---
-
 #### 2. **Docker**
 Se encuentra en la instancia de Amazon EC2 y se utiliza para ejecutar el backend de la aplicación.
 - **Rol**: Herramienta de contenedorización utilizada para ejecutar:
