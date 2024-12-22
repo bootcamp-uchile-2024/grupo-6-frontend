@@ -13,7 +13,7 @@ function Footer() {
                         <Col md={6} className="footer-recibe-ofertas">
 
                             <div className="input-group-footer justify-content-center align-items-center">
-                                <Form.Control type="email" placeholder="Inscríbete a nuestro Newsletter ;D" className="form-input" />
+                                <Form.Control type="email" placeholder="Inscríbete a nuestro Newsletter" className="form-input" />
                                 <Button variant="none" className="ms-3 newsletter-button">Recibe ofertas</Button>
                             </div>
                         </Col>
