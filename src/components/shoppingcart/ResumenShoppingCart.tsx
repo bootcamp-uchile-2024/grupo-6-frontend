@@ -1,3 +1,4 @@
+/* eslint-disable no-constant-binary-expression */
 import { RootType } from "../../states/store";
 import { ShoppingCartEntrada } from "../../interfaces/ShoppingCartEntrada";
 import '../../styles/resumen_shopping_cart.css'
@@ -13,25 +14,42 @@ import { useState } from "react";
 import { configuracion } from "../../config/appConfiguration";
 import DropdownButton from "react-bootstrap/esm/DropdownButton";
 import Form from "react-bootstrap/esm/Form";
+import { useFetchGetAddress } from "../../hooks/useFetchUser";
+import { IDireccion } from "../../interfaces/IDireccion";
+import { jwtDecode } from "jwt-decode";
 
 function ResumenShoppingCart() {
     const shoppingCartProduct = useSelector((state: RootType) => state.productReducer.cart.items);
-    const [selectedAddress, setSelectedAddress] = useState("Los Olmos 666, Macul, RM");
     const [despacho] = useState(5000);
 
     const url = configuracion.urlJsonServerBackendCover.toString();
 
-    const addresses = [
-        "Los Olmos 666, Macul, RM",
-        "Avenida Siempre Viva 742, Springfield",
-        "Calle Falsa 123, Villa Real, RM",
-    ];
+    // HANDLE PARA CAMBIAR DIRECCIÓN SEGÚN INPUR RADIO
 
-    const handleSelectAddress = (address: string | null) => {
-        if (address !== null) {
-            setSelectedAddress(address); // Aseguramos que `address` no es nulo
+    const [selectedAddress, setSelectedAddress] = useState<IDireccion | null>(null);
+    const [selectedAddressString, setSelectedAddressString] = useState<string | null>("Editar dirección");
+    const loggedInUser = JSON.parse(localStorage.getItem('__redux__user__') || '{}');
+    const decodedToken = jwtDecode<{ idUsuario: number; rol: string; exp: number }>(loggedInUser.token);
+
+    const { data: addresses, loading: loadingAddress, error: errorAddress } = useFetchGetAddress<IDireccion[]>(configuracion.urlJsonServerBackendUsers, decodedToken.idUsuario);
+
+
+    if (loadingAddress) return <p>Cargando datos de las direcciones del usuario...</p>
+    if (errorAddress) return <p>Error en la consulta de las direcciones del usuario {errorAddress}</p>
+
+
+    // HANDLE PARA CAMBIAR DIRECCIÓN SEGÚN INPUR RADIO
+    const handleSelectAddress = (addressId: number) => {
+        const selected = addresses?.find((addr) => addr.idDireccion === addressId);
+        console.log("Direcciones anterior seleccionada:", selectedAddress?.calle, selectedAddress?.numeroCalle, selectedAddress?.comuna, selectedAddress?.ciudad, selectedAddress?.region);
+        console.log("Direccion actual seleccionada:", selected);
+
+        if (selected) {
+            setSelectedAddress(selected);
+            setSelectedAddressString(`${selected.calle} ${selected.numeroCalle}, ${selected.comuna}, ${selected.ciudad}, ${selected.region}.`);
         }
     };
+
 
     // Calcula el total del carrito de compras
     const calculateTotal = (items: ShoppingCartEntrada[]) => {
@@ -82,7 +100,7 @@ function ResumenShoppingCart() {
                 </div>
 
                 <div>
-                    <Row md="12" style={{ height: '4rem', width: '75.25rem' }}>
+                    <Row md="12" className="shoppingcart-price">
                         <Col md="5">
                             <h3 className='fw-bold'>Total a Pagar: ${calculateTotalConDespacho(shoppingCartProduct).toLocaleString()}</h3>
                         </Col>
@@ -92,11 +110,19 @@ function ResumenShoppingCart() {
                 </div>
 
                 <div>
-                    <Row md="12" style={{ height: '4rem', width: '75.25rem' }}>
+                    <Row md="12">
                         <Col md="6">
                         </Col>
-                        <Col md="3">
+                        <Col md="3" className="shoppingcart-price">
                             <h5 className='fw-bold'>Total carrito: ${calculateTotal(shoppingCartProduct).toLocaleString()}</h5>
+                        </Col>
+                        <Col md="3">
+                        </Col>
+                    </Row>
+                    <Row md="12">
+                        <Col md="6">
+                        </Col>
+                        <Col md="3" className="shoppingcart-price">
                             <h5 className='fw-bold'>Valor del despacho: ${despacho.toLocaleString()}</h5>
                         </Col>
                         <Col md="3">
@@ -129,35 +155,36 @@ function ResumenShoppingCart() {
                     <div>No existen productos en el carrito de compras.</div>
                 )}
 
-                <div className="d-flex align-items-center p-3 border rounded">
+                <div className="d-flex align-items-center p-3">
                     {/* Seleccionar dirección */}
                     <Row md="12" style={{ height: '4rem', width: '75.25rem' }}>
-                    <Form.Group className="flex-grow-1 me-3 d-flex align-items-center">
-                        <Col md="2"></Col>
-                        <Col md="4">
-                            <Form.Label>Seleccionar tu dirección</Form.Label>
-                        </Col>
-                        <Col md="4">
-                        <DropdownButton
-                            id="dropdown-address-selector"
-                            title={selectedAddress || 'Seleccionar dirección'}
-                            onSelect={handleSelectAddress}
-                            variant="outline-secondary"
-
-                        >
-                            {addresses.length > 0 ? (
-                                addresses.map((address, index) => (
-                                    <Dropdown.Item key={index} eventKey={address}>
-                                        {address}
-                                    </Dropdown.Item>
-                                ))
-                            ) : (
-                                <Dropdown.Item disabled>No hay direcciones disponibles</Dropdown.Item>
-                            )}
-                        </DropdownButton>
-                        </Col>
-                        <Col md="2"></Col>
-                    </Form.Group>
+                        <Form.Group className="container-direccion">
+                            <Col md="2"></Col>
+                            <Col md="4">
+                                <Form.Label>Seleccionar tu dirección</Form.Label>
+                            </Col>
+                            <Col md="4">
+                                <DropdownButton
+                                    id="dropdown-address-selector"
+                                    title={`${selectedAddressString}` || 'Seleccionar dirección'}
+                                    onSelect={(eventKey) => { if (eventKey) handleSelectAddress(parseInt(eventKey)); }}
+                                    variant="outline-secondary"
+                                    disabled={!addresses || addresses.length === 0}
+                                   style={{ width: '400px' }}
+                                >
+                                    {addresses && addresses.length > 0 ? (
+                                        addresses.map((address) => (
+                                            <Dropdown.Item key={address.idDireccion} eventKey={address.idDireccion}>
+                                                {address.calle} {address.numeroCalle}, {address.comuna}, {address.ciudad}, {address.region}
+                                            </Dropdown.Item>
+                                        ))
+                                    ) : (
+                                        <Dropdown.Item disabled>No hay direcciones disponibles</Dropdown.Item>
+                                    )}
+                                </DropdownButton>
+                            </Col>
+                            <Col md="2"></Col>
+                        </Form.Group>
                     </Row>
                 </div>
             </Container>
