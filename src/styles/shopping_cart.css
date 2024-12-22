@@ -1,10 +1,9 @@
 .shoppingcart {
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
-    padding: 10px;
+    margin-top: 24px;
     font-family: Arial, sans-serif;
-    width: 80%;
+    width: 100%;
 }
 
 .shoppingcart-items-table {
@@ -52,7 +51,8 @@
     height: 100px;
 }
 
-.shoppingcart-item-detail-td-nombre , .shoppingcart-item-detail-td-autor {
+.shoppingcart-item-detail-td-nombre,
+.shoppingcart-item-detail-td-autor {
     display: flex;
     flex-direction: row;
     margin: auto;
@@ -64,7 +64,7 @@
     font-weight: bold;
 }
 
-.shoppingcart-button{
+.shoppingcart-button {
     border: none;
     border-radius: 100px;
     background-color: rgb(207, 207, 207);
@@ -73,7 +73,7 @@
     cursor: pointer;
 }
 
-.shoppingcart-button:hover{
+.shoppingcart-button:hover {
     background-color: rgb(101, 24, 208);
     color: white;
 }
@@ -85,7 +85,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 10px;
+    margin-left: 51px;
 }
 
 .shoppingcart-button-delete img {
@@ -101,7 +101,8 @@
     margin-top: 18px;
 }
 
-.shoppingcart-button-clear, .shoppingcart-to-product {
+.shoppingcart-button-clear,
+.shoppingcart-to-product {
     margin-top: 5px;
     background-color: white;
     color: black;
@@ -114,16 +115,18 @@
     border: 2px solid transparent;
 }
 
-.shoppingcart-button-clear:hover, .shoppingcart-to-product:hover {
+.shoppingcart-button-clear:hover,
+.shoppingcart-to-product:hover {
     border-bottom: solid 2px black;
 }
 
 .shoppingcart-item-top-footer {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-top: 10px;
-    margin-bottom: 20px;
+    flex-direction: column !important;
+    justify-content: center;
+    align-items: center;
+    margin-top: 24px !important;
+    margin-bottom: 56px !important;
 }
 
 .button-shoppingcart-resume {
@@ -137,8 +140,204 @@
     background-color: white;
 }
 
-.button-shoppingcart-resume:hover{
+.button-shoppingcart-resume:hover {
     background-color: black;
     color: white;
     font-size: 14px;
+}
+
+/* <<<<<<<<<< PRIMERA PANTALLA DEL CARRITO >>>>>>>>>> */
+
+/* QUANTITY BUTTONS */
+.shoppingcart-item-detail-td-quantity-1 .quantity-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 128px;
+    height: 48px;
+    border: 2px solid #806259;
+    border-radius: 16px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.shoppingcart-item-detail-td-quantity-1 .quantity-buttons span {
+    font-size: 25px;
+    color: #545454;
+}
+
+.shoppingcart-item-detail-td-quantity-1 .quantity-buttons button {
+    margin: 0px;
+    background-color: transparent;
+    border: none;
+}
+
+/* TÍTULO SHOPPING CART */
+.shoppingcart h2 {
+    color: #545454;
+    font-size: 31px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+/* TEXTO */
+.cart-product-info {
+    color: #545454;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.cart-total-pagar h2 {
+    color: var(--Grises-Text-Default, #545454);
+    text-align: center;
+    font-family: Sarabun;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-top: 24px;
+}
+
+/* BOTÓN VACIAR CARRITO */
+
+.clear-cart-button .btn-primary,
+.clear-cart-button .btn-primary:hover,
+.clear-cart-button .btn-primary:active,
+.clear-cart-button .btn-primary:focus,
+.clear-cart-button .btn-primary:focus-visible {
+    background-color: transparent !important;
+    color: #806259 !important;
+    width: 185px;
+    height: 50px;
+    border: 4px solid #806259 !important;
+    border-radius: 16px;
+    box-shadow: none;
+    padding: 12px;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-align: center;
+    margin-right: 24px;
+}
+
+.clear-cart-button .btn-primary svg {
+    margin-right: 12px;
+}
+
+/* BOTÓN SEGUIR COMPRANDO + INICIAR SESIÓN */
+
+.seguir-comprando-button .btn,
+.seguir-comprando-button .btn:focus-visible,
+.cart-action-button .btn,
+.cart-action-button .btn:focus-visible {
+    width: 229px;
+    height: 50px;
+    background-color: #806259;
+    color: #FBFBFB;
+    border-radius: 16px;
+    border: none;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-align: center;
+    box-shadow: none;
+}
+
+.cart-action-button .btn svg {
+    margin-right: 12px;
+}
+
+.seguir-comprando-button .btn:hover,
+.seguir-comprando-button .btn:active,
+.cart-action-button .btn:hover,
+.cart-action-button .btn:active {
+    background-color: #E1D5CA !important;
+    color: #806259 !important;
+}
+
+.cart-action-button .btn:hover svg path,
+.cart-action-button .btn:active svg path {
+    fill: #806259;
+}
+
+.seguir-comprando-button .btn:active,
+.cart-action-button .btn:active {
+    border: 4px solid #806259 !important;
+}
+
+/* <<<<<<<<<< MÉTODOS DE PAGO >>>>>>>>>> */
+
+.item-top-resumen {
+    margin-top: 24px !important;
+    margin-bottom: 24px !important;
+}
+
+.item-top-resumen h2,
+.metodo-pago-medio {
+    color: #545454;
+    font-family: Sarabun;
+    font-size: 31px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.metodos-pago-total {
+    color: var(--Grises-Text-Default, #545454);
+    font-family: Sarabun;
+    font-size: 39px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+}
+
+.metodo-pago-medio {
+    text-align: center;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.back-to-resume .btn-primary,
+.back-to-resume .btn-primary:hover,
+.back-to-resume .btn-primary:active,
+.back-to-resume .btn-primary:focus,
+.back-to-resume .btn-primary:focus-visible {
+    border-radius: 16px;
+    outline: 4px solid #806259;
+    background-color: white !important;
+    width: 226px;
+    height: 50px;
+    color: #806259 !important;
+    font-size: 20px;
+    border: none;
+    padding: 0px;
+    box-shadow: none;
+}
+
+.back-to-resume svg {
+    margin-right: 12px;
+}
+
+.shoppingcart-items {
+    width: 100%;
+}
+
+.metodos-de-pago {
+    margin-bottom: 216px;
+}
+
+#boton-transferencia-bancaria,
+#boton-tu-banco {
+    color: #545454;
+    font-family: Sarabun;
+    font-size: 31px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
 }

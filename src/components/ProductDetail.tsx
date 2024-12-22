@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { ILibro } from '../interfaces/ILibro';
 import '../styles/product_detail.css'
-import ButtonAddToCart from './ButtonAddToCart';
+import ButtonAddToCart from './shoppingcart/ButtonAddToCart';
 import { ShoppingCartEntrada } from '../interfaces/ShoppingCartEntrada';
 import QuantityButtons from './shoppingcart/QuantityButtons';
 import { configuracion } from '../config/appConfiguration.ts';
@@ -11,7 +11,6 @@ import libroBeatles from '../assets/images/Libros/libro beatles.webp'
 import libroInvitadoDracula from '../assets/images/Libros/invitado-dracula.webp'
 import libroDibujoFacil from '../assets/images/Libros/libro dibujo facil.webp'
 import libroTreeHouses from '../assets/images/Libros/tree-houses.webp'
-import '../styles/categorias.css';
 
 const recomendaciones = [
     {
@@ -36,7 +35,6 @@ const recomendaciones = [
     }
 ];
 
-
 const ProductDetail: React.FC = () => {
     const { isbn } = useParams<{ isbn: string }>();
     const [libro, setLibro] = useState<ILibro | null>(null);
@@ -45,7 +43,7 @@ const ProductDetail: React.FC = () => {
 
     const [producto, setProducto] = useState<ShoppingCartEntrada>({
         nombre: '',
-        autor: [""],
+        autor: "",
         precio: 0,
         isbn: "",
         cantidad: 1,
@@ -68,7 +66,7 @@ const ProductDetail: React.FC = () => {
 
                 setProducto({
                     nombre: productData?.nombre || '',
-                    autor: productData?.autor || [""],
+                    autor: productData?.autor || "",
                     precio: productData?.precio || 0,
                     isbn: productData?.isbn || "",
                     cantidad: 1,
@@ -92,6 +90,8 @@ const ProductDetail: React.FC = () => {
 
     const url = configuracion.urlJsonServerBackendCover.toString();
 
+    const isOutOfStock = libro?.stockLibro === 0;
+
     return (
         <Container className="product-detail-container">
             {libro ? (
@@ -103,7 +103,7 @@ const ProductDetail: React.FC = () => {
                                 <Card.Img
                                     variant="top"
                                     src={`${url}${libro.caratula}`} alt={`imagen del libro ${libro.nombre}`}
-                                    /* alt={libro.nombre} */
+                                /* alt={libro.nombre} */
                                 />
                             </Card>
                         </Col>
@@ -111,8 +111,8 @@ const ProductDetail: React.FC = () => {
                         {/* Información del libro */}
                         <Col md={8} className="productDeteil-info">
                             <h1 className='productDetail-title-info'>{libro.nombre}</h1>
-                            <h3 className="autor-info">{libro.autor.join(", ")}</h3>
-                            <p className="price">${libro.precio}</p>
+                            <h3 className="autor-info">{libro.autor}</h3>
+                            <p className="price">${libro.precio.toLocaleString()}</p>
 
                             {/* Estrellas de calificación */}
                             <div className="rating-stars">
@@ -135,11 +135,14 @@ const ProductDetail: React.FC = () => {
 
                             {/* Botones de cantidad y compra */}
                             <div className="d-flex align-items-center my-3">
-                                <div className='catalog-buttons-container'>
-                                    <div className="quantity-section">
-                                        {isbn && <QuantityButtons isbn={isbn} />}
+                                <div className={`detail-buttons-container ${isOutOfStock ? 'out-of-stock' : ''}`}>
+                                    <div className={`quantity-section ${isOutOfStock ? 'disabled' : ''}`}>
+                                        {isbn && <QuantityButtons isbn={isbn} disabled={isOutOfStock} />}
                                     </div>
-                                    <ButtonAddToCart libro={producto} />
+                                    <div className='buy-now-container'>
+                                        <ButtonAddToCart libro={producto} showIcon={false} />
+                                        {/* <button type='button' className='buy-now'>Comprar ahora</button> */}
+                                    </div>
                                 </div>
                             </div>
 

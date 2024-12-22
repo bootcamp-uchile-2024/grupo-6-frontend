@@ -1,4 +1,4 @@
-import BusquedaLayout from "../layouts/BusquedaLayout";
+import Categorias from "../components/Categorias";
 import { MainLayout } from "../layouts/MainLayout";
 
 interface CategoriasPageProps {
@@ -10,7 +10,7 @@ export default function CategoriasPage(props: CategoriasPageProps) {
 
   return (
     <MainLayout>
-      <BusquedaLayout />
+      <Categorias />
     </MainLayout>
   );
 };

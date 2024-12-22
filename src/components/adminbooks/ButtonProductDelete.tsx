@@ -6,14 +6,17 @@ import Button from "react-bootstrap/esm/Button";
 
 const ButtonProductDelete = ({ libro }: { libro: ILibro | null }) => {
     const dispatch = useDispatch();
-
+    const loggedInUser = JSON.parse(localStorage.getItem('__redux__user__') || '{}');
     const handleAddProductDelete = async () => {
         if (libro) { // Verificar si product no es null
             dispatch(addProductModify(libro));
-            const response = await fetch(`${configuracion.urlJsonServerBackendProducts}/${libro.isbn}`, {
+            console.log("TOKEN: ", loggedInUser.token);
+            const response = await fetch(`${configuracion.urlJsonServerBackendProducts}${libro.isbn}`, {
                 method: 'DELETE',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${loggedInUser.token}`
+
                 }
             });
 

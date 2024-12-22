@@ -14,7 +14,7 @@ __Metodo HTTP__: POST <br>
 interface ILibro {
     isbn: string;                // Si - ISBN del libro  
     nombre: string;              // Si - Nombre del libro
-    autor: string[];             // Si - Autor del libro (array de strings)
+    autor: string;             // Si - Autor del libro 
     precio: number;              // Si -  Precio del libro
     stockLibro: number;          // Si - Cantidad en stock
     genero: string[];            // Si - Géneros del libro (array de strings)
@@ -97,7 +97,8 @@ interface ICreateUser {
     apellidoPaterno: string,
     correoElectronico: string,
     contrasena: string,
-    direccion?: IDireccion;
+    direccion?: IDireccion,
+    token?: string
 }
 ```
 
@@ -262,7 +263,7 @@ __Url__: ...<br>
 ```typescript
 interface ShoppingCartEntrada {
     nombre: string;                 // Nombre del libro
-    autor: string[];                // Autor del libro (array de strings)
+    autor: string;                // Autor del libro (array de strings)
     precio: number;                 // Precio del libro
     isbn: string;                   // ISBN del libro
     cantidad: number;               // Cantidad del ítem en el carrito

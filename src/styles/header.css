@@ -11,7 +11,7 @@
 
 .header-top {
     display: flex;
-    padding: 24px;
+    padding: 24px !important;
     justify-content: flex-end;
     align-items: center;
     gap: 42px;
@@ -23,7 +23,7 @@
 .header-nav {
     background-color: #F8F5F0;
     display: flex;
-    padding: 24px;
+    padding: 24px !important;
     justify-content: flex-end;
     align-items: center;
     gap: 24px;
@@ -45,49 +45,125 @@
 
 .container-herramientas {
     display: flex;
-    justify-content: center;
-    /* Alinea todos los elementos hacia la derecha */
+    justify-content: end;
     align-items: center;
-    /* Asegura que los elementos estén alineados verticalmente */
-    gap: 16px;
-    /* Espacio entre el input y los íconos */
+    gap: 42px;
     width: auto;
-    /* Evita que el contenedor se extienda más de lo necesario */
-    margin-right: 24px;
-    /* Alinea con el botón "Catálogo" */
 }
 
 .input-group {
     display: flex;
     align-items: center;
-    width: 400px !important;
+    width: 495px !important;
+    height: 42px;
 }
 
 /* Barra de búsqueda */
 .header-search-input {
+    flex: 1 !important;
+    width: 486px !important;
     border-radius: 20px 0 0 20px;
     border: 0 !important;
-    padding: 10px 15px;
     font-size: 16px;
 }
 
+.input-group .form-control:focus {
+    box-shadow: none;
+}
+
+.input-group .form-control:focus-visible,
+.input-group .input-group-text:focus-visible {
+    outline: none;
+}
+
 .header-search-button {
+    width: 486px !important;
     background-color: transparent;
     border: 1px solid #CCC;
     border-left: none;
     border-radius: 0 20px 20px 0;
     color: #975C4C;
     font-size: 18px;
-    padding: 10px 15px;
-
+    padding: 8px !important;
 }
 
 .icon-search-button {
     color: #975C4C;
 }
 
+.buttons-headers-top {
+    display: flex;
+    justify-content: flex-end;
+    width: 128px !important;
+    gap: 16px !important;
+}
+
+/* RESULTADOS BÚSQUEDA */
+.search-results {
+    position: absolute;
+    /* Para que los resultados se ubiquen justo debajo del input */
+    top: 100%;
+    /* Se coloca justo debajo del input */
+    left: 0;
+    width: 100%;
+    background-color: #455B73;
+    z-index: 9999;
+    /* Muy alto para que quede encima de otros elementos */
+    max-height: 300px;
+    overflow-y: auto;
+    /* Si hay muchos resultados, agrega un scroll */
+}
+
+.search-results {
+    background-color: #455B73;
+}
+
+.search-results ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.search-results a {
+    color: #FFF;
+    font-family: Sarabun;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.search-results li {
+    cursor: pointer;
+    padding: 12px;
+}
+
+.search-results li:hover,
+.search-results a:hover {
+    background-color: #B5D1F0;
+}
+
+.search-results p {
+    color: #FFFFFF;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-family: Sarabun;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0px;
+}
+
+.search-results p:hover {
+    color: #545454;
+}
+
 /* Íconos */
 .header-icon {
+    width: 56px;
+    height: 46px;
     display: flex;
     padding: 12px 16px;
     justify-content: center;
@@ -96,11 +172,32 @@
     border-radius: 16px;
     background: #455B73 !important;
     color: #F5FAFF !important;
+    position: relative;
 }
 
 .header-icon:hover {
     background-color: #D4E7FA !important;
     color: #455B73 !important;
+}
+
+.badge {
+    top: -18px !important;
+    right: 8px !important;
+    display: flex !important;
+    justify-content: center !important;
+    transform: translate(50%, -50%) !important;
+    color: #545454 !important;
+    padding: 4px;
+    font-family: Sarabun;
+    font-size: 10px !important;
+    font-style: normal;
+    line-height: normal;
+    font-weight: 800;
+    text-align: center;
+}
+
+.header-icon:hover .badge {
+    color: #D4E7FA !important;
 }
 
 .header-icon:active {
@@ -110,6 +207,12 @@
 .header-icon svg {
     width: 24px;
     height: 24px;
+}
+
+.cart-icon-container {
+    position: relative;
+    width: 26px;
+    height: 27px;
 }
 
 .menu-catalog-button {
@@ -128,7 +231,7 @@
 
 /* Menú de navegación */
 .menu-link {
-    color: #545454;
+    color: #545454 !important;
     display: flex;
     width: 164px;
     height: 33px;
@@ -154,6 +257,7 @@
     background: var(--Azul-Administrador-Default, #455B73) !important;
     display: flex;
     width: 167px;
+    height: 50px;
     padding: 12px 16px;
     justify-content: center;
     align-items: center;
@@ -167,6 +271,11 @@
     line-height: normal;
 }
 
+.menu-catalog-button::after {
+    display: none !important;
+    /* Elimina la flecha */
+}
+
 .menu-catalog-button:hover {
     background-color: #D4E7FA !important;
     color: #455B73 !important;
@@ -176,13 +285,15 @@
     box-shadow: 0 0 0 4px #455B73 !important;
 }
 
+.col-nav {
+    margin: 0 !important;
+}
+
 .menu-header {
-    /* gap: 16px; */
     display: flex;
-    padding: 24px;
     justify-content: flex-end;
     align-items: center;
-    gap: 24px;
+    gap: 16px;
     align-self: stretch;
 }
 
@@ -222,9 +333,7 @@
     background-color: #455B73;
     color: #FFFFFF;
     border: none;
-    /* Sin bordes */
     border-radius: 0;
-    /* Sin esquinas redondeadas */
 }
 
 .menu-column {
@@ -238,7 +347,6 @@
 .menu-column a {
     color: white;
     text-decoration: none;
-    display: block;
     margin-bottom: 5px;
 }
 

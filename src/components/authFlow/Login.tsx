@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ILoginUser } from '../../interfaces/ILoginUser';
-import { login } from '../../services/loginService'; // Importamos el servicio de login
+import { login } from '../../services/loginService';
 import '../../styles/login.css';
 import { useDispatch } from 'react-redux';
 import { loginAction } from '../../states/authSlice';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Col, Container, Row } from 'react-bootstrap';
+import { jwtDecode } from 'jwt-decode';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -20,7 +21,7 @@ const Login = () => {
         contrasena: ''
     });
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         // validación de campos vacíos
@@ -29,22 +30,28 @@ const Login = () => {
             return;
         }
 
-        // loginService para validar credenciales
-        const isValidLogin = login(form);
+        // Llama a loginService y esperamos su respuesta
+        const isValidLogin = await login(form);
+
         if (isValidLogin) {
             alert("Inicio de sesión exitoso.");
-            console.log("Inicio de sesión exitoso.");
 
+            // Extrae el token de localStorage
             const loggedInUser = JSON.parse(localStorage.getItem('__redux__user__') || '{}');
+            const decodedToken = jwtDecode<{ idUsuario: number; rol: string; exp: number }>(loggedInUser.token);
 
-            // actualizar el estado del store
-            dispatch(loginAction(loggedInUser));
+            // Actualizamos estado del store con datos extraídos del token
+            dispatch(loginAction({
+                idUsuario: loggedInUser.idUsuario,
+                rol: decodedToken.rol,
+                token: loggedInUser.token,
+            }));
 
-            // redirigir según rol 
-            if (loggedInUser?.rol === 'admin') {
-                navigate('/admin'); // redirigir al panel de administración
-            } else if (loggedInUser?.rol === 'user') {
-                navigate('/user'); // redirigir al panel de usuario
+            // Redirigimos según el rol del usuario
+            if (loggedInUser.rol === 'ADMIN') {
+                navigate('/admin');
+            } else if (loggedInUser.rol === 'USER') {
+                navigate('/user');
             }
 
         } else {
@@ -67,10 +74,10 @@ const Login = () => {
             <h3>Inicio de sesión</h3>
 
             <Row className='d-flex justify-content-center align-content-center'>
-                <Col Col lg={5} className='login-form'>
-                    <Form onSubmit={handleSubmit}>
+                <Col lg={5} className='login-form'>
+                    <Form onSubmit={handleSubmit} noValidate>
                         <Form.Group className="mb-3">
-                            <Form.Label htmlFor="correoElectronico">Correo electrónico</Form.Label>
+                            <Form.Label htmlFor="correoElectronico">Introduce tu correo electrónico</Form.Label>
                             <Form.Control
                                 type="email"
                                 id='correoElectronico'
@@ -78,23 +85,28 @@ const Login = () => {
                                 value={form.correoElectronico}
                                 onChange={handleChange}
                                 placeholder='Correo electrónico'
+                                isInvalid={error || !validCredential}
                                 required />
+                            <Form.Control.Feedback type="invalid">
+                                {error ? "Complete todos los campos." : "Nombre de usuario o contraseña incorrecta."}
+                            </Form.Control.Feedback>
                         </Form.Group>
 
                         <Form.Group className="mb-3">
-                            <Form.Label htmlFor="contrasena">Contrseña</Form.Label>
+                            <Form.Label htmlFor="contrasena">Introduce tu contraseña</Form.Label>
                             <Form.Control
                                 type="password"
                                 id='contrasena'
                                 name='contrasena'
                                 value={form.contrasena}
                                 onChange={handleChange}
-                                placeholder='Contrseña'
+                                placeholder='Contraseña'
+                                isInvalid={error || !validCredential}
                                 required />
+                            <Form.Control.Feedback type="invalid">
+                                {error ? "Complete todos los campos." : "Nombre de usuario o contraseña incorrecta."}
+                            </Form.Control.Feedback>
                         </Form.Group>
-
-                        {error && <p className="error">Complete todos los campos.</p>}
-                        {!validCredential && <p className="error">Nombre de usuario o contraseña incorrecta.</p>}
 
                         <Form.Group>
                             <Col className="d-flex justify-content-center link-olvidaste-contrasena">
@@ -111,12 +123,12 @@ const Login = () => {
                         </Form.Group>
                     </Form>
 
-                    <div className="d-flex justify-content-center link-crear-cuenta"> 
+                    <div className="d-flex justify-content-center link-crear-cuenta">
                         <Link to="/register">Crear cuenta</Link>
                     </div>
                 </Col>
-            </Row >
-        </Container >
+            </Row>
+        </Container>
     );
 };
 

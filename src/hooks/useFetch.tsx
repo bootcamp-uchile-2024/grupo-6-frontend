@@ -125,3 +125,126 @@ export function useFetchPut<T>(url: string, requestBody: T): { data: T | null, l
     return { data, loading, error };
 }
 
+export function useFetchGetDestacados<T>(url: string, paginaActual: number, cantidad: number, flag: boolean): { data: T | null, loading: boolean, error: string | null } {
+
+    const [data, setData] = useState<T | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+
+        const fetchData = async () => {
+            setLoading(true); // Reinicia el estado de loading
+            setError(null);  // Limpia errores previos
+
+            try {
+                const urlRequest = url.toString().concat(`?pagina=${paginaActual}&cantidad=${cantidad}&destacado=${flag}`);
+                console.log("URL generada:", `${url}?pagina=${paginaActual}&cantidad=${cantidad}&destacado=${flag}`);
+
+                const response = await fetch(urlRequest);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP Error: ${response.statusText} (${response.status})`);
+                }
+
+                const json = await response.json();
+                console.log("Datos de libros destacados obtenidos:", json); // Para depuración
+                setData(json);
+
+            } catch (err) {
+                console.error("Error en useFetchGetDestacados:", err); // Log detallado del error
+                setError(err instanceof Error ? err.message : "Error desconocido");
+
+            } finally {
+                setLoading(false); // Siempre termina cargando
+            }
+        };
+
+        fetchData();
+    }, [url, paginaActual, cantidad,flag]);
+
+    return { data, loading, error };
+}
+
+export function useFetchGetNovedades<T>(url: string, paginaActual: number, cantidad: number, flag: boolean): { data: T | null, loading: boolean, error: string | null } {
+
+    const [data, setData] = useState<T | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+
+        const fetchData = async () => {
+            setLoading(true); // Reinicia el estado de loading
+            setError(null);  // Limpia errores previos
+
+            try {
+                const urlRequest = url.toString().concat(`?pagina=${paginaActual}&cantidad=${cantidad}&novedades=${flag}`);
+                console.log("URL generada:", `${url}?pagina=${paginaActual}&cantidad=${cantidad}&novedades=${flag}`);
+
+                const response = await fetch(urlRequest);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP Error: ${response.statusText} (${response.status})`);
+                }
+
+                const json = await response.json();
+                console.log("Datos de libros novedades obtenidos:", json); // Para depuración
+                setData(json);
+
+            } catch (err) {
+                console.error("Error en useFetchGetNovedades:", err); // Log detallado del error
+                setError(err instanceof Error ? err.message : "Error desconocido");
+
+            } finally {
+                setLoading(false); // Siempre termina cargando
+            }
+        };
+
+        fetchData();
+    }, [url, paginaActual, cantidad,flag]);
+
+    return { data, loading, error };
+}
+
+
+export function useFetchGetTendencias<T>(url: string, paginaActual: number, cantidad: number, flag: boolean): { data: T | null, loading: boolean, error: string | null } {
+
+    const [data, setData] = useState<T | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+
+        const fetchData = async () => {
+            setLoading(true); // Reinicia el estado de loading
+            setError(null);  // Limpia errores previos
+
+            try {
+                const urlRequest = url.toString().concat(`?pagina=${paginaActual}&cantidad=${cantidad}&tendencia=${flag}`);
+                console.log("URL generada:", `${url}?pagina=${paginaActual}&cantidad=${cantidad}&tendencia=${flag}`);
+
+                const response = await fetch(urlRequest);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP Error: ${response.statusText} (${response.status})`);
+                }
+
+                const json = await response.json();
+                console.log("Datos de libros tendencias obtenidos:", json); // Para depuración
+                setData(json);
+
+            } catch (err) {
+                console.error("Error en useFetchGetTendencias:", err); // Log detallado del error
+                setError(err instanceof Error ? err.message : "Error desconocido");
+
+            } finally {
+                setLoading(false); // Siempre termina cargando
+            }
+        };
+
+        fetchData();
+    }, [url, paginaActual, cantidad,flag]);
+
+    return { data, loading, error };
+}

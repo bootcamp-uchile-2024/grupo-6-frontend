@@ -9,7 +9,7 @@ interface MainLayoutProps {
 }
 
 export const MainLayout = (props: MainLayoutProps) => {
-    const isAdmin = userHasRole(['admin']);
+    const isAdmin = userHasRole(['ADMIN']);
 
     console.log('¿Es admin?:', isAdmin);
 

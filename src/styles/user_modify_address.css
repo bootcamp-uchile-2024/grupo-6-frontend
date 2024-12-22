@@ -1,0 +1,214 @@
+/* TÍTULO */
+.user-mod-dir-title {
+    color: #545454;
+    font-size: 31px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-top: 24px;
+}
+
+/* SUBTÍTULOS */
+.user-mod-dir-sub {
+    color: #545454;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+/* DIRECCIÓN RADIO */
+.user-mod-dir-radio {
+    margin-bottom: 35px;
+}
+
+.user-mod-dir-radio input {
+    margin-right: 12px;
+    border-radius: 100%;
+    width: 24px;
+    height: 24px;
+    background-color: #D4D4D4;
+    cursor: pointer;
+    accent-color: #806259;
+}
+
+.user-mod-dir-radio input:checked {
+    background-color: #E1D5CA;
+}
+
+.user-mod-dir-radio input:hover {
+    background-color: #E1D5CA;
+}
+
+.user-mod-dir-radio label {
+    color: #545454;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+/* INPUTS Y SELECT */
+.user-mod-dir-form label {
+    color: #545454;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.user-mod-dir-form input,
+.user-mod-dir-form select,
+.user-mod-dir-form input,
+.user-mod-dir-form select option {
+    border-radius: 8px;
+    background-color: #F8F5F0 !important;
+    border: none;
+    outline: none;
+}
+
+.user-mod-dir-form input::placeholder {
+    color: #ADABAB;
+    font-family: Sarabun;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.user-mod-dir-form input:hover,
+.user-mod-dir-form input:active,
+.user-mod-dir-form input:focus,
+.user-mod-dir-form select:hover,
+.user-mod-dir-form select:active,
+.user-mod-dir-form select:focus {
+    outline: 2px solid #806259;
+    background-color: #F8F5F0;
+    box-shadow: none;
+}
+
+
+/* BOTONES */
+.user-mod-dir-buttons-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 24px;
+    margin-bottom: 240px;
+}
+
+.user-mod-dir-save,
+.user-mod-dir-cancel {
+    padding: 12px 16px 12px 16px;
+    border: none;
+    text-align: center;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    border-radius: 16px;
+}
+
+.user-mod-dir-save {
+    color: #FBFBFB;
+    background-color: #806259;
+    margin-left: 24px;
+}
+
+.user-mod-dir-cancel,
+.user-mod-dir-cancel:hover,
+.user-mod-dir-cancel:focus {
+    color: #806259 !important;
+    outline: 4px solid #806259 !important;
+    background-color: #FBFBFB !important;
+}
+
+.user-mod-dir-save svg,
+.user-mod-dir-cancel svg {
+    margin-left: 12px;
+}
+
+.user-mod-dir-save:hover,
+.user-mod-dir-save:active,
+.user-mod-dir-save:focus-visible,
+.user-mod-dir-save:focus {
+    background-color: #E1D5CA;
+    color: #806259;
+}
+
+.user-mod-dir-save:active {
+    outline: 4px solid #806259;
+}
+
+.user-mod-dir-save:hover svg path,
+.user-mod-dir-save:active svg path,
+.user-mod-dir-save:focus svg path,
+.user-mod-dir-save:focus-visible svg path {
+    fill: #806259;
+}
+
+/* MODAL */
+.user-mod-dir-modal .modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+    border: 4px solid #806259;
+    border-radius: 24px;
+    padding: 24px;
+}
+
+.user-mod-dir-modal .modal-header {
+    padding: 0px;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.user-mod-dir-modal .modal-header .btn-close {
+    padding: 0px;
+}
+
+.user-mod-dir-modal .modal-title {
+    font-weight: bolder;
+    color: #806259;
+    font-size: 25px;
+    margin: 0px;
+}
+
+.user-mod-dir-modal .modal-body {
+    padding: 0px;
+    text-align: center;
+    color: #806259;
+    font-size: 25px;
+    margin: 0px;
+}
+
+.user-mod-dir-modal .modal-body p {
+    margin: 0px;
+}
+
+.image-direcciones-icon {
+    margin-left: -20px;
+    margin-right: 16px;
+    color: #806259
+}
+
+.direcciones-list-button, .direcciones-button-new {
+    display: flex;
+    width: 229px;
+    height: 42px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px !important;
+    border-radius: 16px;
+    background: white !important;
+    color: #806259 !important;
+}

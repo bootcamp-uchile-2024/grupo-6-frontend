@@ -1,8 +1,13 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../../styles/user.css';
 import { useDispatch } from 'react-redux';
 import { logoutAction } from '../../states/authSlice';
 import { Row, Col, Button, Card } from "react-bootstrap";
+import { ICreateUserResponse } from '../../interfaces/ICreateUser';
+import { jwtDecode } from 'jwt-decode';
+import { configuracion } from '../../config/appConfiguration';
+import { useFetchGetAddressEnvioFacturacion, useFetchGeUser } from '../../hooks/useFetchUser';
+import { IDireccion } from '../../interfaces/IDireccion';
 
 const UserPage = () => {
     const navigate = useNavigate();
@@ -13,64 +18,111 @@ const UserPage = () => {
         navigate('/');
     }
 
-    return (
-        <div className="userPage-container p-4">
-            <div className="account-header-user">
-                <h1 className='title-user'>Tu perfil</h1>
-                <Button variant="none" className="logout-button" onClick={handleLogout}> Cerrar sesión</Button>
-            </div>
+    const handleNavigation = (path: string) => {
+        navigate(path);
+    };
 
-            <div className="account-user-content">
-                <Row>
-                    <Col md={4} className="text-center">
-                        <Card className="card-avatar">
-                            <div className="avatar">
-                                <div className="avatar-placeholder">
-                                    <img src={"https://placehold.co/240x240"}/* {avatar} */ alt="imagen" className='avatar-img' />
-                                </div>
-                                <Button variant="none" className="button-avatar">
-                                    Cambiar avatar
+    const loggedInUser = JSON.parse(localStorage.getItem('__redux__user__') || '{}');
+    const decodedToken = jwtDecode<{ idUsuario: number; rol: string; exp: number }>(loggedInUser.token);
+
+    const { data: userData, loading: loadingUser, error: errorUser } = useFetchGeUser<ICreateUserResponse>(configuracion.urlJsonServerBackendUsers, decodedToken.idUsuario);
+    const { dataEnvio: addressesEnvio, dataFacturacion: addressesFacturacion, loading: loadingAddress, error: errorAddress } = useFetchGetAddressEnvioFacturacion<IDireccion[]>(configuracion.urlJsonServerBackendUsers, decodedToken.idUsuario);
+
+    if (loadingUser) return <p>Cargando datos del usuario...</p>
+    if (errorUser) return <p>Error en la consulta de datos del usuario {errorUser}</p>
+
+    if (loadingAddress) return <p>Cargando datos de las direcciones del usuario...</p>
+    if (errorAddress) return <p>Error en la consulta de las direcciones del usuario {errorAddress}</p>
+
+    return (
+        <>
+            <div className="userPage-container p-4">
+                <div className="account-header-user">
+                    <h1 className='title-user'>Bienvenido/a de vuelta</h1>
+                    <Button variant="none" className="logout-button" onClick={handleLogout}> Cerrar sesión</Button>
+                </div>
+
+                <div className="account-user-content">
+                    <Row className="account-user-cuenta-direccion">
+                        <Col md={5}>
+                            <Card className="datos-cuenta">
+                                <h2 className="mb-3">Datos de la cuenta</h2>
+                                {userData ? (
+                                    <>
+                                        <p><b>Nombre completo:</b> {userData.nombres} {userData.apellidoPaterno} {userData.apellidoMaterno} </p>
+                                        <p><b>Correo electrónico:</b> {userData.correoElectronico}</p>
+
+                                    </>
+                                ) : (
+                                    <div>No se encontraron datos del usuario.</div>
+                                )}
+                            </Card>
+                        </Col>
+                        <Col md={1}></Col>
+                        <Col md={2}>
+                            <div className="d-flex flex-column gap-2">
+                                <Button variant="none" className='edit-dato-button' onClick={() => handleNavigation("/user/edit/${idUsuario}")}>
+                                    Editar datos
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                        <path fillRule="evenodd" clipRule="evenodd" d="M18.517 0.270363C18.1565 -0.090121 17.572 -0.090121 17.2115 0.270363L13.3187 4.16322C13.3129 4.16868 13.3072 4.17423 13.3016 4.17986C13.296 4.1855 13.2904 4.19119 13.285 4.19693L0.270363 17.2115C0.0972524 17.3847 0 17.6194 0 17.8643V23.0769C0 23.5867 0.413276 24 0.923077 24H6.13575C6.38056 24 6.61535 23.9027 6.78846 23.7296L23.7296 6.78846C24.0901 6.42798 24.0901 5.84352 23.7296 5.48303L18.517 0.270363ZM13.9545 6.13822L1.84615 18.2466V22.1538H5.7534L17.8618 10.0455L13.9545 6.13822ZM19.1672 8.74003L21.7715 6.13575L17.8643 2.22851L15.26 4.83279L19.1672 8.74003Z" fill="curretColor" />
+                                        <path fillRule="evenodd" clipRule="evenodd" d="M18.517 0.270363C18.1565 -0.090121 17.572 -0.090121 17.2115 0.270363L13.3187 4.16322C13.3129 4.16868 13.3072 4.17423 13.3016 4.17986C13.296 4.1855 13.2904 4.19119 13.285 4.19693L0.270363 17.2115C0.0972524 17.3847 0 17.6194 0 17.8643V23.0769C0 23.5867 0.413276 24 0.923077 24H6.13575C6.38056 24 6.61535 23.9027 6.78846 23.7296L23.7296 6.78846C24.0901 6.42798 24.0901 5.84352 23.7296 5.48303L18.517 0.270363ZM13.9545 6.13822L1.84615 18.2466V22.1538H5.7534L17.8618 10.0455L13.9545 6.13822ZM19.1672 8.74003L21.7715 6.13575L17.8643 2.22851L15.26 4.83279L19.1672 8.74003Z" fill="currentColor" />
                                     </svg>
                                 </Button>
                             </div>
-                        </Card>
-                    </Col>
+                        </Col>
+                        <Col md={4}></Col>
 
-                    <Col md={5}>
-                        <Card className="datos-cuenta">
-                            <h2 className="mb-3">Datos de la cuenta</h2>
-                            <p><b>Nombre completo:</b> Juan Idilio Pérez Martínez</p>
-                            <p><b>Correo electrónico:</b> eljuancho@undominio.cl</p>
-                            <p><b>Dirección de despacho actual:</b> Los Olmos 666, Macul, RM</p>
+                    </Row>
+
+                    <Row className="account-user-cuenta-direccion">
+                        <Col md={5}>
+                            <Card className="datos-cuenta">
+                                <h2 className="mb-3">Tus direcciones</h2>
+
+                                <p><b>Dirección de despacho actual:</b></p>
+                                {addressesEnvio ? (addressesEnvio.map((item) => (
+                                    <>
+                                        <><p>{item.calle} {item.numeroCalle}, {item.ciudad}, {item.comuna}, {item.region}.</p></>
+
+                                    </>
+                                ))) :
+                                    (
+                                        <><p>No existen direcciones de envio.</p></>
+                                    )}
+
+                                <p><b>Dirección de facturacion:</b></p>
+                                {addressesFacturacion ? (addressesFacturacion.map((itemF) => (
+                                    <>
+                                        <p>{itemF.calle} {itemF.numeroCalle}, {itemF.ciudad}, {itemF.comuna}, {itemF.region}.</p>
+
+                                    </>
+                                ))) :
+                                    (
+                                        <><p>No existen direcciones de facturación.</p></>
+                                    )}
+
+                            </Card>
+                        </Col>
+                        <Col md={1}></Col>
+                        <Col md={2}>
                             <div className="d-flex flex-column gap-2">
-                                <Button variant="none" className='edit-dato-button'>
-                                    Editar datos personales
-                                </Button>
-                                <Button variant="none" className='direcciones-button'>
-                                    Gestionar direcciones de despacho
-                                </Button>
+                                <Link to={`/user/address`}>
+
+                                    <Button variant="none" className='direcciones-button'>
+                                        Gestionar direcciones
+                                        <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" className='image-icon'>
+                                            <path d="M9 21H4C3.44772 21 3 20.5523 3 20V12.4142C3 12.149 3.10536 11.8946 3.29289 11.7071L11.2929 3.70711C11.6834 3.31658 12.3166 3.31658 12.7071 3.70711L20.7071 11.7071C20.8946 11.8946 21 12.149 21 12.4142V20C21 20.5523 20.5523 21 20 21H15M9 21H15M9 21V15C9 14.4477 9.44772 14 10 14H14C14.5523 14 15 14.4477 15 15V21" stroke="#ffffff" stroke-linejoin="round" />
+                                        </svg>
+                                    </Button>
+                                </Link>
                             </div>
-                        </Card>
-                    </Col>
+                        </Col>
+                        <Col md={4}></Col>
 
-                    <Col md={3}>
-                        <Card className="text-center biblioteca">
-                            <h2 className="mb-3">Biblioteca</h2>
-                            <p>Aún no has realizado pedidos</p>
-                            <Button variant="primary" className='library-button'>
-                                Tu biblioteca
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <path d="M3.03262 0C2.78398 0.0490058 2.60463 0.279119 2.60871 0.545455V15.2727H0.521754C0.505449 15.2727 0.489145 15.2727 0.472841 15.2727C0.203819 15.2983 -0.00202291 15.5348 1.50008e-05 15.8182V18C1.50008e-05 18.3004 0.23439 18.5455 0.521754 18.5455H2.08697V22.6364C2.08697 23.3821 2.678 24 3.39132 24C4.10463 24 4.69566 23.3821 4.69566 22.6364V18.5455H19.3044V22.6364C19.3044 23.3821 19.8954 24 20.6087 24C21.322 24 21.913 23.3821 21.913 22.6364V18.5455H23.4783C23.7656 18.5455 24 18.3004 24 18V15.8182C24 15.5178 23.7656 15.2727 23.4783 15.2727H21.8478C21.8621 15.2003 21.8621 15.1236 21.8478 15.0511L19.2065 3.375C19.1495 3.09375 18.8927 2.90625 18.6196 2.94886C18.6094 2.95313 18.5971 2.95952 18.587 2.96591L16.0435 3.59659C15.8499 3.64347 15.697 3.80327 15.6522 4.00568V3.81818C15.6522 3.51776 15.4178 3.27273 15.1304 3.27273H12V0.545455C12 0.245029 11.7656 0 11.4783 0H7.33697C7.32678 0 7.31455 0 7.30436 0H3.13045C3.11414 0 3.09784 0 3.08153 0C3.06523 0 3.04893 0 3.03262 0ZM3.65219 1.09091H6.78262V15.2727H3.65219V1.09091ZM7.8261 1.09091H10.9565V3.76705C10.9565 3.78409 10.9565 3.80114 10.9565 3.81818V15.2727H7.8261V1.09091ZM4.54892 2.18182C4.26156 2.22443 4.05979 2.50355 4.10056 2.80398C4.14132 3.1044 4.4083 3.31534 4.69566 3.27273H5.73914C5.92664 3.27486 6.10191 3.17259 6.1977 3.00213C6.29145 2.83168 6.29145 2.62287 6.1977 2.45241C6.10191 2.28196 5.92664 2.17969 5.73914 2.18182H4.69566C4.67936 2.18182 4.66305 2.18182 4.64675 2.18182C4.63045 2.18182 4.61414 2.18182 4.59784 2.18182C4.58153 2.18182 4.56523 2.18182 4.54892 2.18182ZM8.72283 2.18182C8.43547 2.22443 8.2337 2.50355 8.27447 2.80398C8.31523 3.1044 8.58221 3.31534 8.86957 3.27273H9.91305C10.1006 3.27486 10.2758 3.17259 10.3716 3.00213C10.4654 2.83168 10.4654 2.62287 10.3716 2.45241C10.2758 2.28196 10.1006 2.17969 9.91305 2.18182H8.86957C8.85327 2.18182 8.83697 2.18182 8.82066 2.18182C8.80436 2.18182 8.78805 2.18182 8.77175 2.18182C8.75544 2.18182 8.73914 2.18182 8.72283 2.18182ZM18.3098 4.14205L18.6359 5.60795C18.5258 5.40128 18.3037 5.29261 18.0815 5.33523C18.0652 5.33949 18.0489 5.34588 18.0326 5.35227L17.5272 5.47159C17.3152 5.50994 17.1481 5.67827 17.1033 5.89773L16.7935 4.51705L18.3098 4.14205ZM15.6522 4.24432L18.1467 15.2727H15.6522V4.24432ZM12 4.36364H14.6087V15.2727H12V4.36364ZM12.8967 5.45455C12.6094 5.49716 12.4076 5.77628 12.4484 6.0767C12.4891 6.37713 12.7561 6.58807 13.0435 6.54545H13.5652C13.7527 6.54759 13.928 6.44531 14.0238 6.27486C14.1175 6.1044 14.1175 5.8956 14.0238 5.72514C13.928 5.55469 13.7527 5.45241 13.5652 5.45455H13.0435C13.0272 5.45455 13.0109 5.45455 12.9946 5.45455C12.9783 5.45455 12.962 5.45455 12.9457 5.45455C12.9294 5.45455 12.913 5.45455 12.8967 5.45455ZM18.7011 5.91477L20.2826 12.9205C20.1664 12.7884 19.9952 12.7266 19.8261 12.75C19.7976 12.7543 19.7711 12.7585 19.7446 12.767C19.7344 12.7713 19.7221 12.7777 19.712 12.7841L19.2065 12.9034C18.9946 12.9418 18.8274 13.1101 18.7826 13.3295L17.2174 6.375C17.356 6.53693 17.5741 6.59659 17.7717 6.52841L18.2772 6.40909C18.5095 6.36222 18.6827 6.1598 18.7011 5.91477ZM4.54892 13.0909C4.26156 13.1335 4.05979 13.4126 4.10056 13.7131C4.14132 14.0135 4.4083 14.2244 4.69566 14.1818H5.73914C5.92664 14.1839 6.10191 14.0817 6.1977 13.9112C6.29145 13.7408 6.29145 13.532 6.1977 13.3615C6.10191 13.1911 5.92664 13.0888 5.73914 13.0909H4.69566C4.67936 13.0909 4.66305 13.0909 4.64675 13.0909C4.63045 13.0909 4.61414 13.0909 4.59784 13.0909C4.58153 13.0909 4.56523 13.0909 4.54892 13.0909ZM8.72283 13.0909C8.43547 13.1335 8.2337 13.4126 8.27447 13.7131C8.31523 14.0135 8.58221 14.2244 8.86957 14.1818H9.91305C10.1006 14.1839 10.2758 14.0817 10.3716 13.9112C10.4654 13.7408 10.4654 13.532 10.3716 13.3615C10.2758 13.1911 10.1006 13.0888 9.91305 13.0909H8.86957C8.85327 13.0909 8.83697 13.0909 8.82066 13.0909C8.80436 13.0909 8.78805 13.0909 8.77175 13.0909C8.75544 13.0909 8.73914 13.0909 8.72283 13.0909ZM12.8967 13.0909C12.6094 13.1335 12.4076 13.4126 12.4484 13.7131C12.4891 14.0135 12.7561 14.2244 13.0435 14.1818H13.5652C13.7527 14.1839 13.928 14.0817 14.0238 13.9112C14.1175 13.7408 14.1175 13.532 14.0238 13.3615C13.928 13.1911 13.7527 13.0888 13.5652 13.0909H13.0435C13.0272 13.0909 13.0109 13.0909 12.9946 13.0909C12.9783 13.0909 12.962 13.0909 12.9457 13.0909C12.9294 13.0909 12.913 13.0909 12.8967 13.0909ZM20.3967 13.4318L20.7065 14.7614L19.1902 15.1364L18.8967 13.8068C19.0353 13.9688 19.2534 14.0284 19.4511 13.9602L19.9565 13.8409C20.1685 13.8111 20.3438 13.6491 20.3967 13.4318ZM1.04349 16.3636H22.9565V17.4545H1.04349V16.3636ZM3.13045 18.5455H3.65219V22.6364C3.65219 22.7919 3.54009 22.9091 3.39132 22.9091C3.24254 22.9091 3.13045 22.7919 3.13045 22.6364V18.5455ZM20.3478 18.5455H20.8696V22.6364C20.8696 22.7919 20.7575 22.9091 20.6087 22.9091C20.4599 22.9091 20.3478 22.7919 20.3478 22.6364V18.5455Z" fill="currentColor" />
-                                </svg>
-                            </Button>
-                        </Card>
-                    </Col>
-                </Row>
+                    </Row>
+                </div>
+
             </div>
-
-        </div>
+        </>
     );
 };
 
