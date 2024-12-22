@@ -8,7 +8,7 @@ import { configuracion } from '../config/appConfiguration.ts'
 import { Col, Container, Row } from 'react-bootstrap'
 import libreria from '../assets/images/libreria.svg'
 
-export function Categorias() {
+const Categorias = () => {
 
   const [libros, setLibros] = useState<ILibro[]>([]);
   const [librosExist, setLibrosExist] = useState<boolean>(false);
@@ -221,3 +221,5 @@ export function Categorias() {
     </Container>
   );
 };
+
+export default Categorias;
