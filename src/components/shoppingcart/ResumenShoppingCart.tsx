@@ -1,4 +1,3 @@
-/* eslint-disable no-constant-binary-expression */
 import { RootType } from "../../states/store";
 import { ShoppingCartEntrada } from "../../interfaces/ShoppingCartEntrada";
 import '../../styles/resumen_shopping_cart.css'
