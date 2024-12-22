@@ -17,7 +17,7 @@ const AdminUserModify = () => {
         apellidoPaterno: '',
         apellidoMaterno: '',
         correoElectronico: '',
-        contrasena: ''
+        /* contrasena: '' */
     });
     const loggedInUser = JSON.parse(localStorage.getItem('__redux__user__') || '{}');
 
@@ -117,7 +117,7 @@ const AdminUserModify = () => {
                             />
                         </Form.Group>
 
-                        <Form.Group className="mb-3">
+                        {/* <Form.Group className="mb-3">
                             <Form.Label htmlFor="contrasena">Contraseña</Form.Label>
                             <Form.Control
                                 type="password"
@@ -127,7 +127,7 @@ const AdminUserModify = () => {
                                 onChange={handleChange}
                                 placeholder={userData.contrasena}
                             />
-                        </Form.Group>
+                        </Form.Group> */}
 
                         <Form.Group>
                             <Col className="d-flex justify-content-center">

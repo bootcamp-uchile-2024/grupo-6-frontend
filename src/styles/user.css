@@ -13,6 +13,7 @@
     align-items: center;
     margin-bottom: 24px;
 }
+
 .account-header-user {
     display: flex;
     justify-content: space-between;
@@ -73,7 +74,7 @@
     align-items: center;
 }
 
-.button-avatar, .edit-dato-button, .direcciones-button, .library-button {
+.edit-dato-button, .direcciones-button, .library-button {
     display: flex;
     align-items: center;
     gap: 12px; /* Espaciado entre texto e ícono */
@@ -81,9 +82,8 @@
     padding: 8px 16px;
 }
 
-.button-avatar,
 .edit-dato-button {
-    display: flex;
+    display: flex !important;
     width: 174px;
     height: 42px;
     padding: 8px 16px;
@@ -96,29 +96,11 @@
     color: #FBFBFB !important;
 }
 
-.button-avatar {
-    width: 202px;
-    height: 50px;
-}
-
-
-.button-avatar svg {
-    width: 24px;
-    height: 24px;
-    fill: #FBFBFB !important;
-}
-
-.button-avatar:hover,
 .edit-dato-button:hover {
     background-color: #E1D5CA !important;
     color: #975C4C !important;
 }
 
-.button-avatar:hover svg {
-    fill: #975C4C !important;
-}
-
-.button-avatar:active,
 .edit-dato-button:active {
     background-color: #E1D5CA !important;
     border: 2px solid #975C4C !important;

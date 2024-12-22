@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import { IDireccion } from "../interfaces/IDireccion";
 
-
 export function useFetchGeUser<T>(url: string, idUsuario: number): { data: T | null, loading: boolean, error: string | null } {
 
     const [data, setData] = useState<T | null>(null);
