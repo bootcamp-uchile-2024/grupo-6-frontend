@@ -146,6 +146,8 @@
     font-size: 14px;
 }
 
+/* <<<<<<<<<< PRIMERA PANTALLA DEL CARRITO >>>>>>>>>> */
+
 /* QUANTITY BUTTONS */
 .shoppingcart-item-detail-td-quantity-1 .quantity-buttons {
     display: flex;
@@ -189,7 +191,7 @@
     line-height: normal;
 }
 
-.cart-total-pagar h2{
+.cart-total-pagar h2 {
     color: var(--Grises-Text-Default, #545454);
     text-align: center;
     font-family: Sarabun;
@@ -267,4 +269,72 @@
 .seguir-comprando-button .btn:active,
 .cart-action-button .btn:active {
     border: 4px solid #806259 !important;
+}
+
+/* <<<<<<<<<< MÉTODOS DE PAGO >>>>>>>>>> */
+
+.item-top-resumen {
+    margin-top: 24px !important;
+    margin-bottom: 24px !important;
+}
+
+.item-top-resumen h2,
+.metodo-pago-medio {
+    color: #545454;
+    font-family: Sarabun;
+    font-size: 31px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.metodos-pago-total {
+    color: var(--Grises-Text-Default, #545454);
+    font-family: Sarabun;
+    font-size: 39px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+}
+
+.metodo-pago-medio {
+    text-align: center;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.back-to-resume .btn-primary,
+.back-to-resume .btn-primary:hover,
+.back-to-resume .btn-primary:active,
+.back-to-resume .btn-primary:focus,
+.back-to-resume .btn-primary:focus-visible {
+    border-radius: 16px;
+    outline: 4px solid #806259;
+    background-color: white !important;
+    width: 226px;
+    height: 50px;
+    color: #806259 !important;
+    font-size: 20px;
+    border: none;
+    padding: 0px;
+    box-shadow: none;
+}
+
+.back-to-resume svg {
+    margin-right: 12px;
+}
+
+.shoppingcart-items {
+    width: 100%;
+    margin-bottom: 216px;
+}
+
+#boton-transferencia-bancaria,
+#boton-tu-banco {
+    color: #545454;
+    font-family: Sarabun;
+    font-size: 31px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
 }

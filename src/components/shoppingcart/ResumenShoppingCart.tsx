@@ -72,7 +72,7 @@ function ResumenShoppingCart() {
                             </Link>
                         </Col>
                         <Col className="seguir-comprando-button" lg={2}>
-                            <Link to={`/categorias`}>
+                            <Link to={`/shoppingcart-payment/`}>
                                 <Button variant='none' className='md-2'>
                                     Pagar el pedido
                                 </Button>
@@ -82,7 +82,7 @@ function ResumenShoppingCart() {
                 </div>
 
                 <div>
-                    <Row md="12" style={{ height: '4rem', width: '75.25rem' }}>
+                    <Row md="12" style={{ height: '4rem'}}>
                         <Col md="5">
                             <h3 className='fw-bold'>Total a Pagar: ${calculateTotalConDespacho(shoppingCartProduct).toLocaleString()}</h3>
                         </Col>
@@ -92,7 +92,7 @@ function ResumenShoppingCart() {
                 </div>
 
                 <div>
-                    <Row md="12" style={{ height: '4rem', width: '75.25rem' }}>
+                    <Row md="12" style={{ height: '4rem'}}>
                         <Col md="6">
                         </Col>
                         <Col md="3">
@@ -131,7 +131,7 @@ function ResumenShoppingCart() {
 
                 <div className="d-flex align-items-center p-3 border rounded">
                     {/* Seleccionar dirección */}
-                    <Row md="12" style={{ height: '4rem', width: '75.25rem' }}>
+                    <Row md="12" style={{ height: '4rem'}}>
                     <Form.Group className="flex-grow-1 me-3 d-flex align-items-center">
                         <Col md="2"></Col>
                         <Col md="4">
