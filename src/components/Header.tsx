@@ -53,15 +53,17 @@ function Header() {
   );
 
   // HANDLES PARA BÚSQUEDA
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(event.target.value);
-  };
+  const handleSearchChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const searchQuery = event.target.value
+    setQuery(searchQuery);
 
-  const handleSearch = async () => {
-    if (query.trim() === "") return;
+    if (searchQuery.trim() === '') {
+      setResults([]); // Limpiar resultados si no hay texto en la búsqueda
+      return;
+    }
 
     try {
-      const response = await fetch(`${configuracion.urlJsonServerBackendDetailsSearch}?query=${query}`, {
+      const response = await fetch(`${configuracion.urlJsonServerBackendDetailsSearch}?query=${searchQuery}`, {
         method: 'GET',
         headers: { 'accept': 'application/json' }
       });
@@ -70,11 +72,16 @@ function Header() {
         const data = await response.json();
         setResults(data.productos);
       } else {
-        console.error("Error en la búsqueda");
+        console.error('Error en la búsqueda');
       }
     } catch (error) {
-      console.error("Error al realizar la petición:", error);
+      console.error('Error al realiar la petición', error);
     }
+  };
+
+  const handleSearchClick = async () => {
+    if (query.trim() === "") return;
+    navigate('/categorias', { state: { query: query } });
   };
 
   const searchResultsRef = useRef<HTMLDivElement>(null);
@@ -109,7 +116,7 @@ function Header() {
                   onChange={handleSearchChange} />
                 <button
                   className="input-group-text bg-white border-0"
-                  onClick={handleSearch}>
+                  onClick={handleSearchClick}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none" className="icon-search-button">
                     <path fillRule="evenodd" clipRule="evenodd" d="M10.2 3.02695C5.89217 3.02695 2.4 6.51913 2.4 10.827C2.4 15.1347 5.89218 18.627 10.2 18.627C14.5078 18.627 18 15.1347 18 10.827C18 6.51913 14.5078 3.02695 10.2 3.02695ZM0 10.827C0 5.19364 4.56669 0.626953 10.2 0.626953C15.8333 0.626953 20.4 5.19364 20.4 10.827C20.4 13.2154 19.5791 15.412 18.204 17.1502L23.6473 22.5772C24.1166 23.0451 24.1177 23.8049 23.6498 24.2742C23.1819 24.7435 22.4221 24.7447 21.9527 24.2768L16.505 18.8454C14.7697 20.2118 12.5801 21.027 10.2 21.027C4.56669 21.027 0 16.4602 0 10.827Z" fill="currentColor" />
                   </svg>
