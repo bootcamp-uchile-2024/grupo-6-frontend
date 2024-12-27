@@ -34,7 +34,6 @@ function Filtros({ actualizarGeneros, actualizarEditoriales, actualizarPrecioMin
         return response.json();
       })
       .then((data) => {
-        console.log('Géneros recibidos:', data); // para ver géneros que llegan
         setGeneros(data);
       })
       .catch((error) => console.error('Hubo un error:', error));
@@ -50,7 +49,6 @@ function Filtros({ actualizarGeneros, actualizarEditoriales, actualizarPrecioMin
         return response.json();
       })
       .then((data) => {
-        console.log('Editoriales recibidas:', data); // para ver editoriales que llegan
         setEditoriales(data);
       })
       .catch((error) => console.error('Hubo un error:', error));
@@ -62,7 +60,6 @@ function Filtros({ actualizarGeneros, actualizarEditoriales, actualizarPrecioMin
       ...generosFiltrados,
       [e.target.value]: e.target.checked,
     };
-    console.log('Estado actualizado:', nuevoEstado); // géneros que están marcados
     setGenerosFiltrados(nuevoEstado);
   };
 

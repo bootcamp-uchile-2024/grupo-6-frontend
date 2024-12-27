@@ -7,6 +7,7 @@ import { ILibroPaginado } from '../interfaces/ILibroPaginado.tsx'
 import { configuracion } from '../config/appConfiguration.ts'
 import { Col, Container, Row } from 'react-bootstrap'
 import libreria from '../assets/images/libreria.svg'
+import { useLocation } from 'react-router-dom'
 
 const Categorias = () => {
 
@@ -19,6 +20,35 @@ const Categorias = () => {
   const [editorialesSeleccionadas, setEditorialesSeleccionadas] = useState<string[]>([]);
   const [precioMinimo, setPrecioMinimo] = useState<number | null>(null);
   const [precioMaximo, setPrecioMaximo] = useState<number | null>(null);
+  const [query, setQuery] = useState<string>("");
+
+  // Usamos useLocation para obtener el estado que pasamos desde Header
+  const location = useLocation();
+  const queryFromUrl = location.state?.query || '';  // Usamos el estado pasado desde Header
+
+  useEffect(() => {
+    setQuery(queryFromUrl); // Actualizar el estado local con el query desde la URL
+  }, [queryFromUrl]);
+
+  useEffect(() => {
+    async function getLibros() {
+      const queryParam = query ? `query=${encodeURIComponent(query)}` : '';
+      const url = configuracion.urlJsonServerBackendDetailsSearch.concat(`?pagina=${paginaActual}&cantidad=${cantidad}&${queryParam}`);
+
+      const response = await fetch(url);
+      if (!response.ok) {
+        console.log('Error al obtener los productos');
+        setLibrosExist(false);
+        return;
+      }
+      const librosJson: ILibroPaginado = await response.json();
+      setLibros(librosJson.productos);
+      setLibrosExist(true);
+      setTotalPaginas(librosJson.totalPaginas);
+    }
+
+    getLibros();
+  }, [paginaActual, cantidad, query]);  // Reaccionar a cambios en el query
 
   // Actualiza los filtros de géneros
   const actualizarGenerosSeleccionados = (nuevosGeneros: string[]) => {
@@ -51,36 +81,35 @@ const Categorias = () => {
           : '';
         const precioMinimoQuery = precioMinimo ? `priceMin=${encodeURIComponent(precioMinimo)}` : '';
         const precioMaximoQuery = precioMaximo ? `priceMax=${encodeURIComponent(precioMaximo)}` : '';
-  
+
         const url = configuracion.urlJsonServerBackendCatalog.toString().concat(
           `?pagina=${paginaActual}&cantidad=${cantidad}${generosQuery ? '&' + generosQuery : ''}${editorialesQuery ? '&' + editorialesQuery : ''}${precioMinimoQuery ? '&' + precioMinimoQuery : ''}${precioMaximoQuery ? '&' + precioMaximoQuery : ''}`
         );
-  
+
         console.log('URL generada:', url);
-  
+
         const response = await fetch(url, {
           method: 'GET',
         });
-  
+
         if (!response.ok) {
           console.log('No pudimos obtener los productos');
           setLibrosExist(false);
           return; // Salir si no hay respuesta OK
         }
-  
+
         const librosJson: ILibroPaginado = await response.json();
         setLibros(librosJson?.productos);
         setLibrosExist(true);
         setTotalPaginas(librosJson.totalPaginas);
-        console.log(librosJson);
       } catch (error) {
         console.error('Error al obtener los productos', error); // Usando 'error'
         setLibrosExist(false);
       }
     }
-  
+
     getLibros();
-  }, [paginaActual, cantidad, generosSeleccionados, editorialesSeleccionadas, precioMinimo, precioMaximo]);
+  }, [paginaActual, cantidad, generosSeleccionados, editorialesSeleccionadas, precioMinimo, precioMaximo, query]);
 
   /* Handles Paginación */
   const handlePaginaAnterior = () => {
@@ -138,7 +167,7 @@ const Categorias = () => {
         <Col lg={2}>
           <Filtros
             actualizarGeneros={actualizarGenerosSeleccionados}
-            actualizarEditoriales={actualizarEditorialesSeleccionadas} 
+            actualizarEditoriales={actualizarEditorialesSeleccionadas}
             actualizarPrecioMinimo={actualizarPrecioMinimo}
             actualizarPrecioMaximo={actualizarPrecioMaximo} />
         </Col>
