@@ -42,7 +42,7 @@ export function CajaCategoria(props: CajaCategoriaProps) {
       </div>
 
       <div className="texto-categoria">
-        <Link to={`/product-detail/${props.isbn}`}> {/* Cambiar con back */}
+        <Link to={`/product-detail/${props.isbn}`}>
           <p className='texto-nombre-libro'>{props.nombre}</p>
         </Link>
         <p className='texto-autor'>{props.autor}</p>

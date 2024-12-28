@@ -81,7 +81,13 @@ function Header() {
 
   const handleSearchClick = async () => {
     if (query.trim() === "") return;
-    navigate('/categorias', { state: { query: query } });
+    navigate('/search-results', { state: { query: query } });
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      handleSearchClick(); 
+    }
   };
 
   const searchResultsRef = useRef<HTMLDivElement>(null);
@@ -113,7 +119,8 @@ function Header() {
                   placeholder="Busca tus libros aquí"
                   className="header-search-input"
                   value={query}
-                  onChange={handleSearchChange} />
+                  onChange={handleSearchChange}
+                  onKeyDown={handleKeyDown} />
                 <button
                   className="input-group-text bg-white border-0"
                   onClick={handleSearchClick}>

@@ -7,7 +7,6 @@ import { ILibroPaginado } from '../interfaces/ILibroPaginado.tsx'
 import { configuracion } from '../config/appConfiguration.ts'
 import { Col, Container, Row } from 'react-bootstrap'
 import libreria from '../assets/images/libreria.svg'
-import { useLocation } from 'react-router-dom'
 
 const Categorias = () => {
 
@@ -20,35 +19,6 @@ const Categorias = () => {
   const [editorialesSeleccionadas, setEditorialesSeleccionadas] = useState<string[]>([]);
   const [precioMinimo, setPrecioMinimo] = useState<number | null>(null);
   const [precioMaximo, setPrecioMaximo] = useState<number | null>(null);
-  const [query, setQuery] = useState<string>("");
-
-  // Usamos useLocation para obtener el estado que pasamos desde Header
-  const location = useLocation();
-  const queryFromUrl = location.state?.query || '';  // Usamos el estado pasado desde Header
-
-  useEffect(() => {
-    setQuery(queryFromUrl); // Actualizar el estado local con el query desde la URL
-  }, [queryFromUrl]);
-
-  useEffect(() => {
-    async function getLibros() {
-      const queryParam = query ? `query=${encodeURIComponent(query)}` : '';
-      const url = configuracion.urlJsonServerBackendDetailsSearch.concat(`?pagina=${paginaActual}&cantidad=${cantidad}&${queryParam}`);
-
-      const response = await fetch(url);
-      if (!response.ok) {
-        console.log('Error al obtener los productos');
-        setLibrosExist(false);
-        return;
-      }
-      const librosJson: ILibroPaginado = await response.json();
-      setLibros(librosJson.productos);
-      setLibrosExist(true);
-      setTotalPaginas(librosJson.totalPaginas);
-    }
-
-    getLibros();
-  }, [paginaActual, cantidad, query]);  // Reaccionar a cambios en el query
 
   // Actualiza los filtros de géneros
   const actualizarGenerosSeleccionados = (nuevosGeneros: string[]) => {
@@ -86,8 +56,6 @@ const Categorias = () => {
           `?pagina=${paginaActual}&cantidad=${cantidad}${generosQuery ? '&' + generosQuery : ''}${editorialesQuery ? '&' + editorialesQuery : ''}${precioMinimoQuery ? '&' + precioMinimoQuery : ''}${precioMaximoQuery ? '&' + precioMaximoQuery : ''}`
         );
 
-        console.log('URL generada:', url);
-
         const response = await fetch(url, {
           method: 'GET',
         });
@@ -102,6 +70,7 @@ const Categorias = () => {
         setLibros(librosJson?.productos);
         setLibrosExist(true);
         setTotalPaginas(librosJson.totalPaginas);
+        console.log(librosJson);
       } catch (error) {
         console.error('Error al obtener los productos', error); // Usando 'error'
         setLibrosExist(false);
@@ -109,7 +78,7 @@ const Categorias = () => {
     }
 
     getLibros();
-  }, [paginaActual, cantidad, generosSeleccionados, editorialesSeleccionadas, precioMinimo, precioMaximo, query]);
+  }, [paginaActual, cantidad, generosSeleccionados, editorialesSeleccionadas, precioMinimo, precioMaximo]);
 
   /* Handles Paginación */
   const handlePaginaAnterior = () => {
@@ -150,7 +119,7 @@ const Categorias = () => {
   };
 
   return (
-    <Container>
+    <Container style={{ marginBottom: '56px' }}>
       <Row>
         <Col lg={12}>
           <div className='catalog-title-container'>
@@ -192,59 +161,63 @@ const Categorias = () => {
           </div>
 
           {/* Paginación */}
-          <div className="catalog-pagination">
+          {libros.length > 0 && (
+            <div className="catalog-pagination">
 
-            <button className='boton-paginacion' onClick={handleFirstPage} disabled={paginaActual === 1}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-double-left" viewBox="0 0 16 16">
-                <path fillRule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0" />
-                <path fillRule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0" />
-              </svg>
-            </button>
-
-            <button className='boton-paginacion' onClick={handlePaginaAnterior} disabled={paginaActual === 1}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-left" viewBox="0 0 16 16">
-                <path fillRule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0" />
-              </svg>
-            </button>
-
-            {generarRangoPaginas().map(pagina => (
-              <button
-                key={pagina}
-                className={`boton-paginacion ${pagina === paginaActual ? 'activo' : ''}`}
-                onClick={() => handleSeleccionPagina(pagina)}
-              >
-                {pagina}
+              <button className='boton-paginacion' onClick={handleFirstPage} disabled={paginaActual === 1}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-double-left" viewBox="0 0 16 16">
+                  <path fillRule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0" />
+                  <path fillRule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0" />
+                </svg>
               </button>
-            ))}
 
-            <button className='boton-paginacion' onClick={handlePaginaSiguiente} disabled={paginaActual === totalPaginas}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-right" viewBox="0 0 16 16">
-                <path fillRule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
-              </svg>
-            </button>
+              <button className='boton-paginacion' onClick={handlePaginaAnterior} disabled={paginaActual === 1}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-left" viewBox="0 0 16 16">
+                  <path fillRule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0" />
+                </svg>
+              </button>
 
-            <button className='boton-paginacion' onClick={handleLastPage} disabled={paginaActual === totalPaginas}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-double-right" viewBox="0 0 16 16">
-                <path fillRule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708" />
-                <path fillRule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708" />
-              </svg>
-            </button>
-          </div>
+              {generarRangoPaginas().map(pagina => (
+                <button
+                  key={pagina}
+                  className={`boton-paginacion ${pagina === paginaActual ? 'activo' : ''}`}
+                  onClick={() => handleSeleccionPagina(pagina)}
+                >
+                  {pagina}
+                </button>
+              ))}
 
-          <div className="catalog-pagination">
-            <label htmlFor="cantidad" className='text-pagination'>Estás visualizando </label>
-            <select
-              className='select-pagination'
-              id="cantidad"
-              value={cantidad}
-              onChange={(e) => setCantidad(Number(e.target.value))}> {/* Number(e.target.value) convierte el string a un número */}
-              <option value={12}>12</option>
-              <option value={24}>24</option>
-              <option value={36}>36</option>
-              <option value={48}>48</option>
-            </select>
-            <p className='text-pagination'>productos</p>
-          </div>
+              <button className='boton-paginacion' onClick={handlePaginaSiguiente} disabled={paginaActual === totalPaginas}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-right" viewBox="0 0 16 16">
+                  <path fillRule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
+                </svg>
+              </button>
+
+              <button className='boton-paginacion' onClick={handleLastPage} disabled={paginaActual === totalPaginas}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-double-right" viewBox="0 0 16 16">
+                  <path fillRule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708" />
+                  <path fillRule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708" />
+                </svg>
+              </button>
+            </div>
+          )}
+
+          {libros.length > 0 && (
+            <div className="catalog-pagination">
+              <label htmlFor="cantidad" className='text-pagination'>Estás visualizando </label>
+              <select
+                className='select-pagination'
+                id="cantidad"
+                value={cantidad}
+                onChange={(e) => setCantidad(Number(e.target.value))}> {/* Number(e.target.value) convierte el string a un número */}
+                <option value={12}>12</option>
+                <option value={24}>24</option>
+                <option value={36}>36</option>
+                <option value={48}>48</option>
+              </select>
+              <p className='text-pagination'>productos</p>
+            </div>
+          )}
         </Col>
       </Row>
     </Container>
