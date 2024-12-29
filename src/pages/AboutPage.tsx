@@ -16,7 +16,6 @@ import nico from '../assets/images/foto-nico.png'
 
 interface AboutProps {
     title: string;
-    body: string;
 }
 
 export const AboutPage = (props: AboutProps) => {

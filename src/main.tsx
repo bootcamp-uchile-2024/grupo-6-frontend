@@ -33,6 +33,7 @@ import { UserListAddressPage } from './pages/UserListAddress.tsx'
 import { UserCreateAddressPage } from './pages/UserCreateAddressPage.tsx'
 import UserModifyPage  from './pages/UserModifyPage.tsx'
 import SearchPage from './pages/SearchPage.tsx'
+import { SubscriptionPage } from './pages/SubscriptionPage.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -42,7 +43,8 @@ createRoot(document.getElementById('root')!).render(
           <Route path="/" element={<HomePage title={'Páginas Selectas'} />} />
           <Route path="/categorias" element={<CategoriasPage title='Catálogo' />} />
           <Route path="/search-results" element={<SearchPage title='Resultados búsqueda'/>} />
-          <Route path="/about" element={<AboutPage title={'Nosotros'} body={'This is the about page'} />} />
+          <Route path="/about" element={<AboutPage title={'Nosotros'} />} />
+          <Route path="/supcripciones" element={<SubscriptionPage title={'Suscripción'} />} />
           <Route path='/novedades' element={<NovedadesPage title={'Novedades'} />} />
           <Route path='/product-detail/:isbn' element={<ProductDetailPage />} />
           <Route path='/login' element={<LoginPage title='Iniciar Sesión' />} />
