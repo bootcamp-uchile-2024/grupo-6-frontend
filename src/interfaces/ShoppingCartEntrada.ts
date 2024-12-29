@@ -1,5 +1,5 @@
 interface ShoppingCartEntrada {
-    caratula: string;
+    caratula: File;
     nombre: string;
     autor: string;
     precio: number;

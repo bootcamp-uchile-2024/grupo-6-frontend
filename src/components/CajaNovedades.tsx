@@ -12,7 +12,7 @@ interface CajaNovedadesProps {
     autor: string,
     precio: number,
     stock: number,
-    caratula: string,
+    caratula: File,
 }
 
 function CajaNovedades(props: CajaNovedadesProps) {

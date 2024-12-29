@@ -48,7 +48,7 @@ const ProductDetail: React.FC = () => {
         isbn: "",
         cantidad: 1,
         correoElectronico: "",
-        caratula: "",
+        caratula: new File([""], "filename"),
 
     });
 

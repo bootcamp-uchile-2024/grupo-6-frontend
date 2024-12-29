@@ -25,11 +25,12 @@ const getInitialState = (): ProductModifyState => {
             agnoPublicacion: '',
             numeroPaginas: 0,
             descuento: 0,
-            caratula: '',
+            caratula: new File([""], "filename"),
             dimensiones: '',
-            ean: '',
+            codigoBarra: '',
             resumen: '',
-            calificacion: 0
+            calificacion: 0,
+            destacado: false
         },
         }
 };
@@ -62,11 +63,12 @@ export const productModifyReducer = createSlice({
                 agnoPublicacion: '',
                 numeroPaginas: 0,
                 descuento: 0,
-                caratula: '',
+                caratula: new File([""], "filename"),
                 dimensiones: '',
-                ean: '',
+                codigoBarra: '',
                 resumen: '',
-                calificacion: 0
+                calificacion: 0 ,
+                destacado: false
             };
             state.book = emptyBook;
             return state

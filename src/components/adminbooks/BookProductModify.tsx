@@ -23,6 +23,7 @@ const BookProductModify = () => {
     const [libro, setLibro] = useState<ILibro>(
         useSelector((state: RootType) => state.productModifyReducer.book)
     );
+    const  [imagenBase, setImagenBase] = useState<boolean>(true);
 
 
     const [errors, setErrors] = useState<IErrorsLibro>({
@@ -40,19 +41,29 @@ const BookProductModify = () => {
         descuento: false,
         caratula: false,
         dimensiones: false,
-        ean: false,
+        codigoBarra: false,
         resumen: false
     });
 
     // Manejar cambios en los campos de texto
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
-
-        setLibro({
-            ...libro,
-            [name]: convertValue(name as keyof ILibro, value)
-        })
+        // si el name es igual a caratula se setea el valor del archivo
+        if (name === 'caratula') {
+            setLibro({
+                ...libro,
+                [name]: (e.target as HTMLInputElement).files![0]
+            });
+            setImagenBase(false);
+            return;
+        } else {
+            setLibro({
+                ...libro,
+                [name]: convertValue(name as keyof ILibro, value)
+            });
+        }
     };
+
 
     // Función para convertir el valor según el tipo de la clave
     const convertValue = (name: keyof ILibro, value: string): any => {
@@ -63,12 +74,16 @@ const BookProductModify = () => {
             case "idioma":
             case "encuadernacion":
             case "agnoPublicacion":
-            case "caratula":
             case "dimensiones":
-            case "ean":
-            case "autor":
+            case "codigoBarra":
             case "resumen":
                 return value; // `string`
+                case "caratula": {
+                    // Crear un archivo con el nombre del libro en mayúsculas y sin espacios
+                    const fileName = libro.nombre.toLowerCase().trim().replace(' ', '').concat('.jpeg');
+                    return new File([value],fileName ); // `File`
+                }
+            case "autor":
             case "genero":
                 return value.split(","); // `string[]` -> Convertir valor separado por comas
             case "precio":
@@ -120,7 +135,7 @@ const BookProductModify = () => {
         if (errors.isbn || errors.nombre || errors.autor || errors.precio || errors.stockLibro
             || errors.genero || errors.editorial || errors.idioma || errors.encuadernacion
             || errors.agnoPublicacion || errors.numeroPaginas || errors.descuento || errors.caratula
-            || errors.dimensiones || errors.ean || errors.resumen) {
+            || errors.dimensiones || errors.codigoBarra || errors.resumen) {
 
             console.log("Los errores son: ", errors);
             navigate("/admin/update/product");
@@ -159,11 +174,12 @@ const BookProductModify = () => {
                 agnoPublicacion: '',
                 numeroPaginas: 0,
                 descuento: -1,
-                caratula: '',
+                caratula: new File([`${url}${libro.caratula}`], "filename"),
                 dimensiones: '',
-                ean: '',
+                codigoBarra: '',
                 resumen: '',
-                calificacion: 0
+                calificacion: 0,
+                destacado: false
             });
             navigate('/admin/product')
         }
@@ -182,6 +198,7 @@ const BookProductModify = () => {
                             <>
                                 <Row>
                                     {/* Imagen del libro */}
+                                    { imagenBase ? (
                                     <Col xs={12} md={5} className="d-flex align-items-center justify-content-center flex-column ">
                                         <img src={`${url}${libro.caratula}`} alt={libro.nombre}
                                             className="img-fluid mb-3"
@@ -193,7 +210,19 @@ const BookProductModify = () => {
                                             }}>
                                             Actualizar información
                                         </Button>
-                                    </Col>
+                                    </Col> ) : (
+                                    <Col xs={12} md={5} className="d-flex align-items-center justify-content-center flex-column ">
+                                        <img src={URL.createObjectURL(libro.caratula)}  alt={libro.nombre}
+                                            className="img-fluid mb-3"
+                                            style={{ maxHeight: '300px', objectFit: 'contain' }} />
+                                        <Button variant="primary" type="submit" className="mt-3"
+                                            style={{
+                                                backgroundColor: '#455B73',
+                                                color: '#F5FAFF',
+                                            }}>
+                                            Actualizar información
+                                        </Button>
+                                    </Col> )}
 
                                     {/* Formulario */}
                                     <Col xs={12} md={7}>
@@ -419,20 +448,18 @@ const BookProductModify = () => {
                                             )}
                                         </Form.Group>
 
-                                        {/* Campo Carátula */}
-                                        <Form.Group controlId="caratula" className="mb-4">
-                                            <Form.Label>Carátula (URL)</Form.Label>
+                                      {/* Campo Carátula (Archivo)*/} 
+                                      <Form.Group controlId="caratula" className="mb-4">
+                                            <Form.Label>Carátula</Form.Label>
                                             <Form.Control
-                                                type="string"
+                                                type="file"
                                                 name="caratula"
-                                                value={libro.caratula}
                                                 onChange={handleChange}
-                                                placeholder="Ej. https://ejemplo.com/caratula.jpg"
                                                 required
                                                 style={{ backgroundColor: '#F5FAFF', color: '#455B73' }}
                                             />
                                             {errors.caratula && (
-                                                <Form.Text className="text-danger">La caratula no debe ser nula.</Form.Text>
+                                                <Form.Text className="text-danger">Debe seleccionar una carátula válida.</Form.Text>
                                             )}
                                         </Form.Group>
 
@@ -452,21 +479,21 @@ const BookProductModify = () => {
                                                 <Form.Text className="text-danger">Las dimensiones no pueden estar vacías.</Form.Text>
                                             )}
                                         </Form.Group>
-                                        {/* Campo EAN */}
-                                        <Form.Group controlId="ean" className="mb-4">
+                                        {/* Campo codigoBarra */}
+                                        <Form.Group controlId="codigoBarra" className="mb-4">
                                             <Form.Label>EAN (Código de Barra)</Form.Label>
                                             <Form.Control
                                                 type="text"
-                                                name="ean"
-                                                value={libro.ean}
+                                                name="codigoBarra"
+                                                value={libro.codigoBarra}
                                                 onChange={handleChange}
                                                 placeholder="Ej. 9781234567890"
                                                 required
                                                 style={{ backgroundColor: '#F5FAFF', color: '#455B73' }}
                                             />
-                                            {errors.ean && (
+                                            {errors.codigoBarra && (
                                                 <Form.Text className="text-danger">
-                                                    El EAN no debe estar vacío y debe tener un largo de 13 caracteres.
+                                                    El codigoBarra no debe estar vacío y debe tener un largo de 13 caracteres.
                                                 </Form.Text>
                                             )}
                                         </Form.Group>

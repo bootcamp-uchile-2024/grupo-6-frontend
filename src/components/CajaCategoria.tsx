@@ -11,7 +11,7 @@ interface CajaCategoriaProps {
   autor: string,
   precio: number,
   stock: number,
-  caratula: string
+  caratula: File
 }
 
 export function CajaCategoria(props: CajaCategoriaProps) {

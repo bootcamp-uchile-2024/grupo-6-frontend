@@ -11,7 +11,7 @@ interface SearchCardProps {
     autor: string,
     precio: number,
     stock: number,
-    caratula: string
+    caratula: File
 }
 
 function SearchCard(props: SearchCardProps) {
