@@ -18,6 +18,20 @@ function Header() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<ILibro[]>([]);
 
+  // Estado para manejar la visibilidad del dropdown
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  // ESTADO PARA LOS GÉNEROS
+  const [generos, setGeneros] = useState<string[]>([]);
+
+  // Para obtener los géneros al cargar componente
+  useEffect(() => {
+    fetch(configuracion.urlJsonServerBackendGenres)
+      .then((response) => response.json())
+      .then((data) => setGeneros(data))
+      .catch((error) => console.error('Error al cargar géneros:', error));
+  }, []);
+
   // Para obtener la cantidad de productos del carrito
   const itemCount = useSelector(selectCartItemCount);
 
@@ -41,6 +55,22 @@ function Header() {
       navigate('/user');
     }
   };
+
+  // Handle para manejar los clicks en los items del dropdown
+  const handleCategoryClick = (genero: string) => {
+    navigate('/categorias', { state: { generosSeleccionados: [genero] } });
+    setShowDropdown(false); // Para ocultar el dropdown después del click
+  };
+
+  //Para mostrar el dropdown al pasar el mouse
+  const handleMouseEnter = () => {
+    setShowDropdown(true);
+  }
+
+  // Para ocultar el dropdown cuando el mouse sale del menú
+  const handleMouseLeave = () => {
+    setShowDropdown(false);
+  }
 
   const cartIcon = itemCount > 0 ? (
     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="27" viewBox="0 0 26 27" fill="none">
@@ -176,7 +206,7 @@ function Header() {
                 <Link to="/mystery-box" className="menu-link">Mystery Box</Link>
                 <Link to="/supcripciones" className="menu-link">Suscripciones</Link>
 
-                <Dropdown>
+                <Dropdown show={showDropdown} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                   <Dropdown.Toggle as="div" className="menu-catalog-button">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none" className="icon-catalog-button">
                       <path fillRule="evenodd" clipRule="evenodd" d="M2.5 4.92695C2.5 2.27599 4.64904 0.126953 7.3 0.126953H18.1C20.0883 0.126953 21.7 1.73874 21.7 3.72695V22.927C21.7 23.5897 21.1627 24.127 20.5 24.127H6.1C4.11179 24.127 2.5 22.5152 2.5 20.527V4.92695ZM4.9 17.1318V4.92695C4.9 3.60147 5.97452 2.52695 7.3 2.52695H18.1C18.7628 2.52695 19.3 3.0642 19.3 3.72695V16.927H6.1C5.67924 16.927 5.27534 16.9991 4.9 17.1318ZM19.3 19.327H6.1C5.43725 19.327 4.9 19.8642 4.9 20.527C4.9 21.1897 5.43725 21.727 6.1 21.727H19.3V19.327ZM8.5 7.32695C8.5 6.66421 9.03726 6.12695 9.7 6.12695H14.5C15.1627 6.12695 15.7 6.66421 15.7 7.32695C15.7 7.98969 15.1627 8.52695 14.5 8.52695H9.7C9.03726 8.52695 8.5 7.98969 8.5 7.32695Z" fill="currentColor" />
@@ -185,9 +215,10 @@ function Header() {
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu className="dropdown-menu-catalog" flip={false}>
+                    {generos.map((genero) => (
                     <div className="menu-container">
                       <div className="menu-column">
-                        <Dropdown.Item href="/categoria/novelas" className="dropdown-item-categoria">Novelas</Dropdown.Item>
+                        <Dropdown.Item key={genero} onClick={() => handleCategoryClick(genero)} className="dropdown-item-categoria">Novelas</Dropdown.Item>
                         <Dropdown.Item href="/categoria/deportes" className="dropdown-item-categoria">Deportes</Dropdown.Item>
                         <Dropdown.Item href="/categoria/clasicos" className="dropdown-item-categoria">Clásicos</Dropdown.Item>
                         <Dropdown.Item href="/categoria/diseno" className="dropdown-item-categoria">Diseño</Dropdown.Item>
@@ -208,16 +239,17 @@ function Header() {
                         <Dropdown.Item href="/categoria/autoayuda" className="dropdown-item-categoria">Autoayuda</Dropdown.Item>
                         <Dropdown.Item href="/categoria/historia" className="dropdown-item-categoria">Historia</Dropdown.Item>
                         <Dropdown.Item href="/categoria/fotografia" className="dropdown-item-categoria">Fotografía</Dropdown.Item>
-                        <Dropdown.Item href={`/categorias`} className="dropdown-item-categoria">Revisar todas las categorías</Dropdown.Item>
+                        <Dropdown.Item href="/categoria/terror" className="dropdown-item-categoria">Terror</Dropdown.Item>
                       </div>
                       <div className="menu-column">
-                        <Dropdown.Item href="/categoria/terror" className="dropdown-item-categoria">Terror</Dropdown.Item>
                         <Dropdown.Item href="/categoria/ilustracion" className="dropdown-item-categoria">Ilustración</Dropdown.Item>
                         <Dropdown.Item href="/categoria/gestion" className="dropdown-item-categoria">Gestión</Dropdown.Item>
                         <Dropdown.Item href="/categoria/estilo-de-vida" className="dropdown-item-categoria">Estilo de vida</Dropdown.Item>
                         <Dropdown.Item href="/categoria/ciencias" className="dropdown-item-categoria">Ciencias</Dropdown.Item>
+                        <Dropdown.Item href={`/categorias`} className="dropdown-item-categoria">Todos los productos</Dropdown.Item>
                       </div>
                     </div>
+                    ))}
                   </Dropdown.Menu>
                 </Dropdown>
 
