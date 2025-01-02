@@ -1,10 +1,10 @@
-import '../styles/home_info.css'
+import '../styles/categorias.css';
 import { Link } from 'react-router-dom';
-import ButtonAddToCart from './shoppingcart/ButtonAddToCart';
-import QuantityButtons from './shoppingcart/QuantityButtons';
 import { ShoppingCartEntrada } from '../interfaces/ShoppingCartEntrada'
-import Card from 'react-bootstrap/esm/Card';
 import { configuracion } from '../config/appConfiguration.ts'
+import CatalogButtonAddToCart from './shoppingcart/CatalogButtonAddToCart.tsx';
+import CatalogQuantityButtons from './shoppingcart/CatalogQuantityButton.tsx';
+import { useState } from 'react';
 
 interface CajaNovedadesProps {
     isbn: string,
@@ -17,12 +17,14 @@ interface CajaNovedadesProps {
 
 function CajaNovedades(props: CajaNovedadesProps) {
 
+    const [quantity, setQuantity] = useState(1);
+
     const product: ShoppingCartEntrada = {
         nombre: props.nombre,
         autor: props.autor,
         precio: props.precio,
         isbn: props.isbn,
-        cantidad: 0,
+        cantidad: quantity,
         correoElectronico: '',
         caratula: props.caratula,
     };
@@ -30,34 +32,40 @@ function CajaNovedades(props: CajaNovedadesProps) {
     const isOutOfStock = props.stock === 0;
     const url = configuracion.urlJsonServerBackendCover.toString();
 
+    const handleQuantityChange = (_isbn: string, newQuantity: number) => {
+        setQuantity(newQuantity);
+    };
+
     return (
-        <div key={product.isbn} className="col-custom">
-            <div className="product-card">
-                <Link to={`/product-detail/${props.isbn}`}> {/* Cambiar con back */}
-                    <div className='card-image-container'>
-                        <Card.Img
-                            variant="top"
-                            src={`${url}${props.caratula}`}
-                            alt={props.nombre}
-                            className="card-image"
-                        />
-                    </div>
+        <div className={`container-catalog ${isOutOfStock ? 'out-of-stock' : ''}`}>
+            <div className="foto-categoria">
+                <Link to={`/product-detail/${props.isbn}`}>
+
+                    <img src={`${url}${props.caratula}`} alt={`imagen del libro ${props.nombre}`} />
+
                 </Link>
-                <Card.Body className="container-info-card">
-                    <Link to={`/product-detail/${props.isbn}`}> {/* Cambiar con back */}
+            </div>
 
-                        <Card.Title className="card-title">{product.nombre}</Card.Title>
-                    </Link>
-                    <Card.Text className="autor-card">{product.autor}</Card.Text>
-                    <p className="precio-card">${product.precio.toLocaleString()}</p>
-                    <div className="product-actions">
-                        <div className='home-buttons-container'>
-                            <QuantityButtons isbn={props.isbn} disabled={isOutOfStock} />
-                            <ButtonAddToCart libro={product} showIcon={true} />
-                        </div>
-                    </div>
-                </Card.Body>
+            <div className="texto-categoria">
+                <Link to={`/product-detail/${props.isbn}`}>
+                    <p className='texto-nombre-libro'>{props.nombre}</p>
+                </Link>
+                <p className='texto-autor'>{props.autor}</p>
 
+                <p className='texto-precio'>${props.precio.toLocaleString()}</p>
+
+                <div className='catalog-buttons-container'>
+                    <CatalogQuantityButtons
+                        isbn={props.isbn}
+                        disabled={isOutOfStock}
+                        onQuantityChange={handleQuantityChange}
+                    />
+                    <CatalogButtonAddToCart
+                        libro={product}
+                        showIcon={true}
+                        disabled={isOutOfStock}
+                    />
+                </div>
             </div>
         </div>
     );

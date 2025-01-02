@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
-import ButtonAddToCart from './shoppingcart/ButtonAddToCart';
-import QuantityButtons from './shoppingcart/QuantityButtons';
 import { configuracion } from '../config/appConfiguration';
 import { ShoppingCartEntrada } from '../interfaces/ShoppingCartEntrada';
 import '../styles/search.css'
+import { useState } from 'react';
+import CatalogButtonAddToCart from './shoppingcart/CatalogButtonAddToCart';
+import CatalogQuantityButtons from './shoppingcart/CatalogQuantityButton';
 
 interface SearchCardProps {
     isbn: string,
@@ -14,14 +15,16 @@ interface SearchCardProps {
     caratula: File
 }
 
-function SearchCard(props: SearchCardProps) {
+const SearchCard = (props: SearchCardProps) => {
+
+    const [quantity, setQuantity] = useState(1);
 
     const product: ShoppingCartEntrada = {
         nombre: props.nombre,
         autor: props.autor,
         precio: props.precio,
         isbn: props.isbn,
-        cantidad: 0,
+        cantidad: quantity,
         correoElectronico: '',
         caratula: props.caratula,
 
@@ -31,8 +34,12 @@ function SearchCard(props: SearchCardProps) {
 
     const url = configuracion.urlJsonServerBackendCover.toString();
 
+    const handleQuantityChange = (_isbn: string, newQuantity: number) => {
+        setQuantity(newQuantity);
+    };
+
     return (
-        <div className="search-card">
+        <div className={`search-card ${isOutOfStock ? 'out-of-stock' : ''}`}>
             <div className='foto-search-card'>
                 <Link to={`/product-detail/${props.isbn}`}>
                     <img src={`${url}${props.caratula}`} alt={`imagen del libro ${props.nombre}`} />
@@ -48,8 +55,15 @@ function SearchCard(props: SearchCardProps) {
                 <p className='texto-precio-search'>${props.precio.toLocaleString()}</p>
 
                 <div className='search-buttons-container'>
-                    <QuantityButtons isbn={props.isbn} disabled={isOutOfStock} />
-                    <ButtonAddToCart libro={product} showIcon={true} />
+                    <CatalogQuantityButtons
+                        isbn={props.isbn}
+                        disabled={isOutOfStock}
+                        onQuantityChange={handleQuantityChange}
+                    />
+                    <CatalogButtonAddToCart
+                        libro={product}
+                        showIcon={true}
+                        disabled={isOutOfStock} />
                 </div>
             </div>
         </div >

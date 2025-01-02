@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { ILibro } from '../interfaces/ILibro';
 import '../styles/product_detail.css'
-import ButtonAddToCart from './shoppingcart/ButtonAddToCart';
 import { ShoppingCartEntrada } from '../interfaces/ShoppingCartEntrada';
-import QuantityButtons from './shoppingcart/QuantityButtons';
 import { configuracion } from '../config/appConfiguration.ts';
 import { Container, Row, Col, Card } from "react-bootstrap";
 import libroBeatles from '../assets/images/Libros/libro beatles.webp'
 import libroInvitadoDracula from '../assets/images/Libros/invitado-dracula.webp'
 import libroDibujoFacil from '../assets/images/Libros/libro dibujo facil.webp'
 import libroTreeHouses from '../assets/images/Libros/tree-houses.webp'
+import CatalogButtonAddToCart from './shoppingcart/CatalogButtonAddToCart.tsx';
+import CatalogQuantityButtons from './shoppingcart/CatalogQuantityButton.tsx';
+import CatalogBuyNowAddToCart from './shoppingcart/CatalogBuyNowAddToCart.tsx';
 
 const recomendaciones = [
     {
@@ -40,13 +41,19 @@ const ProductDetail: React.FC = () => {
     const [libro, setLibro] = useState<ILibro | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
+    const [quantity, setQuantity] = useState(1);
+    const navigate = useNavigate();
+
+    const handleQuantityChange = (_isbn: string, newQuantity: number) => {
+        setQuantity(newQuantity);
+    };
 
     const [producto, setProducto] = useState<ShoppingCartEntrada>({
         nombre: '',
         autor: "",
         precio: 0,
         isbn: "",
-        cantidad: 1,
+        cantidad: quantity,
         correoElectronico: "",
         caratula: new File([""], "filename"),
 
@@ -85,12 +92,27 @@ const ProductDetail: React.FC = () => {
         fetchProduct();
     }, [isbn]);
 
+    // Para actualizar la cantidad de libros al hacer clic en quantity buttons
+    useEffect(() => {
+        setProducto((prevProducto) => ({
+            ...prevProducto,
+            cantidad: quantity,
+        }));
+    }, [quantity]);
+
     if (loading) return <div>Cargando...</div>;
     if (error) return <div>{error}</div>;
 
     const url = configuracion.urlJsonServerBackendCover.toString();
 
     const isOutOfStock = libro?.stockLibro === 0;
+
+    const handleShopNow = () => {
+        navigate('/carrito');
+    }
+
+    console.log(`Si imprime true es porque no hay stock: ${isOutOfStock}`);
+
 
     return (
         <Container className="product-detail-container">
@@ -135,14 +157,31 @@ const ProductDetail: React.FC = () => {
 
                             {/* Botones de cantidad y compra */}
                             <div className="d-flex align-items-center my-3">
-                                <div className={`detail-buttons-container ${isOutOfStock ? 'out-of-stock' : ''}`}>
-                                    <div className={`quantity-section ${isOutOfStock ? 'disabled' : ''}`}>
-                                        {isbn && <QuantityButtons isbn={isbn} disabled={isOutOfStock} />}
+                                <div className='detail-buttons-container'>
+                                    <div className={`${isOutOfStock ? 'quantity-section-no-stock' : 'quantity-section'}`}>
+                                        {isbn && <CatalogQuantityButtons
+                                            isbn={isbn}
+                                            disabled={isOutOfStock}
+                                            onQuantityChange={handleQuantityChange}
+                                        />}
                                     </div>
                                     <div className='buy-now-container'>
-                                        <ButtonAddToCart libro={producto} showIcon={false} />
-                                        {/* <button type='button' className='buy-now'>Comprar ahora</button> */}
+                                        {isOutOfStock ? (
+                                            <button className='boton-comprar' onClick={() => navigate('/contacto')}
+                                                style={{ pointerEvents: 'auto', opacity: 1, cursor: 'pointer', }}>
+                                                ¡Contáctanos!
+                                            </button>
+                                        ) : (
+                                            <>
+                                                <CatalogButtonAddToCart libro={producto} showIcon={false} />
+                                            </>
+                                        )}
+                                        <div className={`${isOutOfStock ? 'buy-now-container-no-stock' : 'buy-now-container'}`}>
+                                            <CatalogBuyNowAddToCart libro={producto} onClick={handleShopNow} />
+                                        </div>
+
                                     </div>
+
                                 </div>
                             </div>
 
