@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 export function useFetchGetOrders<T>(url: string, token: string): { pedidos: T | null, loading: boolean, error: string | null } {
     const [pedidos, setPedidos] = useState<T | null>(null);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchPedidos = async () => {
@@ -23,15 +23,19 @@ export function useFetchGetOrders<T>(url: string, token: string): { pedidos: T |
 
                 const data = await response.json();
                 setPedidos(data);
-            } catch (error: any) {
-                setError(error.message || 'Error desconocido');
+            } catch (error: unknown) {
+                if (error instanceof Error) {
+                    setError(error.message || 'Error desconocido');
+                } else {
+                    setError('Error desconocido');
+                }
             } finally {
                 setLoading(false);
             }
         };
 
         fetchPedidos();
-    }, [token]);
+    }, [url, token]);
 
     return { pedidos, loading, error };
 };
