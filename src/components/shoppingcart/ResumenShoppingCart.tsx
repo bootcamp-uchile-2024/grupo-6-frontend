@@ -2,7 +2,7 @@ import { RootType } from "../../states/store";
 import { ShoppingCartEntrada } from "../../interfaces/ShoppingCartEntrada";
 import '../../styles/resumen_shopping_cart.css'
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
@@ -20,8 +20,10 @@ import { jwtDecode } from "jwt-decode";
 function ResumenShoppingCart() {
     const shoppingCartProduct = useSelector((state: RootType) => state.productReducer.cart.items);
     const [despacho] = useState(5000);
+    const navigate = useNavigate();
 
     const url = configuracion.urlJsonServerBackendCover.toString();
+    const urlShoppingCart = configuracion.urlJsonServerBackendShoppingCart.toString();
 
     // HANDLE PARA CAMBIAR DIRECCIÓN SEGÚN INPUR RADIO
 
@@ -73,6 +75,50 @@ function ResumenShoppingCart() {
         return item.precio * item.cantidad;
     }
 
+
+    const handleSentToBackendShoppingCart = async (items: ShoppingCartEntrada[]) => {
+        // Mapeo del carrito en el formato requerido
+        const shoppingCart = items.map((item) => ({
+          isbn: item.isbn,
+          cantidad: item.cantidad,
+          precio: calculateTotalProduct(item),
+          descuento: 0, // Puedes ajustar el descuento según sea necesario
+        }));
+      
+        // Construcción del objeto final
+        const payload = {
+          fechaCompra: new Date().toISOString().split('T')[0], // Formato YYYY-MM-DD
+          precioTotal: calculateTotalConDespacho(items),
+          shoppingCart,
+        };
+      
+        try {
+          // Realizar el POST al backend
+          const urlRequest = `${urlShoppingCart}/bulk`;
+          const response = await fetch(urlRequest, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${loggedInUser.token}`
+
+            },
+            body: JSON.stringify(payload),
+          });
+      
+          if (response.ok) {
+            const result = await response.json();
+            console.log('Compra enviada correctamente:', result);
+            // Redirigir a la página de confirmación
+            navigate('/shoppingcart-payment/');
+
+          } else {
+            console.error('Error al enviar el carrito:', response.statusText);
+          }
+        } catch (error) {
+          console.error('Error de red al enviar el carrito:', error);
+        }
+      };
+
     return (
         <div className='resumen-shopping-cart'>
             <Container>
@@ -89,11 +135,9 @@ function ResumenShoppingCart() {
                             </Link>
                         </Col>
                         <Col className="seguir-comprando-button" lg={2}>
-                            <Link to={`/shoppingcart-payment/`}>
-                                <Button variant='none' className='md-2'>
+                                <Button variant='none' className='md-2' onClick={() => handleSentToBackendShoppingCart(shoppingCartProduct)}>
                                     Pagar el pedido
                                 </Button>
-                            </Link>
                         </Col>
                     </Row>
                 </div>
