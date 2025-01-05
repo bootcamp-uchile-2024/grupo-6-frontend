@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -35,8 +36,10 @@ const AdminUserModify = () => {
             });
             if (result.ok) {
                 const data = await result.json();
-                setUserData(data);
-                console.log(data);
+                // Quitar idUsuario del objeto usando desestructuración
+                const { idUsuario, ...userDataWithoutId } = data;
+                setUserData(userDataWithoutId);
+                console.log(userDataWithoutId);
             }
         };
         fetchUser();
