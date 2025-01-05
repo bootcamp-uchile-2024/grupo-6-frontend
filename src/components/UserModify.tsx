@@ -56,6 +56,7 @@ const UserProfile = () => {
         const { contrasena, nombres, apellidoPaterno, apellidoMaterno } = userData;
 
         // Si la contraseña está vacía, no la enviamos
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const bodyData: any = {
             nombres,
             apellidoPaterno,
