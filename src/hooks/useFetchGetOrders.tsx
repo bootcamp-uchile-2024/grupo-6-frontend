@@ -17,6 +17,11 @@ export function useFetchGetOrders<T>(url: string, token: string): { pedidos: T |
                     },
                 });
 
+                if (response.status === 404) {
+                    setPedidos([] as unknown as T);
+                    return;
+                }
+
                 if (!response.ok) {
                     throw new Error('Error al cargar los pedidos');
                 }
@@ -36,6 +41,7 @@ export function useFetchGetOrders<T>(url: string, token: string): { pedidos: T |
 
         fetchPedidos();
     }, [url, token]);
+    console.log(`Los pedidos son: ${pedidos}`)
 
     return { pedidos, loading, error };
 };

@@ -34,7 +34,6 @@ const Login = () => {
         const isValidLogin = await login(form);
 
         if (isValidLogin) {
-            alert("Inicio de sesión exitoso.");
 
             // Extrae el token de localStorage
             const loggedInUser = JSON.parse(localStorage.getItem('__redux__user__') || '{}');
