@@ -1,4 +1,4 @@
-import {Container, Row, Col, Form, Modal} from 'react-bootstrap';
+import { Container, Row, Col, Form, Modal } from 'react-bootstrap';
 import '../../styles/user_modify_address.css'
 import { useState } from 'react';
 import { configuracion } from '../../config/appConfiguration';
@@ -282,12 +282,13 @@ function UserCreateAddress() {
                 </button>
             </div>
 
-            <Modal className='user-mod-dir-modal' show={showModal} onHide={handleCloseModal}>
-                <Modal.Header closeButton>
-                    <Modal.Title>{modalTitle}</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <p>{modalMessage}</p>
+            <Modal className="custom-modal-create-address" show={showModal} onHide={handleCloseModal}>
+                <Modal.Header closeButton className="custom-modal-header-create-address"/>
+                <Modal.Body className="custom-modal-body-create-address">
+                    <div>
+                        <p className="title-modal-create-address">{modalTitle}</p>
+                        <p className="detail-modal-create-address">{modalMessage}</p>
+                    </div>
                 </Modal.Body>
             </Modal>
         </Container>

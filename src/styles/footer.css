@@ -3,13 +3,13 @@
     padding: 24px;
 }
 
-.footer-recibe-oferta{
+.footer-recibe-oferta {
     display: flex;
     justify-content: center !important;
     align-items: center !important;
 }
 
-.input-group-footer{
+.input-group-footer {
     display: flex;
     gap: 42px !important;
 }
@@ -64,7 +64,7 @@
     padding: 8px !important;
 }
 
-.form-input::placeholder{
+.form-input::placeholder {
     color: #806259 !important;
     font-family: sarabun !important;
     font-size: 20px;
@@ -72,13 +72,8 @@
 }
 
 .form-input:focus {
-    outline: none !important; 
-    box-shadow: none !important; 
-}
-
-.footer-item-link{
-    width: 300px;
-    height: 33px;
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 .info-group-text {
@@ -86,27 +81,37 @@
     border-radius: 0 12px 12px 0;
 }
 
-.footer-link{
+.footer-link-button {
+    width: 300px;
+    height: 33px;
+    background-color: transparent !important;
+    border: none !important;
     color: #545454 !important;
+    text-align: center !important;
+    font-family: Sarabun !important;
+    font-size: 20px !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    line-height: normal !important;
 }
 
-.footer-link:hover {
+.footer-link-button:hover {
     color: #455B73 !important;
 }
 
-.footer-link:active{
+.footer-link-button:active {
     color: #806259 !important;
 }
 
-.footer-icon{
+.footer-icon {
     color: #FFFFFF !important;
 }
 
-.footer-icon:hover{
+.footer-icon:hover {
     background-color: #E1D5CA !important;
-    color:#373330 !important;
+    color: #373330 !important;
 }
 
-.footer-icon:active{
+.footer-icon:active {
     box-shadow: 0 0 0 4px #806259 !important;
 }

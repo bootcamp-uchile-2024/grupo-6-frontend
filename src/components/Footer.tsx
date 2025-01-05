@@ -1,7 +1,14 @@
 import '../styles/footer.css';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { useNavigate } from "react-router-dom";
 
-function Footer() {
+const Footer = () => {
+
+    const navigate = useNavigate();
+
+    const handleRedirect = () => {
+        navigate("*");
+    };
 
     return (
         <footer id="footer">
@@ -19,11 +26,11 @@ function Footer() {
                         </Col>
 
                         <Col md={3} className="text-center footer-item-link">
-                            <a href="" className="footer-link">Publica con nosotros</a>
+                            <Button onClick={handleRedirect} className="footer-link-button"> Publica con nosotros</Button>
                         </Col>
 
                         <Col md={3} className="text-center footer-item-link">
-                            <a href="" className="footer-link">Preguntas frecuentes</a>
+                            <Button onClick={handleRedirect} className="footer-link-button"> Preguntas frecuentes</Button>
                         </Col>
 
                     </Row>

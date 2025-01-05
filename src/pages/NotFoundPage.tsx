@@ -1,7 +1,7 @@
 import { Navigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { MainLayout } from "../layouts/MainLayout";
-import imagen404NotFound from "../assets/images/imagen_404_Not_Found.png"
+import { Col, Container, Row } from "react-bootstrap";
 import '../styles/not_found.css'
 
 interface NotFoundPageProps {
@@ -30,11 +30,15 @@ export const NotFoundPage = (props: NotFoundPageProps) => {
 
     return (
         <MainLayout>
-            <div className="caja-not-found">
-                <img src={imagen404NotFound} alt="Página no encontrada" />
-                <p>Lo sentimos, esta página aún no está disponible</p>
-                <p>Redirigiendo a página principal...</p>
-            </div>
+            <Container>
+                <Row className="container-not-found-header">
+                    <Col lg={8}>
+                        <h2 className="title-not-found">Lo sentimos, esta página aún no está disponible</h2>
+                        <p className="info-not-found">Redirigiendo a página principal...</p>
+                    </Col>
+                    <div className="separador-not-found"></div>
+                </Row>
+            </Container>
         </MainLayout>
     );
 };
