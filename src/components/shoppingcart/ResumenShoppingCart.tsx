@@ -1,7 +1,7 @@
 import { RootType } from "../../states/store";
 import { ShoppingCartEntrada } from "../../interfaces/ShoppingCartEntrada";
 import '../../styles/resumen_shopping_cart.css'
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
@@ -16,11 +16,13 @@ import Form from "react-bootstrap/esm/Form";
 import { useFetchGetAddress } from "../../hooks/useFetchUser";
 import { IDireccion } from "../../interfaces/IDireccion";
 import { jwtDecode } from "jwt-decode";
+import { setDireccionEntrega } from "../../states/addressSlice";
 
 function ResumenShoppingCart() {
     const shoppingCartProduct = useSelector((state: RootType) => state.productReducer.cart.items);
     const [despacho] = useState(5000);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const url = configuracion.urlJsonServerBackendCover.toString();
     const urlShoppingCart = configuracion.urlJsonServerBackendShoppingCart.toString();
@@ -109,6 +111,9 @@ function ResumenShoppingCart() {
             const result = await response.json();
             console.log('Compra enviada correctamente:', result);
             // Redirigir a la página de confirmación
+
+            dispatch(setDireccionEntrega({ idDireccionEntrega: selectedAddress?.idDireccion || 0, direccionEntrega: selectedAddressString || "" }));
+            
             navigate('/shoppingcart-payment/');
 
           } else {
