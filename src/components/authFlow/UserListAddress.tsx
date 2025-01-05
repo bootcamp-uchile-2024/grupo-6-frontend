@@ -17,11 +17,11 @@ const UserListAddress = () => {
     const loggedInUser = JSON.parse(localStorage.getItem('__redux__user__') || '{}');
     const decodedToken = jwtDecode<{ idUsuario: number; rol: string; exp: number }>(loggedInUser.token);
 
-    const { 
-        dataEnvio: addressesEnvio, 
-        dataFacturacion: addressesFacturacion, 
-        loading: loadingAddress, 
-        error: errorAddress 
+    const {
+        dataEnvio: addressesEnvio,
+        dataFacturacion: addressesFacturacion,
+        loading: loadingAddress,
+        error: errorAddress
     } = useFetchGetAddressEnvioFacturacion(configuracion.urlJsonServerBackendUsers, decodedToken.idUsuario); // Sin el tipo genérico
 
     if (loadingAddress) return <p>Cargando datos de las direcciones del usuario...</p>;
@@ -59,9 +59,11 @@ const UserListAddress = () => {
                     <p className="user-mod-dir-sub">Escoge tu dirección de despacho</p>
                 </Col>
                 <Col lg={2}>
-                    <Link to={`/user/settings/address`}>
-                        <Button variant="none" className="direcciones-list-button">Editar dirección</Button>
-                    </Link>
+                    {addressesEnvio?.length || addressesFacturacion?.length ? (
+                        <Link to={`/user/settings/address`}>
+                            <Button variant="none" className="direcciones-list-button">Editar dirección</Button>
+                        </Link>
+                    ) : null}
                 </Col>
                 {addressesEnvio?.length ? (
                     addressesEnvio.map((address) => (

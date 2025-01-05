@@ -173,7 +173,7 @@ const ProductDetail: React.FC = () => {
                                             </button>
                                         ) : (
                                             <>
-                                                <CatalogButtonAddToCart libro={producto} showIcon={false} />
+                                                <CatalogButtonAddToCart libro={producto} showIcon={false} disabled={isOutOfStock}/>
                                             </>
                                         )}
                                         <div className={`${isOutOfStock ? 'buy-now-container-no-stock' : 'buy-now-container'}`}>

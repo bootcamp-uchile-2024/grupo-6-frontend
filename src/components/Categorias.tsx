@@ -7,9 +7,11 @@ import { ILibroPaginado } from '../interfaces/ILibroPaginado.tsx'
 import { configuracion } from '../config/appConfiguration.ts'
 import { Col, Container, Row } from 'react-bootstrap'
 import libreria from '../assets/images/libreria.svg'
+import Spinner from 'react-bootstrap/Spinner';
 
 const Categorias = () => {
 
+  const [cargando, setCargando] = useState<boolean>(false);
   const [libros, setLibros] = useState<ILibro[]>([]);
   const [librosExist, setLibrosExist] = useState<boolean>(false);
   const [paginaActual, setPaginaActual] = useState<number>(1);
@@ -42,6 +44,7 @@ const Categorias = () => {
 
   useEffect(() => {
     async function getLibros() {
+      setCargando(true);
       try {
         const generosQuery = generosSeleccionados.length
           ? generosSeleccionados.map(genero => `genero=${encodeURIComponent(genero)}`).join('&')
@@ -63,6 +66,7 @@ const Categorias = () => {
         if (!response.ok) {
           console.log('No pudimos obtener los productos');
           setLibrosExist(false);
+          setCargando(false);
           return; // Salir si no hay respuesta OK
         }
 
@@ -71,9 +75,11 @@ const Categorias = () => {
         setLibrosExist(true);
         setTotalPaginas(librosJson.totalPaginas);
         console.log(librosJson);
+        setCargando(false);
       } catch (error) {
         console.error('Error al obtener los productos', error); // Usando 'error'
         setLibrosExist(false);
+        setCargando(false);
       }
     }
 
@@ -143,19 +149,21 @@ const Categorias = () => {
         <Col lg={10}>
 
           <div id="productos-categorias">
-            {librosExist ? libros.map(libro => (
-              <CajaCategoria
-                key={libro.isbn}
-                nombre={libro.nombre}
-                autor={libro.autor}
-                precio={libro.precio}
-                isbn={libro.isbn}
-                stock={libro.stockLibro}
-                caratula={libro.caratula}>
-
-              </CajaCategoria>
-            ))
-              :
+            {cargando ? (
+              <Spinner style={{margin: 'auto', marginTop: '100px'}} animation="border" variant="secondary" />
+            ) : librosExist ? (
+              libros.map(libro => (
+                <CajaCategoria
+                  key={libro.isbn}
+                  nombre={libro.nombre}
+                  autor={libro.autor}
+                  precio={libro.precio}
+                  isbn={libro.isbn}
+                  stock={libro.stockLibro}
+                  caratula={libro.caratula}>
+                </CajaCategoria>
+              ))
+            ) :
               <h3>Ups, no encontramos libros disponibles!!</h3>
             }
           </div>
@@ -220,7 +228,7 @@ const Categorias = () => {
           )}
         </Col>
       </Row>
-    </Container>
+    </Container >
   );
 };
 

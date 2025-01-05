@@ -12,6 +12,7 @@ export const configuracion = {
     urlJsonServerBackendShoppingCart: import.meta.env.VITE_BACKEND_GRUPO6_ENDPOINT_SHOPPINGCART,
     urlJsonServerBackendCover: import.meta.env.VITE_BACKEND_GRUPO6_ENDPOINT_COVER,
     urlJsonServerBackendGenres: import.meta.env.VITE_BACKEND_GRUPO6_ENDPOINT_GENRES,    
-    urlJsonServerBackendPublishers: import.meta.env.VITE_BACKEND_GRUPO6_ENDPOINT_PUBLISHERS
+    urlJsonServerBackendPublishers: import.meta.env.VITE_BACKEND_GRUPO6_ENDPOINT_PUBLISHERS,
+    urlJsonServerBackendPurchases: import.meta.env.VITE_BACKEND_GRUPO6_ENDPOINT_PURCHASES
 
 } as const;

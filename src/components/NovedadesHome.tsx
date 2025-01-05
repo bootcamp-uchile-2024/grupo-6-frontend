@@ -4,9 +4,11 @@ import '../styles/novedades_home.css';
 import CajaNovedades from './CajaNovedades.tsx';
 import { ILibroPaginado } from '../interfaces/ILibroPaginado.tsx';
 import { configuracion } from '../config/appConfiguration.ts';
+import Spinner from 'react-bootstrap/Spinner';
 
 function NovedadesHome() {
 
+    const [cargando, setCargando] = useState<boolean>(false);
     const [libros, setLibros] = useState<ILibro[]>([]);
     const [librosExist, setLibrosExist] = useState<boolean>(false);
     const [paginaActual, setPaginaActual] = useState<number>(1);
@@ -15,6 +17,7 @@ function NovedadesHome() {
 
     useEffect(() => {
         const fetchLibros = async () => {
+            setCargando(true);
             try {
                 const url = configuracion.urlJsonServerBackendCatalog.toString().concat(`?pagina=${paginaActual}&cantidad=${cantidad}`);
                 console.log(url);
@@ -25,6 +28,7 @@ function NovedadesHome() {
                 if (!response.ok) {
                     console.log('No pudimos obtener los productos');
                     setLibrosExist(false);
+                    setCargando(false);
                     return; // Salir si no hay respuesta OK
                 }
 
@@ -34,9 +38,11 @@ function NovedadesHome() {
                 setLibros(librosJson?.productos);
                 setLibrosExist(true);
                 setTotalPaginas(librosJson.totalPaginas);
+                setCargando(false);
             } catch (error) {
                 console.error('Error al obtener los productos', error);
                 setLibrosExist(false);
+                setCargando(false);
             }
         };
 
@@ -86,7 +92,9 @@ function NovedadesHome() {
             <section id="seccion-novedades">
                 <h3 className="titulo-novedades">Novedades</h3>
                 <div id="productos-novedades">
-                    {librosExist ? libros.map(libro => (
+                    {cargando ? (
+                        <Spinner style={{ margin: 'auto', marginTop: '100px' }} animation="border" variant="secondary" />
+                    ) : librosExist ? libros.map(libro => (
                         <CajaNovedades
                             key={libro.isbn}
                             nombre={libro.nombre}

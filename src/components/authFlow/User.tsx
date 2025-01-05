@@ -8,6 +8,8 @@ import { jwtDecode } from 'jwt-decode';
 import { configuracion } from '../../config/appConfiguration';
 import { useFetchGetAddressEnvioFacturacion, useFetchGeUser } from '../../hooks/useFetchUser';
 import { IDireccion } from '../../interfaces/IDireccion';
+import useFetchGetOrders from '../../hooks/useFetchGetOrders';
+import { IPedido } from '../../interfaces/IPedido';
 
 const UserPage = () => {
     const navigate = useNavigate();
@@ -27,12 +29,17 @@ const UserPage = () => {
 
     const { data: userData, loading: loadingUser, error: errorUser } = useFetchGeUser<ICreateUserResponse>(configuracion.urlJsonServerBackendUsers, decodedToken.idUsuario);
     const { dataEnvio: addressesEnvio, dataFacturacion: addressesFacturacion, loading: loadingAddress, error: errorAddress } = useFetchGetAddressEnvioFacturacion<IDireccion[]>(configuracion.urlJsonServerBackendUsers, decodedToken.idUsuario);
+    const { pedidos, loading: loadingOrders, error: errorOrders } = useFetchGetOrders<IPedido[]>(configuracion.urlJsonServerBackendPurchases, loggedInUser.token);
+
 
     if (loadingUser) return <p>Cargando datos del usuario...</p>
     if (errorUser) return <p>Error en la consulta de datos del usuario {errorUser}</p>
 
     if (loadingAddress) return <p>Cargando datos de las direcciones del usuario...</p>
     if (errorAddress) return <p>Error en la consulta de las direcciones del usuario {errorAddress}</p>
+
+    if (loadingOrders) return <p>Cargando historial de pedidos...</p>;
+    if (errorOrders) return <p>Error en la carga de pedidos: {errorOrders}</p>;
 
     return (
         <>
@@ -141,14 +148,54 @@ const UserPage = () => {
                     <Col md={4}></Col>
                 </Row>
 
-                <Row>
+                {/* <<<<<<<<<<<<<<< HISTORIAL DE PEDIDOS >>>>>>>>>>>>>>> */}
+
+                <Row style={{ marginTop: '56px' }}>
+                    <Col md={5} className="account-user-privacidad">
+                    <h2 className="mb-3">Historial de pedidos</h2>
+                        {pedidos && pedidos.length > 0 ? (
+                            pedidos.map((pedido) => (
+                                <div key={pedido.id}>
+                                    <p><b>Pedido N°{pedido.id}:</b></p>
+                                    <p><b>Estado:</b> {pedido.estatusCompra}</p>
+                                    <p><b>Fecha de compra:</b> {new Date(pedido.fechaCompra).toLocaleDateString()}</p>
+                                    <p><b>Fecha de entrega:</b> {new Date(pedido.fechaEntrega).toLocaleDateString()}</p>
+                                    <p><b>Dirección de entrega:</b> {pedido.direccion.calle} {pedido.direccion.numero_calle}, {pedido.direccion.nombre_ciudad}, {pedido.direccion.nombre_region}</p>
+                                    <p><b>Libros:</b></p>
+                                    <ul>
+                                        {pedido.libroCompra.map((libro, index) => (
+                                            <li style={{marginLeft: '40px'}} key={index}>{libro.cantidad} x ISBN {libro.isbn} - ${libro.precioFinal.toLocaleString()}</li>
+                                        ))}
+                                    </ul>
+                                    <p><b>Total pedido:</b> ${pedido.total.toLocaleString()}</p>
+                                </div>
+                            ))
+                        ) : (
+                            <p>No tienes pedidos recientes.</p>
+                        )}
+
+                    </Col>
+                    <Col md={1}></Col>
+                    <Col md={2}>
+                        <div className="d-flex flex-column gap-2">
+                            <Button variant="none" className='gestionar-privacidad-button'>
+                                Gestionar pedidos
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M12 6V4M12 6C10.8954 6 10 6.89543 10 8C10 9.10457 10.8954 10 12 10M12 6C13.1046 6 14 6.89543 14 8C14 9.10457 13.1046 10 12 10M6 18C7.10457 18 8 17.1046 8 16C8 14.8954 7.10457 14 6 14M6 18C4.89543 18 4 17.1046 4 16C4 14.8954 4.89543 14 6 14M6 18V20M6 14V4M12 10V20M18 18C19.1046 18 20 17.1046 20 16C20 14.8954 19.1046 14 18 14M18 18C16.8954 18 16 17.1046 16 16C16 14.8954 16.8954 14 18 14M18 18V20M18 14V4" stroke="#FBFBFB" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                            </Button>
+                        </div>
+                    </Col>
+                    <Col md={4}></Col>
+                </Row>
+
+                <Row style={{ marginTop: '56px' }}>
                     <Col md={5} className="account-user-delete-account">
                         <Button className="delete-account-user">
                             Eliminar cuenta
                         </Button>
                     </Col>
                 </Row>
-
             </div>
         </>
     );
