@@ -7,17 +7,32 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import  '../../styles/admin-user-modify.css'
+import '../../styles/admin-user-modify.css'
+
+type UserData = {
+    nombres: string;
+    apellidoPaterno: string;
+    apellidoMaterno: string;
+    correoElectronico: string;
+};
 
 const AdminUserModify = () => {
     const { idUsuario } = useParams();
     const navigate = useNavigate();
-    const [userData, setUserData] = useState({
+
+    const [userData, setUserData] = useState<UserData>({
         nombres: '',
         apellidoPaterno: '',
         apellidoMaterno: '',
         correoElectronico: '',
         /* contrasena: '' */
+    });
+
+    const [initialData, setInitialData] = useState<UserData>({
+        nombres: '',
+        apellidoPaterno: '',
+        apellidoMaterno: '',
+        correoElectronico: '',
     });
     const loggedInUser = JSON.parse(localStorage.getItem('__redux__user__') || '{}');
 
@@ -36,7 +51,7 @@ const AdminUserModify = () => {
             if (result.ok) {
                 const data = await result.json();
                 setUserData(data);
-                console.log(data);
+                setInitialData(data);
             }
         };
         fetchUser();
@@ -49,17 +64,36 @@ const AdminUserModify = () => {
 
     const handleEdit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        const updatedFields: {
+            nombres?: string;
+            apellidoPaterno?: string;
+            apellidoMaterno?: string;
+            correoElectronico?: string;
+        } = {};
+
+        if (userData.nombres !== initialData.nombres) updatedFields.nombres = userData.nombres;
+        if (userData.apellidoPaterno !== initialData.apellidoPaterno) updatedFields.apellidoPaterno = userData.apellidoPaterno;
+        if (userData.apellidoMaterno !== initialData.apellidoMaterno) updatedFields.apellidoMaterno = userData.apellidoMaterno;
+        if (userData.correoElectronico !== initialData.correoElectronico) updatedFields.correoElectronico = userData.correoElectronico;
+
+        if (Object.keys(updatedFields).length === 0) {
+            alert("No se detectaron cambios para guardar.");
+            return;
+        }
+
         const url = configuracion.urlJsonServerBackendUsers.toString().concat(`/${idUsuario}/admin`);
-        console.log(url);
+
         await fetch(url, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${loggedInUser.token}`
             },
-            body: JSON.stringify(userData)
+            body: JSON.stringify(updatedFields)
         });
-         navigate('/admin'); // Redirigir a la página de administración
+
+        navigate('/admin'); // Redirigir a la página de administración
     };
 
     return (
