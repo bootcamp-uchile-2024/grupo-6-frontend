@@ -7,7 +7,9 @@
     margin-bottom: 24px;
 }
 
-.mystery-info p, .mystery-select p, .mystery-text p {
+.mystery-info p,
+.mystery-form p,
+.mystery-text p {
     font-size: 25px;
     color: #545454;
 }
@@ -16,7 +18,7 @@
     margin-bottom: 48px;
 }
 
-.mystery-select {
+.mystery-form {
     margin-top: 48px;
     margin-bottom: 48px;
 }
@@ -28,31 +30,32 @@
 }
 
 /* MYSTERY SELECT (Dropdown) */
-.mystery-select p {
+.mystery-form p {
     margin: 0px;
 }
 
-.mystery-dropdown .dropdown-menu.show {
-    display: flex;
-    flex-direction: row;
-}
-
-.mystery-dropdown .btn-success,
-.mystery-dropdown .btn-success:active {
-    background-color: #F8F5F0;
-    border: none;
-    border-radius: 8px;
-    color: #545454;
+.mystery-select,
+.mystery-select:focus-visible {
     width: 320px;
-    text-align: left;
+    height: 42px;
+    border-radius: 8px;
+    background: #F8F5F0;
+    border: none;
+    outline: none;
+    overflow: hidden;
+    color: #545454;
+    text-overflow: ellipsis;
+    font-family: Sarabun;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding-left: 8px;
 }
 
-.mystery-dropdown .dropdown-menu {
-    background-color: #455B73;
-}
-
-.mystery-dropdown .dropdown-menu a {
-    color: #FFFFFF;
+.mystery-select:focus,
+.mystery-select:active {
+    outline: 2px solid #806259;
 }
 
 /* MYSTERY CARDS (Essential and Supreme) */
@@ -135,14 +138,17 @@
 }
 
 /* MYSTERY BUTTON (Add to Cart) */
-.mystery-button button {
+.mystery-button button,
+.mystery-button button:focus,
+.mystery-button button:focus-visible {
     width: 222px;
     height: 50px;
     background-color: #975C4C;
     color: #FBFBFB;
     font-size: 20px;
     border-radius: 16px;
-    border: none;
+    border: none !important;
+    outline: none !important;
     margin-top: 24px;
     margin-bottom: 56px;
     transition: background-color 0.2s ease, color 0.2s ease, outline 0.1s ease;
@@ -154,11 +160,22 @@
 }
 
 .mystery-button button:active {
-    background-color: #E1D5CA;
-    color: #806259;
-    outline: 4px solid #975C4C;
+    background-color: #E1D5CA !important;
+    color: #806259 !important;
+    outline: 4px solid #975C4C !important;
 }
 
 .mystery-button button svg {
     margin-right: 12px;
+}
+
+.mystery-button button svg path,
+.mystery-button button:focus svg path,
+.mystery-button button:focus-visible svg path {
+    fill: #FBFBFB;
+}
+
+.mystery-button button:hover svg path,
+.mystery-button button:active svg path {
+    fill: #806259;
 }

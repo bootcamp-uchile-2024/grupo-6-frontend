@@ -17,7 +17,7 @@ const ButtonAddToCart = ({ libro, showIcon }: ButtonAddToCartProps) => {
         isbn: "",
         cantidad: 1,
         correoElectronico: "",
-        caratula: "",
+        caratula: new File([""], "filename")
 
     });
     //const productCount = useSelector((state: RootType) => state.productReducer.cart.items);

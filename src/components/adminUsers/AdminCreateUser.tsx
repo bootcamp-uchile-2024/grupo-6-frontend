@@ -81,7 +81,7 @@ const AdminCreateUser = () => {
 
                 if (response.ok) {
                     const data = await response.json();
-                    setModalTitle('Usuario creado con éxito :D');
+                    setModalTitle('Usuario creado con éxito');
                     setModalMessage('Serás redirigido al panel de administración al cerrar este mensaje.');
                     setShowModal(true);
                     console.log('Usuario creado:', data);
@@ -131,6 +131,10 @@ const AdminCreateUser = () => {
         if (shouldNavigate) {
             navigate('/admin'); // Redirige solo si el estado lo indica
         }
+    };
+
+    const handleNavigation = (path: string) => {
+        navigate(path);
     };
 
     return (
@@ -193,17 +197,24 @@ const AdminCreateUser = () => {
                             <Col className="d-flex justify-content-center">
                                 <Button variant='primary' size='lg' type="submit">Crear usuario</Button>
                             </Col>
+                            <Col className="cancel-user-modify">
+                                <Button variant='secondary' size='lg' onClick={() => handleNavigation("/admin/userslist")}>
+                                    Cancelar
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+                                        <path fillRule="evenodd" clipRule="evenodd" d="M12.4121 0C5.7847 0 0.412109 5.37259 0.412109 12C0.412109 18.6275 5.7847 24 12.4121 24C19.0396 24 24.4121 18.6275 24.4121 12C24.4121 5.37259 19.0396 0 12.4121 0ZM2.25826 12C2.25826 6.39219 6.8043 1.84615 12.4121 1.84615C18.02 1.84615 22.566 6.39219 22.566 12C22.566 17.6079 18.02 22.1538 12.4121 22.1538C6.8043 22.1538 2.25826 17.6079 2.25826 12ZM17.9882 6.42421C18.3487 6.7847 18.3487 7.36916 17.9882 7.72964L13.7178 12L17.9882 16.2704C18.3487 16.6309 18.3487 17.2153 17.9882 17.5758C17.6277 17.9363 17.0432 17.9363 16.6828 17.5758L12.4124 13.3054L8.14205 17.5758C7.78156 17.9363 7.1971 17.9363 6.83662 17.5758C6.47614 17.2153 6.47614 16.6309 6.83662 16.2704L11.107 12L6.83662 7.72964C6.47613 7.36916 6.47614 6.7847 6.83662 6.42421C7.1971 6.06373 7.78156 6.06373 8.14205 6.42421L12.4124 10.6946L16.6828 6.42421C17.0433 6.06373 17.6277 6.06373 17.9882 6.42421Z" fill="currentColor" />
+                                    </svg>
+                                </Button>
+                            </Col>
                         </Form.Group>
                     </Form>
                 </Col>
             </Row>
 
             <Modal className='admin-user-register-modal' show={showModal} onHide={handleCloseModal}>
-                <Modal.Header closeButton>
-                    <Modal.Title>{modalTitle}</Modal.Title>
-                </Modal.Header>
+                <Modal.Header closeButton />
                 <Modal.Body>
-                    <p>{modalMessage}</p>
+                    <p className="id-user-admin-userList">{modalTitle}</p>
+                    <p className="nombre-user-admin-userList">{modalMessage}</p>
                 </Modal.Body>
             </Modal>
         </Container>

@@ -1,0 +1,92 @@
+.subs-title {
+    color: #545454;
+    text-align: center;
+    font-family: Sarabun;
+    font-size: 31px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    margin-top: 24px;
+    margin-bottom: 118px;
+}
+
+.subs-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around !important;
+    align-content: center;
+}
+
+.subs-card {
+    width: 350px !important;
+    height: 789px !important;
+    border-radius: 24px;
+    background-color: #F8F5F0;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+}
+
+.subs-img-box,
+.subs-img-box img {
+    width: 280px;
+    height: 400px;
+    border-radius: 24px;
+}
+
+.subs-card-info {
+    width: 302px;
+    height: 270px;
+    margin-bottom: 20px;
+}
+
+.subs-card-title {
+    color: #545454;
+    text-align: center;
+    font-family: Sarabun;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.subs-list {
+    color: #545454;
+    font-family: Sarabun;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 250;
+    line-height: normal;
+    margin: 0px;
+}
+
+.subs-list li {
+    margin-left: 30px;
+}
+
+.subs-button {
+    border-radius: 12px;
+    background: #C9C792;
+    border: none;
+    color: #FBFBFB;
+    font-family: Sarabun;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding: 12px;
+    align-self: center !important;
+}
+
+.subs-button svg {
+    margin-left: 24px;
+}
+
+.subs-button svg path {
+    fill: #FBFBFB;
+}

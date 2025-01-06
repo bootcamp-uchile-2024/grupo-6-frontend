@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
@@ -12,9 +13,36 @@ import Row from 'react-bootstrap/esm/Row';
 import Button from 'react-bootstrap/esm/Button';
 import Container from 'react-bootstrap/esm/Container';
 
+
+
 const CrearProducto = () => {
     const navigate = useNavigate();
     const loggedInUser = JSON.parse(localStorage.getItem('__redux__user__') || '{}');
+
+    function dataURLtoFile(dataurl: string, filename: string) {
+
+        let arr = dataurl.split(','),
+            mime = arr[0].match(/:(.*?);/)?.[1] || '',
+            bstr = atob(arr[1]),
+            n = bstr.length,
+            u8arr = new Uint8Array(n);
+
+        while (n--) {
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+
+        return new File([u8arr], filename, {
+            type: mime
+        });
+    }
+
+    const handleCreateFile = () => {
+        // Crear un nuevo archivo basado en el Blob
+        const defaultImage = 'data:text/plain;base64,/9j/4AAQSkZJRgABAQEAeAB4AAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAEpANUDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD69ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAoorpfBvhOPxE91PdztbWFqu6WRcZPU4BPTgE5oA5qivRLHw34V8UGa00qe5gvI0LK0mcN74PUcj0NcZa6De32rPpsEJkukdkYDouDgknsKAM6ivQvEHw/sdB8I3F2ZWuL+EoGkVvkBLqCMfQ9689oAKK7XQ/CFjbeHZda10yJCwzBDG21n9PxPb25rjZWVpXZE8tCSVXOcD0zQAyinxxvNIEjRnduiqMk0ygAopzK0bFWUqynBUjBFavhbw/J4m1iOzR/LTBeSTGdqjv+ZA/GgDIor0SHQfBtxqX9kR3F015uMYn3cFx2Bxj9MVzlx4OuU8WHQ43DvvGJccbCN24j2FAHPUV6HNoXg6xvhpNxcXTXmQjXAOFVj26YH5HHc1zmueD7rSfEUelR/v2nI8h+m4E459Mc5+lAHP0V6Dd+H/AAn4dmSw1O4uZ71lBkkjyFjz3wOn61z/AIy8KnwvfRiOQz2c674ZT1PqDjvyPzoA56iiigAooooAKKKKACiiigAooooAKljuZoY3jSV0jk4dVYgN9R3qKu2+Hfhuw1KRtQ1GeHyoZNqW8jAbmAByc9uR9aALfgexXwpp8/iLU/3KPH5dvEfvSZ5yB7449snpXHx+IL631S5v7adra4uGcu0f+0ckV6J4m8KyeJ77zp9ftI4l4igUArGP++uT71wEfh8y+Im0pbqEESMguGOIzgE5/SgDro3aT4Q3TMxZmmyWY5JPnLzXO+A9ATxD4gjhmGbeFTNKv94AgY/Ekfhmu5j8OqngWXQzqVl9od9wk835Pvhvr0Fcp4V1CLwT4vlhu5o5ICvkyTRcqM4YMPbIx+dAHSeINa8M+ItWj068muwIn8pHiwsKtnH/ANbOMVw3i7w23hfV2td5lhZRJFIepUkjn3BBrqV+HNr/AGl9tOsWv9lb/N3bhu25zjOce2c1h/ELxFB4h1wPandbQR+Ur4xvOSSfpz+lAGNoesT6DqUN7bbTJGfusMhgeCK9Qk8P6dbxv4nGlzG48kTDTyBhZP72P1/XGa8y8P6pDouqRXc1ot4seSsbnGG7H8DV6PxxqsevHVTPulPymI/6sp/cx6f/AK6AMvVtUn1rUJry4KmaU5O0YA7AD8KgguZbV98MrwvjG6Nip/SrWuahDqmqT3VvarZxSHIhU5A9T+NaPgq40iLVimsQpJbyoUWSTOI29T/j24oA2vh7p+iSXNtcz3u7VlYmK0kJRNw+782Oa2vCwvJviRqsmpRrFdC3JCocqFygBB7jH86o6f4EsdK1iHUZNatW02CQTId4DNg5AJzjr6dapzeOoE8ff2pGGNjt+zsccsndsfXn8KAOS1qRpNYvnf77TyE/Xca9hvI1m8S+FppP9b5M556k+Wv+JrmL7wTp2qaxJqkesWi6XNJ50g3jIycsPQd+vTPTiqXiLx2knjCyvLP95Z2B2LjjzAeHI+o4H0oAwfGztJ4s1Qt184j8BwP0rqfGn734d+HpX5kHlqD3x5Z/wFSa54VsfF2pHVrHV7WK2mCtMsh+ZCAATjscdjisj4heILS++xaXpziSysk2+YpyGOABj1AA6+5oA42iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP/2Q=='
+        const newFile = dataURLtoFile(defaultImage, 'newBook.jpg');
+        console.log('Imagen por defecto:', newFile);
+        return newFile;
+    };
 
     const [libro, setLibro] = useState<ILibro>({
         isbn: '',
@@ -29,11 +57,12 @@ const CrearProducto = () => {
         agnoPublicacion: '',
         numeroPaginas: 0,
         descuento: -1,
-        caratula: '',
+        caratula: handleCreateFile(),
         dimensiones: '',
-        ean: '',
+        codigoBarra: '',
         resumen: '',
-        calificacion: 0
+        calificacion: 0,
+        destacado: false
     });
 
     const [errors, setErrors] = useState<IErrorsLibro>({
@@ -51,18 +80,26 @@ const CrearProducto = () => {
         descuento: false,
         caratula: false,
         dimensiones: false,
-        ean: false,
+        codigoBarra: false,
         resumen: false
     });
 
     // Manejar cambios en los campos de texto
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
-
-        setLibro({
-            ...libro,
-            [name]: convertValue(name as keyof ILibro, value)
-        })
+        // si el name es igual a caratula se setea el valor del archivo
+        if (name === 'caratula') {
+            setLibro({
+                ...libro,
+                [name]: (e.target as HTMLInputElement).files![0]
+            });
+            return;
+        } else {
+            setLibro({
+                ...libro,
+                [name]: convertValue(name as keyof ILibro, value)
+            });
+        }
     };
 
     // Función para convertir el valor según el tipo de la clave
@@ -74,11 +111,15 @@ const CrearProducto = () => {
             case "idioma":
             case "encuadernacion":
             case "agnoPublicacion":
-            case "caratula":
             case "dimensiones":
-            case "ean":
+            case "codigoBarra":
             case "resumen":
                 return value; // `string`
+            case "caratula": {
+                // Crear un archivo con el nombre del libro en mayúsculas y sin espacios
+                const fileName = libro.nombre.toLowerCase().trim().replace(' ', '').concat('.jpeg');
+                return new File([value], fileName); // `File`
+            }
             case "autor":
             case "genero":
                 return value.split(","); // `string[]` -> Convertir valor separado por comas
@@ -131,7 +172,7 @@ const CrearProducto = () => {
         if (errors.isbn || errors.nombre || errors.autor || errors.precio || errors.stockLibro
             || errors.genero || errors.editorial || errors.idioma || errors.encuadernacion
             || errors.agnoPublicacion || errors.numeroPaginas || errors.descuento || errors.caratula
-            || errors.dimensiones || errors.ean || errors.resumen) {
+            || errors.dimensiones || errors.codigoBarra || errors.resumen) {
 
             console.log("Los errores son: ", errors);
             navigate("/create/product");
@@ -139,25 +180,24 @@ const CrearProducto = () => {
             console.log("Se envia el formulario");
             console.log("La estructura del form es: ", libro);
 
-    // Crear el objeto FormData
-    const formData = new FormData();
-    formData.append('caratula', libro.caratula); // Adjuntar el archivo
-    formData.append('isbn', libro.isbn);
-    formData.append('nombre', libro.nombre);
-    formData.append('precio', libro.precio.toString());
-    formData.append('stockLibro', libro.stockLibro.toString());
-    formData.append('autor', libro.autor.toString());
-    libro.genero.forEach((genero) => formData.append('genero[]', genero)); // Array de géneros
-    formData.append('editorial', libro.editorial);
-    formData.append('idioma', libro.idioma);
-    formData.append('encuadernacion', libro.encuadernacion);
-    formData.append('agnoPublicacion', libro.agnoPublicacion);
-    formData.append('numeroPaginas', libro.numeroPaginas.toString());
-    formData.append('descuento', libro.descuento.toString());
-    formData.append('dimensiones', libro.dimensiones);
-    formData.append('ean', libro.ean);
-    formData.append('resumen', libro.resumen);
-    formData.append('originalName', "changoyculebra.png");
+            // Crear el objeto FormData
+            const formData = new FormData();
+            formData.append('caratula', libro.caratula); // Adjuntar el archivo
+            formData.append('isbn', libro.isbn);
+            formData.append('nombre', libro.nombre);
+            formData.append('precio', libro.precio.toString());
+            formData.append('stockLibro', libro.stockLibro.toString());
+            formData.append('autor', libro.autor.toString());
+            libro.genero.forEach((genero) => formData.append('genero[]', genero)); // Array de géneros
+            formData.append('editorial', libro.editorial);
+            formData.append('idioma', libro.idioma);
+            formData.append('encuadernacion', libro.encuadernacion);
+            formData.append('agnoPublicacion', libro.agnoPublicacion);
+            formData.append('numeroPaginas', libro.numeroPaginas.toString());
+            formData.append('descuento', libro.descuento.toString());
+            formData.append('dimensiones', libro.dimensiones);
+            formData.append('codigoBarra', libro.codigoBarra);
+            formData.append('resumen', libro.resumen);
 
 
             const response = await axios.post(configuracion.urlJsonServerBackendProducts, formData, {
@@ -188,11 +228,12 @@ const CrearProducto = () => {
                 agnoPublicacion: '',
                 numeroPaginas: 0,
                 descuento: -1,
-                caratula: '',
+                caratula: handleCreateFile(),
                 dimensiones: '',
-                ean: '',
+                codigoBarra: '',
                 resumen: '',
-                calificacion: 0
+                calificacion: 0,
+                destacado: false
             });
             navigate("/create/product");
         }
@@ -213,7 +254,7 @@ const CrearProducto = () => {
                                 <Row>
                                     {/* Imagen del libro */}
                                     <Col xs={12} md={5} className="d-flex align-items-center justify-content-center flex-column">
-                                        <img src='https://placehold.co/216x300/c7c7c7/white?font=lato' alt={libro.nombre}
+                                        <img src={URL.createObjectURL(libro.caratula)} alt={libro.nombre}
                                             className="img-fluid mb-3"
                                             style={{ maxHeight: '300px', objectFit: 'contain' }} />
                                         <Button variant="primary" type="submit" className="mt-3"
@@ -337,8 +378,8 @@ const CrearProducto = () => {
 
                                         {/* Campo Autor */}
                                         <Form.Group controlId="autores" className="mb-4">
-                                        <Form.Label>Autor</Form.Label>
-                                        <Form.Control
+                                            <Form.Label>Autor</Form.Label>
+                                            <Form.Control
                                                 type="text"
                                                 name="autor"
                                                 value={libro.autor}
@@ -449,7 +490,7 @@ const CrearProducto = () => {
                                             )}
                                         </Form.Group>
 
-                                        {/* Campo Carátula (Archivo)*/} 
+                                        {/* Campo Carátula (Archivo)*/}
                                         <Form.Group controlId="caratula" className="mb-4">
                                             <Form.Label>Carátula</Form.Label>
                                             <Form.Control
@@ -481,21 +522,21 @@ const CrearProducto = () => {
                                                 <Form.Text className="text-danger">Las dimensiones no pueden estar vacías.</Form.Text>
                                             )}
                                         </Form.Group>
-                                        {/* Campo EAN */}
-                                        <Form.Group controlId="ean" className="mb-4">
+                                        {/* Campo codigoBarra */}
+                                        <Form.Group controlId="codigoBarra" className="mb-4">
                                             <Form.Label>EAN (Código de Barra)</Form.Label>
                                             <Form.Control
                                                 type="text"
-                                                name="ean"
-                                                value={libro.ean}
+                                                name="codigoBarra"
+                                                value={libro.codigoBarra}
                                                 onChange={handleChange}
                                                 placeholder="Ej. 9781234567890"
                                                 required
                                                 style={{ backgroundColor: '#F5FAFF', color: '#455B73' }}
                                             />
-                                            {errors.ean && (
+                                            {errors.codigoBarra && (
                                                 <Form.Text className="text-danger">
-                                                    El EAN no debe estar vacío y debe tener un largo de 13 caracteres.
+                                                    El codigoBarra no debe estar vacío y debe tener un largo de 13 caracteres.
                                                 </Form.Text>
                                             )}
                                         </Form.Group>

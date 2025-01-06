@@ -31,7 +31,11 @@ import { CompraExitosa } from './components/shoppingcart/CompraExitosa.tsx'
 import { UserModifyAddressPage } from './pages/UserModifyAddress.tsx'
 import { UserListAddressPage } from './pages/UserListAddress.tsx'
 import { UserCreateAddressPage } from './pages/UserCreateAddressPage.tsx'
-import UserModifyPage  from './pages/UserModifyPage.tsx'
+import UserModifyPage from './pages/UserModifyPage.tsx'
+import SearchPage from './pages/SearchPage.tsx'
+import { SubscriptionPage } from './pages/SubscriptionPage.tsx'
+import ContactPage from './pages/ContactPage.tsx'
+import { AdminNotFoundPage } from './pages/AdminNotFoundPage.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -40,18 +44,22 @@ createRoot(document.getElementById('root')!).render(
         <Routes>
           <Route path="/" element={<HomePage title={'Páginas Selectas'} />} />
           <Route path="/categorias" element={<CategoriasPage title='Catálogo' />} />
-          <Route path="/about" element={<AboutPage title={'Nosotros'} body={'This is the about page'} />} />
+          <Route path="/search-results" element={<SearchPage title='Resultados búsqueda' />} />
+          <Route path="/about" element={<AboutPage title={'Nosotros'} />} />
+          <Route path="/contacto" element={<ContactPage title={'Contacto'} />} />
+          <Route path="/supcripciones" element={<SubscriptionPage title={'Suscripción'} />} />
           <Route path='/novedades' element={<NovedadesPage title={'Novedades'} />} />
           <Route path='/product-detail/:isbn' element={<ProductDetailPage />} />
           <Route path='/login' element={<LoginPage title='Iniciar Sesión' />} />
           <Route path='/register' element={<CrearCuentaPage title='Crear Cuenta' />} />
           <Route path='/create/product' element={<PrivateRoute roles={['ADMIN']}><CrearProductoPage title='Crear Producto' /></PrivateRoute>} />
           <Route path='/admin/product' element={<PrivateRoute roles={['ADMIN']}><AdminBookListPage title='Lista admin Producto' /></PrivateRoute>} />
-          <Route path='/admin/update/product' element={<PrivateRoute roles={['ADMIN']}><BookProductModifyPage title='Actualizar Producto'  /></PrivateRoute>} />
+          <Route path='/admin/update/product' element={<PrivateRoute roles={['ADMIN']}><BookProductModifyPage title='Actualizar Producto' /></PrivateRoute>} />
           <Route path='/admin/edit-user/:idUsuario' element={<PrivateRoute roles={['ADMIN']}><AdminUserModifyPage title='Editor de usuarios' /></PrivateRoute>} />
           <Route path='/admin/userslist' element={<PrivateRoute roles={['ADMIN']}><AdminUsersListPage title='Lista de usuarios' /></PrivateRoute>} />
           <Route path='/admin/createuser' element={<PrivateRoute roles={['ADMIN']}><AdminCreateUserPage title='Lista de usuarios' /></PrivateRoute>} />
           <Route path='/admin' element={<PrivateRoute roles={['ADMIN']}><AdminPage title='Panel de administración' /></PrivateRoute>} />
+          <Route path='/not-found-admin' element={<PrivateRoute roles={['ADMIN']}><AdminNotFoundPage title='Página no encontrada' /></PrivateRoute>} />
           <Route path='/user' element={<PrivateRoute roles={['USER']}><UserPage title='Cuenta' /></PrivateRoute>} />
           <Route path='/user/edit/:idUsuario' element={<PrivateRoute roles={['USER']}><UserModifyPage title='Modificar cuenta' /></PrivateRoute>} />
           <Route path='/user/settings/address' element={<PrivateRoute roles={['USER']}><UserModifyAddressPage title='Edita tu dirección' /></PrivateRoute>} />

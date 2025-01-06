@@ -1,16 +1,12 @@
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Modal from 'react-bootstrap/Modal';
+import { Container, Row, Col, Form, Modal } from 'react-bootstrap';
 import '../../styles/user_modify_address.css'
-import {  useState } from 'react';
+import { useState } from 'react';
 import { configuracion } from '../../config/appConfiguration';
 import { useNavigate } from 'react-router-dom';
 import { IDireccion } from '../../interfaces/IDireccion';
 import { jwtDecode } from 'jwt-decode';
 
-  
+
 function UserCreateAddress() {
     const [selectedAddress, setSelectedAddress] = useState<IDireccion>({
         idDireccion: 0,
@@ -21,18 +17,20 @@ function UserCreateAddress() {
         ciudad: '',
         region: '',
         informacionAdicional: '',
-        tipoDireccion: []});
+        tipoDireccion: []
+    });
     const [originalAddress] = useState<IDireccion>({
-            idDireccion: 0,
-            calle: '',
-            numeroCalle: '',
-            numeroDepartamento: '',
-            comuna: '',
-            ciudad: '',
-            region: '',
-            informacionAdicional: '',
-            tipoDireccion: []});
-    
+        idDireccion: 0,
+        calle: '',
+        numeroCalle: '',
+        numeroDepartamento: '',
+        comuna: '',
+        ciudad: '',
+        region: '',
+        informacionAdicional: '',
+        tipoDireccion: []
+    });
+
     const [error, setError] = useState<string | null>(null);
 
     // ESTADOS MODAL 
@@ -98,7 +96,7 @@ function UserCreateAddress() {
         } catch (error) {
             setError(error instanceof Error ? error.message : 'error desconocido');
             setModalTitle('Error');
-            setModalMessage('Hubo un error al crear la cuenta. Por favor, intenta de nuevo.');
+            setModalMessage('Hubo un error al guardar los detalles de la dirección. Por favor, intenta de nuevo.');
             setShowModal(true);
         }
     };
@@ -120,7 +118,7 @@ function UserCreateAddress() {
                 [name]: value
             });
         }
-    };    
+    };
 
     // HANDLE PARA RESTAURAR INPUTS SI PRESIONO CANCELAR
     const handleCancel = () => {
@@ -215,13 +213,14 @@ function UserCreateAddress() {
                                 value={selectedAddress.region}
                                 onChange={handleSelectChange}
                                 required>
+                                <option value="">-- Seleccione una región --</option>
                                 <option value="Arica y Parinacota">Arica y Parinacota</option>
                                 <option value="Tarapacá">Tarapacá</option>
                                 <option value="Antofagasta">Antofagasta</option>
                                 <option value="Atacama">Atacama</option>
                                 <option value="Coquimbo">Coquimbo</option>
                                 <option value="Valparaíso">Valparaíso</option>
-                                <option selected value="Metropolitana de Santiago">Metropolitana de Santiago</option>
+                                <option value="Metropolitana de Santiago">Metropolitana de Santiago</option>
                                 <option value="O'Higgins">O'Higgins</option>
                                 <option value="Maule">Maule</option>
                                 <option value="Ñuble">Ñuble</option>
@@ -242,6 +241,7 @@ function UserCreateAddress() {
                                 value={selectedAddress.tipoDireccion}
                                 onChange={handleSelectChange}
                                 required>
+                                <option value="">-- Seleccione tipo de dirección --</option>
                                 <option value="Envio">Envio</option>
                                 <option value="Facturacion">Facturacion</option>
                             </Form.Select>
@@ -267,7 +267,7 @@ function UserCreateAddress() {
                     onClick={handleCancel}>
                     Cancelar
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.4121 0C5.7847 0 0.412109 5.37259 0.412109 12C0.412109 18.6275 5.7847 24 12.4121 24C19.0396 24 24.4121 18.6275 24.4121 12C24.4121 5.37259 19.0396 0 12.4121 0ZM2.25826 12C2.25826 6.39219 6.8043 1.84615 12.4121 1.84615C18.02 1.84615 22.566 6.39219 22.566 12C22.566 17.6079 18.02 22.1538 12.4121 22.1538C6.8043 22.1538 2.25826 17.6079 2.25826 12ZM17.9882 6.42421C18.3487 6.7847 18.3487 7.36916 17.9882 7.72964L13.7178 12L17.9882 16.2704C18.3487 16.6309 18.3487 17.2153 17.9882 17.5758C17.6277 17.9363 17.0432 17.9363 16.6828 17.5758L12.4124 13.3054L8.14205 17.5758C7.78156 17.9363 7.1971 17.9363 6.83662 17.5758C6.47614 17.2153 6.47614 16.6309 6.83662 16.2704L11.107 12L6.83662 7.72964C6.47613 7.36916 6.47614 6.7847 6.83662 6.42421C7.1971 6.06373 7.78156 6.06373 8.14205 6.42421L12.4124 10.6946L16.6828 6.42421C17.0433 6.06373 17.6277 6.06373 17.9882 6.42421Z" fill="#806259" />
+                        <path fillRule="evenodd" clipRule="evenodd" d="M12.4121 0C5.7847 0 0.412109 5.37259 0.412109 12C0.412109 18.6275 5.7847 24 12.4121 24C19.0396 24 24.4121 18.6275 24.4121 12C24.4121 5.37259 19.0396 0 12.4121 0ZM2.25826 12C2.25826 6.39219 6.8043 1.84615 12.4121 1.84615C18.02 1.84615 22.566 6.39219 22.566 12C22.566 17.6079 18.02 22.1538 12.4121 22.1538C6.8043 22.1538 2.25826 17.6079 2.25826 12ZM17.9882 6.42421C18.3487 6.7847 18.3487 7.36916 17.9882 7.72964L13.7178 12L17.9882 16.2704C18.3487 16.6309 18.3487 17.2153 17.9882 17.5758C17.6277 17.9363 17.0432 17.9363 16.6828 17.5758L12.4124 13.3054L8.14205 17.5758C7.78156 17.9363 7.1971 17.9363 6.83662 17.5758C6.47614 17.2153 6.47614 16.6309 6.83662 16.2704L11.107 12L6.83662 7.72964C6.47613 7.36916 6.47614 6.7847 6.83662 6.42421C7.1971 6.06373 7.78156 6.06373 8.14205 6.42421L12.4124 10.6946L16.6828 6.42421C17.0433 6.06373 17.6277 6.06373 17.9882 6.42421Z" fill="#806259" />
                     </svg>
                 </button>
 
@@ -277,21 +277,22 @@ function UserCreateAddress() {
                     onClick={handleSaveChanges}>
                     Añadir Dirección
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.4121 0C5.7847 0 0.412109 5.37259 0.412109 12C0.412109 18.6275 5.7847 24 12.4121 24C19.0396 24 24.4121 18.6275 24.4121 12C24.4121 5.37259 19.0396 0 12.4121 0ZM2.25826 12C2.25826 6.39219 6.8043 1.84615 12.4121 1.84615C18.02 1.84615 22.566 6.39219 22.566 12C22.566 17.6079 18.02 22.1538 12.4121 22.1538C6.8043 22.1538 2.25826 17.6079 2.25826 12ZM19.2184 8.96041C19.5789 8.59992 19.5789 8.01546 19.2184 7.65498C18.858 7.2945 18.2735 7.29449 17.913 7.65498L9.95032 15.6177L6.91067 12.5781C6.55019 12.2176 5.96573 12.2176 5.60524 12.5781C5.24476 12.9385 5.24477 13.523 5.60525 13.8835L9.29761 17.5758C9.65809 17.9363 10.2425 17.9363 10.603 17.5758L19.2184 8.96041Z" fill="#FBFBFB" />
+                        <path fillRule="evenodd" clipRule="evenodd" d="M12.4121 0C5.7847 0 0.412109 5.37259 0.412109 12C0.412109 18.6275 5.7847 24 12.4121 24C19.0396 24 24.4121 18.6275 24.4121 12C24.4121 5.37259 19.0396 0 12.4121 0ZM2.25826 12C2.25826 6.39219 6.8043 1.84615 12.4121 1.84615C18.02 1.84615 22.566 6.39219 22.566 12C22.566 17.6079 18.02 22.1538 12.4121 22.1538C6.8043 22.1538 2.25826 17.6079 2.25826 12ZM19.2184 8.96041C19.5789 8.59992 19.5789 8.01546 19.2184 7.65498C18.858 7.2945 18.2735 7.29449 17.913 7.65498L9.95032 15.6177L6.91067 12.5781C6.55019 12.2176 5.96573 12.2176 5.60524 12.5781C5.24476 12.9385 5.24477 13.523 5.60525 13.8835L9.29761 17.5758C9.65809 17.9363 10.2425 17.9363 10.603 17.5758L19.2184 8.96041Z" fill="#FBFBFB" />
                     </svg>
                 </button>
             </div>
 
-            <Modal className='user-mod-dir-modal' show={showModal} onHide={handleCloseModal}>
-                <Modal.Header closeButton>
-                    <Modal.Title>{modalTitle}</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <p>{modalMessage}</p>
+            <Modal className="custom-modal-create-address" show={showModal} onHide={handleCloseModal}>
+                <Modal.Header closeButton className="custom-modal-header-create-address"/>
+                <Modal.Body className="custom-modal-body-create-address">
+                    <div>
+                        <p className="title-modal-create-address">{modalTitle}</p>
+                        <p className="detail-modal-create-address">{modalMessage}</p>
+                    </div>
                 </Modal.Body>
             </Modal>
         </Container>
     )
 }
 
-export default UserCreateAddress
+export default UserCreateAddress;

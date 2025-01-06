@@ -12,6 +12,7 @@ const UserProfile = () => {
         apellidoPaterno: '',
         apellidoMaterno: '',
         correoElectronico: '',
+        contrasena: '',
     });
     const loggedInUser = JSON.parse(localStorage.getItem('__redux__user__') || '{}');
 
@@ -50,6 +51,22 @@ const UserProfile = () => {
 
     const handleEdit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        // Solo pasamos los datos necesarios, sin el idUsuario
+        const { contrasena, nombres, apellidoPaterno, apellidoMaterno } = userData;
+
+        // Si la contraseña está vacía, no la enviamos
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const bodyData: any = {
+            nombres,
+            apellidoPaterno,
+            apellidoMaterno,
+        };
+
+        if (contrasena) {
+            bodyData.contrasena = contrasena;
+        }
+
         const url = `${configuracion.urlJsonServerBackendUsers}`;
         try {
             const result = await fetch(url, {
@@ -58,7 +75,7 @@ const UserProfile = () => {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${loggedInUser.token}`,
                 },
-                body: JSON.stringify(userData),
+                body: JSON.stringify(bodyData),
             });
 
             if (result.ok) {
@@ -71,6 +88,7 @@ const UserProfile = () => {
             console.error('Error al conectarse con el backend:', error);
         }
     };
+
 
     return (
         <Container className="py-5">
@@ -162,8 +180,8 @@ const UserProfile = () => {
                         </Button>
                         <Button
                             onClick={handleEdit}
-                            variant="primary" 
-                            type="submit" 
+                            variant="primary"
+                            type="submit"
                             className="change-cambios-user-modify">
                             Guardar cambios
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
