@@ -4,6 +4,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { MainLayout } from '../../layouts/MainLayout';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootType } from '../../states/store';
 
 interface CompraExitosaProps {
     title: string;
@@ -12,6 +14,7 @@ interface CompraExitosaProps {
 export const CompraExitosa = (props: CompraExitosaProps) => {
 
     const navigate = useNavigate();
+    const idDireccion = useSelector((state: RootType) => state.addressReducer.direccionEntrega);
 
     const handleRedirect = () => {
         navigate('/categorias');
@@ -26,7 +29,7 @@ export const CompraExitosa = (props: CompraExitosaProps) => {
                     <Col>
                         <p className='compra-exitosa-title'>Se ha realizado la compra con éxito :D</p>
                         <p className='compra-exitosa-texto'>Tu pedido llegará a la dirección que nos especificaste:</p>
-                        <p className='compra-exitosa-direccion'>Los Olmos 666, Macul, RM</p> {/* cambiar con direccion de back */}
+                        <p className='compra-exitosa-direccion'>{idDireccion}</p> {/* cambiar con direccion de back */}
                         <p className='compra-exitosa-texto'>Mientras esperas, revisa más de nuestros productos ;D</p>
                     </Col>
                 </Row>

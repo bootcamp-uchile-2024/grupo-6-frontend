@@ -111,7 +111,7 @@ export const MysteryBox = () => {
             <Row className='d-flex justify-content-center align-items-center mystery-checkbox'>
                 <Col lg={3}>
                     <input type="checkbox" name="regalo" id="regalo"/>
-                    <label htmlFor="regalo">Es un regalo uwu</label>
+                    <label htmlFor="regalo">Es un regalo</label>
                 </Col>
                 <Col lg={3}>
                     <input type="checkbox" name="suscripcion" id="suscripcion"/>

@@ -252,7 +252,7 @@
     text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.50) !important;
 }
 
-.menu-link:active{
+.menu-link:active {
     text-shadow: none !important;
     color: #455B73 !important;
 }
@@ -313,20 +313,79 @@
 
 .dropdown-menu-catalog {
     display: flex !important;
-    position: absolute !important;
     right: 0;
     top: 100%;
-    width: 100vw !important;
-    /*     max-width: 1600px; */
     margin: 0 !important;
     padding: 0 !important;
-    background-color: #1e3a5f;
     z-index: 1050;
     border: none !important;
     border-radius: 0 !important;
-    /* Quita los bordes curvos */
     box-shadow: none !important;
-    /* Elimina sombras si es necesario */
+}
+
+.dropdown-menu-catalog .dropdown-toggle,
+.dropdown-menu-catalog .dropdown-toggle:focus-visible {
+    background-color: #455B73;
+    border-radius: 16px;
+    color: #F5FAFF;
+    text-align: center;
+    font-family: Sarabun;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    width: 165px;
+    height: 50px;
+}
+
+.dropdown-menu-catalog .dropdown-toggle:hover,
+.dropdown-menu-catalog .dropdown-toggle:active,
+.dropdown-menu-catalog .dropdown-toggle:focus {
+    color: #545454 !important;
+    background-color: #B5D1F0 !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.dropdown-menu-catalog .dropdown-toggle svg {
+    margin-right: 12px;
+}
+
+.dropdown-menu-catalog .dropdown-toggle:hover svg path,
+.dropdown-menu-catalog .dropdown-toggle:active svg path,
+.dropdown-menu-catalog .dropdown-toggle:focus svg path {
+    fill: #545454 !important;
+}
+
+.dropdown-menu-categorias {
+    background-color: #455B73 !important;
+    padding: 24px !important;
+}
+
+.dropdown-menu-box {
+    background-color: #455B73;
+    border: none;
+}
+
+.dropdown-menu-box a {
+    width: 216px;
+}
+
+.dropdown-menu-box a,
+.dropdown-menu-categorias a {
+    overflow: hidden;
+    color: #FFF !important;
+    text-overflow: ellipsis;
+    font-family: Sarabun;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    cursor: 'pointer';
+    display: 'block';
+    padding: 12px;
+    margin: 0px !important;
 }
 
 .menu-container {
