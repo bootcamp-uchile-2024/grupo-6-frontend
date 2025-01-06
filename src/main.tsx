@@ -35,6 +35,7 @@ import UserModifyPage from './pages/UserModifyPage.tsx'
 import SearchPage from './pages/SearchPage.tsx'
 import { SubscriptionPage } from './pages/SubscriptionPage.tsx'
 import ContactPage from './pages/ContactPage.tsx'
+import { AdminNotFoundPage } from './pages/AdminNotFoundPage.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -58,6 +59,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path='/admin/userslist' element={<PrivateRoute roles={['ADMIN']}><AdminUsersListPage title='Lista de usuarios' /></PrivateRoute>} />
           <Route path='/admin/createuser' element={<PrivateRoute roles={['ADMIN']}><AdminCreateUserPage title='Lista de usuarios' /></PrivateRoute>} />
           <Route path='/admin' element={<PrivateRoute roles={['ADMIN']}><AdminPage title='Panel de administración' /></PrivateRoute>} />
+          <Route path='/not-found-admin' element={<PrivateRoute roles={['ADMIN']}><AdminNotFoundPage title='Página no encontrada' /></PrivateRoute>} />
           <Route path='/user' element={<PrivateRoute roles={['USER']}><UserPage title='Cuenta' /></PrivateRoute>} />
           <Route path='/user/edit/:idUsuario' element={<PrivateRoute roles={['USER']}><UserModifyPage title='Modificar cuenta' /></PrivateRoute>} />
           <Route path='/user/settings/address' element={<PrivateRoute roles={['USER']}><UserModifyAddressPage title='Edita tu dirección' /></PrivateRoute>} />

@@ -94,10 +94,10 @@ function AdminHeader() {
                 <Container fluid className="header-top-admin">
                     <Row className="container-herramientas-admin justify-content-end">
                         <Col md={6} className="d-flex align-items-center justify-content-end gap-3">
-                            <div className="input-group">
+                            <div className="input-group-admin">
                                 <Form.Control
                                     type="text"
-                                    placeholder="Busca tus libros aquí"
+                                    placeholder="Buscar productos"
                                     className="header-search-input-admin"
                                     value={query}
                                     onChange={handleSearchChange}
@@ -152,15 +152,15 @@ function AdminHeader() {
                             <nav className="menu-header-admin">
                                 <Link to="/admin/userslist" className="menu-link">Usuarios</Link>
                                 <Link to="/admin/product" className="menu-link">Productos</Link>
-                                <Link to="/inventario" className="menu-link">Inventario</Link>
-                                <Link to="/proveedores" className="menu-link">Proveedores</Link>
-                                <Link to="/pedidos" className="menu-link">Pedidos</Link>
+                                <Link to="/not-found-admin" className="menu-link">Inventario</Link>
+                                <Link to="/not-found-admin" className="menu-link">Proveedores</Link>
+                                <Link to="/not-found-admin" className="menu-link">Pedidos</Link>
                             </nav>
                         </Col>
                     </Row>
                 </Container>
 
-                <Link to="/">
+                <Link to="/admin">
                     <img src={logoPaginasSelectas} alt="Páginas selectas" className="header-logo-admin" />
                 </Link>
 
