@@ -205,7 +205,7 @@ const AdminUsersList = () => {
             </Row>
 
             {/* Modal */}
-            <Modal show={showModal} onHide={handleCloseModal}>
+            <Modal show={showModal} onHide={handleCloseModal} className="modal-user-list">
                 <Modal.Header style={{ backgroundColor: '#F5FAFF' }} closeButton>
                 </Modal.Header>
                 <Modal.Body style={{ backgroundColor: '#F5FAFF' }}>

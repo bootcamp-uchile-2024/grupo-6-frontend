@@ -14,7 +14,6 @@
     margin-bottom: 24px;
 }
 
-
 .title-admin-productList {
     color: var(--Grises-Text-Default, #545454);
     text-align: left;
@@ -61,7 +60,7 @@
     border-radius: 8px;
     box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.12);
     background: #F5FAFF;
-    border: 1px solid  #455B73;
+    border: 1px solid #455B73;
     text-align: center;
 
 }
@@ -84,8 +83,8 @@
 }
 
 .table-productList .head-table-product {
-    background:  #B5D1F0;
-    border: 1px solid  #455B73;
+    background: #B5D1F0;
+    border: 1px solid #455B73;
 
 
 }
@@ -94,7 +93,7 @@
     text-align: left;
     padding: 8px 12px;
     background: #F5FAFF;
-    border: 1px solid  #455B73;
+    border: 1px solid #455B73;
     text-align: center;
     font-family: Sarabun;
     font-size: 14px;
@@ -194,4 +193,27 @@
 
 a {
     text-decoration: none !important;
+}
+
+.create-product-admin .btn-primary {
+    display: flex;
+    padding: 12px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border-radius: 16px;
+    border: none;
+    background: var(--Azul-Administrador-Default, #455B73);
+    color: var(--Administrador-Background, #F5FAFF);
+    text-align: center;
+    font-family: Sarabun;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.create-product-admin .btn-primary:hover {
+    background: #D4E7FA !important;
+    color: #455B73;
 }

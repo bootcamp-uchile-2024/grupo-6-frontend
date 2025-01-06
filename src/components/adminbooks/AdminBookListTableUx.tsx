@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useFetchGet } from "../../hooks/useFetch";
 import ButtonProductModify from './ButtonProductModify';
 import { ILibroPaginado } from '../../interfaces/ILibroPaginado';
@@ -13,6 +13,8 @@ import Table from "react-bootstrap/esm/Table";
 import '../../styles/admin_product_list.css'
 
 function AdminBookListTableUx() {
+
+    const navigate = useNavigate();
 
     const [paginaActual, setPaginaActual] = useState<number>(1);
     const [cantidad, setCantidad] = useState<number>(6); // Número de productos por página, se puede cambiar
@@ -67,21 +69,24 @@ function AdminBookListTableUx() {
         return rango;
     };
 
+    const handleNavigation = (path: string) => {
+        navigate(path);
+    };
 
     return (
 
-        
+
         <Container className="productList-admin-container mt-4">
             <Row className="productList-admin-header">
                 <Col xs={12} md={8} className="text-start">
                     <h1 className="title-admin-productList">Productos</h1>
                 </Col>
-                <Col xs={12} md={4} className="text-end">
-
-                    <Button className="button-shoppingcart-resume" variant="none" style={{ backgroundColor: '#455B73', color: '#F5FAFF', border: '#455B73' }}>
-                        <Link to={`/create/product`}>
-                            Crear Producto
-                        </Link>
+                <Col xs={12} md={4} className="text-end create-product-admin">
+                    <Button variant="primary" onClick={() => handleNavigation("/create/product")}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path fillRule="evenodd" clipRule="evenodd" d="M12 2.4C6.69807 2.4 2.4 6.69807 2.4 12C2.4 17.3019 6.69807 21.6 12 21.6C17.3019 21.6 21.6 17.3019 21.6 12C21.6 6.69807 17.3019 2.4 12 2.4ZM0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12ZM12 7.2C12.6627 7.2 13.2 7.73726 13.2 8.4V10.8H15.6C16.2627 10.8 16.8 11.3373 16.8 12C16.8 12.6627 16.2627 13.2 15.6 13.2H13.2V15.6C13.2 16.2627 12.6627 16.8 12 16.8C11.3373 16.8 10.8 16.2627 10.8 15.6V13.2H8.4C7.73726 13.2 7.2 12.6627 7.2 12C7.2 11.3373 7.73726 10.8 8.4 10.8H10.8V8.4C10.8 7.73726 11.3373 7.2 12 7.2Z" fill="currentColor" />
+                        </svg>
+                        Crear Producto
                     </Button>
                 </Col>
             </Row>
