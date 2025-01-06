@@ -3,6 +3,7 @@ import productSlice from "./productSlice";
 import productModifySlice from "./productModify"
 import authSlice from "./authSlice"
 import { productCartReducer } from './cartSlice';
+import addressSlice from "./addressSlice";
 
 const persistedCartState: Middleware = store => next => action => {
 
@@ -33,6 +34,16 @@ const persistedLoggedInState: Middleware = store => next => action => {
 };
 
 
+const persistedAddressState: Middleware = store => next => action => {
+
+    next(action);
+    const estado = store.getState();
+
+    // Guarda el estado de la direccion en localStorage
+    const estadoAsJson = JSON.stringify(estado.addressReducer);
+    localStorage.setItem('__redux__address__', estadoAsJson);
+}
+
 /* Configuración inicial de nuestro Store */
 export const store = configureStore({
     reducer: {
@@ -40,8 +51,9 @@ export const store = configureStore({
         productReducer: productSlice,
         productModifyReducer: productModifySlice,
         authReducer: authSlice,
+        addressReducer: addressSlice,
     },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(persistedCartState, persistedLoggedInState),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(persistedCartState, persistedLoggedInState,persistedAddressState),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

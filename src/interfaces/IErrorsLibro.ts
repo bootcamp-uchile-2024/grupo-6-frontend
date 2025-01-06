@@ -13,7 +13,7 @@ interface IErrorsLibro {
     descuento: boolean,
     caratula: boolean,
     dimensiones: boolean,
-    ean: boolean,
+    codigoBarra: boolean,
     resumen: boolean
 }
 

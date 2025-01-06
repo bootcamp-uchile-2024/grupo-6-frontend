@@ -1,0 +1,140 @@
+.search-results-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    row-gap: 24px;
+    align-self: stretch;
+    flex-wrap: wrap;
+}
+
+.search-text-results {
+    color: #545454;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-top: 24px;
+}
+
+.search-card {
+    display: flex;
+    width: 248px;
+    height: 506px;
+    margin: 12px 0px 12px 0px;
+    background-color: #FFF;
+    border-radius: 24px;
+    border: 1px solid #975C4C;
+    padding: 16px;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.search-card:hover:not(.out-of-stock) {
+    background-color: #E1D5CA;
+    border: 1px solid #E1D5CA;
+}
+
+.search-card:active:not(.out-of-stock) {
+    outline: 2px solid #975C4C;
+    background-color: #E1D5CA;
+}
+
+.foto-search-card {
+    width: 216px;
+    height: 300px;
+    margin: 0px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-flow: row wrap;
+}
+
+.foto-search-card img {
+    width: 216px;
+    height: 300px;
+    border-radius: 12px;
+}
+
+.texto-search {
+    width: 216px;
+    margin: 14px 16px 14px 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.texto-search .texto-nombre-libro,
+.texto-search .texto-autor {
+    white-space: nowrap;
+    color: #545454;
+    text-overflow: ellipsis;
+    margin: 0px 0px 8px 0px;
+}
+
+.texto-search .texto-nombre-libro {
+    font-size: 16px;
+    overflow: hidden;
+    font-weight: bold;
+}
+
+.texto-search .texto-autor {
+    font-size: 13px;
+}
+
+.texto-search a {
+    text-decoration: none;
+}
+
+.texto-precio-search {
+    /* precio */
+    font-family: Sarabun;
+    font-size: 31px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin: 0px 0px 10px 0px;
+}
+
+/* Quantity buttons */
+
+.search-buttons-container .boton-comprar {
+    background-color: #975C4C;
+    border-radius: 16px;
+    border: none;
+    width: 56px;
+    height: 48px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.search-buttons-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.search-buttons-container .quantity-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 128px;
+    height: 48px;
+    border: 2px solid #806259;
+    border-radius: 16px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.search-buttons-container .quantity-buttons span {
+    font-size: 25px;
+    color: #545454;
+}
+
+.search-buttons-container .quantity-buttons button {
+    margin: 0px;
+    background-color: transparent;
+    border: none;
+}

@@ -13,11 +13,12 @@ interface ILibro {
     agnoPublicacion: string;     // Si - Año de publicación
     numeroPaginas: number;       //Si -  Número de páginas
     descuento: number;           // Si - Descuento aplicado al libro
-    caratula:  string;            // Si - URL de la carátula del libro
+    caratula:  File;            // Si - URL de la carátula del libro
     dimensiones: string;    // Agregar para vista de productos
-    ean: string;    // Agregar para vista de productos - Corresponde al codigo de barra
-    resumen: string //Agregar para vista de productos
-    calificacion: number // Agregar para vista de productos
+    codigoBarra: string;    // Agregar para vista de productos - Corresponde al codigo de barra
+    resumen: string; //Agregar para vista de productos
+    calificacion: number; // Agregar para vista de productos
+    destacado: boolean;
 }
 
 
@@ -58,18 +59,18 @@ export function validateValues(formValues: ILibro , errors: IErrorsLibro) {
         errors.stockLibro = false;
     }
 
-    if (!formValues.caratula || formValues.caratula.trim() === "") {
+    if (!formValues.caratula || formValues.caratula === null) {
         errors.caratula = true;
 
     } else {
         errors.caratula = false;
     }
 
-    if (formValues.ean.length < 13 || formValues.ean.length > 13 || formValues.ean.trim() === "" || !formValues.ean) {
-        errors.ean = true;
+    if (formValues.codigoBarra.length < 13 || formValues.codigoBarra.length > 13 || formValues.codigoBarra.trim() === "" || !formValues.codigoBarra) {
+        errors.codigoBarra = true;
 
     } else {
-        errors.ean = false;
+        errors.codigoBarra = false;
     }
 
     if (formValues.genero.length <= 0 || formValues.genero[0].trim() === "" || !formValues.genero) {

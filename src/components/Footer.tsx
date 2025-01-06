@@ -1,17 +1,23 @@
 import '../styles/footer.css';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { useNavigate } from "react-router-dom";
 
-function Footer() {
+const Footer = () => {
+
+    const navigate = useNavigate();
+
+    const handleRedirect = () => {
+        navigate("*");
+    };
 
     return (
         <footer id="footer">
 
             <div className="footer-top">
                 <Container>
-                    <Row className="align-items-center">
+                    <Row className="align-items-center container-footer-top">
 
                         <Col md={6} className="footer-recibe-ofertas">
-
                             <div className="input-group-footer justify-content-center align-items-center">
                                 <Form.Control type="email" placeholder="Inscríbete a nuestro Newsletter" className="form-input" />
                                 <Button variant="none" className="ms-3 newsletter-button">Recibe ofertas</Button>
@@ -19,11 +25,11 @@ function Footer() {
                         </Col>
 
                         <Col md={3} className="text-center footer-item-link">
-                            <a href="" className="footer-link">Publica con nosotros</a>
+                            <Button onClick={handleRedirect} className="footer-link-button"> Publica con nosotros</Button>
                         </Col>
 
                         <Col md={3} className="text-center footer-item-link">
-                            <a href="" className="footer-link">Preguntas frecuentes</a>
+                            <Button onClick={handleRedirect} className="footer-link-button"> Preguntas frecuentes</Button>
                         </Col>
 
                     </Row>

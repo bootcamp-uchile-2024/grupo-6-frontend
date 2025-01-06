@@ -47,27 +47,43 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    /* Asegura que los elementos estén alineados verticalmente */
     gap: 16px;
-    /* Espacio entre el input y los íconos */
     width: auto;
-    /* Evita que el contenedor se extienda más de lo necesario */
     margin-right: 24px;
-    /* Alinea con el botón "Catálogo" */
 }
+
+/* Barra de búsqueda */
 
 .input-group-admin {
     display: flex;
     align-items: center;
     width: 400px !important;
+    position: relative; /* Asegura que los resultados se posicionen correctamente */
 }
 
-/* Barra de búsqueda */
+
 .header-search-input-admin {
-    border-radius: 20px 0 0 20px;
+    display: flex !important;
+    height: 42px !important;
+    width: 471px !important;
+    border-radius: 8px 0 0 8px !important;
     border: 0 !important;
     padding: 10px 15px;
     font-size: 16px;
+    color: #ADABAB !important;
+    font-family: Sarabun !important;
+    font-size: 20px !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    line-height: normal !important;
+}
+
+.input-group-text {
+    height: 42px !important;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0 8px 8px 0 !important;
 }
 
 .header-search-button-admin {
@@ -87,14 +103,18 @@
 
 /* RESULTADOS BÚSQUEDA */
 .search-results {
-    position: absolute; /* Para que los resultados se ubiquen justo debajo del input */
-    top: 100%; /* Se coloca justo debajo del input */
+    position: absolute;
+    /* Para que los resultados se ubiquen justo debajo del input */
+    top: 100%;
+    /* Se coloca justo debajo del input */
     left: 0;
     width: 100%;
     background-color: #455B73;
-    z-index: 9999; /* Muy alto para que quede encima de otros elementos */
+    z-index: 9999;
+    /* Muy alto para que quede encima de otros elementos */
     max-height: 300px;
-    overflow-y: auto; /* Si hay muchos resultados, agrega un scroll */
+    overflow-y: auto;
+    /* Si hay muchos resultados, agrega un scroll */
 }
 
 .search-results {
@@ -145,12 +165,12 @@
 
 /* Íconos */
 .header-icon-admin {
-    display: flex;
-    padding: 12px 16px;
+    display: flex !important;
+    padding: 12px 16px !important;
     justify-content: center;
     align-items: center;
     gap: 12px;
-    border-radius: 16px;
+    border-radius: 16px !important;
     background: #455B73 !important;
     color: #F5FAFF !important;
 }
@@ -234,7 +254,6 @@
 }
 
 .menu-header-admin {
-    /* gap: 16px; */
     display: flex;
     padding: 24px;
     justify-content: flex-end;
@@ -246,11 +265,8 @@
 
 .dropdown-menu-admin {
     border: none !important;
-    /* Sin bordes */
     border-radius: 0 !important;
-    /* Sin esquinas redondeadas */
     box-shadow: none !important;
-    /* Sin sombras */
 }
 
 .dropdown-menu-catalog-admin {
@@ -259,16 +275,13 @@
     right: 0;
     top: 100%;
     width: 100vw !important;
-    /*     max-width: 1600px; */
     margin: 0 !important;
     padding: 0 !important;
     background-color: #1e3a5f;
     z-index: 1050;
     border: none !important;
     border-radius: 0 !important;
-    /* Quita los bordes curvos */
     box-shadow: none !important;
-    /* Elimina sombras si es necesario */
 }
 
 .menu-container-admin {
@@ -280,9 +293,7 @@
     background-color: #455B73;
     color: #FFFFFF;
     border: none;
-    /* Sin bordes */
     border-radius: 0;
-    /* Sin esquinas redondeadas */
 }
 
 .menu-column-admin {

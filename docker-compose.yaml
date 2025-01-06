@@ -1,6 +1,6 @@
 name: grupo-6-frontend-entrega-11
 services:
   frontend:
-    image: antoniahorta/grupo-6-frontend:1.0.0
+    image: antoniahorta/grupo-6-frontend:entrega-final
     ports:
       - 5173:80

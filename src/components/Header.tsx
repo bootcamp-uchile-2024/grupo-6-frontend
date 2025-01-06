@@ -18,6 +18,20 @@ function Header() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<ILibro[]>([]);
 
+  // Estado para manejar la visibilidad del dropdown
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  // ESTADO PARA LOS GÉNEROS
+  const [generos, setGeneros] = useState<string[]>([]);
+
+  // Para obtener los géneros al cargar componente
+  useEffect(() => {
+    fetch(configuracion.urlJsonServerBackendGenres)
+      .then((response) => response.json())
+      .then((data) => setGeneros(data))
+      .catch((error) => console.error('Error al cargar géneros:', error));
+  }, []);
+
   // Para obtener la cantidad de productos del carrito
   const itemCount = useSelector(selectCartItemCount);
 
@@ -42,6 +56,22 @@ function Header() {
     }
   };
 
+  // Handle para manejar los clicks en los items del dropdown
+  const handleCategoryClick = (genero: string) => {
+    navigate('/categorias', { state: { generosSeleccionados: [genero] } });
+    setShowDropdown(false); // Para ocultar el dropdown después del click
+  };
+
+  //Para mostrar el dropdown al pasar el mouse
+  const handleMouseEnter = () => {
+    setShowDropdown(true);
+  }
+
+  // Para ocultar el dropdown cuando el mouse sale del menú
+  const handleMouseLeave = () => {
+    setShowDropdown(false);
+  }
+
   const cartIcon = itemCount > 0 ? (
     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="27" viewBox="0 0 26 27" fill="none">
       <path fillRule="evenodd" clipRule="evenodd" d="M21.2367 15.3182C24.0425 14.0754 26 11.2663 26 8C26 3.58172 22.4183 0 18 0C14.471 0 11.4756 2.28505 10.4129 5.4563H4.9718L4.75187 3.83478C4.68691 3.35579 4.29744 3 3.83807 3H0.92308C0.413277 3 0 3.43531 0 3.97228C0 4.50926 0.413277 4.94456 0.92308 4.94456H3.03749L3.25473 6.54629C3.25634 6.56037 3.25824 6.57435 3.26042 6.58824L4.75384 17.5994C4.75546 17.6136 4.75738 17.6277 4.75958 17.6418L5.25626 21.3038C5.32123 21.7828 5.71069 22.1386 6.17006 22.1386H6.53517C6.09668 22.6546 5.83005 23.3361 5.83005 24.0832C5.83005 25.6941 7.06989 27 8.59929 27C10.1287 27 11.3685 25.6941 11.3685 24.0832C11.3685 23.3361 11.1019 22.6546 10.6634 22.1386H15.7656C15.3271 22.6546 15.0605 23.3361 15.0605 24.0832C15.0605 25.6941 16.3003 27 17.8297 27C19.3592 27 20.599 25.6941 20.599 24.0832C20.599 23.0188 20.0578 22.0876 19.2494 21.5783C19.305 21.4532 19.3361 21.3136 19.3361 21.1663C19.3361 20.6293 18.9228 20.194 18.413 20.194H6.97065L6.73467 18.4542H19.5789C19.9762 18.4542 20.329 18.1864 20.4546 17.7893L21.2367 15.3182ZM10.0221 7.40086C10.0075 7.59866 10 7.79846 10 8C10 12.4183 13.5817 16 18 16C18.3727 16 18.7394 15.9745 19.0986 15.9252L18.9136 16.5096H6.47093L5.23553 7.40086H10.0221ZM7.40066 24.0832C7.40066 23.3859 7.9373 22.8206 8.59929 22.8206C9.2613 22.8206 9.79792 23.3859 9.79792 24.0832C9.79792 24.7805 9.2613 25.3457 8.59929 25.3457C7.9373 25.3457 7.40066 24.7804 7.40066 24.0832ZM17.8297 22.8206C17.1677 22.8206 16.6311 23.3859 16.6311 24.0832C16.6311 24.7805 17.1677 25.3457 17.8297 25.3457C18.4917 25.3457 19.0283 24.7805 19.0283 24.0832C19.0283 23.3859 18.4917 22.8206 17.8297 22.8206Z" fill="currentColor" />
@@ -53,15 +83,17 @@ function Header() {
   );
 
   // HANDLES PARA BÚSQUEDA
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(event.target.value);
-  };
+  const handleSearchChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const searchQuery = event.target.value
+    setQuery(searchQuery);
 
-  const handleSearch = async () => {
-    if (query.trim() === "") return;
+    if (searchQuery.trim() === '') {
+      setResults([]); // Limpiar resultados si no hay texto en la búsqueda
+      return;
+    }
 
     try {
-      const response = await fetch(`${configuracion.urlJsonServerBackendDetailsSearch}?query=${query}`, {
+      const response = await fetch(`${configuracion.urlJsonServerBackendDetailsSearch}?query=${searchQuery}`, {
         method: 'GET',
         headers: { 'accept': 'application/json' }
       });
@@ -70,10 +102,21 @@ function Header() {
         const data = await response.json();
         setResults(data.productos);
       } else {
-        console.error("Error en la búsqueda");
+        console.error('Error en la búsqueda');
       }
     } catch (error) {
-      console.error("Error al realizar la petición:", error);
+      console.error('Error al realiar la petición', error);
+    }
+  };
+
+  const handleSearchClick = async () => {
+    if (query.trim() === "") return;
+    navigate('/search-results', { state: { query: query } });
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      handleSearchClick();
     }
   };
 
@@ -91,6 +134,14 @@ function Header() {
     return () => document.removeEventListener('click', handleClickOutside);
   }, []);
 
+  const chunkArray = (arr: string[], size: number) => {
+    const result = [];
+    for (let i = 0; i < arr.length; i += size) {
+      result.push(arr.slice(i, i + size));
+    }
+    return result;
+  };
+
   return (
 
     <header id="header">
@@ -106,10 +157,11 @@ function Header() {
                   placeholder="Busca tus libros aquí"
                   className="header-search-input"
                   value={query}
-                  onChange={handleSearchChange} />
+                  onChange={handleSearchChange}
+                  onKeyDown={handleKeyDown} />
                 <button
                   className="input-group-text bg-white border-0"
-                  onClick={handleSearch}>
+                  onClick={handleSearchClick}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none" className="icon-search-button">
                     <path fillRule="evenodd" clipRule="evenodd" d="M10.2 3.02695C5.89217 3.02695 2.4 6.51913 2.4 10.827C2.4 15.1347 5.89218 18.627 10.2 18.627C14.5078 18.627 18 15.1347 18 10.827C18 6.51913 14.5078 3.02695 10.2 3.02695ZM0 10.827C0 5.19364 4.56669 0.626953 10.2 0.626953C15.8333 0.626953 20.4 5.19364 20.4 10.827C20.4 13.2154 19.5791 15.412 18.204 17.1502L23.6473 22.5772C24.1166 23.0451 24.1177 23.8049 23.6498 24.2742C23.1819 24.7435 22.4221 24.7447 21.9527 24.2768L16.505 18.8454C14.7697 20.2118 12.5801 21.027 10.2 21.027C4.56669 21.027 0 16.4602 0 10.827Z" fill="currentColor" />
                   </svg>
@@ -162,48 +214,38 @@ function Header() {
                 <Link to="/mystery-box" className="menu-link">Mystery Box</Link>
                 <Link to="/supcripciones" className="menu-link">Suscripciones</Link>
 
-                <Dropdown>
-                  <Dropdown.Toggle as="div" className="menu-catalog-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none" className="icon-catalog-button">
-                      <path fillRule="evenodd" clipRule="evenodd" d="M2.5 4.92695C2.5 2.27599 4.64904 0.126953 7.3 0.126953H18.1C20.0883 0.126953 21.7 1.73874 21.7 3.72695V22.927C21.7 23.5897 21.1627 24.127 20.5 24.127H6.1C4.11179 24.127 2.5 22.5152 2.5 20.527V4.92695ZM4.9 17.1318V4.92695C4.9 3.60147 5.97452 2.52695 7.3 2.52695H18.1C18.7628 2.52695 19.3 3.0642 19.3 3.72695V16.927H6.1C5.67924 16.927 5.27534 16.9991 4.9 17.1318ZM19.3 19.327H6.1C5.43725 19.327 4.9 19.8642 4.9 20.527C4.9 21.1897 5.43725 21.727 6.1 21.727H19.3V19.327ZM8.5 7.32695C8.5 6.66421 9.03726 6.12695 9.7 6.12695H14.5C15.1627 6.12695 15.7 6.66421 15.7 7.32695C15.7 7.98969 15.1627 8.52695 14.5 8.52695H9.7C9.03726 8.52695 8.5 7.98969 8.5 7.32695Z" fill="currentColor" />
+                <Dropdown
+                  show={showDropdown}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                  className="dropdown-menu-catalog"
+                >
+                  <Dropdown.Toggle variant="secondary" id="dropdown-catalog-toggle" className='menu-catalog-button'>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M2.5 4.92695C2.5 2.27599 4.64904 0.126953 7.3 0.126953H18.1C20.0883 0.126953 21.7 1.73874 21.7 3.72695V22.927C21.7 23.5897 21.1627 24.127 20.5 24.127H6.1C4.11179 24.127 2.5 22.5152 2.5 20.527V4.92695ZM4.9 17.1318V4.92695C4.9 3.60147 5.97452 2.52695 7.3 2.52695H18.1C18.7628 2.52695 19.3 3.0642 19.3 3.72695V16.927H6.1C5.67924 16.927 5.27534 16.9991 4.9 17.1318ZM19.3 19.327H6.1C5.43725 19.327 4.9 19.8642 4.9 20.527C4.9 21.1897 5.43725 21.727 6.1 21.727H19.3V19.327ZM8.5 7.32695C8.5 6.66421 9.03726 6.12695 9.7 6.12695H14.5C15.1627 6.12695 15.7 6.66421 15.7 7.32695C15.7 7.98969 15.1627 8.52695 14.5 8.52695H9.7C9.03726 8.52695 8.5 7.98969 8.5 7.32695Z" fill="#F5FAFF" />
                     </svg>
-                    Catálogo
+                    Categorías
                   </Dropdown.Toggle>
 
-                  <Dropdown.Menu className="dropdown-menu-catalog" flip={false}>
-                    <div className="menu-container">
-                      <div className="menu-column">
-                        <Dropdown.Item href="/categoria/novelas" className="dropdown-item-categoria">Novelas</Dropdown.Item>
-                        <Dropdown.Item href="/categoria/deportes" className="dropdown-item-categoria">Deportes</Dropdown.Item>
-                        <Dropdown.Item href="/categoria/clasicos" className="dropdown-item-categoria">Clásicos</Dropdown.Item>
-                        <Dropdown.Item href="/categoria/diseno" className="dropdown-item-categoria">Diseño</Dropdown.Item>
-                        <Dropdown.Item href="/categoria/infantil" className="dropdown-item-categoria">Infantil</Dropdown.Item>
-                        <Dropdown.Item href="/categoria/poesia" className="dropdown-item-categoria">Poesía</Dropdown.Item>
-                      </div>
-                      <div className="menu-column">
-                        <Dropdown.Item href="/categoria/literatura" className="dropdown-item-categoria">Literatura</Dropdown.Item>
-                        <Dropdown.Item href="/categoria/biografias" className="dropdown-item-categoria">Biografías</Dropdown.Item>
-                        <Dropdown.Item href="/categoria/arquitectura" className="dropdown-item-categoria">Arquitectura</Dropdown.Item>
-                        <Dropdown.Item href="/categoria/arte" className="dropdown-item-categoria">Arte</Dropdown.Item>
-                        <Dropdown.Item href="/categoria/juvenil" className="dropdown-item-categoria">Juvenil</Dropdown.Item>
-                        <Dropdown.Item href="/categoria/romance" className="dropdown-item-categoria">Romance</Dropdown.Item>
-                      </div>
-                      <div className="menu-column">
-                        <Dropdown.Item href="/categoria/ficcion" className="dropdown-item-categoria">Ficción</Dropdown.Item>
-                        <Dropdown.Item href="/categoria/misterio" className="dropdown-item-categoria">Misterio</Dropdown.Item>
-                        <Dropdown.Item href="/categoria/autoayuda" className="dropdown-item-categoria">Autoayuda</Dropdown.Item>
-                        <Dropdown.Item href="/categoria/historia" className="dropdown-item-categoria">Historia</Dropdown.Item>
-                        <Dropdown.Item href="/categoria/fotografia" className="dropdown-item-categoria">Fotografía</Dropdown.Item>
-                        <Dropdown.Item href={`/categorias`} className="dropdown-item-categoria">Revisar todas las categorías</Dropdown.Item>
-                      </div>
-                      <div className="menu-column">
-                        <Dropdown.Item href="/categoria/terror" className="dropdown-item-categoria">Terror</Dropdown.Item>
-                        <Dropdown.Item href="/categoria/ilustracion" className="dropdown-item-categoria">Ilustración</Dropdown.Item>
-                        <Dropdown.Item href="/categoria/gestion" className="dropdown-item-categoria">Gestión</Dropdown.Item>
-                        <Dropdown.Item href="/categoria/estilo-de-vida" className="dropdown-item-categoria">Estilo de vida</Dropdown.Item>
-                        <Dropdown.Item href="/categoria/ciencias" className="dropdown-item-categoria">Ciencias</Dropdown.Item>
-                      </div>
+                  {/* Menú desplegable */}
+                  <Dropdown.Menu className="dropdown-menu-categorias">
+                    {/* Géneros organizados en columnas */}
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                      {chunkArray(generos, 4).map((chunk, index) => (
+                        <div className='dropdown-menu-box' key={index}>
+                          {chunk.map((genero, idx) => (
+                            <a
+                              key={idx}
+                              onClick={() => handleCategoryClick(genero)}
+                              style={{ cursor: 'pointer', display: 'block' }}
+                            >
+                              {genero}
+                            </a>
+                          ))}
+                        </div>
+                      ))}
                     </div>
+                    <Link to={`/categorias`} style={{ cursor: 'pointer', display: 'block', marginLeft: '10px' }}><b>Todos los productos</b></Link>
                   </Dropdown.Menu>
                 </Dropdown>
 

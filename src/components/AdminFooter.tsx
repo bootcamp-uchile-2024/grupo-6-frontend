@@ -1,8 +1,14 @@
 import '../styles/admin_footer.css'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-import { FaEnvelope } from 'react-icons/fa';
+import { useNavigate } from "react-router-dom";
 
-function AdminFooter() {
+const AdminFooter = () => {
+
+    const navigate = useNavigate();
+
+    const handleRedirect = () => {
+        navigate("/not-found-admin");
+    };
 
     return (
         <footer id="footer">
@@ -14,20 +20,17 @@ function AdminFooter() {
                         <Col md={6} className="d-flex align-items-center">
 
                             <div className="input-group">
-                                <Form.Control type="email" placeholder="Inscríbete a nuestro Newsletter ;D" className="form-input" />
-                                <span className="input-group-text bg-white border-0">
-                                    <FaEnvelope className="text-muted" />
-                                </span>
+                                <Form.Control type="email" placeholder="Inscríbete a nuestro Newsletter" className="form-input-footer-top" />
                             </div>
 
                             <Button variant="none" className="newsletter-button-admin ms-3">Recibe ofertas</Button>
                         </Col>
 
-                        <Col md={3} className="text-center">
+                        <Col md={3} className="text-center" onClick={handleRedirect}>
                             <a href="" className="footer-link">Publica con nosotros</a>
                         </Col>
 
-                        <Col md={3} className="text-center">
+                        <Col md={3} className="text-center" onClick={handleRedirect}>
                             <a href="" className="footer-link">Preguntas frecuentes</a>
                         </Col>
 

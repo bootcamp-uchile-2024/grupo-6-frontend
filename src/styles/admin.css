@@ -45,8 +45,8 @@
 }
 
 .logout-button-admin:hover {
-    background-color: #D4E7FA !important;
-    box-shadow: none !important;
+    background-color: none !important;
+    box-shadow: 0 0 0 4px #455B73 !important;
 }
 
 
@@ -114,7 +114,8 @@
 
 .button-historial-admin:hover,
 .button-editar-admin:hover {
-    background-color: #3A4E60;
+    background-color: #D4E7FA !important;
+    color: #455B73 !important;
 }
 
 ol,

@@ -51,7 +51,7 @@
     gap: 12px;
     background-color: transparent;
     border: none;
-    color: #806259;
+    color: #806259 !important;
     text-align: center;
     font-family: Sarabun;
     font-size: 20px;
@@ -62,7 +62,7 @@
 
 .delete-account-user-modify:hover,
 .change-password-user-modify:hover {
-    background-color: #E1D5CA;
+    background-color: transparent !important;
 }
 
 .container-buttons-action-user-modify {

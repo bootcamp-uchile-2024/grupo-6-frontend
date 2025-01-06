@@ -52,9 +52,9 @@ export function useFetchGeUser<T>(url: string, idUsuario: number): { data: T | n
 
 
 
-export function useFetchGetAddress<T>(url: string, idUsuario: number): { data: T | null, loading: boolean, error: string | null } {
+export function useFetchGetAddress<T>(url: string, idUsuario: number): { data: T | [], loading: boolean, error: string | null } {
 
-    const [data, setData] = useState<T | null>(null);
+    const [data, setData] = useState<T | []>([]); // Se inicia como una lista vacía
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
     const loggedInUser = JSON.parse(localStorage.getItem('__redux__user__') || '{}');
@@ -76,6 +76,12 @@ export function useFetchGetAddress<T>(url: string, idUsuario: number): { data: T
                         'Authorization': `Bearer ${loggedInUser.token}`
                     }
                 });
+
+                if (response.status === 404) {
+                    console.warn(`No se encontraron direcciones para el usuario ${idUsuario}.`);
+                    setData([]); // Si no hay direcciones, devolvemos una lista vacía
+                    return;
+                }
 
                 if (!response.ok) {
                     throw new Error(`HTTP Error: ${response.statusText} (${response.status})`);
@@ -102,14 +108,14 @@ export function useFetchGetAddress<T>(url: string, idUsuario: number): { data: T
 
 
 
-export function useFetchGetAddressEnvioFacturacion<T>(url: string, idUsuario: number): { dataEnvio:  IDireccion[]| null,dataFacturacion:  IDireccion[] | null, loading: boolean, error: string | null } {
+export function useFetchGetAddressEnvioFacturacion<T>(url: string, idUsuario: number): { dataEnvio:  IDireccion[],dataFacturacion:  IDireccion[], loading: boolean, error: string | null } {
 
     const [data, setData] = useState<T | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
     const loggedInUser = JSON.parse(localStorage.getItem('__redux__user__') || '{}');
-    const [dataEnvio, setAddressesEnvio] = useState< IDireccion[] | null>(null);
-    const [dataFacturacion, setAddressesFacturacion] = useState< IDireccion[]| null>(null);
+    const [dataEnvio, setAddressesEnvio] = useState< IDireccion[]>([]);
+    const [dataFacturacion, setAddressesFacturacion] = useState< IDireccion[]>([]);
 
     useEffect(() => {
 
@@ -130,6 +136,13 @@ export function useFetchGetAddressEnvioFacturacion<T>(url: string, idUsuario: nu
                         'Authorization': `Bearer ${loggedInUser.token}`
                     }
                 });
+
+                if (response.status === 404) {
+                    console.warn(`No se encontraron direcciones para el usuario ${idUsuario}.`);
+                    setAddressesEnvio([]);
+                    setAddressesFacturacion([]);
+                    return;
+                }
 
                 if (!response.ok) {
                     throw new Error(`HTTP Error: ${response.statusText} (${response.status})`);
