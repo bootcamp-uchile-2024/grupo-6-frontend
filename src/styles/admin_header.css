@@ -58,7 +58,9 @@
     display: flex;
     align-items: center;
     width: 400px !important;
+    position: relative; /* Asegura que los resultados se posicionen correctamente */
 }
+
 
 .header-search-input-admin {
     display: flex !important;
