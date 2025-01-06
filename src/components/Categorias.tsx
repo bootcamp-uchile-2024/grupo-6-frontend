@@ -8,8 +8,11 @@ import { configuracion } from '../config/appConfiguration.ts'
 import { Col, Container, Row } from 'react-bootstrap'
 import libreria from '../assets/images/libreria.svg'
 import Spinner from 'react-bootstrap/Spinner';
+import { useLocation } from 'react-router-dom'
 
 const Categorias = () => {
+
+  const location = useLocation();
 
   const [cargando, setCargando] = useState<boolean>(false);
   const [libros, setLibros] = useState<ILibro[]>([]);
@@ -21,6 +24,12 @@ const Categorias = () => {
   const [editorialesSeleccionadas, setEditorialesSeleccionadas] = useState<string[]>([]);
   const [precioMinimo, setPrecioMinimo] = useState<number | null>(null);
   const [precioMaximo, setPrecioMaximo] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (location.state?.generosSeleccionados) {
+      setGenerosSeleccionados(location.state.generosSeleccionados);
+    }
+  }, [location.state]);
 
   // Actualiza los filtros de géneros
   const actualizarGenerosSeleccionados = (nuevosGeneros: string[]) => {
