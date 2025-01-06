@@ -14,7 +14,7 @@ function AdminFooter() {
                         <Col md={6} className="d-flex align-items-center">
 
                             <div className="input-group">
-                                <Form.Control type="email" placeholder="Inscríbete a nuestro Newsletter ;D" className="form-input" />
+                                <Form.Control type="email" placeholder="Inscríbete a nuestro Newsletter" className="form-input" />
                                 <span className="input-group-text bg-white border-0">
                                     <FaEnvelope className="text-muted" />
                                 </span>

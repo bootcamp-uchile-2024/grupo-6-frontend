@@ -15,10 +15,9 @@ const Footer = () => {
 
             <div className="footer-top">
                 <Container>
-                    <Row className="align-items-center">
+                    <Row className="align-items-center container-footer-top">
 
                         <Col md={6} className="footer-recibe-ofertas">
-
                             <div className="input-group-footer justify-content-center align-items-center">
                                 <Form.Control type="email" placeholder="Inscríbete a nuestro Newsletter" className="form-input" />
                                 <Button variant="none" className="ms-3 newsletter-button">Recibe ofertas</Button>
