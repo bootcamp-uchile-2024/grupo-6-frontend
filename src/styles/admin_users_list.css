@@ -150,7 +150,8 @@ td {
     gap: 12px;
     border-radius: 16px;
     border: none;
-    background: var(--Azul-100, #D4E7FA);
+    background: var(--Azul-100, #D4E7FA) !important;
+    color: #455B73 !important;
 }
 
 .button-delete-admin-usersList:active {
