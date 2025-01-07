@@ -47,7 +47,7 @@ function MedioDePagoShoppingCart() {
             });
 
             if (response.status === 201) {
-                alert(`¡Compra exitosa con ${metodoPago}!`);
+                /* alert(`¡Compra exitosa con ${metodoPago}!`); */
                 navigate('/successful-purchase');
                 dispatch(clearCart());
             } else {
@@ -77,7 +77,7 @@ function MedioDePagoShoppingCart() {
             <div>
                 <Row>
                     <Col>
-                        <h3 className="metodos-pago-total">Total a Pagar: ${calculateTotal(shoppingCartProduct)}</h3>
+                        <h3 className="metodos-pago-total">Total a Pagar: ${calculateTotal(shoppingCartProduct).toLocaleString()}</h3>
                     </Col>
                 </Row>
             </div>

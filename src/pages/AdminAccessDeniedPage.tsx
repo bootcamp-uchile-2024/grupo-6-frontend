@@ -1,8 +1,8 @@
 import { Navigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { MainLayout } from "../layouts/MainLayout";
-import accessDenied from "../assets/images/icono_access_denied.png"
-import '../styles/admin_access_denied.css'
+import { Col, Container, Row } from "react-bootstrap";
+import '../styles/not_found.css'
 
 export const AdminAccessDeniedPage = () => {
 
@@ -24,12 +24,16 @@ export const AdminAccessDeniedPage = () => {
     }
 
     return (
-        <MainLayout>
-            <div className="caja-acces-denied">
-                <img src={accessDenied} alt="Página no encontrada" />
-                <p>Lo sentimos, no tienes permiso para acceder a esta página.</p>
-                <p>Redirigiendo a página principal...</p>
-            </div>        
+        <MainLayout>      
+            <Container>
+                <Row className="container-not-found-header">
+                    <Col lg={8}>
+                        <h2 className="title-not-found">Lo sentimos, no tienes permiso para acceder a esta página.</h2>
+                        <p className="info-not-found">Redirigiendo a página principal...</p>
+                    </Col>
+                    <div className="separador-not-found"></div>
+                </Row>
+            </Container>
         </MainLayout>
     );
 };

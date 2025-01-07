@@ -134,27 +134,22 @@
 
 /* MODAL */
 .user-register-modal .modal-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #FFFFFF;
-    border: 4px solid #806259;
     border-radius: 24px;
+    border: 4px solid #806259 !important;
+    background-color: #F5FAFF !important;
+    display: inline-flex;
     padding: 24px;
 }
 
 .user-register-modal .modal-header {
-    padding: 0px;
-    border: none;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 24px;
+    border-bottom: none;
+    background-color: #F5FAFF;
 }
 
 .user-register-modal .modal-header .btn-close {
+    display: flex;
+    flex-shrink: 0;
+    border-bottom: none;
     padding: 0px;
 }
 
@@ -170,10 +165,6 @@
     text-align: center;
     color: #806259;
     font-size: 25px;
-    margin: 0px;
-}
-
-.user-register-modal .modal-body p {
     margin: 0px;
 }
 

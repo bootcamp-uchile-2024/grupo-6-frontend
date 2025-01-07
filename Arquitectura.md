@@ -1,7 +1,7 @@
 # Arquitectura de la solución
 
 ## Descripción General
-Esta documentación describe la arquitectura de la aplicación frontend desplegada en una instancia de **Google Compute Engine (GCP)**. La aplicación está expuesta en el puerto 80 de la IP pública `34.133.89.147` y utiliza Docker para ejecutar la imagen `antoniahorta/grupo-6-frontend:1.0.0`.
+Esta documentación describe la arquitectura de la aplicación frontend desplegada en una instancia de **Google Compute Engine (GCP)**. La aplicación está expuesta en el puerto 80 de la IP pública `34.133.89.147` y utiliza Docker para ejecutar la imagen `antoniahorta/grupo-6-frontend:entrega-final`.
 
 ---
 
@@ -11,7 +11,7 @@ Se presenta la arquitectura de la aplicación frontend, tanto en su entorno prod
 ### **Diagrama de Arquitectura**
 En esta sección se presentan los diagramas de arquitectura de la aplicación frontend, tanto en su entorno productivo como en el entorno de desarrollo.
 #### Diagrama Productivo
-En el entorno productivo, la aplicación frontend se ejecuta en una instancia de **Google Compute Engine**, la cual está expuesta públicamente en el puerto 80. La instancia tiene instalado Docker y ejecuta la imagen `antoniahorta/grupo-6-frontend:1.0.0` para desplegar la aplicación frontend. En el caso del backend, se ejecuta en una instancia de **Amazon EC2** y se expone en el puerto 3000. La base de datos se despliega en un contenedor Docker en la instancia de Amazon EC2 y se expone en el puerto 3306.
+En el entorno productivo, la aplicación frontend se ejecuta en una instancia de **Google Compute Engine**, la cual está expuesta públicamente en el puerto 80. La instancia tiene instalado Docker y ejecuta la imagen `antoniahorta/grupo-6-frontend:entrega-final` para desplegar la aplicación frontend. En el caso del backend, se ejecuta en una instancia de **Amazon EC2** y se expone en el puerto 3000. La base de datos se despliega en un contenedor Docker en la instancia de Amazon EC2 y se expone en el puerto 3306.
 ![Arquitectura Frontend](./public/arquitectura-frontend-prod.webp)
 
 #### Diagrama Dev
@@ -37,13 +37,13 @@ En esta sección se describen los componentes de la aplicación frontend en su e
 #### **Docker**
 Se encuentra en la instancia de Computer Engine de GCP y se utiliza para ejecutar el frontend de la aplicación.
 - **Rol**: Herramienta de contenedorización utilizada para ejecutar la aplicación frontend.
-- **Imagen utilizada**: `antoniahorta/grupo-6-frontend:1.0.0`.
+- **Imagen utilizada**: `antoniahorta/grupo-6-frontend:entrega-final`.
 - **Configuración del contenedor**:
   - Puerto interno: `80`.
   - Puerto externo: `80`.
   - Comando de ejecución: 
     ```bash
-    docker run -d -p 80:80 antoniahorta/grupo-6-frontend:1.0.0
+    docker run -d -p 80:80 antoniahorta/grupo-6-frontend:entrega-final
     ```
 
 ---
@@ -61,11 +61,11 @@ Se encuentra en la instancia de Computer Engine de GCP y se utiliza para ejecuta
 2. **Ejecución de la imagen Docker**:
    - Pull de la imagen desde Docker Hub:
      ```bash
-     docker pull antoniahorta/grupo-6-frontend:1.0.0
+     docker pull antoniahorta/grupo-6-frontend:entrega-final
      ```
    - Ejecución del contenedor:
      ```bash
-     docker run -d -p 80:80 antoniahorta/grupo-6-frontend:1.0.0
+     docker run -d -p 80:80 antoniahorta/grupo-6-frontend:entrega-final
      ```
 
 3. **Acceso a la aplicación**:

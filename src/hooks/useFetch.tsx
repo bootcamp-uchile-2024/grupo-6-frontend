@@ -14,7 +14,6 @@ export function useFetchGet<T>(url: string, paginaActual: number, cantidad: numb
 
             try {
                 const urlRequest = url.toString().concat(`?pagina=${paginaActual}&cantidad=${cantidad}`);
-                console.log("URL generada:", `${url}?pagina=${paginaActual}&cantidad=${cantidad}`);
 
                 const response = await fetch(urlRequest);
 
@@ -139,7 +138,6 @@ export function useFetchGetDestacados<T>(url: string, paginaActual: number, cant
 
             try {
                 const urlRequest = url.toString().concat(`?pagina=${paginaActual}&cantidad=${cantidad}&destacado=${flag}`);
-                console.log("URL generada:", `${url}?pagina=${paginaActual}&cantidad=${cantidad}&destacado=${flag}`);
 
                 const response = await fetch(urlRequest);
 
@@ -180,7 +178,6 @@ export function useFetchGetNovedades<T>(url: string, paginaActual: number, canti
 
             try {
                 const urlRequest = url.toString().concat(`?pagina=${paginaActual}&cantidad=${cantidad}&novedades=${flag}`);
-                console.log("URL generada:", `${url}?pagina=${paginaActual}&cantidad=${cantidad}&novedades=${flag}`);
 
                 const response = await fetch(urlRequest);
 
@@ -222,7 +219,6 @@ export function useFetchGetTendencias<T>(url: string, paginaActual: number, cant
 
             try {
                 const urlRequest = url.toString().concat(`?pagina=${paginaActual}&cantidad=${cantidad}&tendencia=${flag}`);
-                console.log("URL generada:", `${url}?pagina=${paginaActual}&cantidad=${cantidad}&tendencia=${flag}`);
 
                 const response = await fetch(urlRequest);
 

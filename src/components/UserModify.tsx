@@ -1,12 +1,30 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { configuracion } from '../config/appConfiguration';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Modal } from 'react-bootstrap';
+import { logoutAction } from '../states/authSlice';
+import { jwtDecode } from 'jwt-decode';
 import '../styles/user_modify.css';
 
 const UserProfile = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    // Modal
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
+
+    const handleOpenModal = () => setShowDeleteModal(true);
+    const handleCloseModal = () => setShowDeleteModal(false);
+    const handleOpenSuccessModal = () => setShowSuccessModal(true);
+
+    const handleCloseSuccessModal = () => {
+        setShowSuccessModal(false); // Cierra el modal
+        navigate('/user'); // Redirige al perfil del usuario
+    };
+
     const [userData, setUserData] = useState({
         nombres: '',
         apellidoPaterno: '',
@@ -14,7 +32,9 @@ const UserProfile = () => {
         correoElectronico: '',
         contrasena: '',
     });
+
     const loggedInUser = JSON.parse(localStorage.getItem('__redux__user__') || '{}');
+    const decodedToken = jwtDecode<{ idUsuario: number; rol: string; exp: number }>(loggedInUser.token);
 
     // Cargar los datos actuales del usuario
     useEffect(() => {
@@ -80,7 +100,8 @@ const UserProfile = () => {
 
             if (result.ok) {
                 console.log('Datos del usuario actualizados');
-                navigate('/user'); // Redirige a la página del perfil
+                /* navigate('/user'); */ // Redirige a la página del perfil
+                handleOpenSuccessModal();
             } else {
                 console.error('Error al actualizar los datos del usuario');
             }
@@ -89,6 +110,32 @@ const UserProfile = () => {
         }
     };
 
+    const handleDeleteAccount = async () => {
+        const url = configuracion.urlJsonServerBackendUsers.toString().concat(`/${decodedToken.idUsuario}`);
+        try {
+            const response = await fetch(url, {
+                method: "DELETE",
+                headers: {
+                    "Content-type": "application/json",
+                    Authorization: `Bearer ${loggedInUser.token}`,
+                },
+            });
+
+            if (response.ok) {
+                alert("Tu cuenta ha sido eliminada exitosamente.");
+                localStorage.removeItem("__redux__user__");
+                dispatch(logoutAction());
+                navigate("/");
+            } else {
+                alert("Hubo un problema al eliminar tu cuenta. Inténtalo de nuevo.");
+            }
+        } catch (error) {
+            console.error("Error eliminando la cuenta:", error);
+            alert("Ocurrió un error inesperado.");
+        } finally {
+            handleCloseModal();
+        }
+    };
 
     return (
         <Container className="py-5">
@@ -156,7 +203,7 @@ const UserProfile = () => {
                 </Row>
                 <Row>
                     <Col className="container-buttons-account-modify">
-                        <Button className="delete-account-user-modify">
+                        <Button className="delete-account-user-modify" onClick={handleOpenModal}>
                             Eliminar cuenta
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                 <path fillRule="evenodd" clipRule="evenodd" d="M10.1775 0C8.22434 0 6.6125 1.56452 6.6125 3.52941V3.9095H3.565H0.92C0.411898 3.9095 0 4.32278 0 4.83258C0 5.34238 0.411898 5.75565 0.92 5.75565H2.645V20.4706C2.645 22.4355 4.25685 24 6.21 24H16.79C18.7432 24 20.355 22.4355 20.355 20.4706V5.75565H22.08C22.5881 5.75565 23 5.34238 23 4.83258C23 4.32278 22.5881 3.9095 22.08 3.9095H19.435H16.3875V3.52941C16.3875 1.56453 14.7757 0 12.8225 0H10.1775ZM15.4649 5.75565C15.4658 5.75566 15.4666 5.75566 15.4675 5.75566C15.4684 5.75566 15.4692 5.75566 15.4701 5.75565H18.515V20.4706C18.515 21.3846 17.7585 22.1538 16.79 22.1538H6.21C5.24156 22.1538 4.485 21.3846 4.485 20.4706V5.75565H7.52993C7.53079 5.75566 7.53164 5.75566 7.5325 5.75566C7.53336 5.75566 7.53421 5.75566 7.53507 5.75565H15.4649ZM14.5475 3.9095V3.52941C14.5475 2.61541 13.791 1.84615 12.8225 1.84615H10.1775C9.20907 1.84615 8.4525 2.61542 8.4525 3.52941V3.9095H14.5475ZM8.855 9.12218C9.3631 9.12218 9.775 9.53545 9.775 10.0453V17.8643C9.775 18.3741 9.3631 18.7873 8.855 18.7873C8.3469 18.7873 7.935 18.3741 7.935 17.8643V10.0453C7.935 9.53545 8.3469 9.12218 8.855 9.12218ZM14.145 9.12218C14.6531 9.12218 15.065 9.53545 15.065 10.0453V17.8643C15.065 18.3741 14.6531 18.7873 14.145 18.7873C13.6369 18.7873 13.225 18.3741 13.225 17.8643V10.0453C13.225 9.53545 13.6369 9.12218 14.145 9.12218Z" fill="currentColor" />
@@ -191,6 +238,42 @@ const UserProfile = () => {
                     </Col>
                 </Row>
             </Form>
+
+            {/* Modal de confirmación para eliminar cuenta*/}
+            <Modal show={showDeleteModal} onHide={handleCloseModal} centered className="custom-modal">
+                <Modal.Header closeButton className="custom-modal-header" />
+                <Modal.Body className="custom-modal-body">
+                    <div className="d-flex flex-column align-items-center">
+                        <p className="title-modal-user-account">¿Estás seguro de que deseas eliminar tu cuenta?</p>
+                        <p className="detail-modal-user-account">Esta acción no se puede deshacer.</p>
+                    </div>
+                </Modal.Body>
+                <Modal.Footer className="custom-modal-footer">
+                    <Button onClick={handleCloseModal} className="cancel-delete-account-user-button">
+                        Cancelar
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M18.364 18.364C21.8787 14.8492 21.8787 9.15076 18.364 5.63604C14.8492 2.12132 9.15076 2.12132 5.63604 5.63604M18.364 18.364C14.8492 21.8787 9.15076 21.8787 5.63604 18.364C2.12132 14.8492 2.12132 9.15076 5.63604 5.63604M18.364 18.364L5.63604 5.63604" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                    </Button>
+                    <Button onClick={handleDeleteAccount} className="confirm-delete-account-user-button">
+                        Eliminar cuenta
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10.1775 0C8.22434 0 6.6125 1.56452 6.6125 3.52941V3.9095H3.565H0.92C0.411898 3.9095 0 4.32278 0 4.83258C0 5.34238 0.411898 5.75565 0.92 5.75565H2.645V20.4706C2.645 22.4355 4.25685 24 6.21 24H16.79C18.7432 24 20.355 22.4355 20.355 20.4706V5.75565H22.08C22.5881 5.75565 23 5.34238 23 4.83258C23 4.32278 22.5881 3.9095 22.08 3.9095H19.435H16.3875V3.52941C16.3875 1.56453 14.7757 0 12.8225 0H10.1775ZM15.4649 5.75565C15.4658 5.75566 15.4666 5.75566 15.4675 5.75566C15.4684 5.75566 15.4692 5.75566 15.4701 5.75565H18.515V20.4706C18.515 21.3846 17.7585 22.1538 16.79 22.1538H6.21C5.24156 22.1538 4.485 21.3846 4.485 20.4706V5.75565H7.52993C7.53079 5.75566 7.53164 5.75566 7.5325 5.75566C7.53336 5.75566 7.53421 5.75566 7.53507 5.75565H15.4649ZM14.5475 3.9095V3.52941C14.5475 2.61541 13.791 1.84615 12.8225 1.84615H10.1775C9.20907 1.84615 8.4525 2.61542 8.4525 3.52941V3.9095H14.5475ZM8.855 9.12218C9.3631 9.12218 9.775 9.53545 9.775 10.0453V17.8643C9.775 18.3741 9.3631 18.7873 8.855 18.7873C8.3469 18.7873 7.935 18.3741 7.935 17.8643V10.0453C7.935 9.53545 8.3469 9.12218 8.855 9.12218ZM14.145 9.12218C14.6531 9.12218 15.065 9.53545 15.065 10.0453V17.8643C15.065 18.3741 14.6531 18.7873 14.145 18.7873C13.6369 18.7873 13.225 18.3741 13.225 17.8643V10.0453C13.225 9.53545 13.6369 9.12218 14.145 9.12218Z" fill="currentColor" />
+                        </svg>
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+
+            {/* Modal de cambios exitosos*/}
+            <Modal show={showSuccessModal} onHide={handleCloseSuccessModal} centered className="successful-change-modal">
+                <Modal.Header closeButton className="custom-modal-header" />
+                <Modal.Body className="custom-modal-body">
+                    <div className="d-flex flex-column align-items-center">
+                        <p className="title-modal-user-account-edit">Se han guardado los cambios</p>
+                        <p className="detail-modal-user-account-edit">Serás redirigido a tu perfil</p>
+                    </div>
+                </Modal.Body>
+            </Modal>
         </Container>
     );
 };

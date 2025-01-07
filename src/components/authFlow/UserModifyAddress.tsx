@@ -319,12 +319,12 @@ const UserModifyAddress = () => {
                 </button>
             </div>
 
-            <Modal className='user-mod-dir-modal' show={showModal} onHide={handleCloseModal}>
-                <Modal.Header closeButton>
-                    <Modal.Title>{modalTitle}</Modal.Title>
+            <Modal className='custom-modal-create-address' show={showModal} onHide={handleCloseModal} centered>
+                <Modal.Header closeButton className="custom-modal-header-create-address">
                 </Modal.Header>
-                <Modal.Body>
-                    <p>{modalMessage}</p>
+                <Modal.Body className="custom-modal-body-create-address">
+                    <p className="title-modal-create-address">{modalTitle}</p>
+                    <p className="detail-modal-create-address">{modalMessage}</p>
                 </Modal.Body>
             </Modal>
         </Container>

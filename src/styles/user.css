@@ -219,7 +219,25 @@
     align-self: stretch !important;
 }
 
-.cancel-delete-account-user-button,
+.cancel-delete-account-user-button{
+    display: flex !important;
+    padding: 12px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border-radius: 16px;
+    background: transparent !important;
+    color: #806259 !important;
+    border: none !important;
+    text-align: center !important;
+    font-family: Sarabun !important;
+    font-size: 20px !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    line-height: normal !important;
+    box-shadow: 0 0 0 4px #975C4C !important;
+}
+
 .confirm-delete-account-user-button {
     display: flex !important;
     padding: 12px 16px;
@@ -237,7 +255,11 @@
     line-height: normal !important;
 }
 
-.cancel-delete-account-user-button:hover,
+.cancel-delete-account-user-button:hover{
+    background-color: transparent;
+    box-shadow: 0 0 0 4px #975C4C !important;
+}
+
 .confirm-delete-account-user-button:hover {
     background-color: #E1D5CA !important;
     color: #975C4C !important;
