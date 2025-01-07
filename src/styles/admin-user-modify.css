@@ -114,22 +114,16 @@
 
 /* MODAL */
 .admin-user-register-modal .modal-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #F5FAFF !important;
-    border: 4px solid #455B73 !important;
     border-radius: 24px;
+    border: 4px solid #455B73 !important;
+    background-color: #F5FAFF !important;
+    display: inline-flex;
     padding: 24px;
 }
 
 .admin-user-register-modal .modal-header {
-    padding: 0px;
-    border: none;
-    display: flex !important;
-    flex-direction: row;
-    margin-bottom: 24px;
+    border-bottom: none;
+    background-color: #F5FAFF;
 }
 
 .admin-user-register-modal .modal-header .btn-close {
@@ -154,9 +148,26 @@
     margin: 0px;
 }
 
-.admin-user-register-modal .modal-body p {
-    margin: 0px;
+.title-create-user-admin{
+    color: #455B73;
+    text-align: center;
+    font-family: Sarabun;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
 }
+
+.message-create-user-admin{
+    color: #455B73;
+    text-align: center;
+    font-family: Sarabun;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
 
 /* ERRORES*/
 

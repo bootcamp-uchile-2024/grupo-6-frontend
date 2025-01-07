@@ -81,48 +81,48 @@ function ResumenShoppingCart() {
     const handleSentToBackendShoppingCart = async (items: ShoppingCartEntrada[]) => {
         // Mapeo del carrito en el formato requerido
         const shoppingCart = items.map((item) => ({
-          isbn: item.isbn,
-          cantidad: item.cantidad,
-          precio: calculateTotalProduct(item),
-          descuento: 0, // Puedes ajustar el descuento según sea necesario
+            isbn: item.isbn,
+            cantidad: item.cantidad,
+            precio: calculateTotalProduct(item),
+            descuento: 0, // Puedes ajustar el descuento según sea necesario
         }));
-      
+
         // Construcción del objeto final
         const payload = {
-          fechaCompra: new Date().toISOString().split('T')[0], // Formato YYYY-MM-DD
-          precioTotal: calculateTotalConDespacho(items),
-          shoppingCart,
+            fechaCompra: new Date().toISOString().split('T')[0], // Formato YYYY-MM-DD
+            precioTotal: calculateTotalConDespacho(items),
+            shoppingCart,
         };
-      
+
         try {
-          // Realizar el POST al backend
-          const urlRequest = `${urlShoppingCart}/bulk`;
-          const response = await fetch(urlRequest, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${loggedInUser.token}`
+            // Realizar el POST al backend
+            const urlRequest = `${urlShoppingCart}/bulk`;
+            const response = await fetch(urlRequest, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${loggedInUser.token}`
 
-            },
-            body: JSON.stringify(payload),
-          });
-      
-          if (response.ok) {
-            const result = await response.json();
-            console.log('Compra enviada correctamente:', result);
-            // Redirigir a la página de confirmación
+                },
+                body: JSON.stringify(payload),
+            });
 
-            dispatch(setDireccionEntrega({ idDireccionEntrega: selectedAddress?.idDireccion || 0, direccionEntrega: selectedAddressString || "" }));
-            
-            navigate('/shoppingcart-payment/');
+            if (response.ok) {
+                const result = await response.json();
+                console.log('Compra enviada correctamente:', result);
+                // Redirigir a la página de confirmación
 
-          } else {
-            console.error('Error al enviar el carrito:', response.statusText);
-          }
+                dispatch(setDireccionEntrega({ idDireccionEntrega: selectedAddress?.idDireccion || 0, direccionEntrega: selectedAddressString || "" }));
+
+                navigate('/shoppingcart-payment/');
+
+            } else {
+                console.error('Error al enviar el carrito:', response.statusText);
+            }
         } catch (error) {
-          console.error('Error de red al enviar el carrito:', error);
+            console.error('Error de red al enviar el carrito:', error);
         }
-      };
+    };
 
     return (
         <div className='resumen-shopping-cart'>
@@ -140,9 +140,9 @@ function ResumenShoppingCart() {
                             </Link>
                         </Col>
                         <Col className="seguir-comprando-button" lg={2}>
-                                <Button variant='none' className='md-2' onClick={() => handleSentToBackendShoppingCart(shoppingCartProduct)}>
-                                    Pagar el pedido
-                                </Button>
+                            <Button variant='none' className='md-2' onClick={() => handleSentToBackendShoppingCart(shoppingCartProduct)}>
+                                Pagar el pedido
+                            </Button>
                         </Col>
                     </Row>
                 </div>
@@ -218,7 +218,7 @@ function ResumenShoppingCart() {
                                     onSelect={(eventKey) => { if (eventKey) handleSelectAddress(parseInt(eventKey)); }}
                                     variant="outline-secondary"
                                     disabled={!addresses || addresses.length === 0}
-                                   style={{ width: '400px' }}
+                                    style={{ width: '400px' }}
                                 >
                                     {addresses && addresses.length > 0 ? (
                                         addresses.map((address) => (

@@ -50,7 +50,7 @@ export const AboutPage = (props: AboutProps) => {
                 </Row>
                 <Row>
                     <Col>
-                        <p className='about-names'>Alexandra Pávez - Antonia Horta- Daniela Gajardo</p>
+                        <p className='about-names'>Alexandra Pavez - Antonia Horta - Daniela Gajardo</p>
                     </Col>
                 </Row>
 

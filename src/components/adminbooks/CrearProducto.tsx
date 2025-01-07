@@ -7,17 +7,18 @@ import '../../styles/create_product.css'
 import { IErrorsLibro } from '../../interfaces/IErrorsLibro';
 import axios from 'axios';
 import { configuracion } from '../../config/appConfiguration';
-import Col from 'react-bootstrap/esm/Col';
-import Form from 'react-bootstrap/esm/Form';
-import Row from 'react-bootstrap/esm/Row';
-import Button from 'react-bootstrap/esm/Button';
-import Container from 'react-bootstrap/esm/Container';
+import { Button, Container, Row, Col, Modal, Form } from "react-bootstrap";
 
 
 
 const CrearProducto = () => {
     const navigate = useNavigate();
     const loggedInUser = JSON.parse(localStorage.getItem('__redux__user__') || '{}');
+
+    /*  Estados */
+    const [showModal, setShowModal] = useState(false); // Control del modal
+    const [modalMessage, setModalMessage] = useState('');
+    const [modalTitle, setModalTitle] = useState('');
 
     function dataURLtoFile(dataurl: string, filename: string) {
 
@@ -210,7 +211,10 @@ const CrearProducto = () => {
             if (response.status == 201) {
                 console.log("Libro creado correctamente al Backend");
 
-                alert('Libro creado correctamente');
+                setModalTitle('Libro creado exitosamente');
+                setModalMessage('El producto se ha creado correctamente. Serás redirigido al listado de producto al cerrar este mensaje.');
+                setShowModal(true);
+
             } else {
                 console.log("Error al crear el libro en el Backend");
                 alert('Error al crear el libro en el Backend');
@@ -240,7 +244,15 @@ const CrearProducto = () => {
 
     };
 
+    /* <<<<<<< Modal >>>>>>>>> */
+    const handleCloseModal = () => {
+        setShowModal(false);
+        navigate("/admin/product"); // Redirige al listado de productos después de cerrar el modal
+    };
 
+    const handleNavigation = (path: string) => {
+        navigate(path);
+    };
 
     return (
 
@@ -253,16 +265,21 @@ const CrearProducto = () => {
                             <>
                                 <Row>
                                     {/* Imagen del libro */}
-                                    <Col xs={12} md={5} className="d-flex align-items-center justify-content-center flex-column">
+                                    <Col xs={12} md={5} className="d-flex align-items-center justify-content-center flex-column container-create-product-admin">
                                         <img src={URL.createObjectURL(libro.caratula)} alt={libro.nombre}
-                                            className="img-fluid mb-3"
+                                            className="img-fluid mb-3 portada-libro"
                                             style={{ maxHeight: '300px', objectFit: 'contain' }} />
-                                        <Button variant="primary" type="submit" className="mt-3"
-                                            style={{
-                                                backgroundColor: '#455B73',
-                                                color: '#F5FAFF',
-                                            }}>
-                                            Actualizar información
+                                        <Button variant="primary" type="submit" className="mt-3">
+                                            Crear producto
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+                                                <path fillRule="evenodd" clipRule="evenodd" d="M12.9121 0C6.2847 0 0.912109 5.37259 0.912109 12C0.912109 18.6275 6.2847 24 12.9121 24C19.5396 24 24.9121 18.6275 24.9121 12C24.9121 5.37259 19.5396 0 12.9121 0ZM2.75826 12C2.75826 6.39219 7.3043 1.84615 12.9121 1.84615C18.52 1.84615 23.066 6.39219 23.066 12C23.066 17.6079 18.52 22.1538 12.9121 22.1538C7.3043 22.1538 2.75826 17.6079 2.75826 12ZM19.7184 8.96041C20.0789 8.59992 20.0789 8.01546 19.7184 7.65498C19.358 7.2945 18.7735 7.29449 18.413 7.65498L10.4503 15.6177L7.41067 12.5781C7.05019 12.2176 6.46573 12.2176 6.10524 12.5781C5.74476 12.9385 5.74477 13.523 6.10525 13.8835L9.79761 17.5758C10.1581 17.9363 10.7425 17.9363 11.103 17.5758L19.7184 8.96041Z" fill="currentColor" />
+                                            </svg>
+                                        </Button>
+                                        <Button variant='secondary' size='lg' onClick={() => handleNavigation("/admin/product")}>
+                                            Cancelar
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+                                                <path fillRule="evenodd" clipRule="evenodd" d="M12.4121 0C5.7847 0 0.412109 5.37259 0.412109 12C0.412109 18.6275 5.7847 24 12.4121 24C19.0396 24 24.4121 18.6275 24.4121 12C24.4121 5.37259 19.0396 0 12.4121 0ZM2.25826 12C2.25826 6.39219 6.8043 1.84615 12.4121 1.84615C18.02 1.84615 22.566 6.39219 22.566 12C22.566 17.6079 18.02 22.1538 12.4121 22.1538C6.8043 22.1538 2.25826 17.6079 2.25826 12ZM17.9882 6.42421C18.3487 6.7847 18.3487 7.36916 17.9882 7.72964L13.7178 12L17.9882 16.2704C18.3487 16.6309 18.3487 17.2153 17.9882 17.5758C17.6277 17.9363 17.0432 17.9363 16.6828 17.5758L12.4124 13.3054L8.14205 17.5758C7.78156 17.9363 7.1971 17.9363 6.83662 17.5758C6.47614 17.2153 6.47614 16.6309 6.83662 16.2704L11.107 12L6.83662 7.72964C6.47613 7.36916 6.47614 6.7847 6.83662 6.42421C7.1971 6.06373 7.78156 6.06373 8.14205 6.42421L12.4124 10.6946L16.6828 6.42421C17.0433 6.06373 17.6277 6.06373 17.9882 6.42421Z" fill="currentColor" />
+                                            </svg>
                                         </Button>
                                     </Col>
 
@@ -623,8 +640,18 @@ const CrearProducto = () => {
                             <div>No se encontró el producto</div>
                         )}
                     </div>
-
                 </Form>
+
+                {/* Modal de confirmación de creación exitosa */}
+                <Modal className="admin-create-product-modal" show={showModal} onHide={handleCloseModal} /* centered */>
+                    <Modal.Header closeButton>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <p className="title-create-product-admin">{modalTitle}</p>
+                        <p className="message-create-product-admin">{modalMessage}</p>
+                    </Modal.Body>
+                </Modal>
+
             </Container>
         </div></>
     );

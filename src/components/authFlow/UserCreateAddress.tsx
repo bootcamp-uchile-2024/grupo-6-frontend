@@ -78,7 +78,7 @@ function UserCreateAddress() {
             });
 
             if (response.ok) {
-                setModalTitle('Se han guardado los cambios');
+                setModalTitle('Se ha añadido la dirección');
                 setModalMessage('Serás redirigido a tu perfil');
                 setShowModal(true);
                 setShouldNavigate(true); // Indica que se debe redirigir después de cerrar el modal
@@ -171,7 +171,7 @@ function UserCreateAddress() {
                         </Form.Group>
 
                         <Form.Group className="mb-3">
-                            <Form.Label htmlFor='numeroDepartamento'>Departamento</Form.Label>
+                            <Form.Label htmlFor='numeroDepartamento'>Departamento (opcional)</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder="Departamento"
@@ -282,7 +282,7 @@ function UserCreateAddress() {
                 </button>
             </div>
 
-            <Modal className="custom-modal-create-address" show={showModal} onHide={handleCloseModal}>
+            <Modal className="custom-modal-create-address" show={showModal} onHide={handleCloseModal} centered>
                 <Modal.Header closeButton className="custom-modal-header-create-address"/>
                 <Modal.Body className="custom-modal-body-create-address">
                     <div>

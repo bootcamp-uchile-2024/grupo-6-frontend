@@ -123,3 +123,29 @@
     background: var(--Usuario-Default, #806259);
     border: none;
 }
+
+/* Modal cambios exitoso */
+.successful-change-modal .custom-modal-header,
+.successful-change-modal .custom-modal-body {
+    background-color: #FBFBFB !important;
+}
+
+.title-modal-user-account-edit {
+    color: var(--Usuario-Default, #806259);
+    text-align: center;
+    font-family: Sarabun;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.detail-modal-user-account-edit {
+    color: var(--Usuario-Default, #806259);
+    text-align: center;
+    font-family: Sarabun;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}

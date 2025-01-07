@@ -198,12 +198,12 @@ const CrearCuenta = () => {
                 </Col>
             </Row>
 
-            <Modal className='user-register-modal' show={showModal} onHide={handleCloseModal}>
+            <Modal className='user-register-modal' show={showModal} onHide={handleCloseModal} centered>
                 <Modal.Header closeButton>
-                    <Modal.Title>{modalTitle}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <p>{modalMessage}</p>
+                    <p className="title-user-register-modal">{modalTitle}</p>
+                    <p className="description-user-register-modal">{modalMessage}</p>
                 </Modal.Body>
             </Modal>
         </Container>

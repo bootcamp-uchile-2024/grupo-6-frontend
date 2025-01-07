@@ -25,14 +25,14 @@
     line-height: normal;
 }
 
-.button-admin-createUser {
-    width: 186px !important;
-    border-radius: 16px !important;
+.userList-admin-header .btn-primary {
+    width: 186px;
+    border-radius: 16px;
+    border: none;
     background: #455B73;
     color: #F5FAFF;
     padding: 12px 16px;
-    gap: 12px !important;
-    align-items: flex-end !important;
+    align-items: flex-end;
     justify-content: center;
     font-size: 20px;
     font-style: normal;
@@ -40,33 +40,40 @@
     line-height: normal;
 }
 
-.button-admin-createUser:hover {
-    background: var(--Azul-100, #D4E7FA);
-    color: #455B73 !important;
+.userList-admin-header .btn-primary svg {
+    margin-right: 12px;
 }
 
+.userList-admin-header .btn-primary:hover {
+    background: #D4E7FA;
+    color: #455B73;
+}
 
-.button-admin-createUser:active {
+.userList-admin-header .btn-primary:active {
     background: var(--Azul-100, #D4E7FA) !important;
     color: #455B73 !important;
     box-shadow: 0 0 0 4px #455B73;
 }
 
 .table-userList {
-    width: 70%;
+    width: 70% !important;
     border: 1px solid #455B73 !important;
     overflow: hidden;
 }
 
 .description-table-userList th {
-    text-align: left;
-    padding: 8px 12px;
-    background-color: #B5D1F0;
+    padding: 8px 12px !important;
+    background-color: #B5D1F0 !important;
     text-align: center;
+    font-family: Sarabun;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 }
 
-th,
-td {
+.table-userList th,
+.table-userList td {
     border: 1px solid #455B73 !important;
     text-align: center;
     font-weight: 500;
@@ -94,7 +101,7 @@ td {
     text-transform: capitalize;
 }
 
-.modal-user-list .modal-content{
+.modal-user-list .modal-content {
     border-radius: 24px;
     border: 4px solid var(--Azul-Administrador-Default, #455B73) !important;
     background: var(--Azul-0, #F5FAFF) !important;
@@ -102,11 +109,9 @@ td {
     padding: 24px;
 }
 
-.modal-header {
+.modal-user-list .modal-header {
     border-bottom: none;
-    /* Elimina la línea inferior del encabezado */
     background-color: #F5FAFF;
-    /* Asegúrate de mantener el color si es necesario */
 }
 
 .modal-body {

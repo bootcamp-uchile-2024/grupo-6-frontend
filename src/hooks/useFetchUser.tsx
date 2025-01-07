@@ -17,7 +17,6 @@ export function useFetchGeUser<T>(url: string, idUsuario: number): { data: T | n
 
             try {
                 const urlRequest = url.toString().concat(`/${idUsuario}`);
-                console.log("URL generada:", `${urlRequest}`);
 
                 const response = await fetch(urlRequest, {
                     method: 'GET',
@@ -67,7 +66,6 @@ export function useFetchGetAddress<T>(url: string, idUsuario: number): { data: T
 
             try {
                 const urlRequest = url.toString().concat(`/${idUsuario}/addresses`);
-                console.log("URL generada:", `${urlRequest}`);
 
                 const response = await fetch(urlRequest, {
                     method: 'GET',
@@ -127,7 +125,6 @@ export function useFetchGetAddressEnvioFacturacion<T>(url: string, idUsuario: nu
                 console.log("Objeto data inicial de useFetchGetAddressEnvioFacturacion:", data); // Para depuración
 
                 const urlRequest = url.toString().concat(`/${idUsuario}/addresses`);
-                console.log("URL generada:", `${urlRequest}`);
 
                 const response = await fetch(urlRequest, {
                     method: 'GET',

@@ -231,7 +231,7 @@ function Header() {
                   <Dropdown.Menu className="dropdown-menu-categorias">
                     {/* Géneros organizados en columnas */}
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                      {chunkArray(generos, 4).map((chunk, index) => (
+                      {chunkArray(generos, 6).map((chunk, index) => (
                         <div className='dropdown-menu-box' key={index}>
                           {chunk.map((genero, idx) => (
                             <a

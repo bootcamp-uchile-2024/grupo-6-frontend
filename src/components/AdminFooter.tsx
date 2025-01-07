@@ -27,11 +27,11 @@ const AdminFooter = () => {
                         </Col>
 
                         <Col md={3} className="text-center" onClick={handleRedirect}>
-                            <a href="" className="footer-link">Publica con nosotros</a>
+                        <Button onClick={handleRedirect} className="footer-link-button"> Publica con nosotros</Button>
                         </Col>
 
                         <Col md={3} className="text-center" onClick={handleRedirect}>
-                            <a href="" className="footer-link">Preguntas frecuentes</a>
+                        <Button onClick={handleRedirect} className="footer-link-button"> Preguntas frecuentes</Button>
                         </Col>
 
                     </Row>
