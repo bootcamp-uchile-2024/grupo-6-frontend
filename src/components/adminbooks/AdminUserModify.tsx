@@ -7,6 +7,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 import '../../styles/admin-user-modify.css'
 
 type UserData = {
@@ -34,6 +35,8 @@ const AdminUserModify = () => {
         apellidoMaterno: '',
         correoElectronico: '',
     });
+
+    const [showModal, setShowModal] = useState(false); // Estado para mostrar el modal
     const loggedInUser = JSON.parse(localStorage.getItem('__redux__user__') || '{}');
 
     // Cargar los datos actuales del usuario
@@ -84,7 +87,7 @@ const AdminUserModify = () => {
 
         const url = configuracion.urlJsonServerBackendUsers.toString().concat(`/${idUsuario}/admin`);
 
-        await fetch(url, {
+        const response = await fetch(url, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -93,7 +96,16 @@ const AdminUserModify = () => {
             body: JSON.stringify(updatedFields)
         });
 
-        navigate('/admin'); // Redirigir a la página de administración
+        if (response.ok) {
+            setShowModal(true); // Mostrar el modal de éxito
+        } else {
+            alert("Ocurrió un error al actualizar los datos del usuario.");
+        }
+    };
+
+    const handleModalClose = () => {
+        setShowModal(false);
+        navigate('/admin/userslist'); // Redirigir al cerrar el modal
     };
 
     const handleNavigation = (path: string) => {
@@ -176,6 +188,16 @@ const AdminUserModify = () => {
                     </Form>
                 </Col>
             </Row >
+
+            {/* Modal de éxito */}
+            <Modal className="successful-change-modal-admin" show={showModal} onHide={handleModalClose} centered>
+                <Modal.Header className="custom-modal-header" closeButton>
+                </Modal.Header>
+                <Modal.Body className="custom-modal-body">
+                    <p className="title-modal-product-edit">Cambios Guardados</p>
+                    <p className="detail-modal-product-edit">Los cambios se realizaron con éxito.</p>
+                </Modal.Body>
+            </Modal>
         </Container >
     );
 };

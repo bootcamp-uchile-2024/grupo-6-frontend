@@ -9,10 +9,27 @@
 }
 
 
-.footer-link {
-    color: #545454;
-    text-decoration: none;
-    font-size: 20px;
+.footer-link-button {
+    width: 300px;
+    height: 33px;
+    background-color: transparent !important;
+    border: none !important;
+    color: #545454 !important;
+    text-align: center !important;
+    font-family: Sarabun !important;
+    font-size: 20px !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    line-height: normal !important;
+}
+
+.footer-link-button:hover {
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.50) !important;
+}
+
+.footer-link-button:active {
+    text-shadow: none !important;
+    color: #455B73 !important;
 }
 
 .footer-text-admin {

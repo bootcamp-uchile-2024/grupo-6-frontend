@@ -82,7 +82,7 @@ const AdminCreateUser = () => {
                 if (response.ok) {
                     const data = await response.json();
                     setModalTitle('Usuario creado con éxito');
-                    setModalMessage('Serás redirigido al panel de administración al cerrar este mensaje.');
+                    setModalMessage('Serás redirigido al listado de usuario al cerrar este mensaje.');
                     setShowModal(true);
                     console.log('Usuario creado:', data);
                     setForm({
@@ -129,7 +129,7 @@ const AdminCreateUser = () => {
     const handleCloseModal = () => {
         setShowModal(false);
         if (shouldNavigate) {
-            navigate('/admin'); // Redirige solo si el estado lo indica
+            navigate('/admin/userslist'); // Redirige solo si el estado lo indica
         }
     };
 
@@ -210,11 +210,12 @@ const AdminCreateUser = () => {
                 </Col>
             </Row>
 
-            <Modal className='admin-user-register-modal' show={showModal} onHide={handleCloseModal}>
-                <Modal.Header closeButton />
+            <Modal className='admin-user-register-modal' show={showModal} onHide={handleCloseModal} centered>
+                <Modal.Header closeButton>
+                </Modal.Header>
                 <Modal.Body>
-                    <p className="id-user-admin-userList">{modalTitle}</p>
-                    <p className="nombre-user-admin-userList">{modalMessage}</p>
+                    <p className="title-create-user-admin">{modalTitle}</p>
+                    <p className="message-create-user-admin">{modalMessage}</p>
                 </Modal.Body>
             </Modal>
         </Container>
