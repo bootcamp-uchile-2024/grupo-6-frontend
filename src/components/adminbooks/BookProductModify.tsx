@@ -23,7 +23,7 @@ const BookProductModify = () => {
     const [libro, setLibro] = useState<ILibro>(
         useSelector((state: RootType) => state.productModifyReducer.book)
     );
-    const  [imagenBase, setImagenBase] = useState<boolean>(true);
+    const [imagenBase, setImagenBase] = useState<boolean>(true);
 
 
     const [errors, setErrors] = useState<IErrorsLibro>({
@@ -78,11 +78,11 @@ const BookProductModify = () => {
             case "codigoBarra":
             case "resumen":
                 return value; // `string`
-                case "caratula": {
-                    // Crear un archivo con el nombre del libro en mayúsculas y sin espacios
-                    const fileName = libro.nombre.toLowerCase().trim().replace(' ', '').concat('.jpeg');
-                    return new File([value],fileName ); // `File`
-                }
+            case "caratula": {
+                // Crear un archivo con el nombre del libro en mayúsculas y sin espacios
+                const fileName = libro.nombre.toLowerCase().trim().replace(' ', '').concat('.jpeg');
+                return new File([value], fileName); // `File`
+            }
             case "autor":
             case "genero":
                 return value.split(","); // `string[]` -> Convertir valor separado por comas
@@ -144,7 +144,6 @@ const BookProductModify = () => {
             console.log("El libro a modificar es: ", libro);
 
             // Se deberia cambiar por un metodo PUT
-            console.log("TOKEN: ", loggedInUser.token);
             const response = await fetch(`${configuracion.urlJsonServerBackendProducts}${libro.isbn}`, {
                 method: 'PATCH',
                 headers: {
@@ -183,10 +182,7 @@ const BookProductModify = () => {
             });
             navigate('/admin/product')
         }
-
     };
-
-
 
     return (
         <div className="caja-editar-producto">
@@ -198,31 +194,31 @@ const BookProductModify = () => {
                             <>
                                 <Row>
                                     {/* Imagen del libro */}
-                                    { imagenBase ? (
-                                    <Col xs={12} md={5} className="d-flex align-items-center justify-content-center flex-column ">
-                                        <img src={`${url}${libro.caratula}`} alt={libro.nombre}
-                                            className="img-fluid mb-3"
-                                            style={{ maxHeight: '300px', objectFit: 'contain' }} />
-                                        <Button variant="primary" type="submit" className="mt-3"
-                                            style={{
-                                                backgroundColor: '#455B73',
-                                                color: '#F5FAFF',
-                                            }}>
-                                            Actualizar información
-                                        </Button>
-                                    </Col> ) : (
-                                    <Col xs={12} md={5} className="d-flex align-items-center justify-content-center flex-column ">
-                                        <img src={URL.createObjectURL(libro.caratula)}  alt={libro.nombre}
-                                            className="img-fluid mb-3"
-                                            style={{ maxHeight: '300px', objectFit: 'contain' }} />
-                                        <Button variant="primary" type="submit" className="mt-3"
-                                            style={{
-                                                backgroundColor: '#455B73',
-                                                color: '#F5FAFF',
-                                            }}>
-                                            Actualizar información
-                                        </Button>
-                                    </Col> )}
+                                    {imagenBase ? (
+                                        <Col xs={12} md={5} className="d-flex align-items-center justify-content-center flex-column ">
+                                            <img src={`${url}${libro.caratula}`} alt={libro.nombre}
+                                                className="img-fluid mb-3"
+                                                style={{ maxHeight: '300px', objectFit: 'contain' }} />
+                                            <Button variant="primary" type="submit" className="mt-3"
+                                                style={{
+                                                    backgroundColor: '#455B73',
+                                                    color: '#F5FAFF',
+                                                }}>
+                                                Actualizar información
+                                            </Button>
+                                        </Col>) : (
+                                        <Col xs={12} md={5} className="d-flex align-items-center justify-content-center flex-column ">
+                                            <img src={URL.createObjectURL(libro.caratula)} alt={libro.nombre}
+                                                className="img-fluid mb-3"
+                                                style={{ maxHeight: '300px', objectFit: 'contain' }} />
+                                            <Button variant="primary" type="submit" className="mt-3"
+                                                style={{
+                                                    backgroundColor: '#455B73',
+                                                    color: '#F5FAFF',
+                                                }}>
+                                                Actualizar información
+                                            </Button>
+                                        </Col>)}
 
                                     {/* Formulario */}
                                     <Col xs={12} md={7}>
@@ -336,8 +332,8 @@ const BookProductModify = () => {
 
                                         {/* Campo Autor */}
                                         <Form.Group controlId="autores" className="mb-4">
-                                        <Form.Label>Autor</Form.Label>
-                                        <Form.Control
+                                            <Form.Label>Autor</Form.Label>
+                                            <Form.Control
                                                 type="text"
                                                 name="autor"
                                                 value={libro.autor}
@@ -448,14 +444,13 @@ const BookProductModify = () => {
                                             )}
                                         </Form.Group>
 
-                                      {/* Campo Carátula (Archivo)*/} 
-                                      <Form.Group controlId="caratula" className="mb-4">
+                                        {/* Campo Carátula (Archivo)*/}
+                                        <Form.Group controlId="caratula" className="mb-4">
                                             <Form.Label>Carátula</Form.Label>
                                             <Form.Control
                                                 type="file"
                                                 name="caratula"
                                                 onChange={handleChange}
-                                                required
                                                 style={{ backgroundColor: '#F5FAFF', color: '#455B73' }}
                                             />
                                             {errors.caratula && (
@@ -588,4 +583,3 @@ const BookProductModify = () => {
 };
 
 export default BookProductModify;
-
